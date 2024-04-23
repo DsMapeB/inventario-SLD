@@ -293,14 +293,14 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="Vista/img/fotom.png" class="d-block w-100" alt="" height="546.14">
+                        <img src="Vista/img/fotom.png" class="d-block w-100" alt="" >
                         <div class="carousel-caption d-none d-md-block ">
                             <h5>Fundador/Creador de SLD</h5>
                             <p>Mi nombre es Santiago Mape y soy Creador del Sistema de Gestion Online de Inventario SLD</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="Vista/img/laug.png" class="d-block w-100" alt="..." height="546.14">
+                        <img src="Vista/img/laug.png" class="d-block w-100" alt="..." >
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Fundadora/Creadora de SLD</h5>
                             <p>Mi nombre es Laura Medina y soy Creadora del Sistema de Gestion Online de Inventario SLD</p>
