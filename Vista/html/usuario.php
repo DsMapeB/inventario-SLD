@@ -273,7 +273,6 @@
                                         <th>Edad</th>
                                         <th>Ciudad</th>
                                         <th>Cargo</th>
-                                        <th data-type="date" data-format="YYYY/DD/MM">Inicio</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -283,7 +282,6 @@
                                         <td>59</td>
                                         <td>Barranquilla</td>
                                         <td>Empleada de servicio a domicilio</td>
-                                        <td>13/01/2004</td>
                                     </tr>
                                 </tbody>
                             </table>
