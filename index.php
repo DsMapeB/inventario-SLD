@@ -20,6 +20,13 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 break;
             case 'provee':
                 $controlador->verpagina("Vista/html/provee.php");
+                break;
+            case 'producto':
+                $controlador->verpagina("Vista/html/produ.php");
+                break;
+            case 'venta':
+                $controlador->verpagina("Vista/html/venta.php");
+                break;
             default:
                 $controlador->verpagina("vista/html/inicio.php");
         }
@@ -33,7 +40,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 $controlador->login($_POST["user"], $_POST["pass"]);
 
             default:
-                $controlador->verpagina("vista/html/login.php");
+                $controlador->verpagina("vista/html/inicio.php");
         }
     } else {
         $controlador->verpagina("vista/html/login.php");

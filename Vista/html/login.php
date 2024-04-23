@@ -22,7 +22,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                             <div class="d-flex justify-content-center py-4">
-                                <a href="index.php?accion=inicio" class="logo d-flex align-items-center w-auto">
+                                <a href="index.php?accion=logout" class="logo d-flex align-items-center w-auto">
                                     <img src="Vista/img/logo.png" alt="">
                                     <span class="d-none d-lg-block">Sistema Gestion de Inventario</span>
                                 </a>
@@ -38,7 +38,6 @@
                                             Ingrese su Usuario y Contraseña para Ingresar
                                         </p>
                                     </div>
-
                                     <?php
                                     if (isset($_GET["error"])) {
                                         $mensaje = "Error";
@@ -48,6 +47,13 @@
                                         if ($_GET["error"] == 2) {
                                             $mensaje = "¡El usuario ingresado no corresponde a ninguna cuenta!";
                                         }
+                                    ?>
+                                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                            <div>
+                                                <i class="bi bi-exclamation-triangle-fill"></i> <?php echo $mensaje; ?>
+                                            </div>
+                                        </div>
+                                    <?php
                                     }
                                     ?>
                                     <form action="index.php?accion=login" method="post" class="row g-3 needs-validation" novalidate>
@@ -64,7 +70,7 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="Pass" class="form-label">
+                                            <label for="yourPassword" class="form-label">
                                                 Contraseña
                                             </label>
                                             <input type="password" name="pass" class="form-control" id="yourPassword" required>
@@ -88,4 +94,5 @@
         </div>
     </main>
 </body>
+
 </html>
