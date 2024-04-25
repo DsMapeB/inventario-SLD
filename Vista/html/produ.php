@@ -115,12 +115,12 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="Vista/img/fotom.png" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Santiago Gongora Ramirez</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION["usuario"]; ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Santiago Gongora Ramirez</h6>
+                            <h6><?php echo $_SESSION["usuario"]; ?></h6>
                             <span>Administrador</span><br>
                             <span><?php date_default_timezone_set('America/Bogota');
                                     $dia = date("d/m/y");
@@ -260,7 +260,6 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
                                             <th scope="col">Codigo</th>
                                             <th scope="col">Descripcion</th>
                                             <th scope="col">Precio</th>
@@ -319,40 +318,42 @@
                             <div class="modal fade" id="staticBackdropprodu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Nuevo Producto</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Codigo</span>
-                                                <input type="text" class="form-control" placeholder="Codigo del Producto" aria-label="Nombre" aria-describedby="basic-addon1">
+                                        <form action="">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Nuevo Producto</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Descripcion</span>
-                                                <input type="text" class="form-control" placeholder="Descripcion del Producto" aria-label="Descripcion" aria-describedby="basic-addon1">
+                                            <div class="modal-body">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Codigo</span>
+                                                    <input type="text" class="form-control" placeholder="Codigo del Producto" aria-label="Nombre" aria-describedby="basic-addon1">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Descripcion</span>
+                                                    <input type="text" class="form-control" placeholder="Descripcion del Producto" aria-label="Descripcion" aria-describedby="basic-addon1">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text" for="inputGroupSelect01">Precio</label>
+                                                    <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Telefono" aria-describedby="basic-addon1">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Existencia</span>
+                                                    <input type="text" class="form-control" placeholder="Existencia" aria-label="existencia" aria-describedby="basic-addon1">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Proveedor</span>
+                                                    <select class="form-select" id="inputGroupSelect01">
+                                                        <option selected>Seleccionar</option>
+                                                        <option value="1">Bimbo</option>
+                                                        <option value="2">Postobon</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="input-group mb-3">
-                                                <label class="input-group-text" for="inputGroupSelect01">Precio</label>
-                                                <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Telefono" aria-describedby="basic-addon1">
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                             </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Existencia</span>
-                                                <input type="text" class="form-control" placeholder="Existencia" aria-label="existencia" aria-describedby="basic-addon1">
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Proveedor</span>
-                                                <select class="form-select" id="inputGroupSelect01">
-                                                    <option selected>Seleccionar</option>
-                                                    <option value="1">Bimbo</option>
-                                                    <option value="2">Postobon</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -115,12 +115,12 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="Vista/img/fotom.png" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Santiago Gongora Ramirez</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION["usuario"]; ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Santiago Gongora Ramirez</h6>
+                            <h6><?php echo $_SESSION["usuario"]; ?></h6>
                             <span>Administrador</span><br>
                             <span><?php date_default_timezone_set('America/Bogota');
                                     $dia = date("d/m/y");
@@ -259,11 +259,11 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
+                                            <th scope="col">Codigo</th>
                                             <th scope="col">Nombre</th>
-                                            <th scope="col">Direccón</th>
-                                            <th scope="col">Edad</th>
+                                            <th scope="col">Telefono</th>
                                             <th scope="col">Ciudad</th>
+                                            <th scope="col">Dirección</th>
                                             <th scope="col">Tipo de cargo</th>
                                         </tr>
                                     </thead>
@@ -328,16 +328,16 @@
                                                 <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
                                             </div>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Dirección</span>
-                                                <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Edad</span>
-                                                <input type="text" class="form-control" placeholder="Edad" aria-label="Edad" aria-describedby="basic-addon1">
+                                                <span class="input-group-text" id="basic-addon1">Telefono</span>
+                                                <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1">
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1">Ciudad</span>
                                                 <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">Dirección</span>
+                                                <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">
                                             </div>
                                             <div class="input-group mb-3">
                                                 <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
