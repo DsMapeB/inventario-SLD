@@ -29,9 +29,6 @@
             <ul class="d-flex align-items-center">
 
                 <li class="nav-item d-block d-lg-none">
-                    <a class="nav-link nav-icon search-bar-toggle " href="#">
-                        <i class="bi bi-search"></i>
-                    </a>
                 </li><!-- End Search Icon-->
 
                 <li class="nav-item dropdown">
@@ -220,7 +217,7 @@
             </li><!-- End Icons Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link collapsed" href="index.php?accion=venta">
                     <i class="bi bi-cart3"></i>
                     <span>Ventas</span>
                 </a>
@@ -231,6 +228,8 @@
 
 
     <main class="main" id="main">
+
+
         <div class="pagetitle">
             <h1>Información General</h1>
             <nav>
@@ -244,18 +243,13 @@
 
 
         <div class="mai2 w-100">
-            <div class="mai21 container-fluid">
+            <div class="mai21 ">
                 <h3 class="card-title">Bienvenidos a su Sistema de Gestion Online de Inventario</h3>
                 <p class="w-100">
                     ¡Bienvenidos al Sistema de Gestion Online de Inventario! Este sistema te permitirá controlar de manera eficiente tus existencias, optimizar el flujo de productos y mejorar la gestión de tus activos. ¡Comencemos a maximizar la eficiencia y la rentabilidad de tu inventario juntos!
                 </p>
             </div>
         </div><!--fin bienvenida -->
-
-        <section>
-            <h2 class="card-titlem w-100">¿Quienes Somos?</h2>
-            <p>En SLD estamos dedicados a revolucionar la gestión online de inventario a través de soluciones tecnológicas avanzadas y un enfoque centrado en el cliente. Nuestro equipo está comprometido con la excelencia en cada aspecto de nuestro trabajo, desde el desarrollo de software hasta el servicio al cliente, con el objetivo de ofrecer la mejor experiencia posible a nuestros usuarios.</p>
-        </section><!--fin somos -->
 
         <section class="mai">
             <h5 class="card-titlem w-100">Sobre el Sistema de Gestion Online de Inventario</h5>
@@ -284,7 +278,31 @@
                     <a href="index.php?accion=produ" class="btn btn-primary">Seccion Productos</a>
                 </div>
             </div>
-        </section><!--fin sobre -->
+        </section><!--fin sobre el sistema -->
+
+        <section class="somos w-100">
+            <h2 class="card-titlem w-100">¿Quienes Somos?</h2>
+            <p>En SLD estamos dedicados a revolucionar la gestión online de inventario a través de soluciones tecnológicas avanzadas y un enfoque centrado en el cliente. Nuestro equipo está comprometido con la excelencia en cada aspecto de nuestro trabajo, desde el desarrollo de software hasta el servicio al cliente, con el objetivo de ofrecer la mejor experiencia posible a nuestros usuarios.</p>
+        </section><!--fin quienes somos -->
+
+        <section class="mai">
+            <h5 class="card-titlem w-100">Nuestra Vision y Mision con Nuestros clientes</h5>
+            <p class="w-100">Controla, gestiona, triunfa: Tu inventario bajo control, en línea y sin complicaciones.</p>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-titlem">Nuestra Vision</h5>
+                    <p class="card-text">Nos visualizamos como líderes en el campo de la gestión de inventario online, proporcionando a nuestros clientes las herramientas más avanzadas y eficientes para administrar sus existencias de manera óptima. Buscamos ser reconocidos por nuestra innovación, fiabilidad y capacidad para adaptarnos a las necesidades cambiantes del mercado. Nos esforzamos por ofrecer soluciones integrales que impulsen el crecimiento y la eficiencia de las empresas en todo el mundo.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-titlem">Nuestra Mision</h5>
+                    <p class="card-text">Nuestra misión es simplificar y optimizar la gestión de inventario para empresas de todos los tamaños, brindando un sistema online accesible, intuitivo y completo. Nos comprometemos a ofrecer herramientas que permitan a nuestros clientes tener un control preciso y en tiempo real de sus existencias, reduciendo costos, minimizando pérdidas y mejorando la eficiencia operativa. Nos esforzamos por proporcionar un servicio de alta calidad, respaldado por un equipo comprometido y orientado al cliente, con el objetivo de impulsar el éxito y el crecimiento de nuestros usuarios.</p>
+                </div>
+            </div>
+        </section><!--fin vision mision -->
+
+
         <div class="carr w-100">
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators">
@@ -293,14 +311,14 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="Vista/img/fotom.png" class="d-block w-100" alt="" >
+                        <img src="Vista/img/fotom.png" class=" w-100" alt="">
                         <div class="carousel-caption d-none d-md-block ">
                             <h5>Fundador/Creador de SLD</h5>
                             <p>Mi nombre es Santiago Mape y soy Creador del Sistema de Gestion Online de Inventario SLD</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="Vista/img/laug.png" class="d-block w-100" alt="..." >
+                        <img src="Vista/img/laug.png" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Fundadora/Creadora de SLD</h5>
                             <p>Mi nombre es Laura Medina y soy Creadora del Sistema de Gestion Online de Inventario SLD</p>

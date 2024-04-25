@@ -220,7 +220,7 @@
             </li><!-- End Icons Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link collapsed" href="index.php?accion=venta">
                     <i class="bi bi-cart3"></i>
                     <span>Ventas</span>
                 </a>
@@ -250,87 +250,111 @@
                             <h5 class="card-title">Tabla Usuarios</h5>
                             <p>Aca podras encontrar toda la informacion sobre tus usuarios</p>
 
-                            <div class="datatable-top">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                            Agregar Nuevo Usuario
-                                        </button>
-                                        <div class="datatable-search">
-                                            <input class="datatable-input" placeholder="Buscar..." type="search" title="Buscar dentro de la tabla">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Agregar Nuevo Usuario
+                            </button>
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Direccón</th>
+                                            <th scope="col">Edad</th>
+                                            <th scope="col">Ciudad</th>
+                                            <th scope="col">Tipo de cargo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Usuario</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">Nombre</span>
+                                                <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">Dirección</span>
+                                                <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">Edad</span>
+                                                <input type="text" class="form-control" placeholder="Edad" aria-label="Edad" aria-describedby="basic-addon1">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">Ciudad</span>
+                                                <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
+                                                <select class="form-select" id="inputGroupSelect01">
+                                                    <option selected>Seleccionar</option>
+                                                    <option value="1">Adiministrador</option>
+                                                    <option value="2">Empleado</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary">Guardar Cambios</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <table class="table datatable">
-                                <thead>
-                                    <tr>
-                                        <th><b>N</b>ombre
-                                        </th>
-                                        <th>Direccion</th>
-                                        <th>Edad</th>
-                                        <th>Ciudad</th>
-                                        <th>Cargo</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>David Ramirez</td>
-                                        <td>Barranquilla</td>
-                                        <td>59</td>
-                                        <td>Barranquilla</td>
-                                        <td>Empleada de servicio a domicilio</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Usuario</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Dirección</span>
-                                <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Edad</span>
-                                <input type="text" class="form-control" placeholder="Edad" aria-label="Edad" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Ciudad</span>
-                                <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
-                                <select class="form-select" id="inputGroupSelect01">
-                                    <option selected>Seleccionar</option>
-                                    <option value="1">Adiministrador</option>
-                                    <option value="2">Empleado</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 </body>
 

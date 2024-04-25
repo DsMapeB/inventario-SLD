@@ -740,16 +740,18 @@ h6 {
 }
 
 .carr{
-  width: 600px;
+  background-color: #d6d8e6;
+  width: 400%;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  border-radius: 10px;
+  text-align: center;
 }
 .mai{
-  background-color: #d6d8e6;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -763,18 +765,23 @@ h6 {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
 }
 .mai2{
   background-color: #d6d8e6;
   width: 750px;
   text-align: center;
+  border-radius: 10px;
 }
 .somos{
+  background-color: #d6d8e6;
   width: 850px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
 }
-.todo{
-  float: right;
+#carouselExampleCaptions{
+  width: 495px;
+  height: 100%;
 }

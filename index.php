@@ -21,7 +21,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
             case 'provee':
                 $controlador->verpagina("Vista/html/provee.php");
                 break;
-            case 'producto':
+            case 'produ':
                 $controlador->verpagina("Vista/html/produ.php");
                 break;
             case 'venta':
@@ -31,7 +31,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 $controlador->verpagina("vista/html/inicio.php");
         }
     } else {
-        $controlador->verpagina("vista/html/login.php");
+        $controlador->verpagina("vista/html/inicio.php");
     }
 } else {
     if (isset($_GET["accion"])) {

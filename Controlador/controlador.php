@@ -10,7 +10,7 @@
     if ($result!=1 && $result!=2){
       $_SESSION["usuario"] = $result[0];
       $_SESSION["id"] = $result[1];
-      require_once("vista/html/panel.php");
+      require_once("vista/html/inicio.php");
     }
     if ($result==1){
       header("Location:index.php?error=1");
