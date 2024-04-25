@@ -10,6 +10,7 @@
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
     <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="text/javascript" href="Vista/js/java_.js">
 </head>
 
 <body>
@@ -251,10 +252,13 @@
                             <p>Aca podras encontrar toda la informacion sobre tus usuarios</p>
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalusuario">
                                 Agregar Nuevo Usuario
                             </button>
 
+                            <?php
+                                if ($result->rowcount()>0){
+                            ?>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -268,54 +272,37 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                            $cont = 0;
+                                            while ($fila = $result->fecth(PDO::FETCH_OBJ)){
+                                                $cont++;
+                                        ?>
                                         <tr>
-                                            <th scope="row">1</th>
+                                            <th scope="row"><?php echo $codigoUsu?></th>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
+                                <?php
+                                } else{
+                                ?> 
+                                    <p>No hay usuarios Registrados</p>
+                                <?php
+                                }
+                                ?>
                             </div>
 
 
 
                             <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalusuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -323,30 +310,32 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                                <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Telefono</span>
-                                                <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1">
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Ciudad</span>
-                                                <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1">
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Dirección</span>
-                                                <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
-                                                <select class="form-select" id="inputGroupSelect01">
-                                                    <option selected>Seleccionar</option>
-                                                    <option value="1">Adiministrador</option>
-                                                    <option value="2">Empleado</option>
-                                                </select>
-                                            </div>
+                                            <form action="index.php?accion=" method="post" id="agregarusuarios" novalidate>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Nombre</span>
+                                                    <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Telefono</span>
+                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Ciudad</span>
+                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Dirección</span>
+                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
+                                                    <select class="form-select" id="inputGroupSelect01">
+                                                        <option selected>Seleccionar</option>
+                                                        <option value="1">Adiministrador</option>
+                                                        <option value="2">Empleado</option>
+                                                    </select>
+                                                </div>
+                                            </form>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
