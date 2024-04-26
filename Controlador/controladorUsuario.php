@@ -19,7 +19,7 @@ class controladorusuario{
 
   public function consultarusuarios(){
     $gestorusuario = new gestorusuario();
-    $result = $gestorusuario->consultarusuario();
+    $result = $gestorusuario->consultarusuarios();
     require_once 'Vista/html/usuario.php';
   }
 }

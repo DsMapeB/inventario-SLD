@@ -1,13 +1,16 @@
 <?php
 session_start();
-require_once("controlador/controlador.php");
-require_once("controlador/controladorUsuario.php");
-require_once("modelo/conexion.php");
-require_once("modelo/gestor.php");
-require_once ("modelo/gestorUsuario.php");
-require_once("modelo/usuario.php");
+require_once("Controlador/controlador.php");
+require_once("Controlador/controladorUsuario.php");
+require_once("Controlador/controladorPro.php");
+require_once("Modelo/conexion.php");
+require_once("Modelo/gestor.php");
+require_once("Modelo/gestorUsuario.php");
+require_once("Modelo/usuario.php");
 
 $controlador = new controlador();
+$controladorUsuario = new controladorusuario();
+$controladorPro = new controladorProveedor(); 
 
 if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
     if (isset($_GET["accion"])) {
@@ -20,8 +23,15 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 break;
             case 'ingresarusuario':
                 $controladorusuario->agregarusuario(
-
+                    $_REQUEST["nombreUsuario"],
+                    $_REQUEST["telUsuario"],
+                    $_REQUEST["ciudadUsuario"],
+                    $_REQUEST["direcUsuario"],
+                    $_REQUEST["cargoUsuario"]
                 );
+                break;
+            case 'consultarusuario':
+                $controladorusuario->consultarusuarios();
                 break;
             case 'cliente':
                 $controlador->verpagina("Vista/html/cliente.php");
@@ -29,6 +39,15 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
             case 'provee':
                 $controlador->verpagina("Vista/html/provee.php");
                 break;
+            case 'ingresarProveedor':
+                $controladorPro->agregarproveedores(
+                $_REQUEST["nombreprovee"],
+                $_REQUEST["contactoprovee"],
+                $_REQUEST["telprovee"],
+                $_REQUEST["direcprovee"],
+                $_REQUEST["ciuprovee"]
+            );
+            break;
             case 'produ':
                 $controlador->verpagina("Vista/html/produ.php");
                 break;
@@ -39,7 +58,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 $controlador->verpagina("vista/html/inicio.php");
         }
     } else {
-        $controlador->verpagina("vista/html/inicio.php");
+        $controlador->verpagina("vista/html/login.php");
     }
 } else {
     if (isset($_GET["accion"])) {

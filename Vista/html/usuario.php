@@ -163,7 +163,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="index.php?accion=login">
+                            <a class="dropdown-item d-flex align-items-center" href="index.php?accion=logout">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Salir</span>
                             </a>
@@ -256,10 +256,12 @@
                                 Agregar Nuevo Usuario
                             </button>
 
-                            <?php
-                                if ($result->rowcount()>0){
-                            ?>
+
+
                             <div class="table-responsive">
+                                <?php
+                                if ($result->rowCount() > 0) {
+                                ?>
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -273,27 +275,27 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $cont = 0;
-                                            while ($fila = $result->fecth(PDO::FETCH_OBJ)){
-                                                $cont++;
+                                        $cont = 0;
+                                        while ($fila = $result->fecth(PDO::FETCH_OBJ)) {
+                                            $cont++;
                                         ?>
-                                        <tr>
-                                            <th scope="row"><?php echo $codigoUsu?></th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+                                            <tr>
+                                                <th scope="row"><?php echo $cont ?></th>
+                                                <td><?php echo $fila->nombreUsu; ?></td>
+                                                <td><?php echo $fila->telefonoUsu; ?></td>
+                                                <td><?php echo $fila->ciudadUsu; ?></td>
+                                                <td><?php echo $fila->direccionUsu; ?></td>
+                                                <td><?php echo $fila->cargoUsu; ?></td>
+                                            </tr>
                                         <?php
                                         }
                                         ?>
                                     </tbody>
                                 </table>
                                 <?php
-                                } else{
-                                ?> 
-                                    <p>No hay usuarios Registrados</p>
+                                } else {
+                                ?>
+                                <p>No hay usuarios Registrados</p>
                                 <?php
                                 }
                                 ?>
@@ -310,26 +312,26 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=" method="post" id="agregarusuarios" novalidate>
+                                            <form action="index.php?accion=ingresarusuario" method="post" id="agregarusuario" novalidate>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                                    <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Telefono</span>
-                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" id="telUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Ciudad</span>
-                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" id="ciudadUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Dirección</span>
-                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" id="direcUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
-                                                    <select class="form-select" id="inputGroupSelect01">
+                                                    <select class="form-select" id="inputGroupSelect01" id="cargoUsuario">
                                                         <option selected>Seleccionar</option>
                                                         <option value="1">Adiministrador</option>
                                                         <option value="2">Empleado</option>
@@ -338,13 +340,14 @@
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
         </section>
+
 </body>
 
 </html>

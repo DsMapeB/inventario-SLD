@@ -7,14 +7,14 @@
     private $direccionUsu;
     private $cargoUsu;
 
-    public function __construct($codusu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $cargo)
+    public function __construct($codUsu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $cargo)
     {
-      $this->codigoUsu = $codusu;
-      $this->nombreUsu = $nomUsu;
-      $this->telefonoUsu = $telUsu;
-      $this->ciudadUsu = $ciuUsu;
-      $this->direccionUsu = $direUsu;
-      $this->cargoUsu = $cargo;
+        $this->codigoUsu = $codUsu;
+        $this->nombreUsu = $nomUsu;
+        $this->telefonoUsu = $telUsu;
+        $this->ciudadUsu = $ciuUsu;
+        $this->direccionUsu = $direUsu;
+        $this->cargoUsu = $cargo;
     }
 
     public function obtenercodigo(){

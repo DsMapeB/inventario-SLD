@@ -10,6 +10,9 @@
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
     <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
+    <script src="Vista/jquery/jquery.js"></script>
+    <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    < <link href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
 </head>
 
 <body>
@@ -323,26 +326,28 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Proveedor</span>
-                                                <input type="text" class="form-control" placeholder="Nombre del Proveedor" aria-label="Nombre" aria-describedby="basic-addon1">
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Contacto</span>
-                                                <input type="text" class="form-control" placeholder="Nombre completo del contacto" aria-label="contacto" aria-describedby="basic-addon1">
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <label class="input-group-text" for="inputGroupSelect01">Telefono</label>
-                                                <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1">
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Dirección</span>
-                                                <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Ciudad</span>
-                                                <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1">
-                                            </div>
+                                            <form action="index.php?accion=ingresarProveedor" novalidate method="$_POST" id="agregarproveedor">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Proveedor</span>
+                                                    <input type="text" class="form-control" placeholder="Nombre del Proveedor" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreprovee">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Contacto</span>
+                                                    <input type="text" class="form-control" placeholder="Nombre completo del contacto" aria-label="contacto" aria-describedby="basic-addon1" id="contactoprovee">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text" for="inputGroupSelect01">Telefono</label>
+                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" id="telprovee">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Dirección</span>
+                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" id="direcprovee">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Ciudad</span>
+                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" id="ciuprovee">
+                                                </div>
+                                            </form>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

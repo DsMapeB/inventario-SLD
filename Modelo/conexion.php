@@ -11,7 +11,12 @@ class conexion{
 	public $filas;
 
 	private function abrir_conexion(){
-		$this->conn = new PDO("mysql:host=".self::$db_host.";dbname=".$this->db_name."",self::$db_user,self::$db_password);
+		try {
+            $this->conn = new PDO("mysql:host=".self::$db_host.";dbname=".$this->db_name, self::$db_user, self::$db_password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Error al conectar con la base de datos: " . $e->getMessage());
+        }
 	}
 
 	private function cerrar_conexion(){
