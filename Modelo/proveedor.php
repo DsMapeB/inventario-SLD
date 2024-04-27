@@ -1,12 +1,14 @@
 <?php
     class proveedor{
+        private $nit_pro;
         private $nombre_pro;
         private $contacto_pro;
         private $telefono_pro;
         private $direccion_pro;
         private $ciudad_pro;
 
-        public function __construct($nompro, $contpro, $telpro,$direpro, $ciupro ){
+        public function __construct($nitpro,$nompro, $contpro, $telpro,$direpro, $ciupro ){
+            $this->nit_pro = $nitpro;
             $this->nombre_pro = $nompro;
             $this->contacto_pro = $contpro;
             $this->telefono_pro = $telpro;
@@ -14,6 +16,9 @@
             $this->ciudad_pro = $ciupro;
         }
 
+        public function obtenernit(){
+            return $this->nit_pro;
+        }
         public function obtenernombre(){
             return $this->nombre_pro;
         }

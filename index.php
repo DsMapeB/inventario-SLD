@@ -10,7 +10,7 @@ require_once("Modelo/usuario.php");
 
 $controlador = new controlador();
 $controladorUsuario = new controladorusuario();
-$controladorPro = new controladorProveedor(); 
+$controladorPro = new controladorproveedor(); 
 
 if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
     if (isset($_GET["accion"])) {
@@ -23,10 +23,12 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 break;
             case 'ingresarusuario':
                 $controladorusuario->agregarusuario(
+                    $_REQUEST["docUsuario"],
                     $_REQUEST["nombreUsuario"],
                     $_REQUEST["telUsuario"],
                     $_REQUEST["ciudadUsuario"],
                     $_REQUEST["direcUsuario"],
+                    $_REQUEST["fotoUsuario"],
                     $_REQUEST["cargoUsuario"]
                 );
                 break;
@@ -41,11 +43,12 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 break;
             case 'ingresarProveedor':
                 $controladorPro->agregarproveedores(
-                $_REQUEST["nombreprovee"],
-                $_REQUEST["contactoprovee"],
-                $_REQUEST["telprovee"],
-                $_REQUEST["direcprovee"],
-                $_REQUEST["ciuprovee"]
+                    $_REQUEST["nitprovee"],
+                    $_REQUEST["nombreprovee"],
+                    $_REQUEST["contactoprovee"],
+                    $_REQUEST["telprovee"],
+                    $_REQUEST["direcprovee"],
+                    $_REQUEST["ciuprovee"]
             );
             break;
             case 'produ':

@@ -4,8 +4,8 @@ class controladorusuario{
 	REGISTRO DE Usuarios
 	=============================================*/
 
-  public function agregarusuario($codusu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $cargo){
-    $usuario = new usuario($codusu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $cargo);
+  public function agregarusuario($codusu, $docUsu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu , $cargo){
+    $usuario = new usuario($codusu, $docUsu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu , $cargo);
     $gestorusuario = new gestorusuario();
     $result = $gestorusuario->agregarusuario($usuario);
     if ($result=="0"){

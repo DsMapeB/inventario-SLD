@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel</title>
+    <title>Productos</title>
     <link rel="shortcut icon" href="Vista/ico/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="Vista/bootstrap-5.3.3-dist/css/bootstrap.css">
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
@@ -22,17 +22,11 @@
                 <span class="d-none d-lg-block">Sistema Gestion de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
-        </div>
+        </div><!-- End Titulo Icon -->
 
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
-                <li class="nav-item d-block d-lg-none">
-                    <a class="nav-link nav-icon search-bar-toggle " href="#">
-                        <i class="bi bi-search"></i>
-                    </a>
-                </li><!-- End Search Icon-->
 
                 <li class="nav-item dropdown">
 
@@ -162,7 +156,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="index.php?accion=login">
+                            <a class="dropdown-item d-flex align-items-center" href="index.php?accion=logout">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Salir</span>
                             </a>
@@ -177,7 +171,6 @@
     </header>
     <!-- fin header -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
@@ -185,22 +178,22 @@
                     <i class="bi bi-grid"></i>
                     <span>Inicio</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
+            </li><!-- End Inicio -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=usuario">
                     <i class="bi bi-person "></i>
                     <span>Usuarios</span>
                 </a>
-            </li><!-- End Components Nav -->
+            </li><!-- End Usuario -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" href="index.php?accion=cliente">
                     <i class="bi bi-people"></i>
                     <span>Clientes</span>
                 </a>
             </li>
-            <!-- End Tables Nav -->
+            <!-- End Cliente -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=provee">
@@ -209,7 +202,7 @@
                 </a>
             </li>
 
-            </li><!-- End Charts Nav -->
+            </li><!-- End Proveedor -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=produ">
@@ -217,7 +210,7 @@
                     <span>Productos</span>
                 </a>
             </li>
-            </li><!-- End Icons Nav -->
+            </li><!-- End Productos -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=venta">
@@ -226,7 +219,6 @@
                 </a>
             </li>
         </ul>
-
     </aside><!-- End Sidebar-->
 
     <main class="main" id="main">

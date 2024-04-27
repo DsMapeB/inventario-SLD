@@ -4,8 +4,8 @@
         REGISTRO DE proveedores
         =============================================*/
 
-        public function agregarproveedores($nompro, $contpro, $telpro,$direpro, $ciupro ){
-            $proveedor = new proveedor($nompro, $contpro, $telpro,$direpro, $ciupro );
+        public function agregarproveedores($nitpro,$nompro, $contpro, $telpro,$direpro, $ciupro ){
+            $proveedor = new proveedor($nitpro,$nompro, $contpro, $telpro,$direpro, $ciupro );
             $gestorproveedor = new gestorproveedor();
             $result = $gestorproveedor->agregarproveedor($proveedor);
             if ($result=="0"){

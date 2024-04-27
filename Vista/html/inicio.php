@@ -19,17 +19,14 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php?accion=inicio" class="logo d-flex align-items-center">
                 <img src="Vista/img/logo.png" alt="">
-                <span class="d-none d-lg-block">Sistema Gestion Online de Inventario</span>
+                <span class="d-none d-lg-block">Sistema Gestion de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
-        </div>
+        </div><!-- End Titulo Icon -->
 
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
-                <li class="nav-item d-block d-lg-none">
-                </li><!-- End Search Icon-->
 
                 <li class="nav-item dropdown">
 
@@ -174,7 +171,6 @@
     </header>
     <!-- fin header -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
@@ -182,22 +178,22 @@
                     <i class="bi bi-grid"></i>
                     <span>Inicio</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
+            </li><!-- End Inicio -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=usuario">
                     <i class="bi bi-person "></i>
                     <span>Usuarios</span>
                 </a>
-            </li><!-- End Components Nav -->
+            </li><!-- End Usuario -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" href="index.php?accion=cliente">
                     <i class="bi bi-people"></i>
                     <span>Clientes</span>
                 </a>
             </li>
-            <!-- End Tables Nav -->
+            <!-- End Cliente -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=provee">
@@ -206,7 +202,7 @@
                 </a>
             </li>
 
-            </li><!-- End Charts Nav -->
+            </li><!-- End Proveedor -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=produ">
@@ -214,7 +210,7 @@
                     <span>Productos</span>
                 </a>
             </li>
-            </li><!-- End Icons Nav -->
+            </li><!-- End Productos -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=venta">
@@ -223,13 +219,10 @@
                 </a>
             </li>
         </ul>
-
     </aside><!-- End Sidebar-->
 
 
     <main class="main" id="main">
-
-
         <div class="pagetitle">
             <h1>Información General</h1>
             <nav>

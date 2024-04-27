@@ -23,17 +23,11 @@
                 <span class="d-none d-lg-block">Sistema Gestion de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
-        </div>
+        </div><!-- End Titulo Icon -->
 
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
-                <li class="nav-item d-block d-lg-none">
-                    <a class="nav-link nav-icon search-bar-toggle " href="#">
-                        <i class="bi bi-search"></i>
-                    </a>
-                </li><!-- End Search Icon-->
 
                 <li class="nav-item dropdown">
 
@@ -178,7 +172,6 @@
     </header>
     <!-- fin header -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
@@ -186,22 +179,22 @@
                     <i class="bi bi-grid"></i>
                     <span>Inicio</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
+            </li><!-- End Inicio -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=usuario">
                     <i class="bi bi-person "></i>
                     <span>Usuarios</span>
                 </a>
-            </li><!-- End Components Nav -->
+            </li><!-- End Usuario -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" href="index.php?accion=cliente">
                     <i class="bi bi-people"></i>
                     <span>Clientes</span>
                 </a>
             </li>
-            <!-- End Tables Nav -->
+            <!-- End Cliente -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=provee">
@@ -210,7 +203,7 @@
                 </a>
             </li>
 
-            </li><!-- End Charts Nav -->
+            </li><!-- End Proveedor -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=produ">
@@ -218,7 +211,7 @@
                     <span>Productos</span>
                 </a>
             </li>
-            </li><!-- End Icons Nav -->
+            </li><!-- End Productos -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=venta">
@@ -227,7 +220,6 @@
                 </a>
             </li>
         </ul>
-
     </aside><!-- End Sidebar-->
 
     <main class="main" id="main">
@@ -260,44 +252,52 @@
 
                             <div class="table-responsive">
                                 <?php
-                                if ($result->rowCount() > 0) {
+                                //if ($result->rowCount() > 0) {
                                 ?>
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th scope="col">Codigo</th>
+                                            <th scope="col">Documento</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Telefono</th>
                                             <th scope="col">Ciudad</th>
                                             <th scope="col">Dirección</th>
                                             <th scope="col">Tipo de cargo</th>
+                                            <th scope="col">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $cont = 0;
-                                        while ($fila = $result->fecth(PDO::FETCH_OBJ)) {
-                                            $cont++;
+                                        //$cont = 0;
+                                        //while ($fila = $result->fecth(PDO::FETCH_OBJ)) {
+                                        //$cont++;
                                         ?>
-                                            <tr>
-                                                <th scope="row"><?php echo $cont ?></th>
-                                                <td><?php echo $fila->nombreUsu; ?></td>
-                                                <td><?php echo $fila->telefonoUsu; ?></td>
-                                                <td><?php echo $fila->ciudadUsu; ?></td>
-                                                <td><?php echo $fila->direccionUsu; ?></td>
-                                                <td><?php echo $fila->cargoUsu; ?></td>
-                                            </tr>
+                                        <tr>
+                                            <th scope="row"><?php echo $cont ?></th>
+                                            <td><?php echo $fila->docUsu; ?></td>
+                                            <td><?php echo $fila->nombreUsu; ?></td>
+                                            <td><?php echo $fila->telefonoUsu; ?></td>
+                                            <td><?php echo $fila->ciudadUsu; ?></td>
+                                            <td><?php echo $fila->direccionUsu; ?></td>
+                                            <td><?php echo $fila->cargoUsu; ?></td>
+
+                                            <td>
+                                                <button>edit</button>
+                                                <button>basura</button>
+                                            </td>
+                                        </tr>
                                         <?php
-                                        }
+                                        //}
                                         ?>
                                     </tbody>
                                 </table>
                                 <?php
-                                } else {
+                                //} else {
                                 ?>
                                 <p>No hay usuarios Registrados</p>
                                 <?php
-                                }
+                                //}
                                 ?>
                             </div>
 
@@ -314,24 +314,32 @@
                                         <div class="modal-body">
                                             <form action="index.php?accion=ingresarusuario" method="post" id="agregarusuario" novalidate>
                                                 <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Documento</span>
+                                                    <input type="text" class="form-control" placeholder="Numero de Documento" aria-label="Nombre" aria-describedby="basic-addon1" id="docUsuario" name="docUsuario">
+                                                </div>
+                                                <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                                    <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreUsuario">
+                                                    <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreUsuario" name="nombreUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Telefono</span>
-                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" id="telUsuario">
+                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" id="telUsuario"  name="telUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Ciudad</span>
-                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" id="ciudadUsuario">
+                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" id="ciudadUsuario"  name="ciudadUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Dirección</span>
-                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" id="direcUsuario">
+                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" id="direcUsuario"  name="direcUsuario">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <label for="formFile" class="form-label"></label>
+                                                    <input class="form-control" type="file" id="fotoUsuario" name="fotoUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
-                                                    <select class="form-select" id="inputGroupSelect01" id="cargoUsuario">
+                                                    <select class="form-select" id="inputGroupSelect01" id="cargoUsuario" name="cargoUsuario">
                                                         <option selected>Seleccionar</option>
                                                         <option value="1">Adiministrador</option>
                                                         <option value="2">Empleado</option>
