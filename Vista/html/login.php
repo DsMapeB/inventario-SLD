@@ -56,7 +56,7 @@
                                     <?php
                                     }
                                     ?>
-                                    <form action="index.php?accion=login" method="post" class="row g-3 needs-validation" novalidate>
+                                    <form action="index.php?accion=inicio" method="post" class="row g-3 needs-validation" novalidate>
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Usuario
                                             </label>
