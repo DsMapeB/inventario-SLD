@@ -288,7 +288,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=ingresarProveedor" novalidate method="$_POST" id="agregarproveedor">
+                                            <form action="index.php?accion=ingresarProveedor" novalidate method="POST" id="agregarproveedor">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Nit</span>
                                                     <input type="text" class="form-control" placeholder="Nit del proveedor" aria-label="Ciudad" aria-describedby="basic-addon1" id="nitprovee">
