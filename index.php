@@ -3,6 +3,8 @@ session_start();
 require_once("Controlador/controlador.php");
 require_once("Controlador/controladorUsuario.php");
 require_once("Controlador/controladorPro.php");
+require_once("Modelo/proveedor.php");
+require_once("Modelo/gestorPro.php");
 require_once("Modelo/conexion.php");
 require_once("Modelo/gestor.php");
 require_once("Modelo/gestorUsuario.php");
@@ -10,7 +12,7 @@ require_once("Modelo/usuario.php");
 
 $controlador = new controlador();
 $controladorUsuario = new controladorusuario();
-$controladorPro = new controladorproveedor(); 
+$controladorPro = new controladorproveedor();
 
 if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
     if (isset($_GET["accion"])) {
@@ -49,8 +51,11 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                     $_REQUEST["telprovee"],
                     $_REQUEST["direcprovee"],
                     $_REQUEST["ciuprovee"]
-            );
-            break;
+                );
+                break;
+            case 'consultarPro':
+                $controladorPro->consultarPro();
+                break;
             case 'produ':
                 $controlador->verpagina("Vista/html/produ.php");
                 break;
@@ -76,4 +81,3 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
         $controlador->verpagina("vista/html/login.php");
     }
 }
-?>

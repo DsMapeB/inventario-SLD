@@ -45,6 +45,18 @@ class conexion{
 
 		return $result;
 	}
+	public function ejecutar_query_preparado($sql, $params){
+		try {
+			$this->abrir_conexion();
+			$stmt = $this->conn->prepare($sql);
+			$result = $stmt->execute($params);
+			$this->cerrar_conexion();
+	
+			return $result ? $stmt->rowCount() : 0;
+		} catch (PDOException $e) {
+			die("Error al ejecutar la consulta preparada: " . $e->getMessage());
+		}
+    }
 
 }
 
