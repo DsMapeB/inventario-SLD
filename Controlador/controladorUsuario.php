@@ -16,11 +16,5 @@ class controladorusuario{
       header("Location:index.php?accion=usuario");
     }
   }
-
-  public function consultarusuarios(){
-    $gestorusuario = new gestorusuario();
-    $result = $gestorusuario->consultarusuarios();
-    require_once 'Vista/html/usuario.php';
-  }
 }
 ?>

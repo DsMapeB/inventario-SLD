@@ -274,13 +274,13 @@
                                         //$cont++;
                                         ?>
                                         <tr>
-                                            <th scope="row"><?php echo $cont ?></th>
-                                            <td><?php echo $fila->docUsu; ?></td>
-                                            <td><?php echo $fila->nombreUsu; ?></td>
-                                            <td><?php echo $fila->telefonoUsu; ?></td>
-                                            <td><?php echo $fila->ciudadUsu; ?></td>
-                                            <td><?php echo $fila->direccionUsu; ?></td>
-                                            <td><?php echo $fila->cargoUsu; ?></td>
+                                            <th scope="row"></th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
 
                                             <td>
                                                 <button>edit</button>
@@ -312,7 +312,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=ingresarusuario" method="post" id="agregarusuario" novalidate>
+                                            <form action="index.php?accion=ingresarusuario" method="POST" id="agregarusuario" novalidate>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Documento</span>
                                                     <input type="text" class="form-control" placeholder="Numero de Documento" aria-label="Nombre" aria-describedby="basic-addon1" id="docUsuario" name="docUsuario">
@@ -348,7 +348,7 @@
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                         </div>
                                     </div>

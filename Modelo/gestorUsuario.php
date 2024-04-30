@@ -30,12 +30,4 @@ class gestorusuario
         return 1;
       }
   }
-
-  public function consultarusuarios(){
-    $conexion = new conexion();
-    $sql = "SELECT * FROM usuarios";
-    $conexion->buscar_query($sql);
-    $result = $conexion->obtener_resultado();
-    return $result;
-  }
 }
