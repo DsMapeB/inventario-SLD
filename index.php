@@ -28,7 +28,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 $controlador->verpagina("Vista/html/usuario.php");
                 break;
             case 'ingresarusuario':
-                $controladorusuario->agregarusuario(
+                $controladorUsuario->agregarusuario(
                     $_REQUEST["docUsuario"],
                     $_REQUEST["nombreUsuario"],
                     $_REQUEST["telUsuario"],
@@ -38,8 +38,8 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                     $_REQUEST["cargoUsuario"]
                 );
                 break;
-            case 'consultarusuario':
-                $controladorusuario->consultarusuarios();
+            case 'consultarUsu':
+                $controladorUsuario->consultarUsu();
                 break;
             case 'cliente':
                 $controlador->verpagina("Vista/html/cliente.php");

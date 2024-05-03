@@ -3,9 +3,8 @@ class controladorusuario{
   /*=============================================
 	REGISTRO DE Usuarios
 	=============================================*/
-
-  public function agregarusuario($codusu, $docUsu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu , $cargo){
-    $usuario = new usuario($codusu, $docUsu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu , $cargo);
+  public function agregarusuario($docUsu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu , $cargo){
+    $usuario = new usuario($docUsu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu , $cargo);
     $gestorusuario = new gestorusuario();
     $result = $gestorusuario->agregarusuario($usuario);
     if ($result=="0"){
@@ -15,6 +14,12 @@ class controladorusuario{
       echo "<script>alert('Registro Existoso');</script>";
       header("Location:index.php?accion=usuario");
     }
+  }
+
+  public function consultarUsu(){
+    $gestorusuario = new gestorusuario();
+    $result = $gestorusuario->consultarUsu();
+    require_once 'Vista/html/consultarUsu.php';
   }
 }
 ?>

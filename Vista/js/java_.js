@@ -15,3 +15,7 @@ function consultarcli(){
   var url = "index.php?accion=consultarCli";
   $("#cliente").load(url);
 }
+function consultarusu(){
+  var url = "index.php?accion=consultarUsu";
+  $("#usuario").load(url);
+}

@@ -1,6 +1,5 @@
 <?php
   class usuario{
-    private $codigoUsu;
     private $docUsu;
     private $nombreUsu;
     private $telefonoUsu;
@@ -9,9 +8,8 @@
     private $fotoUsu;
     private $cargoUsu;
 
-    public function __construct($codUsu, $docUsu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo)
+    public function __construct($docUsu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo)
     {
-        $this->codigoUsu = $codUsu;
         $this->docUsu = $docUsu;
         $this->nombreUsu = $nomUsu;
         $this->telefonoUsu = $telUsu;
@@ -20,10 +18,7 @@
         $this->fotoUsu = $fotoUsu;
         $this->cargoUsu = $cargo;
     }
-
-    public function obtenercodigo(){
-      return $this->codigoUsu;
-    }
+    
     public function obtenerdoc(){
       return $this->docUsu;
     }

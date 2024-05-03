@@ -10,6 +10,9 @@
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
     <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
+    <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <script src="Vista/jquery/jquery.js"></script>
     <link rel="text/javascript" href="Vista/js/java_.js">
 </head>
 
@@ -248,61 +251,6 @@
                                 Agregar Nuevo Usuario
                             </button>
 
-
-
-                            <div class="table-responsive">
-                                <?php
-                                //if ($result->rowCount() > 0) {
-                                ?>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Codigo</th>
-                                            <th scope="col">Documento</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Telefono</th>
-                                            <th scope="col">Ciudad</th>
-                                            <th scope="col">Dirección</th>
-                                            <th scope="col">Tipo de cargo</th>
-                                            <th scope="col">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        //$cont = 0;
-                                        //while ($fila = $result->fecth(PDO::FETCH_OBJ)) {
-                                        //$cont++;
-                                        ?>
-                                        <tr>
-                                            <th scope="row"></th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-
-                                            <td>
-                                                <button>edit</button>
-                                                <button>basura</button>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                        //}
-                                        ?>
-                                    </tbody>
-                                </table>
-                                <?php
-                                //} else {
-                                ?>
-                                <p>No hay usuarios Registrados</p>
-                                <?php
-                                //}
-                                ?>
-                            </div>
-
-
-
                             <!-- Modal -->
                             <div class="modal fade" id="modalusuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -323,15 +271,15 @@
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Telefono</span>
-                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" id="telUsuario"  name="telUsuario">
+                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" id="telUsuario" name="telUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Ciudad</span>
-                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" id="ciudadUsuario"  name="ciudadUsuario">
+                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" id="ciudadUsuario" name="ciudadUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Dirección</span>
-                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" id="direcUsuario"  name="direcUsuario">
+                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" id="direcUsuario" name="direcUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <label for="formFile" class="form-label"></label>
@@ -345,17 +293,26 @@
                                                         <option value="2">Empleado</option>
                                                     </select>
                                                 </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                </div>
                                             </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div id="usuario"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-
+        <script>
+            consultarusu();
+        </script>
+        <script src="Vista/js/java.js"></script>
+    </main>
 </body>
 
 </html>

@@ -249,7 +249,7 @@
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aggproveedor">
                                 Agregar Nuevo Proveedor
-                                
+
                             </button>
 
                             <!-- Modal -->
@@ -295,15 +295,18 @@
                                     </div>
                                 </div>
                             </div>
-        <div id="proveedor"></div>
+                            <div id="proveedor"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-
-
         <script>
             consultarpro();
         </script>
 
         <script src="Vista/js/java.js"></script>
+    </main>
 </body>
 
 </html>

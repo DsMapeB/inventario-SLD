@@ -6,7 +6,6 @@ class gestorusuario
   public function agregarusuario(usuario $usuario)
   {
     $conexion = new conexion();
-    $codigoUsu = $usuario->obtenercodigo();
     $docUsu = $usuario->obtenerdoc();
     $nombreUsu = $usuario->obtenernombre();
     $telefonoUsu = $usuario->obtenertelefono();
@@ -15,7 +14,7 @@ class gestorusuario
     $fotoUsu = $usuario->obtenerfoto();
     $cargoUsu = $usuario->obtenercargo();
 
-    $sql = "INSERT INTO usuarios VALUES ('', '$codigoUsu' ,'$docUsu', '$nombreUsu' , '$telefonoUsu', '$ciudadUsu', '$direccionUsu','$fotoUsu', '$cargoUsu')";
+    $sql = "INSERT INTO usuarios VALUES ('','$docUsu', '$nombreUsu' , '$telefonoUsu', '$ciudadUsu', '$direccionUsu','$fotoUsu', '$cargoUsu')";
 
     $conexion->ejecutar_query($sql);
 
@@ -29,5 +28,14 @@ class gestorusuario
       } else{
         return 1;
       }
+    }
+
+    public function consultarUsu(){
+      $conexion = new conexion();
+      $sql = "SELECT * FROM usuarios";
+      $conexion->buscar_query($sql);
+      $result = $conexion->obtener_resultado();
+      return $result;
+    }
   }
-}
+
