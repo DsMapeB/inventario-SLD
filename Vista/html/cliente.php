@@ -10,6 +10,10 @@
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
     <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
+    <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <script src="Vista/jquery/jquery.js"></script>
+    <script src="Vista/js/java_.js"></script>
 </head>
 
 <body>
@@ -248,36 +252,11 @@
                                 Agregar Nuevo Cliente
                             </button>
 
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Documento</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Telefono</th>
-                                            <th scope="col">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-
-
                             <!-- Modal -->
                             <div class="modal fade" id="aggclie" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <form action="">
+                                        <form action="index.php?accion=ingresarCliente" method="POST" id="agregarcliente">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Nuevo Cliente</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -285,15 +264,15 @@
                                             <div class="modal-body">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Documento</span>
-                                                    <input type="text" class="form-control" placeholder="Docuemnto del Cliente" aria-label="Documento" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" placeholder="Documento del Cliente" aria-label="Documento" aria-describedby="basic-addon1" name="doccliente" id="doccliente">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                                    <input type="text" class="form-control" placeholder="Nombre del Producto" aria-label="Nombre" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" placeholder="Nombre del Producto" aria-label="Nombre" aria-describedby="basic-addon1" name="nombrecliente" id="nombrecliente">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <label class="input-group-text" for="inputGroupSelect01">Telefono</label>
-                                                    <input type="text" class="form-control" placeholder="Telefono del Cliente" aria-label="Telefono" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" placeholder="Telefono del Cliente" aria-label="Telefono" aria-describedby="basic-addon1" name="telcliente" id="telcliente">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -304,7 +283,14 @@
                                     </div>
                                 </div>
                             </div>
+        <div id="cliente"></div>
         </section>
+
+        <script>
+            consultarcli();
+        </script>
+
+        <script src="Vista/js/java.js"></script>
 </body>
 
 </html>

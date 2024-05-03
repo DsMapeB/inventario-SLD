@@ -3,8 +3,11 @@ session_start();
 require_once("Controlador/controlador.php");
 require_once("Controlador/controladorUsuario.php");
 require_once("Controlador/controladorPro.php");
+require_once("Controlador/controladorCli.php");
 require_once("Modelo/proveedor.php");
 require_once("Modelo/gestorPro.php");
+require_once("Modelo/gestorCli.php");
+require_once("Modelo/cliente.php");
 require_once("Modelo/conexion.php");
 require_once("Modelo/gestor.php");
 require_once("Modelo/gestorUsuario.php");
@@ -13,6 +16,7 @@ require_once("Modelo/usuario.php");
 $controlador = new controlador();
 $controladorUsuario = new controladorusuario();
 $controladorPro = new controladorproveedor();
+$controladorCli = new controladorcli();
 
 if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
     if (isset($_GET["accion"])) {
@@ -40,6 +44,16 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
             case 'cliente':
                 $controlador->verpagina("Vista/html/cliente.php");
                 break;
+            case 'ingresarCliente':
+                $controladorCli->agregarclientes(
+                    $_REQUEST["doccliente"],
+                    $_REQUEST["nombrecliente"],
+                    $_REQUEST["telcliente"]
+                );
+                break;
+            case 'consultarCli':
+                $controladorCli->consultarCli();
+                break;
             case 'provee':
                 $controlador->verpagina("Vista/html/provee.php");
                 break;
@@ -55,6 +69,9 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 break;
             case 'consultarPro':
                 $controladorPro->consultarPro();
+                break;
+            case 'eliminarpro':
+                $controladorPro->eliminarPro($_GET["numero"]);
                 break;
             case 'produ':
                 $controlador->verpagina("Vista/html/produ.php");

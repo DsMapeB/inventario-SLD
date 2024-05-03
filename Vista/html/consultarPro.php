@@ -28,7 +28,7 @@ if ($result->rowCount() > 0) {
             <td><?php echo $fila->telefonoPro; ?></td>
             <td><?php echo $fila->direccionPro; ?></td>
             <td><?php echo $fila->ciudadPro; ?></td>
-            <td><button class="icon-button"><i class="bi bi-trash3"></button></td>
+            <td><button class="icon-button" onclick="eliminarpro(<?php echo $fila->nitpro; ?>)"><i class="bi bi-trash3"></button></td>
           </tr>
         <?php
         }
