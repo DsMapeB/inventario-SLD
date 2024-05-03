@@ -41,6 +41,9 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
             case 'consultarUsu':
                 $controladorUsuario->consultarUsu();
                 break;
+            case 'consultarpro':
+                $controladorUsuario->consultarPro();
+                break;
             case 'cliente':
                 $controlador->verpagina("Vista/html/cliente.php");
                 break;
@@ -90,7 +93,6 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
         switch ($_GET["accion"]) {
             case 'login':
                 $controlador->login($_POST["user"], $_POST["pass"]);
-
             default:
                 $controlador->verpagina("vista/html/inicio.php");
         }

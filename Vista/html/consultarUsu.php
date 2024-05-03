@@ -18,7 +18,7 @@ if ($result->rowCount() > 0) {
             <tbody>
                 <?php
                 $cont = 0;
-                while ($fila = $result->fecth(PDO::FETCH_OBJ)) {
+                while ($fila = $result->fetch(PDO::FETCH_OBJ)) {
                     $cont++;
                 ?>
                     <tr>

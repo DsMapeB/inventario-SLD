@@ -38,8 +38,8 @@ class gestorproveedor
     public function eliminarPro($proveedor)
     {
         $conexion = new conexion();
-        $sql = "DELETE FROM proveedores WHERE nitpro = :proveedor";
-        $params = array(':proveedor' => $proveedor);
+        $sql = "DELETE FROM proveedores WHERE nitpro = ?";
+        $params = array($proveedor);
         $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
         return $filasAfectadas;
     }

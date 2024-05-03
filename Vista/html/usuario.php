@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
-    <link rel="text/javascript" href="Vista/js/java_.js">
+    <script src="Vista/js/java_.js"></script>
 </head>
 
 <body>
@@ -247,7 +247,7 @@
                             <p>Aca podras encontrar toda la informacion sobre tus usuarios</p>
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalusuario">
+                            <button action="consultarpro" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalusuario">
                                 Agregar Nuevo Usuario
                             </button>
 
@@ -289,8 +289,13 @@
                                                     <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
                                                     <select class="form-select" id="inputGroupSelect01" id="cargoUsuario" name="cargoUsuario">
                                                         <option selected>Seleccionar</option>
-                                                        <option value="1">Adiministrador</option>
-                                                        <option value="2">Empleado</option>
+                                                        <?php
+                                                        while ($fila = $result-> fetch(PDO::FETCH_OBJ)) { 
+                                                        ?>
+                                                        <option value=<?php echo $fila->cargoUsu;?>>
+                                                        <?php echo $fila->cargoUsu . " - " . $fila->nombrerol;?>
+                                                    </option>
+                                                    <?php } ?>
                                                     </select>
                                                 </div>
                                                 <div class="modal-footer">

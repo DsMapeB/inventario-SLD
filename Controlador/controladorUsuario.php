@@ -21,5 +21,11 @@ class controladorusuario{
     $result = $gestorusuario->consultarUsu();
     require_once 'Vista/html/consultarUsu.php';
   }
+
+  public function consultarPro(){
+    $gestorusuario = new gestorusuario();
+    $result = $gestorusuario->consultarPro();
+    require_once 'Vista/html/usuario.php';
+  }
 }
 ?>

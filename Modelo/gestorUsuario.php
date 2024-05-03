@@ -37,5 +37,13 @@ class gestorusuario
       $result = $conexion->obtener_resultado();
       return $result;
     }
+
+    public function consultarPro(){
+      $conexion = new Conexion();
+      $sql = "SELECT * FROM rol";
+      $conexion->buscar_query($sql);
+      $result = $conexion->obtener_resultado();
+      return $result;
+    }
   }
 
