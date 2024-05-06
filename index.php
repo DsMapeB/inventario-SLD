@@ -4,12 +4,15 @@ require_once("Controlador/controlador.php");
 require_once("Controlador/controladorUsuario.php");
 require_once("Controlador/controladorPro.php");
 require_once("Controlador/controladorCli.php");
-require_once("Modelo/proveedor.php");
-require_once("Modelo/gestorPro.php");
-require_once("Modelo/gestorCli.php");
-require_once("Modelo/cliente.php");
+require_once("Controlador/controladorProdu.php");
 require_once("Modelo/conexion.php");
 require_once("Modelo/gestor.php");
+require_once("Modelo/proveedor.php");
+require_once("Modelo/gestorPro.php");
+require_once("Modelo/producto.php");
+require_once("Modelo/gestorProdu.php");
+require_once("Modelo/gestorCli.php");
+require_once("Modelo/cliente.php");
 require_once("Modelo/gestorUsuario.php");
 require_once("Modelo/usuario.php");
 
@@ -17,6 +20,7 @@ $controlador = new controlador();
 $controladorUsuario = new controladorusuario();
 $controladorPro = new controladorproveedor();
 $controladorCli = new controladorcli();
+$controladorProdu = new controladorprodu();
 
 if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
     if (isset($_GET["accion"])) {
@@ -78,6 +82,15 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 break;
             case 'produ':
                 $controlador->verpagina("Vista/html/produ.php");
+                break;
+            case 'ingresarprodu':
+                $controladorProdu->agregarproductos(
+                    $_REQUEST["codprodu"],
+                    $_REQUEST["nombreprodu"],
+                    $_REQUEST["precioprodu"],
+                    $_REQUEST["exisprodu"],
+                    $_REQUEST["proprodu"]
+                );
                 break;
             case 'venta':
                 $controlador->verpagina("Vista/html/venta.php");

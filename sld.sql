@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2024 a las 04:28:03
+-- Tiempo de generación: 06-05-2024 a las 05:25:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -30,8 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `cliente` (
   `docclie` int(11) NOT NULL,
   `nombreclie` varchar(25) NOT NULL,
-  `telefonoclie` int(10) NOT NULL
+  `telefonoclie` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`docclie`, `nombreclie`, `telefonoclie`) VALUES
+(65763948, 'angelica', '3163326545'),
+(1104936650, 'santiago', '3143872538');
 
 -- --------------------------------------------------------
 
@@ -41,10 +49,18 @@ CREATE TABLE `cliente` (
 
 CREATE TABLE `producto` (
   `codprodu` int(11) NOT NULL,
-  `nitpro` int(11) NOT NULL,
-  `nombrepro` varchar(25) NOT NULL,
-  `descripcion` text NOT NULL
+  `nombreprodu` varchar(25) NOT NULL,
+  `precioprodu` decimal(10,0) NOT NULL,
+  `existenciaprodu` float NOT NULL,
+  `nitprodu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`codprodu`, `nombreprodu`, `precioprodu`, `existenciaprodu`, `nitprodu`) VALUES
+(1212, 'pan', 10, 24, 22);
 
 -- --------------------------------------------------------
 
@@ -56,10 +72,17 @@ CREATE TABLE `proveedores` (
   `nitpro` int(11) NOT NULL,
   `nombrePro` varchar(25) NOT NULL,
   `contactoPro` varchar(25) NOT NULL,
-  `telefonoPro` int(10) NOT NULL,
+  `telefonoPro` varchar(10) NOT NULL,
   `direccionPro` varchar(50) NOT NULL,
   `ciudadPro` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `proveedores`
+--
+
+INSERT INTO `proveedores` (`nitpro`, `nombrePro`, `contactoPro`, `telefonoPro`, `direccionPro`, `ciudadPro`) VALUES
+(22, 'acer', 'david ramirez', '3213458623', 'sena', 'ibague');
 
 -- --------------------------------------------------------
 
@@ -68,9 +91,17 @@ CREATE TABLE `proveedores` (
 --
 
 CREATE TABLE `rol` (
-  `codrol` int(11) NOT NULL,
+  `cargoUsu` int(11) NOT NULL,
   `nombrerol` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`cargoUsu`, `nombrerol`) VALUES
+(1, 'administrador'),
+(2, 'Empleado');
 
 -- --------------------------------------------------------
 
@@ -99,18 +130,22 @@ INSERT INTO `usuario` (`id`, `usuario`, `password`) VALUES
 --
 
 CREATE TABLE `usuarios` (
-  `codigoUsu` int(11) NOT NULL,
-  `codrol` int(11) NOT NULL,
-  `usuario` int(20) NOT NULL,
-  `password` int(20) NOT NULL,
+  `idUsu` int(11) NOT NULL,
   `docUsu` varchar(15) NOT NULL,
   `nombreUsu` varchar(25) NOT NULL,
-  `telefonoUsu` int(10) NOT NULL,
+  `telefonoUsu` varchar(10) NOT NULL,
   `ciudadUsu` varchar(30) NOT NULL,
   `direccionUsu` varchar(50) NOT NULL,
   `fotoUsu` varchar(100) NOT NULL,
-  `cargoUsu` varchar(50) NOT NULL
+  `cargoUsu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`idUsu`, `docUsu`, `nombreUsu`, `telefonoUsu`, `ciudadUsu`, `direccionUsu`, `fotoUsu`, `cargoUsu`) VALUES
+(2, '1104936650', 'santiago', '3143872538', 'ibague', 'sena', 'sena.png', 1);
 
 -- --------------------------------------------------------
 
@@ -122,7 +157,7 @@ CREATE TABLE `venta` (
   `codventa` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `codigoUsu` int(11) NOT NULL,
+  `idUsu` int(11) NOT NULL,
   `docclie` int(11) NOT NULL,
   `codprodu` int(11) NOT NULL,
   `observacion` text NOT NULL,
@@ -143,7 +178,8 @@ ALTER TABLE `cliente`
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD PRIMARY KEY (`codprodu`);
+  ADD PRIMARY KEY (`codprodu`),
+  ADD KEY `nitprodu` (`nitprodu`);
 
 --
 -- Indices de la tabla `proveedores`
@@ -155,7 +191,7 @@ ALTER TABLE `proveedores`
 -- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
-  ADD PRIMARY KEY (`codrol`);
+  ADD PRIMARY KEY (`cargoUsu`);
 
 --
 -- Indices de la tabla `usuario`
@@ -167,16 +203,17 @@ ALTER TABLE `usuario`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`codigoUsu`),
-  ADD KEY `codrol` (`codrol`);
+  ADD PRIMARY KEY (`idUsu`),
+  ADD KEY `cargoUsu` (`cargoUsu`);
 
 --
 -- Indices de la tabla `venta`
 --
 ALTER TABLE `venta`
   ADD PRIMARY KEY (`codventa`),
-  ADD KEY `codigoUsu` (`codigoUsu`),
-  ADD KEY `codprodu` (`codprodu`);
+  ADD KEY `codigoUsu` (`idUsu`),
+  ADD KEY `codprodu` (`codprodu`),
+  ADD KEY `docclie` (`docclie`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -186,19 +223,19 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `docclie` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `docclie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1104936651;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `codprodu` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codprodu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1413;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `codrol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cargoUsu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -210,7 +247,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `codigoUsu` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
@@ -223,29 +260,24 @@ ALTER TABLE `venta`
 --
 
 --
--- Filtros para la tabla `cliente`
+-- Filtros para la tabla `producto`
 --
-ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`docclie`) REFERENCES `venta` (`codventa`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `proveedores`
---
-ALTER TABLE `proveedores`
-  ADD CONSTRAINT `proveedores_ibfk_1` FOREIGN KEY (`nitpro`) REFERENCES `producto` (`codprodu`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `producto`
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`nitprodu`) REFERENCES `proveedores` (`nitpro`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`codrol`) REFERENCES `rol` (`codrol`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`cargoUsu`) REFERENCES `rol` (`cargoUsu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`codigoUsu`) REFERENCES `usuarios` (`codigoUsu`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`codprodu`) REFERENCES `producto` (`codprodu`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idUsu`) REFERENCES `usuarios` (`idUsu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`codprodu`) REFERENCES `producto` (`codprodu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`docclie`) REFERENCES `cliente` (`docclie`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

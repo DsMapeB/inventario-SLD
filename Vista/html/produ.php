@@ -19,7 +19,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php?accion=inicio" class="logo d-flex align-items-center">
                 <img src="Vista/img/logo.png" alt="">
-                <span class="d-none d-lg-block">Sistema Gestion de Inventario</span>
+                <span class="d-none d-lg-block">Sistema Gestion Online de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Titulo Icon -->
@@ -252,8 +252,9 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                            <th scope="col">#</th>
                                             <th scope="col">Codigo</th>
-                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Nombre</th>
                                             <th scope="col">Precio</th>
                                             <th scope="col">Existencia</th>
                                             <th scope="col">Proveedor</th>
@@ -262,38 +263,6 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -310,7 +279,7 @@
                             <div class="modal fade" id="staticBackdropprodu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <form action="">
+                                        <form action="index.php?accion=ingresarprodu" method="POST" id="agregarusuario" novalidate>
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Nuevo Producto</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -318,25 +287,25 @@
                                             <div class="modal-body">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Codigo</span>
-                                                    <input type="text" class="form-control" placeholder="Codigo del Producto" aria-label="Nombre" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" placeholder="Codigo del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="codprodu" name="codprodu">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Descripcion</span>
-                                                    <input type="text" class="form-control" placeholder="Descripcion del Producto" aria-label="Descripcion" aria-describedby="basic-addon1">
+                                                    <span class="input-group-text" id="basic-addon1">Nombre</span>
+                                                    <input type="text" class="form-control" placeholder="Nombre del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreprodu" name="nombreprodu">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <label class="input-group-text" for="inputGroupSelect01">Precio</label>
-                                                    <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Telefono" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Telefono" aria-describedby="basic-addon1" id="precioprodu" name="precioprodu">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Existencia</span>
-                                                    <input type="text" class="form-control" placeholder="Existencia" aria-label="existencia" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" placeholder="Existencia" aria-label="existencia" aria-describedby="basic-addon1" id="exisprodu" name="exisprodu">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Proveedor</span>
-                                                    <select class="form-select" id="inputGroupSelect01">
+                                                    <select class="form-select" id="inputGroupSelect01" id="proprodu" name="proprodu">
                                                         <option selected>Seleccionar</option>
-                                                        <option value="1">Bimbo</option>
+                                                        <option value="22">Bimbo</option>
                                                         <option value="2">Postobon</option>
                                                     </select>
                                                 </div>
