@@ -5,22 +5,27 @@ require_once("Controlador/controladorUsuario.php");
 require_once("Controlador/controladorPro.php");
 require_once("Controlador/controladorCli.php");
 require_once("Controlador/controladorProdu.php");
+require_once("Controlador/controladorVenta.php");
 require_once("Modelo/conexion.php");
 require_once("Modelo/gestor.php");
 require_once("Modelo/proveedor.php");
 require_once("Modelo/gestorPro.php");
 require_once("Modelo/producto.php");
 require_once("Modelo/gestorProdu.php");
+require_once("Modelo/gestorVenta.php");
+require_once("Modelo/venta.php");
 require_once("Modelo/gestorCli.php");
 require_once("Modelo/cliente.php");
 require_once("Modelo/gestorUsuario.php");
 require_once("Modelo/usuario.php");
+
 
 $controlador = new controlador();
 $controladorUsuario = new controladorusuario();
 $controladorPro = new controladorproveedor();
 $controladorCli = new controladorcli();
 $controladorProdu = new controladorprodu();
+$controladorVenta = new controladorventa();
 
 if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
     if (isset($_GET["accion"])) {
@@ -94,6 +99,19 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 break;
             case 'venta':
                 $controlador->verpagina("Vista/html/venta.php");
+                break;
+            case 'ingresarventa':
+                $controladorVenta->agregarventa(
+                    $_REQUEST["codventa"],
+                    $_REQUEST["fecha"],
+                    $_REQUEST["hora"],
+                    $_REQUEST["idUsu"],
+                    $_REQUEST["docclie"],
+                    $_REQUEST["codprodu"],
+                    $_REQUEST["docclie"],
+                    $_REQUEST["obs"],
+                    $_REQUEST["total"],
+                );
                 break;
             default:
                 $controlador->verpagina("vista/html/inicio.php");

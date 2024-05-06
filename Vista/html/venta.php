@@ -235,4 +235,83 @@
         </div><!--fin titulo de pagina -->
 </body>
 
+<section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Ventas</h5>
+                            <p>Aca podras encontrar toda la informacion acerca de tus ventas</p>
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aggventa">
+                                Agregar Nueva Venta
+
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="aggventa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Venta</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="index.php?accion=ingresarProveedor" novalidate method="POST" id="agregarproveedor">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Codigo de venta</span>
+                                                    <input type="text" class="form-control" placeholder="Codigo de venta" aria-label="Codigo" aria-describedby="basic-addon1" id="codventa" name="codventa">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Fecha</span>
+                                                    <input type="text" class="form-control" placeholder="Fecha" aria-label="fecha" aria-describedby="basic-addon1" id="fecha" name="fecha">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Hora</span>
+                                                    <input type="text" class="form-control" placeholder="Hora" aria-label="hora" aria-describedby="basic-addon1" id="hora" name="hora">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text" for="inputGroupSelect01">IDUsuario</label>
+                                                    <input type="text" class="form-control" placeholder="id usuario" aria-label="id usuario" aria-describedby="basic-addon1" id="idUsu" name="idUsu">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Documento Cliente</span>
+                                                    <input type="text" class="form-control" placeholder="Documento" aria-label="Documento" aria-describedby="basic-addon1" id="docclie" name="docclie">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Codigo de producto</span>
+                                                    <input type="text" class="form-control" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1" id="codprodu" name="codprodu">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Observación</span>
+                                                    <input type="text" class="form-control" placeholder="Observación" aria-label="Observación" aria-describedby="basic-addon1" id="obs" name="obs">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Total</span>
+                                                    <input type="text" class="form-control" placeholder="Total" aria-label="total" aria-describedby="basic-addon1" id="total" name="total">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="proveedor"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            consultarpro();
+        </script>
+
+        <script src="Vista/js/java.js"></script>
+    </main>
+</body>
+
 </html>
