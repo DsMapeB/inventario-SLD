@@ -50,8 +50,8 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
             case 'consultarUsu':
                 $controladorUsuario->consultarUsu();
                 break;
-            case 'consultarpro':
-                $controladorUsuario->consultarPro();
+            case 'eliminarusu':
+                $controladorUsuario->eliminarUsu($_GET["numero2"]);
                 break;
             case 'cliente':
                 $controlador->verpagina("Vista/html/cliente.php");
@@ -65,6 +65,9 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 break;
             case 'consultarCli':
                 $controladorCli->consultarCli();
+                break;
+            case 'eliminarcli':
+                $controladorCli->eliminarCli($_GET["numero3"]);
                 break;
             case 'provee':
                 $controlador->verpagina("Vista/html/provee.php");
@@ -112,6 +115,9 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                     $_REQUEST["obs"],
                     $_REQUEST["total"],
                 );
+                break;
+            case 'consultarven':
+                $controlador->verpagina("Vista/html/venta.php");
                 break;
             default:
                 $controlador->verpagina("vista/html/inicio.php");

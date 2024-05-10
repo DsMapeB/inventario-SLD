@@ -22,7 +22,7 @@ if ($result->rowCount() > 0) {
                         <td> <?php echo $fila->docclie; ?></td>
                         <td><?php echo $fila->nombreclie; ?></td>
                         <td><?php echo $fila->telefonoclie; ?></td>
-                        <td><button class="icon-button"><i class="bi bi-trash3"></button></td>
+                        <td><button class="icon-button" onclick="eliminarcli(<?php echo $fila->docclie; ?>)"><i class="bi bi-trash3"></button></td>
                     </tr>
                 <?php
                 }
@@ -32,7 +32,7 @@ if ($result->rowCount() > 0) {
     <?php
 } else {
     ?>
-        <p>No hay Clientes registrados</p>
+        <br><p>No hay Clientes registrados</p>
     <?php
 }
     ?>

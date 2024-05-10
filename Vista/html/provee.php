@@ -23,7 +23,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php?accion=inicio" class="logo d-flex align-items-center">
                 <img src="Vista/img/logo.png" alt="">
-                <span class="d-none d-lg-block">Sistema Gestion de Inventario</span>
+                <span class="d-none d-lg-block">Sistema Gestion Online de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Titulo Icon -->
@@ -137,13 +137,6 @@
                         </li>
                         <li>
                             <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Configuraciones</span>
-                            </a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">

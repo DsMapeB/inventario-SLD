@@ -19,7 +19,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php?accion=inicio" class="logo d-flex align-items-center">
                 <img src="Vista/img/logo.png" alt="">
-                <span class="d-none d-lg-block">Sistema Gestion de Inventario</span>
+                <span class="d-none d-lg-block">Sistema Gestion Online de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Titulo Icon -->
@@ -134,13 +134,6 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Configuraciones</span>
-                            </a>
-                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -233,9 +226,9 @@
                 </ol>
             </nav>
         </div><!--fin titulo de pagina -->
-</body>
 
-<section class="section">
+
+        <section class="section">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -265,14 +258,14 @@
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Fecha</span>
-                                                    <input type="text" class="form-control" placeholder="Fecha" aria-label="fecha" aria-describedby="basic-addon1" id="fecha" name="fecha">
+                                                    <input type="date" class="form-control" placeholder="Fecha" aria-label="fecha" aria-describedby="basic-addon1" id="fecha" name="fecha">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Hora</span>
                                                     <input type="text" class="form-control" placeholder="Hora" aria-label="hora" aria-describedby="basic-addon1" id="hora" name="hora">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect01">IDUsuario</label>
+                                                    <label class="input-group-text" for="inputGroupSelect01">Usuario</label>
                                                     <input type="text" class="form-control" placeholder="id usuario" aria-label="id usuario" aria-describedby="basic-addon1" id="idUsu" name="idUsu">
                                                 </div>
                                                 <div class="input-group mb-3">
@@ -300,14 +293,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="proveedor"></div>
+                            <div id="venta"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <script>
-            consultarpro();
+
         </script>
 
         <script src="Vista/js/java.js"></script>

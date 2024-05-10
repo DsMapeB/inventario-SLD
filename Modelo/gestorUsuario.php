@@ -38,12 +38,13 @@ class gestorusuario
       return $result;
     }
 
-    public function consultarPro(){
-      $conexion = new Conexion();
-      $sql = "SELECT * FROM rol";
-      $conexion->buscar_query($sql);
-      $result = $conexion->obtener_resultado();
-      return $result;
+    public function eliminarUsu($usuario){
+      $conexion = new conexion();
+      $sql = "DELETE FROM usuarios WHERE docUsu = ?";
+      $params = array($usuario);
+      $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
+      return $filasAfectadas;
     }
+
   }
 

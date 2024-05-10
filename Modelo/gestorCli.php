@@ -28,5 +28,13 @@
             $result = $conexion->obtener_resultado();
             return $result;
         }
+
+        public function eliminarCli($cliente){
+            $conexion = new conexion();
+            $sql = "DELETE FROM cliente WHERE docclie = ?";
+            $params = array($cliente);
+            $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
+            return $filasAfectadas;
+        }
     }
 ?>

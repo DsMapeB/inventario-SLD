@@ -38,7 +38,7 @@ if ($result->rowCount() > 0) {
   <?php
 } else {
   ?>
-    <p>No hay Proveedores registrados</p>
+    <br><p>No hay Proveedores registrados</p>
   <?php
 }
   ?>

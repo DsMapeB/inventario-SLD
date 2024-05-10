@@ -23,7 +23,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php?accion=inicio" class="logo d-flex align-items-center">
                 <img src="Vista/img/logo.png" alt="">
-                <span class="d-none d-lg-block">Sistema Gestion de Inventario</span>
+                <span class="d-none d-lg-block">Sistema Gestion Online de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Titulo Icon -->
@@ -137,13 +137,6 @@
                         </li>
                         <li>
                             <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Configuraciones</span>
-                            </a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -289,13 +282,8 @@
                                                     <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
                                                     <select class="form-select" id="inputGroupSelect01" id="cargoUsuario" name="cargoUsuario">
                                                         <option selected>Seleccionar</option>
-                                                        <?php
-                                                        while ($fila = $result-> fetch(PDO::FETCH_OBJ)) { 
-                                                        ?>
-                                                        <option value=<?php echo $fila->cargoUsu;?>>
-                                                        <?php echo $fila->cargoUsu . " - " . $fila->nombrerol;?>
-                                                    </option>
-                                                    <?php } ?>
+                                                        <option value="1">Administrador</option>
+                                                        <option value="2">Empleado</option>
                                                     </select>
                                                 </div>
                                                 <div class="modal-footer">

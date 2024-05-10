@@ -18,5 +18,15 @@
             $result = $gestorcliente->consultarCli();
             require_once 'Vista/html/consultarCli.php';
         }
+
+        public function eliminarCli($cliente){
+            $gestorcliente = new gestorcliente();
+            $registro = $gestorcliente->eliminarCli($cliente);
+            if ($registro > 0) {
+                echo "El Cliente se ha eliminado con exito";
+            } else{
+                echo "El Cliente no se ha podido eliminar";
+            } //
+        }
     }
 ?>

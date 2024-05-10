@@ -22,10 +22,14 @@ class controladorusuario{
     require_once 'Vista/html/consultarUsu.php';
   }
 
-  public function consultarPro(){
+  public function eliminarUsu($usuario){
     $gestorusuario = new gestorusuario();
-    $result = $gestorusuario->consultarPro();
-    require_once 'Vista/html/usuario.php';
+    $registro = $gestorusuario->eliminarUsu($usuario);
+    if ($registro > 0) {
+      echo "El Usuario se ha eliminado con exito";
+  } else{
+      echo "El Usuario no se ha podido eliminar";
+  }
   }
 }
 ?>
