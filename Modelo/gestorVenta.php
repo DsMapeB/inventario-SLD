@@ -28,4 +28,20 @@ class gestorVenta
             return 1;
         }
     }
+
+    public function consultarVenta(){
+        $conexion = new conexion();
+        $sql = "SELECT * FROM venta";
+        $conexion->buscar_query($sql);
+        $result = $conexion->obtener_resultado();
+        return $result;
+    }
+
+    public function eliminarVenta($venta){
+        $conexion = new conexion();
+        $sql = "DELETE FROM venta WHERE codventa = ?";
+        $params = array($venta);
+        $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
+        return $filasAfectadas;
+    }
 }

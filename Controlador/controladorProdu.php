@@ -14,4 +14,20 @@ class controladorProdu
             header("Location:index.php?accion=produ");
         }
     }
+
+    public function consultarProdu(){
+        $gestorprodu = new gestorprodu();
+        $result = $gestorprodu->consultarProdu();
+        require_once 'Vista/html/consultarProdu.php';
+    }
+
+    public function eliminarProdu($producto){
+        $gestorprodu = new gestorprodu();
+        $registro = $gestorprodu->eliminarProdu($producto);
+        if ($registro > 0) {
+            echo "El Producto se ha eliminado con exito";
+        } else{
+            echo "El Producto no se ha podido eliminar";
+        }
+    }
 }

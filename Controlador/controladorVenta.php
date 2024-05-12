@@ -17,4 +17,20 @@ class controladorventa
             header("Location:index.php?accion=venta");
         }
     }
+
+    public function consultarVenta(){
+        $gestorventa = new gestorVenta();
+        $result = $gestorventa->consultarVenta();
+        require_once 'Vista/html/consultarVen.php';
+    }
+
+    public function eliminarVenta($venta){
+        $gestorventa = new gestorventa();
+        $registro = $gestorventa->eliminarVenta($venta);
+        if ($registro > 0) {
+            echo "La venta se ha eliminado con exito";
+        } else{
+            echo "La venta no se ha podido eliminar";
+        }
+    }
 }

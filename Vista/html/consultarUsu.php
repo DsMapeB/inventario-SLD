@@ -31,7 +31,7 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->cargoUsu; ?></td>
 
                         <td>
-                            <button>edit</button>
+                            <button class="icon-button"><i class="bi bi-pencil-square"></i></button>
                             <button class="icon-button" onclick="eliminarusu(<?php echo $fila->docUsu; ?>)"><i class="bi bi-trash3"></i></button>
                         </td>
                     </tr>
@@ -43,7 +43,7 @@ if ($result->rowCount() > 0) {
     <?php
 } else {
     ?>
-        <br><p>No hay usuarios Registrados</p>
+        <br><p>No hay Usuarios Registrados</p>
     <?php
 }
     ?>

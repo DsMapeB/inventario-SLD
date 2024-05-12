@@ -10,6 +10,10 @@
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
     <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
+    <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <script src="Vista/jquery/jquery.js"></script>
+    <script src="Vista/js/java_.js"></script>
 </head>
 
 <body>
@@ -251,7 +255,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=ingresarProveedor" novalidate method="POST" id="agregarproveedor">
+                                            <form action="index.php?accion=ingresarventa" novalidate method="POST" id="agregarproveedor">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Codigo de venta</span>
                                                     <input type="text" class="form-control" placeholder="Codigo de venta" aria-label="Codigo" aria-describedby="basic-addon1" id="codventa" name="codventa">
@@ -262,15 +266,15 @@
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Hora</span>
-                                                    <input type="text" class="form-control" placeholder="Hora" aria-label="hora" aria-describedby="basic-addon1" id="hora" name="hora">
+                                                    <input type="time" class="form-control" placeholder="Hora" aria-label="hora" aria-describedby="basic-addon1" id="hora" name="hora">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <label class="input-group-text" for="inputGroupSelect01">Usuario</label>
-                                                    <input type="text" class="form-control" placeholder="id usuario" aria-label="id usuario" aria-describedby="basic-addon1" id="idUsu" name="idUsu">
+                                                    <input type="text" class="form-control" placeholder="Documento Usuario" aria-label="id usuario" aria-describedby="basic-addon1" id="idUsu" name="idUsu">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Documento Cliente</span>
-                                                    <input type="text" class="form-control" placeholder="Documento" aria-label="Documento" aria-describedby="basic-addon1" id="docclie" name="docclie">
+                                                    <input type="text" class="form-control" placeholder="Documento Cliente" aria-label="Documento" aria-describedby="basic-addon1" id="docclie" name="docclie">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Codigo de producto</span>
@@ -296,12 +300,12 @@
                             <div id="venta"></div>
                         </div>
                     </div>
+                    <script>
+                        consultarven()
+                    </script>
                 </div>
             </div>
         </section>
-        <script>
-
-        </script>
 
         <script src="Vista/js/java.js"></script>
     </main>

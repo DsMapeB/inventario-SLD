@@ -100,6 +100,12 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                     $_REQUEST["proprodu"]
                 );
                 break;
+            case 'consultarprodu':
+                $controladorProdu->consultarProdu();
+                break;
+            case 'eliminarprodu':
+                $controladorProdu->eliminarProdu($_GET["numero4"]);
+                break;
             case 'venta':
                 $controlador->verpagina("Vista/html/venta.php");
                 break;
@@ -116,8 +122,11 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                     $_REQUEST["total"],
                 );
                 break;
-            case 'consultarven':
-                $controlador->verpagina("Vista/html/venta.php");
+            case 'consultarVen':
+                $controladorVenta->consultarVenta();
+                break;
+            case 'eliminarven':
+                $controladorVenta->eliminarVenta($_GET["numero5"]);
                 break;
             default:
                 $controlador->verpagina("vista/html/inicio.php");

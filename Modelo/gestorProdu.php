@@ -25,4 +25,20 @@ class gestorprodu
             return 1;
         }
     }
+
+    public function consultarProdu(){
+        $conexion = new conexion();
+        $sql = "SELECT * FROM producto";
+        $conexion->buscar_query($sql);
+        $result = $conexion->obtener_resultado();
+        return $result;
+    }
+
+    public function eliminarProdu($producto){
+        $conexion = new conexion();
+        $sql = "DELETE FROM producto WHERE codprodu = ?";
+        $params = array($producto);
+        $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
+        return $filasAfectadas;
+    }
 }

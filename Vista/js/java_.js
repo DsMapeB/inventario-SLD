@@ -35,7 +35,27 @@ function eliminarpro(numero){
     });
   }
 }
+function consultarprodu(){
+  var url = "index.php?accion=consultarprodu";
+  $("#producto").load(url);
+}
+function eliminarprodu(numero4){
+  if (confirm("Estas seguro de Eliminar el Producto " + numero4 + "?")){
+    $.get("index.php", {accion: 'eliminarprodu', numero4: numero4}, function (mensaje){
+      alert(mensaje);
+      location.reload();
+    })
+  }
+}
 function consultarven(){
   var url = "index.php?accion=consultarVen";
   $("#venta").load(url);
+}
+function eliminarventa(numero5){
+  if (confirm("Estas seguro de Eliminar la Venta " + numero5 + "?")){
+    $.get("index.php", {accion: 'eliminarven', numero5: numero5}, function (mensaje){
+      alert(mensaje);
+      location.reload();
+    })
+  }
 }

@@ -10,6 +10,10 @@
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
     <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
+    <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <script src="Vista/jquery/jquery.js"></script>
+    <script src="Vista/js/java_.js"></script>
 </head>
 
 <body>
@@ -241,33 +245,6 @@
                                 Agregar Nuevo Producto
                             </button>
 
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Codigo</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Precio</th>
-                                            <th scope="col">Existencia</th>
-                                            <th scope="col">Proveedor</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-
-
                             <!-- Modal -->
                             <div class="modal fade" id="staticBackdropprodu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -311,7 +288,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="producto"></div>
+                        </div>
+                    </div>
+                    <script>
+                        consultarprodu()
+                    </script>
+                </div>
+            </div>
         </section>
+        <script src="Vista/js/java.js"></script>
+    </main>
 </body>
 
 </html>
