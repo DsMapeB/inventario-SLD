@@ -29,6 +29,27 @@
             return $result;
         }
 
+        public function editarCli(){
+            $conexion = new conexion();
+            $sql = "SELECT * FROM cliente WHERE docclie";
+            $conexion->buscar_query($sql);
+            $result = $conexion->obtener_resultado();
+            return $result;
+        }
+
+        public function actualizarCli($cli){
+            $conexion = new conexion();
+            $cliente = $cli;
+
+            $doc_cli = $cliente->obtenerdocumento();
+            $nombre_cli = $cliente->obtenernombre();
+            $telefono_cli = $cliente->obtenertelefono();
+
+            $sql = "UPDATE cliente SET nombre = '$nombre_cli' WHERE documento = '$doc_cli' AND telefono = '$telefono_cli'";
+            $result = $conexion->ejecutar_query($sql);
+            return $result;
+        }
+
         public function eliminarCli($cliente){
             $conexion = new conexion();
             $sql = "DELETE FROM cliente WHERE docclie = ?";

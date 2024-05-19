@@ -66,6 +66,12 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
             case 'consultarCli':
                 $controladorCli->consultarCli();
                 break;
+            case 'editarCli':
+                $controladorCli->editarCli();
+                break;
+            case 'actualizarCliente':
+                $controladorCli->actualizarCli($_POST["docuemnto"], $_POST["nombre"], $_POST["telefono"]);
+                break;
             case 'eliminarcli':
                 $controladorCli->eliminarCli($_GET["numero3"]);
                 break;
@@ -129,10 +135,10 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 $controladorVenta->eliminarVenta($_GET["numero5"]);
                 break;
             default:
-                $controlador->verpagina("vista/html/inicio.php");
+                $controlador->verpagina("Vista/html/inicio.php");
         }
     } else {
-        $controlador->verpagina("vista/html/login.php");
+        $controlador->verpagina("Vista/html/login.php");
     }
 } else {
     if (isset($_GET["accion"])) {
@@ -140,9 +146,9 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
             case 'login':
                 $controlador->login($_POST["user"], $_POST["pass"]);
             default:
-                $controlador->verpagina("vista/html/inicio.php");
+                $controlador->verpagina("Vista/html/inicio.php");
         }
     } else {
-        $controlador->verpagina("vista/html/login.php");
+        $controlador->verpagina("Vista/html/login.php");
     }
 }

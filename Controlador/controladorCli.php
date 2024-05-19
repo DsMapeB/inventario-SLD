@@ -19,6 +19,24 @@
             require_once 'Vista/html/consultarCli.php';
         }
 
+        public function editarCli(){
+            $gestorcliente = new gestorcliente();
+            $result2 = $gestorcliente->editarcli();
+            require_once 'Vista/html/consultarCli.php';
+        }
+
+        public function actualizarCli($doccli, $nomcli, $telcli){
+            $cliente = new cliente($doccli, $nomcli, $telcli);
+            $gestorcliente = new gestorcliente();
+            $result = $gestorcliente->actualizarCli($cliente);
+            if ($result > 0) {
+                header ("Location:index.php?cliente=success");
+            } else{
+                header("Location:index.php?cliente=error");
+            }
+             //($cliente); //
+        }
+
         public function eliminarCli($cliente){
             $gestorcliente = new gestorcliente();
             $registro = $gestorcliente->eliminarCli($cliente);

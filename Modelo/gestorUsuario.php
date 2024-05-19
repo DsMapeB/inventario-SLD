@@ -14,7 +14,7 @@ class gestorusuario
     $fotoUsu = $usuario->obtenerfoto();
     $cargoUsu = $usuario->obtenercargo();
 
-    $sql = "INSERT INTO usuarios VALUES ('','$docUsu', '$nombreUsu' , '$telefonoUsu', '$ciudadUsu', '$direccionUsu','$fotoUsu', '$cargoUsu')";
+    $sql = "INSERT INTO usuarios VALUES ('$docUsu', '$nombreUsu' , '$telefonoUsu', '$ciudadUsu', '$direccionUsu','$fotoUsu', '$cargoUsu')";
 
     $conexion->ejecutar_query($sql);
 
