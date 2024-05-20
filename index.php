@@ -27,11 +27,14 @@ $controladorCli = new controladorcli();
 $controladorProdu = new controladorprodu();
 $controladorVenta = new controladorventa();
 
-if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
+if (isset($_SESSION["nombreUsu"]) && isset($_SESSION["contraseñaUsu"])) {
     if (isset($_GET["accion"])) {
         switch ($_GET["accion"]) {
             case 'logout':
                 $controlador->logout();
+                break;
+            case 'perfil':
+                $controlador->verpagina("Vista/html/perfil.php");
                 break;
             case 'usuario':
                 $controlador->verpagina("Vista/html/usuario.php");
@@ -40,6 +43,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["id"])) {
                 $controladorUsuario->agregarusuario(
                     $_REQUEST["docUsuario"],
                     $_REQUEST["nombreUsuario"],
+                    $_REQUEST["passUsuario"],
                     $_REQUEST["telUsuario"],
                     $_REQUEST["ciudadUsuario"],
                     $_REQUEST["direcUsuario"],

@@ -8,6 +8,7 @@ if ($result->rowCount() > 0) {
                     <th scope="col">#</th>
                     <th scope="col">Documento</th>
                     <th scope="col">Nombre</th>
+                    <th scope="col">Contraseña</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Ciudad</th>
                     <th scope="col">Dirección</th>
@@ -25,6 +26,7 @@ if ($result->rowCount() > 0) {
                         <th scope="row"><?php echo $cont ?></th>
                         <td><?php echo $fila->docUsu; ?></td>
                         <td><?php echo $fila->nombreUsu; ?></td>
+                        <td><?php echo $fila->contraseñaUsu; ?></td>
                         <td><?php echo $fila->telefonoUsu; ?></td>
                         <td><?php echo $fila->ciudadUsu ?></td>
                         <td><?php echo $fila->direccionUsu ?></td>

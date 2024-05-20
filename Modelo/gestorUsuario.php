@@ -8,13 +8,14 @@ class gestorusuario
     $conexion = new conexion();
     $docUsu = $usuario->obtenerdoc();
     $nombreUsu = $usuario->obtenernombre();
+    $passwordUsu = $usuario->obtenerpassword();
     $telefonoUsu = $usuario->obtenertelefono();
     $ciudadUsu = $usuario->obtenerciudad();
     $direccionUsu = $usuario->obtenerdireccion();
     $fotoUsu = $usuario->obtenerfoto();
     $cargoUsu = $usuario->obtenercargo();
 
-    $sql = "INSERT INTO usuarios VALUES ('$docUsu', '$nombreUsu' , '$telefonoUsu', '$ciudadUsu', '$direccionUsu','$fotoUsu', '$cargoUsu')";
+    $sql = "INSERT INTO usuarios VALUES ('$docUsu', '$nombreUsu', '$passwordUsu' , '$telefonoUsu', '$ciudadUsu', '$direccionUsu','$fotoUsu', '$cargoUsu')";
 
     $conexion->ejecutar_query($sql);
 

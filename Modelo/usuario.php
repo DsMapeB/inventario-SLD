@@ -2,16 +2,18 @@
   class usuario{
     private $docUsu;
     private $nombreUsu;
+    private $passwordUsu;
     private $telefonoUsu;
     private $ciudadUsu;
     private $direccionUsu;
     private $fotoUsu;
     private $cargoUsu;
 
-    public function __construct($docUsu, $nomUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo)
+    public function __construct($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo)
     {
         $this->docUsu = $docUsu;
         $this->nombreUsu = $nomUsu;
+        $this->passwordUsu = $passUsu;
         $this->telefonoUsu = $telUsu;
         $this->ciudadUsu = $ciuUsu;
         $this->direccionUsu = $direUsu;
@@ -24,6 +26,9 @@
     }
     public function obtenernombre(){
       return $this->nombreUsu;
+    }
+    public function obtenerpassword(){
+      return $this->passwordUsu;
     }
     public function obtenertelefono(){
       return $this->telefonoUsu;
