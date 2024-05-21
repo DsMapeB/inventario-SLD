@@ -2,17 +2,17 @@
   class gestor{
     public function login($user, $pass){
       $conexion = new conexion();
-      $sql = "SELECT nombreUsu, contraseñaUsu FROM usuarios WHERE nombreUsu = '$user' AND contraseñaUsu = '$pass'";
+      $sql = "SELECT usuario, password FROM usuario WHERE usuario = '$user' AND password = '$pass'";
       $conexion->buscar_query($sql);
       $existe = $conexion->obtener_filas();
       if($existe>0){
         $result = $conexion->obtener_resultado();
         $filas = $result->fetch();
-        $datos = [$filas["nombreUsu"], $filas["contraseñaUsu"]];
+        $datos = [$filas["usuario"], $filas["password"]];
         return $datos;
       }
       else{
-        $sql2 = "SELECT nombreUsu FROM usuarios WHERE nombreUsu = '$user'";
+        $sql2 = "SELECT usuario FROM usuario WHERE usuario = '$user'";
         $conexion->buscar_query($sql2);
         $existe2 = $conexion->obtener_filas();
 

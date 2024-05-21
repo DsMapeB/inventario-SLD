@@ -38,12 +38,12 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="Vista/img/fotom.png" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION["nombreUsu"]; ?></span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION["usuario"]; ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6><?php echo $_SESSION["nombreUsu"]; ?></h6>
+                            <h6><?php echo $_SESSION["usuario"]; ?></h6>
                             <span>Administrador</span><br>
                             <span><?php date_default_timezone_set('America/Bogota');
                                     $dia = date("d/m/y");
@@ -150,7 +150,7 @@
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                             <img src="Vista/img/fotom.png" alt="Profile" class="rounded-circle">
-                            <h2><?php echo $_SESSION["nombreUsu"]; ?></h2>
+                            <h2><?php echo $_SESSION["usuario"]; ?></h2>
                             <h3>Administrador</h3>
                         </div>
                     </div>
@@ -183,11 +183,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Nombre</div>
-                                        <div class="col-lg-9 col-md-8 "><?php echo $_SESSION["nombreUsu"]; ?></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Contraseña</div>
-                                        <div class="col-lg-9 col-md-8 "><?php echo $_SESSION["contraseñaUsu"]; ?></div>
+                                        <div class="col-lg-9 col-md-8 "><?php echo $_SESSION["usuario"]; ?></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Telefono</div>
@@ -225,14 +221,14 @@
                                         <div class="row mb-3">
                                             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="fullName" type="text" class="form-control" id="fullName" value="<?php echo $_SESSION["nombreUsu"]; ?>">
+                                                <input name="fullName" type="text" class="form-control" id="fullName" value="<?php echo $_SESSION["usuario"]; ?>">
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="password" class="col-md-4 col-lg-3 col-form-label">Contraseña</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="password" type="text" class="form-control" id="password" value="<?php echo $_SESSION["contraseñaUsu"]; ?>">
+                                                <input name="password" type="text" class="form-control" id="password" value="<?php echo $_SESSION["password"]; ?>">
                                             </div>
                                         </div>
 

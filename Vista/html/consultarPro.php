@@ -28,7 +28,10 @@ if ($result->rowCount() > 0) {
             <td><?php echo $fila->telefonoPro; ?></td>
             <td><?php echo $fila->direccionPro; ?></td>
             <td><?php echo $fila->ciudadPro; ?></td>
-            <td><button class="icon-button" onclick="eliminarpro(<?php echo $fila->nitpro; ?>)"><i class="bi bi-trash3"></button></td>
+            <td>
+              <a class="icon-button" href="index.php?accion=editarprove&numero=<?php echo $fila->nitpro; ?>"><i class="bi bi-pencil-square"></i></a>
+              <button class="icon-button" onclick="eliminarpro(<?php echo $fila->nitpro; ?>)"><i class="bi bi-trash"></i></button>
+            </td>
           </tr>
         <?php
         }

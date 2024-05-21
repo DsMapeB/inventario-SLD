@@ -27,7 +27,7 @@ $controladorCli = new controladorcli();
 $controladorProdu = new controladorprodu();
 $controladorVenta = new controladorventa();
 
-if (isset($_SESSION["nombreUsu"]) && isset($_SESSION["contraseñaUsu"])) {
+if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
     if (isset($_GET["accion"])) {
         switch ($_GET["accion"]) {
             case 'logout':
@@ -36,6 +36,8 @@ if (isset($_SESSION["nombreUsu"]) && isset($_SESSION["contraseñaUsu"])) {
             case 'perfil':
                 $controlador->verpagina("Vista/html/perfil.php");
                 break;
+
+            //Usuario
             case 'usuario':
                 $controlador->verpagina("Vista/html/usuario.php");
                 break;
@@ -57,6 +59,8 @@ if (isset($_SESSION["nombreUsu"]) && isset($_SESSION["contraseñaUsu"])) {
             case 'eliminarusu':
                 $controladorUsuario->eliminarUsu($_GET["numero2"]);
                 break;
+
+                //Cliente
             case 'cliente':
                 $controlador->verpagina("Vista/html/cliente.php");
                 break;
@@ -71,14 +75,16 @@ if (isset($_SESSION["nombreUsu"]) && isset($_SESSION["contraseñaUsu"])) {
                 $controladorCli->consultarCli();
                 break;
             case 'editarCli':
-                $controladorCli->editarCli();
+                $controladorCli->editarCli($_GET["numero"]);
                 break;
             case 'actualizarCliente':
-                $controladorCli->actualizarCli($_POST["docuemnto"], $_POST["nombre"], $_POST["telefono"]);
+                $controladorCli->actualizarCli($_POST["documento"], $_POST["nombre"], $_POST["telefono"]);
                 break;
             case 'eliminarcli':
                 $controladorCli->eliminarCli($_GET["numero3"]);
                 break;
+
+                //Proveedor
             case 'provee':
                 $controlador->verpagina("Vista/html/provee.php");
                 break;
@@ -98,6 +104,8 @@ if (isset($_SESSION["nombreUsu"]) && isset($_SESSION["contraseñaUsu"])) {
             case 'eliminarpro':
                 $controladorPro->eliminarPro($_GET["numero"]);
                 break;
+
+                //Producto
             case 'produ':
                 $controlador->verpagina("Vista/html/produ.php");
                 break;
@@ -116,6 +124,8 @@ if (isset($_SESSION["nombreUsu"]) && isset($_SESSION["contraseñaUsu"])) {
             case 'eliminarprodu':
                 $controladorProdu->eliminarProdu($_GET["numero4"]);
                 break;
+
+                //Venta
             case 'venta':
                 $controlador->verpagina("Vista/html/venta.php");
                 break;

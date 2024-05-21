@@ -14,6 +14,12 @@ function consultarcli(){
   var url = "index.php?accion=consultarCli";
   $("#cliente").load(url);
 }
+
+function editarcli(val){
+   var url = "index.php?accion=editarCli&numero="+val;
+  $("#modaleditcli").load(url);
+}
+
 function eliminarcli(numero3){
   if (confirm("Estas seguro de eliminar el Cliente " + numero3 + "?")){
     $.get("index.php", { accion: 'eliminarcli', numero3: numero3}, function (mensaje){

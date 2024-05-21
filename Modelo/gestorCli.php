@@ -29,9 +29,9 @@
             return $result;
         }
 
-        public function editarCli(){
+        public function editarCli($docclie){
             $conexion = new conexion();
-            $sql = "SELECT * FROM cliente WHERE docclie";
+            $sql = "SELECT * FROM cliente WHERE docclie = $docclie";
             $conexion->buscar_query($sql);
             $result = $conexion->obtener_resultado();
             return $result;
@@ -45,7 +45,7 @@
             $nombre_cli = $cliente->obtenernombre();
             $telefono_cli = $cliente->obtenertelefono();
 
-            $sql = "UPDATE cliente SET nombre = '$nombre_cli' WHERE documento = '$doc_cli' AND telefono = '$telefono_cli'";
+            $sql = "UPDATE cliente SET nombreclie = '$nombre_cli' , telefonoclie = '$telefono_cli' WHERE docclie = '$doc_cli' ";
             $result = $conexion->ejecutar_query($sql);
             return $result;
         }

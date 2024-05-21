@@ -19,10 +19,11 @@
             require_once 'Vista/html/consultarCli.php';
         }
 
-        public function editarCli(){
+        public function editarCli($docclie){
+            
             $gestorcliente = new gestorcliente();
-            $result2 = $gestorcliente->editarcli();
-            require_once 'Vista/html/consultarCli.php';
+            $result2 = $gestorcliente->editarcli($docclie);
+            require_once 'Vista/html/modalEditCli.php';
         }
 
         public function actualizarCli($doccli, $nomcli, $telcli){
@@ -30,9 +31,9 @@
             $gestorcliente = new gestorcliente();
             $result = $gestorcliente->actualizarCli($cliente);
             if ($result > 0) {
-                header ("Location:index.php?cliente=success");
+                header("Location:index.php?accion=cliente");
             } else{
-                header("Location:index.php?cliente=error");
+                header("Location:index.php?accion=cliente");
             }
              //($cliente); //
         }
