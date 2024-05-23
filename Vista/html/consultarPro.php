@@ -12,6 +12,7 @@ if ($result->rowCount() > 0) {
           <th scope="col">Telefono</th>
           <th scope="col">Dirección</th>
           <th scope="col">Ciudad</th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +30,7 @@ if ($result->rowCount() > 0) {
             <td><?php echo $fila->direccionPro; ?></td>
             <td><?php echo $fila->ciudadPro; ?></td>
             <td>
-              <a class="icon-button" href="index.php?accion=editarprove&numero=<?php echo $fila->nitpro; ?>"><i class="bi bi-pencil-square"></i></a>
+            <button class="icon-button" data-bs-toggle="modal" data-bs-target="#editprove" onclick="editarprove(<?php echo $fila->nitpro; ?>)"><i class="bi bi-pencil-square"></i></button>
               <button class="icon-button" onclick="eliminarpro(<?php echo $fila->nitpro; ?>)"><i class="bi bi-trash"></i></button>
             </td>
           </tr>

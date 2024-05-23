@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
-    
+
 </head>
 
 <body>
@@ -38,12 +38,12 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="Vista/img/fotom.png" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION["nombreUsu"]; ?></span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION["usuario"]; ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6><?php echo $_SESSION["nombreUsu"]; ?></h6>
+                            <h6><?php echo $_SESSION["usuario"]; ?></h6>
                             <span>Administrador</span><br>
                             <span><?php date_default_timezone_set('America/Bogota');
                                     $dia = date("d/m/y");
@@ -141,8 +141,8 @@
                 </ol>
             </nav>
         </div><!--fin titulo de pagina -->
-  <!-- Modal -->
-  
+        <!-- Modal -->
+
         <section class="section">
             <div class="row">
                 <div class="col-lg-12">
@@ -188,38 +188,34 @@
                                 </div>
                             </div>
                             <div id="cliente"></div>
-                            
-                           
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-        
-        
-        
-        
-
     </main>
 
-        <div class="modal fade" id="editcli" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Cliente</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                            <div class="modal-body">
-                                                <div id="modaleditcli"></div>
-                                            </div>
-                                     </div>
-                                </div>
+    <div class="modal fade" id="editcli" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Cliente</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="modaleditcli"></div>
+                </div>
+            </div>
         </div>
+    </div>
 
 
-        <script src="Vista/js/java.js"></script>
-        <script src="Vista/js/java_.js"></script>
-        
-       
-        <script>
-            consultarcli();
-        </script>
+    <script src="Vista/js/java.js"></script>
+    <script src="Vista/js/java_.js"></script>
+
+    <script>
+        consultarcli();
+    </script>
 </body>
 
 </html>

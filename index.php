@@ -37,7 +37,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
                 $controlador->verpagina("Vista/html/perfil.php");
                 break;
 
-            //Usuario
+                //Usuario
             case 'usuario':
                 $controlador->verpagina("Vista/html/usuario.php");
                 break;
@@ -55,6 +55,9 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
                 break;
             case 'consultarUsu':
                 $controladorUsuario->consultarUsu();
+                break;
+            case 'editarUsu':
+                $controladorUsuario->editarUsu($_GET["numero"]);
                 break;
             case 'eliminarusu':
                 $controladorUsuario->eliminarUsu($_GET["numero2"]);
@@ -78,7 +81,11 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
                 $controladorCli->editarCli($_GET["numero"]);
                 break;
             case 'actualizarCliente':
-                $controladorCli->actualizarCli($_POST["documento"], $_POST["nombre"], $_POST["telefono"]);
+                $controladorCli->actualizarCli(
+                    $_POST["documento"],
+                    $_POST["nombre"],
+                    $_POST["telefono"]
+                );
                 break;
             case 'eliminarcli':
                 $controladorCli->eliminarCli($_GET["numero3"]);
@@ -100,6 +107,19 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
                 break;
             case 'consultarPro':
                 $controladorPro->consultarPro();
+                break;
+            case 'editarProvee':
+                $controladorPro->editarprove($_GET["numero"]);
+                break;
+            case 'actualizarProveedor':
+                $controladorPro->actualizarprove(
+                    $_POST["nitprovee"],
+                    $_POST["nombreprovee"],
+                    $_POST["contactoprovee"],
+                    $_POST["telprovee"],
+                    $_POST["direcprovee"],
+                    $_POST["ciuprovee"]
+                );
                 break;
             case 'eliminarpro':
                 $controladorPro->eliminarPro($_GET["numero"]);

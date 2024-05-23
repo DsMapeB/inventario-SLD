@@ -25,6 +25,25 @@ class controladorproveedor
         $result = $gestorproveedor->consultarPro();
         require_once 'Vista/html/consultarPro.php';
     }
+
+    public function editarprove($nitpro){
+        $gestorproveedor = new gestorproveedor();
+        $result = $gestorproveedor->editarPro($nitpro);
+        require_once 'Vista/html/modalEditprove.php';
+    }
+
+    public function actualizarprove($nitpro,$nombrepro,$contactopro,$telpro,$direcpro,$ciupro){
+        $proveedor = new proveedor($nitpro,$nombrepro,$contactopro,$telpro,$direcpro,$ciupro);
+        $gestorproveedor = new gestorproveedor();
+        $result = $gestorproveedor->actualizarprovee($proveedor);
+        if ($result > 0) {
+            header("Location:index.php?accion=provee");
+        } else{
+            header("Location:index.php?accion=provee");
+        }
+         //($cliente); //
+    }
+
     public function eliminarPro($proveedor)
     {
         $gestorproveedor = new gestorproveedor();

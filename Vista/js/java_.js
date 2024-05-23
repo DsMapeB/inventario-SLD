@@ -1,6 +1,16 @@
+$(document).ready(function(){
+  cargarRol();
+
+})
+
+// Usuario
 function consultarusu(){
   var url = "index.php?accion=consultarUsu";
   $("#usuario").load(url);
+}
+function editarUsuario(val){
+  var url = "index.php?accion=editarUsu&numero"+val;
+  $("#modaleditusu").load(url);
 }
 function eliminarusu(numero2){
   if (confirm("Estas seguro de eliminar el Usuario " + numero2 + "?")){
@@ -10,13 +20,19 @@ function eliminarusu(numero2){
     });
   }
 }
+function cargarRol(){
+  $.post("Modelo/cargarRol.php", {}, function (mensaje){
+    $("#rol").html(mensaje)
+  });
+}
+
+//Cliente
 function consultarcli(){
   var url = "index.php?accion=consultarCli";
   $("#cliente").load(url);
 }
-
 function editarcli(val){
-   var url = "index.php?accion=editarCli&numero="+val;
+  var url = "index.php?accion=editarCli&numero="+val;
   $("#modaleditcli").load(url);
 }
 
@@ -28,9 +44,15 @@ function eliminarcli(numero3){
     });
   }
 }
+
+//Proveedor
 function consultarpro(){
   var url = "index.php?accion=consultarPro";
   $("#proveedor").load(url);
+}
+function editarprove(val){
+  var url = "index.php?accion=editarProvee&numero="+val;
+  $("#modalEditprove").load(url);
 }
 function eliminarpro(numero){
   if (confirm("Estas seguro de Eliminar el Proveedor " + numero + "?")){
@@ -41,6 +63,8 @@ function eliminarpro(numero){
     });
   }
 }
+
+//Producto
 function consultarprodu(){
   var url = "index.php?accion=consultarprodu";
   $("#producto").load(url);
@@ -53,6 +77,8 @@ function eliminarprodu(numero4){
     })
   }
 }
+
+//Venta
 function consultarven(){
   var url = "index.php?accion=consultarVen";
   $("#venta").load(url);

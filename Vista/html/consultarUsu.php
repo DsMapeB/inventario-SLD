@@ -33,7 +33,7 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->cargoUsu; ?></td>
 
                         <td>
-                            <button class="icon-button"><i class="bi bi-pencil-square"></i></button>
+                        <button class="icon-button" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->docUsu; ?>)"><i class="bi bi-pencil-square"></i></button>
                             <button class="icon-button" onclick="eliminarusu(<?php echo $fila->docUsu; ?>)"><i class="bi bi-trash3"></i></button>
                         </td>
                     </tr>

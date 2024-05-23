@@ -35,6 +35,30 @@ class gestorproveedor
         return $result;
     }
 
+    public function editarPro($nitpro){
+        $conexion = new conexion();
+        $sql = "SELECT * FROM proveedores WHERE nitpro = $nitpro";
+        $conexion->buscar_query($sql);
+        $result = $conexion->obtener_resultado();
+        return $result;
+    }
+
+    public function actualizarprovee($provee){
+        $conexion =  new conexion();
+        $proveedor = $provee;
+
+        $nitpro = $proveedor->obtenernit();
+        $nombrepro = $proveedor->obtenernombre();
+        $contactopro = $proveedor->obtenercontacto();
+        $telefonopro = $proveedor->obtenertelefono();
+        $direccionpro = $proveedor->obtenerdireccion();
+        $ciudadpro = $proveedor->obtenerciudad();
+
+        $sql = "UPDATE proveedores SET nombrePro = '$nombrepro', contactoPro = '$contactopro', telefonoPro = '$telefonopro', direccionPro = '$direccionpro', ciudadPro = '$ciudadpro' WHERE nitpro = '$nitpro'";
+        $result = $conexion->ejecutar_query($sql);
+        return $result;
+    }
+
     public function eliminarPro($proveedor)
     {
         $conexion = new conexion();

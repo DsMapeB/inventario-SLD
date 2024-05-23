@@ -39,6 +39,10 @@ class gestorusuario
       return $result;
     }
 
+    public function editarUsu(){
+      
+    }
+
     public function eliminarUsu($usuario){
       $conexion = new conexion();
       $sql = "DELETE FROM usuarios WHERE docUsu = ?";
