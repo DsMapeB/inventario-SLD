@@ -24,6 +24,23 @@ class controladorventa
         require_once 'Vista/html/consultarVen.php';
     }
 
+    public function editarventa($codventa){
+        $gestorventa = new gestorventa();
+        $result = $gestorventa->editarventa($codventa);
+        require_once 'Vista/html/modalEditventa.php';
+    }
+
+    public function actualizarVenta($codventa,$fechaventa,$horaventa,$idusu,$docclie,$codprodu,$obs,$total){
+        $venta = new venta($codventa,$fechaventa,$horaventa,$idusu,$docclie,$codprodu,$obs,$total);
+        $gestorventa = new gestorventa();
+        $result = $gestorventa->actualizarVenta($venta);
+        if ($result > 0) {
+            header("Location:index.php?accion=venta");
+        } else {
+            header("Location:index.php?accion=venta");
+        }
+    }
+
     public function eliminarVenta($venta){
         $gestorventa = new gestorventa();
         $registro = $gestorventa->eliminarVenta($venta);

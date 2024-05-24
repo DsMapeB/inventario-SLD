@@ -1,38 +1,33 @@
 <?php $filas = $result->fetch(); ?>
 <form action="index.php?accion=actualizarUsuario" method="POST" id="agregarusuario" novalidate>
-  <div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Documento</span>
-    <input type="text" class="form-control" placeholder="Numero de Documento" aria-label="Nombre" aria-describedby="basic-addon1" value="<?php echo $filas['docUsu']; ?>" readonly id="docUsuario" name="docUsuario">
+<div class="input-group mb-3">
+    <span class="input-group-text" id="docUsuario2">Documento</span>
+    <input type="text" class="form-control" placeholder="Numero de Documento" aria-label="Numero Documento" aria-describedby="basic-addon1" value="<?php echo $filas['docUsu']; ?>" readonly id="docUsuario2" name="docUsuario2">
   </div>
   <div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Nombre</span>
-    <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" value="<?php echo $filas['nombreUsu']; ?>" id="nombreUsuario" name="nombreUsuario">
+    <span class="input-group-text" id="nombreUsuario2">Nombre</span>
+    <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" value="<?php echo $filas['nombreUsu']; ?>" id="nombreUsuario2" name="nombreUsuario2">
   </div>
   <div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Contraseña</span>
-    <input class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1" value="<?php echo $filas['contraseñaUsu']; ?>" id="passUsuarios" name="passUsuario">
+    <span class="input-group-text" id="passUsuario2">Contraseña</span>
+    <input class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1" value="<?php echo $filas['contraseñaUsu']; ?>" id="passUsuario2" name="passUsuario2">
   </div>
   <div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Telefono</span>
-    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" value="<?php echo $filas['telefonoUsu']; ?>" id="telUsuario" name="telUsuario">
+    <span class="input-group-text" id="telUsuario2">Telefono</span>
+    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" value="<?php echo $filas['telefonoUsu']; ?>" id="telUsuario2" name="telUsuario2">
   </div>
   <div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Ciudad</span>
-    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" value="<?php echo $filas['ciudadUsu']; ?>"id="ciudadUsuario" name="ciudadUsuario">
+    <span class="input-group-text" id="ciudadUsuario2">Ciudad</span>
+    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" value="<?php echo $filas['ciudadUsu']; ?>"id="ciudadUsuario2" name="ciudadUsuario2">
   </div>
   <div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">Dirección</span>
-    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" value="<?php echo $filas['direccionUsu']; ?>"id="direcUsuario" name="direcUsuario">
+    <span class="input-group-text" id="direcUsuario2">Dirección</span>
+    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" value="<?php echo $filas['direccionUsu']; ?>"id="direcUsuario2" name="direcUsuario2">
   </div>
   <div class="input-group mb-3">
-    <label for="formFile" class="form-label"></label>
-    <input class="form-control" type="file" id="fotoUsuario" name="fotoUsuario">
-  </div>
-  <div class="input-group mb-3">
-    <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
-    <select class="form-select" id="rol" value="<?php echo $filas['cargoUsu']; ?>" name="cargoUsuario">
-    <option value="1">Administrador</option>
-    <option value="2">empleado</option>
+    <span class="input-group-text" for="inputGroupSelect01" id="rol2">Tipo de Cargo</span>
+    <select class="form-select" id="rol2" name="rol2">
+    <option value="<?php echo $filas['cargoUsu']; ?>"><?php echo $filas['nombrerol']; ?></option>
     </select>
   </div>
   <div class="modal-footer">

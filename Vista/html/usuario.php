@@ -150,7 +150,7 @@
                             <p>Aca podras encontrar toda la informacion sobre tus usuarios</p>
 
                             <!-- Button trigger modal -->
-                            <button action="consultarpro" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalusuario">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalusuario">
                                 <i class="bi bi-person-fill-add"></i> Agregar Nuevo Usuario
                             </button>
 
@@ -165,35 +165,31 @@
                                         <div class="modal-body">
                                             <form action="index.php?accion=ingresarusuario" method="POST" id="agregarusuario" novalidate>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Documento</span>
-                                                    <input type="text" class="form-control" placeholder="Numero de Documento" aria-label="Nombre" aria-describedby="basic-addon1" id="docUsuario" name="docUsuario">
+                                                    <span class="input-group-text" id="docUsuario">Documento</span>
+                                                    <input type="text" class="form-control" placeholder="Numero de Documento" aria-label="Numero Documento" aria-describedby="basic-addon1" id="docUsuario" name="docUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Nombre</span>
+                                                    <span class="input-group-text" id="nombreUsuario">Nombre</span>
                                                     <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreUsuario" name="nombreUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Contraseña</span>
-                                                    <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1" id="passUsuarios" name="passUsuario">
+                                                    <span class="input-group-text" id="passUsuario">Contraseña</span>
+                                                    <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1" id="passUsuario" name="passUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Telefono</span>
+                                                    <span class="input-group-text" id="telUsuario">Telefono</span>
                                                     <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" id="telUsuario" name="telUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Ciudad</span>
+                                                    <span class="input-group-text" id="ciudadUsuario">Ciudad</span>
                                                     <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" id="ciudadUsuario" name="ciudadUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Dirección</span>
+                                                    <span class="input-group-text" id="direcUsuario">Dirección</span>
                                                     <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" id="direcUsuario" name="direcUsuario">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <label for="formFile" class="form-label"></label>
-                                                    <input class="form-control" type="file" id="fotoUsuario" name="fotoUsuario">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</label>
+                                                    <span class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</span>
                                                     <select class="form-select" id="rol" name="cargoUsuario">
                                                     </select>
                                                 </div>

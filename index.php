@@ -49,7 +49,6 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
                     $_REQUEST["telUsuario"],
                     $_REQUEST["ciudadUsuario"],
                     $_REQUEST["direcUsuario"],
-                    $_REQUEST["fotoUsuario"],
                     $_REQUEST["cargoUsuario"]
                 );
                 break;
@@ -61,14 +60,13 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
                 break;
             case 'actualizarUsuario':
                 $controladorUsuario->actualizarUsu(
-                    $_POST["docUsuario"],
-                    $_POST["nombreUsuario"],
-                    $_POST["passUsuario"],
-                    $_POST["telUsuario"],
-                    $_POST["ciudadUsuario"],
-                    $_POST["direcUsuario"],
-                    $_POST["fotoUsuario"],
-                    $_POST["cargoUsuario"]
+                    $_POST["docUsuario2"],
+                    $_POST["nombreUsuario2"],
+                    $_POST["passUsuario2"],
+                    $_POST["telUsuario2"],
+                    $_POST["ciudadUsuario2"],
+                    $_POST["direcUsuario2"],
+                    $_POST["rol2"]
                 );
                 break;
             case 'eliminarusu':
@@ -181,13 +179,27 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
                     $_REQUEST["idUsu"],
                     $_REQUEST["docclie"],
                     $_REQUEST["codprodu"],
-                    $_REQUEST["docclie"],
                     $_REQUEST["obs"],
                     $_REQUEST["total"],
                 );
                 break;
             case 'consultarVen':
                 $controladorVenta->consultarVenta();
+                break;
+            case 'editarVen':
+                $controladorVenta->editarVenta($_GET["numero"]);
+                break;
+            case 'actualizarVenta':
+                $controladorVenta->actualizarVenta(
+                    $_POST["codventa2"],
+                    $_POST["fecha2"],
+                    $_POST["hora2"],
+                    $_POST["idUsu2"],
+                    $_POST["docclie2"],
+                    $_POST["codprodu2"],
+                    $_POST["obs2"],
+                    $_POST["total2"],
+                );
                 break;
             case 'eliminarven':
                 $controladorVenta->eliminarVenta($_GET["numero5"]);

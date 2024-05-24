@@ -6,10 +6,9 @@
     private $telefonoUsu;
     private $ciudadUsu;
     private $direccionUsu;
-    private $fotoUsu;
     private $cargoUsu;
 
-    public function __construct($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo)
+    public function __construct($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $cargo)
     {
         $this->docUsu = $docUsu;
         $this->nombreUsu = $nomUsu;
@@ -17,7 +16,6 @@
         $this->telefonoUsu = $telUsu;
         $this->ciudadUsu = $ciuUsu;
         $this->direccionUsu = $direUsu;
-        $this->fotoUsu = $fotoUsu;
         $this->cargoUsu = $cargo;
     }
     
@@ -38,9 +36,6 @@
     }
     public function obtenerdireccion(){
       return $this->direccionUsu;
-    }
-    public function obtenerfoto(){
-      return $this->fotoUsu;
     }
     public function obtenercargo(){
       return $this->cargoUsu;

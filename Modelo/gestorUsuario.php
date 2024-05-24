@@ -12,10 +12,9 @@ class gestorusuario
     $telefonoUsu = $usuario->obtenertelefono();
     $ciudadUsu = $usuario->obtenerciudad();
     $direccionUsu = $usuario->obtenerdireccion();
-    $fotoUsu = $usuario->obtenerfoto();
     $cargoUsu = $usuario->obtenercargo();
 
-    $sql = "INSERT INTO usuarios VALUES ('$docUsu', '$nombreUsu', '$passwordUsu' , '$telefonoUsu', '$ciudadUsu', '$direccionUsu','$fotoUsu', '$cargoUsu')";
+    $sql = "INSERT INTO usuarios VALUES ('$docUsu', '$nombreUsu', '$passwordUsu' , '$telefonoUsu', '$ciudadUsu', '$direccionUsu', '$cargoUsu')";
 
     $conexion->ejecutar_query($sql);
 
@@ -43,7 +42,7 @@ class gestorusuario
   public function editarUsu($docusu)
   {
     $conexion = new conexion();
-    $sql = "SELECT * FROM usuarios WHERE docUsu = $docusu";
+    $sql = "SELECT * FROM usuarios join rol on usuarios.cargoUsu=rol.cargoUsu WHERE docUsu = $docusu";
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
     return $result;
@@ -60,10 +59,9 @@ class gestorusuario
     $telefonoUsu = $usuario->obtenertelefono();
     $ciudadUsu = $usuario->obtenerciudad();
     $direccionUsu = $usuario->obtenerdireccion();
-    $fotoUsu = $usuario->obtenerfoto();
     $cargoUsu = $usuario->obtenercargo();
 
-    $sql = "UPDATE usuarios SET nombreUsu = '$nombreUsu', contraseñaUsu = '$passwordUsu', telefonoUsu = '$telefonoUsu', ciudadUsu = '$ciudadUsu', direccionUsu = '$direccionUsu', fotoUsu = '$fotoUsu', cargoUsu = '$cargoUsu' WHERE docUsu = '$docUsu'";
+    $sql = "UPDATE usuarios SET nombreUsu = '$nombreUsu', contraseñaUsu = '$passwordUsu', telefonoUsu = '$telefonoUsu', ciudadUsu = '$ciudadUsu', direccionUsu = '$direccionUsu', cargoUsu = '$cargoUsu' WHERE docUsu = '$docUsu'";
     $result = $conexion->ejecutar_query($sql);
     return $result;
   }

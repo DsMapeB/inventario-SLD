@@ -1,6 +1,10 @@
 $(document).ready(function(){
   cargarRol();
+  cargarRol2();
   cargarNit();
+  cargarUsuario();
+  cargarCliente();
+  cargarProducto();
 
 })
 
@@ -23,7 +27,14 @@ function eliminarusu(numero2){
 }
 function cargarRol(){
   $.post("Modelo/cargarRol.php", {}, function (mensaje){
-    $("#rol").html(mensaje)
+    $("#rol").html(mensaje);
+});
+}
+
+function cargarRol2(){
+
+  $.post("Modelo/cargarRol2.php", {}, function (mensaje2){
+    $("#rol2").html(mensaje2);
   });
 }
 
@@ -93,6 +104,10 @@ function consultarven(){
   var url = "index.php?accion=consultarVen";
   $("#venta").load(url);
 }
+function editarven(val){
+  var url = "index.php?accion=editarVen&numero="+val;
+  $("#modalEditVen").load(url);
+}
 function eliminarventa(numero5){
   if (confirm("Estas seguro de Eliminar la Venta " + numero5 + "?")){
     $.get("index.php", {accion: 'eliminarven', numero5: numero5}, function (mensaje){
@@ -100,4 +115,19 @@ function eliminarventa(numero5){
       location.reload();
     })
   }
+}
+function cargarUsuario(){
+  $.post("Modelo/cargarUsu.php", {} , function (mensaje){
+    $("#idUsu").html(mensaje);
+  });
+}
+function cargarCliente(){
+  $.post("Modelo/cargarCli.php", {} , function (mensaje){
+    $("#docclie").html(mensaje);
+  });
+}
+function cargarProducto(){
+  $.post("Modelo/cargarProdu.php", {} , function (mensaje){
+    $("#codprodu").html(mensaje);
+  });
 }

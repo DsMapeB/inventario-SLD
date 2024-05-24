@@ -37,6 +37,32 @@ class gestorVenta
         return $result;
     }
 
+    public function editarventa($codventa){
+        $conexion = new conexion();
+        $sql = "SELECT * FROM venta WHERE codventa = '$codventa'";
+        $conexion->buscar_query($sql);
+        $result = $conexion->obtener_resultado();
+        return $result;
+    }
+
+    public function actualizarVenta($vent){
+        $conexion = new conexion();
+        $venta = $vent;
+
+        $codventa = $venta->obtenercodigo();
+        $fechaventa = $venta->obtenerfecha();
+        $horaventa = $venta->obtenerhora();
+        $idusu = $venta->obteneridusu();
+        $docclie = $venta->obtenerdocclie();
+        $codprodu = $venta->obtenercodprodu();
+        $observacionventa = $venta->obtenerobs();
+        $totalventa = $venta->obtenertotal();
+
+        $sql = "UPDATE venta SET fecha = '$fechaventa', hora = '$horaventa', docUsu = '$idusu', docclie = '$docclie', codprodu = '$codprodu', observacion = '$observacionventa', total = '$totalventa' WHERE codventa = '$codventa'";
+        $result = $conexion->ejecutar_query($sql);
+        return $result;
+    }
+
     public function eliminarVenta($venta){
         $conexion = new conexion();
         $sql = "DELETE FROM venta WHERE codventa = ?";

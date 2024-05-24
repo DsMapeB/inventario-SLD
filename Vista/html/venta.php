@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
-    <script src="Vista/js/java_.js"></script>
 </head>
 
 <body>
@@ -179,16 +178,16 @@
                                                     <input type="time" class="form-control" placeholder="Hora" aria-label="hora" aria-describedby="basic-addon1" id="hora" name="hora">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Usuario</label>
-                                                    <input type="text" class="form-control" placeholder="Documento Usuario" aria-label="id usuario" aria-describedby="basic-addon1" id="idUsu" name="idUsu">
+                                                    <span class="input-group-text" for="inputGroupSelect01">Usuario</span>
+                                                    <select class="form-select"  id="idUsu" name="idUsu"></select>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Documento Cliente</span>
-                                                    <input type="text" class="form-control" placeholder="Documento Cliente" aria-label="Documento" aria-describedby="basic-addon1" id="docclie" name="docclie">
+                                                    <span class="input-group-text" for="inputGroupSelect02">Documento Cliente</span>
+                                                    <select class="form-select"  id="docclie" name="docclie"></select>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Codigo de producto</span>
-                                                    <input type="text" class="form-control" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1" id="codprodu" name="codprodu">
+                                                    <span class="input-group-text" for="inputGroupSelect03">Codigo de producto</span>
+                                                    <select class="form-select"  id="codprodu" name="codprodu"></select>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Observación</span>
@@ -210,15 +209,31 @@
                             <div id="venta"></div>
                         </div>
                     </div>
-                    <script>
-                        consultarven()
-                    </script>
                 </div>
             </div>
         </section>
-
-        <script src="Vista/js/java.js"></script>
     </main>
+
+    <div class="modal fade" id="accventa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar Venta</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="modalEditVen"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Vista/js/java_.js"></script>
+    <script src="Vista/js/java.js"></script>
+
+    <script>
+        consultarven()
+    </script>
 </body>
 
 </html>

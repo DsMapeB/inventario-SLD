@@ -4,16 +4,16 @@ class controladorusuario
   /*=============================================
 	REGISTRO DE Usuarios
 	=============================================*/
-  public function agregarusuario($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo)
+  public function agregarusuario($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $cargo)
   {
-    $usuario = new usuario($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo);
+    $usuario = new usuario($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $cargo);
     $gestorusuario = new gestorusuario();
     $result = $gestorusuario->agregarusuario($usuario);
     if ($result == "0") {
-      echo "<script>alert('No se registro correctamente');</script>";
+      echo "<scripalert('No se registro correctamente');</script>";
       header("Location:index.php?accion=usuario");
     } else {
-      echo "<script>alert('Registro Existoso');</script>";
+      echo "<script>alert('Registro Existoso');</scripalert>";
       header("Location:index.php?accion=usuario");
     }
   }
@@ -25,6 +25,25 @@ class controladorusuario
     require_once 'Vista/html/consultarUsu.php';
   }
 
+  public function editarUsu($docUsu)
+  {
+    $gestorusuario =  new gestorusuario();
+    $result = $gestorusuario->editarUsu($docUsu);
+    require_once 'Vista/html/modalEditusu.php';
+  }
+
+  public function actualizarUsu($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $cargo)
+  {
+    $usuario = new usuario($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $cargo);
+    $gestorusuario = new gestorusuario();
+    $result = $gestorusuario->actualizarUsu($usuario);
+    if ($result > 0) {
+      header("Location:index.php?accion=usuario");
+    } else {
+      header("Location:index.php?accion=usuario");
+    }
+  }
+
   public function eliminarUsu($usuario)
   {
     $gestorusuario = new gestorusuario();
@@ -33,25 +52,6 @@ class controladorusuario
       echo "El Usuario se ha eliminado con exito";
     } else {
       echo "El Usuario no se ha podido eliminar";
-    }
-  }
-
-  public function editarUsu($docUsu)
-  {
-    $gestorusuario =  new gestorusuario();
-    $result = $gestorusuario->editarUsu($docUsu);
-    require_once 'Vista/html/modalEditusu.php';
-  }
-
-  public function actualizarUsu($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo)
-  {
-    $usuario = new usuario($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo);
-    $gestorusuario = new gestorusuario();
-    $result = $gestorusuario->actualizarUsu($usuario);
-    if ($result > 0) {
-      header("Location:index.php?accion=usuario");
-    } else {
-      header("Location:index.php?accion=usuario");
     }
   }
 }
