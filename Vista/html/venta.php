@@ -152,9 +152,8 @@
                             <p>Aca podras encontrar toda la informacion acerca de tus ventas</p>
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aggventa">
-                                Agregar Nueva Venta
-
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggventa">
+                                <i class="bi bi-cart-plus-fill"></i> Agregar Nueva Venta
                             </button>
 
                             <!-- Modal -->

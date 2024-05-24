@@ -36,10 +36,22 @@ class controladorusuario
     }
   }
 
-  public function editarUsu($docUsu){
-    $gestorusuario =  new gestorusuario($docUsu);
+  public function editarUsu($docUsu)
+  {
+    $gestorusuario =  new gestorusuario();
     $result = $gestorusuario->editarUsu($docUsu);
     require_once 'Vista/html/modalEditusu.php';
+  }
 
+  public function actualizarUsu($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo)
+  {
+    $usuario = new usuario($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $fotoUsu, $cargo);
+    $gestorusuario = new gestorusuario();
+    $result = $gestorusuario->actualizarUsu($usuario);
+    if ($result > 0) {
+      header("Location:index.php?accion=usuario");
+    } else {
+      header("Location:index.php?accion=usuario");
+    }
   }
 }

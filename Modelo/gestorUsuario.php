@@ -23,33 +23,57 @@ class gestorusuario
     $conexion->buscar_query($sql2);
 
     $validar = $conexion->obtener_filas();
-      if ($validar>0){
-        $result=$conexion->obtener_resultado();
-        return $result;
-      } else{
-        return 1;
-      }
-    }
-
-    public function consultarUsu(){
-      $conexion = new conexion();
-      $sql = "SELECT * FROM usuarios";
-      $conexion->buscar_query($sql);
+    if ($validar > 0) {
       $result = $conexion->obtener_resultado();
       return $result;
+    } else {
+      return 1;
     }
-
-    public function editarUsu(){
-      
-    }
-
-    public function eliminarUsu($usuario){
-      $conexion = new conexion();
-      $sql = "DELETE FROM usuarios WHERE docUsu = ?";
-      $params = array($usuario);
-      $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
-      return $filasAfectadas;
-    }
-
   }
 
+  public function consultarUsu()
+  {
+    $conexion = new conexion();
+    $sql = "SELECT * FROM usuarios";
+    $conexion->buscar_query($sql);
+    $result = $conexion->obtener_resultado();
+    return $result;
+  }
+
+  public function editarUsu($docusu)
+  {
+    $conexion = new conexion();
+    $sql = "SELECT * FROM usuarios WHERE docUsu = $docusu";
+    $conexion->buscar_query($sql);
+    $result = $conexion->obtener_resultado();
+    return $result;
+  }
+
+  public function actualizarUsu($usu)
+  {
+    $conexion = new conexion();
+    $usuario = $usu;
+
+    $docUsu = $usuario->obtenerdoc();
+    $nombreUsu = $usuario->obtenernombre();
+    $passwordUsu = $usuario->obtenerpassword();
+    $telefonoUsu = $usuario->obtenertelefono();
+    $ciudadUsu = $usuario->obtenerciudad();
+    $direccionUsu = $usuario->obtenerdireccion();
+    $fotoUsu = $usuario->obtenerfoto();
+    $cargoUsu = $usuario->obtenercargo();
+
+    $sql = "UPDATE usuarios SET nombreUsu = '$nombreUsu', contraseñaUsu = '$passwordUsu', telefonoUsu = '$telefonoUsu', ciudadUsu = '$ciudadUsu', direccionUsu = '$direccionUsu', fotoUsu = '$fotoUsu', cargoUsu = '$cargoUsu' WHERE docUsu = '$docUsu'";
+    $result = $conexion->ejecutar_query($sql);
+    return $result;
+  }
+
+  public function eliminarUsu($usuario)
+  {
+    $conexion = new conexion();
+    $sql = "DELETE FROM usuarios WHERE docUsu = ?";
+    $params = array($usuario);
+    $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
+    return $filasAfectadas;
+  }
+}

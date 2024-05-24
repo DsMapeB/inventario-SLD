@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
-    <script src="Vista/js/java_.js"></script>
 </head>
 
 <body>
@@ -142,7 +141,6 @@
             </nav>
         </div><!--fin titulo de pagina -->
 
-
         <section class="section">
             <div class="row">
                 <div class="col-lg-12">
@@ -152,20 +150,20 @@
                             <p>Aca podras encontrar toda la informacion sobre tus Productos</p>
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdropprodu">
-                                Agregar Nuevo Producto
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdropprodu">
+                                <i class="bi bi-plus-lg"></i> Agregar Nuevo Producto
                             </button>
 
                             <!-- Modal -->
                             <div class="modal fade" id="staticBackdropprodu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <form action="index.php?accion=ingresarprodu" method="POST" id="agregarusuario" novalidate>
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Nuevo Producto</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Nuevo Producto</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="index.php?accion=ingresarprodu" method="POST" id="agregarusuario" novalidate>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Codigo</span>
                                                     <input type="text" class="form-control" placeholder="Codigo del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="codprodu" name="codprodu">
@@ -175,7 +173,7 @@
                                                     <input type="text" class="form-control" placeholder="Nombre del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreprodu" name="nombreprodu">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Precio</label>
+                                                    <span class="input-group-text" for="inputGroupSelect01">Precio</span>
                                                     <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Telefono" aria-describedby="basic-addon1" id="precioprodu" name="precioprodu">
                                                 </div>
                                                 <div class="input-group mb-3">
@@ -184,32 +182,46 @@
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Proveedor</span>
-                                                    <select class="form-select" id="inputGroupSelect01" id="proprodu" name="proprodu">
-                                                        <option selected>Seleccionar</option>
-                                                        <option value="22">Bimbo</option>
-                                                        <option value="2">Postobon</option>
+                                                    <select class="form-select" id="nit" name="proprodu">
                                                     </select>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                            </div>
-                                        </form>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div id="producto"></div>
                         </div>
                     </div>
-                    <script>
-                        consultarprodu()
-                    </script>
                 </div>
             </div>
         </section>
-        <script src="Vista/js/java.js"></script>
     </main>
+
+    <div class="modal fade" id="editProdu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Producto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="modalEditProdu"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Vista/js/java_.js"></script>
+    <script src="Vista/js/java.js"></script>
+
+    <script>
+        consultarprodu()
+    </script>
 </body>
 
 </html>

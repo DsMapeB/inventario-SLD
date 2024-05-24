@@ -34,6 +34,29 @@ class gestorprodu
         return $result;
     }
 
+    public function editarProdu($codprodu){
+        $conexion = new conexion();
+        $sql = "SELECT * FROM producto WHERE codprodu = $codprodu";
+        $conexion->buscar_query($sql);
+        $result = $conexion->obtener_resultado();
+        return $result;
+    }
+
+    public function actualizarProdu($produ){
+        $conexion = new conexion();
+        $producto = $produ;
+
+        $codprodu = $producto->obtenercodigo();
+        $nombreprodu = $producto->obtenernombre();
+        $precioprodu = $producto->obtenerprecio();
+        $exisprodu = $producto->obtenerexistencia();
+        $proveprodu = $producto->obtenerproveedor();
+
+        $sql = "UPDATE producto SET codprodu = '$codprodu', nombreprodu = '$nombreprodu', precioprodu = '$precioprodu', existenciaprodu = '$exisprodu', nitprodu = '$proveprodu' ";
+        $result = $conexion->ejecutar_query($sql);
+        return $result;
+    }
+
     public function eliminarProdu($producto){
         $conexion = new conexion();
         $sql = "DELETE FROM producto WHERE codprodu = ?";

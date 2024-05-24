@@ -27,9 +27,10 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->precioprodu; ?></td>
                         <td><?php echo $fila->existenciaprodu; ?></td>
                         <td><?php echo $fila->nitprodu; ?></td>
-
-                        <td><button>edit</button>
-                            <button class="icon-button" onclick="eliminarprodu(<?php echo $fila->codprodu; ?>)"><i class="bi bi-trash3"></i></button>
+                        <td>
+                            <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProdu" onclick="editarprodu(<?php echo $fila->codprodu; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
+                            |
+                            <button class="icon-button btn btn-danger" onclick="eliminarprodu(<?php echo $fila->codprodu; ?>)"><i class="bi bi-trash"></i> Eliminar</button>
                         </td>
                     </tr>
                 <?php

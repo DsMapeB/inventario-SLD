@@ -24,8 +24,9 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->nombreclie; ?></td>
                         <td><?php echo $fila->telefonoclie; ?></td>
                         <td>
-                            <button class="icon-button" data-bs-toggle="modal" data-bs-target="#editcli" onclick="editarcli(<?php echo $fila->docclie; ?>)"><i class="bi bi-pencil-square"></i></button>
-                            <button class="icon-button" onclick="eliminarcli(<?php echo $fila->docclie; ?>)"><i class="bi bi-trash3"></i></button>
+                            <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editcli" onclick="editarcli(<?php echo $fila->docclie; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
+                            |
+                            <button class="icon-button btn btn-danger" onclick="eliminarcli(<?php echo $fila->docclie; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>
                         </td>
                     </tr>
                 <?php

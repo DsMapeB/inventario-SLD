@@ -59,6 +59,18 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
             case 'editarUsu':
                 $controladorUsuario->editarUsu($_GET["numero"]);
                 break;
+            case 'actualizarUsuario':
+                $controladorUsuario->actualizarUsu(
+                    $_POST["docUsuario"],
+                    $_POST["nombreUsuario"],
+                    $_POST["passUsuario"],
+                    $_POST["telUsuario"],
+                    $_POST["ciudadUsuario"],
+                    $_POST["direcUsuario"],
+                    $_POST["fotoUsuario"],
+                    $_POST["cargoUsuario"]
+                );
+                break;
             case 'eliminarusu':
                 $controladorUsuario->eliminarUsu($_GET["numero2"]);
                 break;
@@ -140,6 +152,18 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
                 break;
             case 'consultarprodu':
                 $controladorProdu->consultarProdu();
+                break;
+            case 'editarprodu':
+                $controladorProdu->editarProdu($_GET["numero"]);
+                break;
+            case 'actualizarprodu':
+                $controladorProdu->actualizarProdu(
+                    $_POST["codprodu"],
+                    $_POST["nombreprodu"],
+                    $_POST["precioprodu"],
+                    $_POST["exisprodu"],
+                    $_POST["proprodu"],
+                );
                 break;
             case 'eliminarprodu':
                 $controladorProdu->eliminarProdu($_GET["numero4"]);

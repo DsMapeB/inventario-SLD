@@ -152,8 +152,8 @@
                             <p>Aca podras encontrar toda la informacion sobre tus Clientes</p>
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aggclie">
-                                Agregar Nuevo Cliente
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggclie">
+                                <i class="bi bi-person-fill-add"></i> Agregar Nuevo Cliente
                             </button>
 
                             <!-- Modal -->

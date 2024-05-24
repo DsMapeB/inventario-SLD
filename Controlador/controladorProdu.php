@@ -15,18 +15,39 @@ class controladorProdu
         }
     }
 
-    public function consultarProdu(){
+    public function consultarProdu()
+    {
         $gestorprodu = new gestorprodu();
         $result = $gestorprodu->consultarProdu();
         require_once 'Vista/html/consultarProdu.php';
     }
 
-    public function eliminarProdu($producto){
+    public function editarProdu($codprodu)
+    {
+        $gestorprodu = new gestorprodu();
+        $result = $gestorprodu->editarProdu($codprodu);
+        require_once 'Vista/html/modalEditprodu.php';
+    }
+
+    public function actualizarProdu($codprodu, $nomprodu, $precioprodu, $exisprodu, $proveprodu)
+    {
+        $producto = new producto($codprodu, $nomprodu, $precioprodu, $exisprodu, $proveprodu);
+        $gestorprodu = new gestorprodu();
+        $result = $gestorprodu->actualizarProdu($producto);
+        if ($result > 0) {
+            header("Location:index.php?accion=produ");
+        } else {
+            header("Location:index.php?accion=produ");
+        }
+    }
+
+    public function eliminarProdu($producto)
+    {
         $gestorprodu = new gestorprodu();
         $registro = $gestorprodu->eliminarProdu($producto);
         if ($registro > 0) {
             echo "El Producto se ha eliminado con exito";
-        } else{
+        } else {
             echo "El Producto no se ha podido eliminar";
         }
     }

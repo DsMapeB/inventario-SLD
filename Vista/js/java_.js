@@ -1,5 +1,6 @@
 $(document).ready(function(){
   cargarRol();
+  cargarNit();
 
 })
 
@@ -9,7 +10,7 @@ function consultarusu(){
   $("#usuario").load(url);
 }
 function editarUsuario(val){
-  var url = "index.php?accion=editarUsu&numero"+val;
+  var url = "index.php?accion=editarUsu&numero="+val;
   $("#modaleditusu").load(url);
 }
 function eliminarusu(numero2){
@@ -69,6 +70,10 @@ function consultarprodu(){
   var url = "index.php?accion=consultarprodu";
   $("#producto").load(url);
 }
+function editarprodu(val){
+  var url = "index.php?accion=editarprodu&numero="+val;
+  $("#modalEditProdu").load(url);
+} 
 function eliminarprodu(numero4){
   if (confirm("Estas seguro de Eliminar el Producto " + numero4 + "?")){
     $.get("index.php", {accion: 'eliminarprodu', numero4: numero4}, function (mensaje){
@@ -76,6 +81,11 @@ function eliminarprodu(numero4){
       location.reload();
     })
   }
+}
+function cargarNit(){
+  $.post("Modelo/cargarNit.php", {} , function(mensaje){
+    $("#nit").html(mensaje);
+  });
 }
 
 //Venta

@@ -150,8 +150,8 @@
                             <p>Aca podras encontrar toda la informacion sobre tus usuarios</p>
 
                             <!-- Button trigger modal -->
-                            <button action="consultarpro" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalusuario">
-                                Agregar Nuevo Usuario
+                            <button action="consultarpro" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalusuario">
+                                <i class="bi bi-person-fill-add"></i> Agregar Nuevo Usuario
                             </button>
 
                             <!-- Modal -->
@@ -228,12 +228,12 @@
         </div>
     </div>
 
-        <script src="Vista/js/java.js"></script>
-        <script src="Vista/js/java_.js"></script>
+    <script src="Vista/js/java.js"></script>
+    <script src="Vista/js/java_.js"></script>
 
-        <script>
-            consultarusu();
-        </script>
+    <script>
+        consultarusu();
+    </script>
 </body>
 
 </html>

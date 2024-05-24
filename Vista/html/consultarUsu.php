@@ -33,8 +33,8 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->cargoUsu; ?></td>
 
                         <td>
-                        <button class="icon-button" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->docUsu; ?>)"><i class="bi bi-pencil-square"></i></button>
-                            <button class="icon-button" onclick="eliminarusu(<?php echo $fila->docUsu; ?>)"><i class="bi bi-trash3"></i></button>
+                            <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->docUsu; ?>)"><i class="bi bi-pencil-square"></i> Editar</button><br>
+                            <br><button class="icon-button btn btn-danger" onclick="eliminarusu(<?php echo $fila->docUsu; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>
                         </td>
                     </tr>
                 <?php
@@ -45,7 +45,8 @@ if ($result->rowCount() > 0) {
     <?php
 } else {
     ?>
-        <br><p>No hay Usuarios Registrados</p>
+        <br>
+        <p>No hay Usuarios Registrados</p>
     <?php
 }
     ?>

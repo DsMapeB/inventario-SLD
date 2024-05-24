@@ -35,7 +35,7 @@
             } else{
                 header("Location:index.php?accion=cliente");
             }
-             //($cliente); //
+            
         }
 
         public function eliminarCli($cliente){

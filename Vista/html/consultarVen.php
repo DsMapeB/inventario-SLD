@@ -34,8 +34,8 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->observacion; ?></td>
                         <td><?php echo $fila->total; ?></td>
                         <td>
-                            <button>edit</button>
-                            <button class="icon-button" onclick="eliminarventa(<?php echo $fila->codventa; ?>)"><i class="bi bi-trash3"></i></button>
+                            <button class="icon-button btn btn-warning"><i class="bi bi-pencil-square"></i> Editar</button>
+                            <button class="icon-button btn btn-danger" onclick="eliminarventa(<?php echo $fila->codventa; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>
                         </td>
                     </tr>
                 <?php
