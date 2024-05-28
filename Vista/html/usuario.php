@@ -43,7 +43,7 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6><?php echo $_SESSION["usuario"]; ?></h6>
-                            <span>Administrador</span><br>
+                            <span><?php echo $_SESSION["rol"]; ?></span><br>
                             <span><?php date_default_timezone_set('America/Bogota');
                                     $dia = date("d/m/y");
                                     echo "Ibague, ", $dia;

@@ -13,8 +13,11 @@
   scroll-behavior: smooth;
 }
 #ini {
-  background-image: url('../img/fondo5.jpg') ;
-  background-size: cover;
+  background-image: url('../img/prueba3.png') ;
+  background-size: 100% 100% ;
+  /* Posición de la imagen */
+  background-position: center center; /* Posiciona la imagen en el centro */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
   font-family: "Open Sans", sans-serif;
   color: #444444;
 }
@@ -25,7 +28,7 @@ body{
 }
 
 a {
-  color: #000000;
+  color: #0051ff;
   text-decoration: none;
 }
 

@@ -9,14 +9,14 @@
     $result = $gestor->login($user,$pass);
     if ($result!=1 && $result!=2){
       $_SESSION["usuario"] = $result[0];
-      $_SESSION["password"] = $result[1];
+      $_SESSION["rol"] = $result[1];
       require_once("Vista/html/inicio.php");
     }
     if ($result==1){
-      header("Location:index.php?error=1");
+      header("Location:index.php?accion=log&error=1");
     }
     if ($result==2){
-      header("Location:index.php?error=2");
+      header("Location:index.php?accion=log&error=2");
     }
   }
 
@@ -26,6 +26,25 @@
     }
     session_destroy();
     header("Location:index.php");
+  }
+
+  public function registrar($usu, $pass, $rol){
+    $usu = new usuarios($usu, $pass, $rol);
+    $gestor = new gestor();
+    $result = $gestor->registrar($usu, $pass, $rol);
+
+    if ($result==1) {
+			/***   Registro satisfactorio    ***/
+			header("Location:index.php?accion=registro&error=1");
+		}
+		if ($result==2) {
+			/***   Usuario Repetido    ***/
+			header("Location:index.php?accion=registro&error=2");
+		}
+		if ($result==3) {
+			/***   Error en registro    ***/
+			header("Location:index.php?accion=registro&error=3");
+		}
   }
   
 }

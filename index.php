@@ -27,7 +27,7 @@ $controladorCli = new controladorcli();
 $controladorProdu = new controladorprodu();
 $controladorVenta = new controladorventa();
 
-if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
+if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"])) {
     if (isset($_GET["accion"])) {
         switch ($_GET["accion"]) {
             case 'logout':
@@ -206,6 +206,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
                 break;
             default:
                 $controlador->verpagina("Vista/html/inicio.php");
+                break;
         }
     } else {
         $controlador->verpagina("Vista/html/login.php");
@@ -213,12 +214,27 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["password"])) {
 } else {
     if (isset($_GET["accion"])) {
         switch ($_GET["accion"]) {
+            case 'log':
+                $controlador->verpagina("Vista/html/login.php");
+                break;
             case 'login':
                 $controlador->login($_POST["user"], $_POST["pass"]);
+                break;
+            case 'registro':
+                $controlador->verpagina("Vista/html/registrar.php");
+                break;
+            case 'registrar':
+                $controlador->registrar(
+                    $_POST["usuario"], 
+                    $_POST["password"],
+                    $_POST["rol3"]
+                );
+                break;
             default:
-                $controlador->verpagina("Vista/html/inicio.php");
+                $controlador->verpagina("Vista/html/login.php");
+                break;
         }
     } else {
-        $controlador->verpagina("Vista/html/login.php");
+        $controlador->verpagina("Vista/html/panel.php");
     }
 }

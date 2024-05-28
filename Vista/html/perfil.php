@@ -178,27 +178,15 @@
                                 <div class="tab-pane fade show active profile-overview" id="detalles">
                                     <h5 class="card-title">Detalles del Perfil</h5>
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Documento</div>
-                                        <div class="col-lg-9 col-md-8 ">1104936650</div>
-                                    </div>
-                                    <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Nombre</div>
                                         <div class="col-lg-9 col-md-8 "><?php echo $_SESSION["usuario"]; ?></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Telefono</div>
-                                        <div class="col-lg-9 col-md-8 ">3143872538</div>
+                                        <div class="col-lg-3 col-md-4 label">Contraseña</div>
+                                        <div class="col-lg-9 col-md-8 ">123</div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Ciudad</div>
-                                        <div class="col-lg-9 col-md-8 ">ibague</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Dirección</div>
-                                        <div class="col-lg-9 col-md-8 ">sena</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Foto</div>
+                                        <div class="col-lg-3 col-md-4 label">Imagen de Perfil</div>
                                         <div class="col-lg-9 col-md-8 "><img src="Vista/img/fotom.png" alt="Perfil" class="rounded-circle" height="200px" width="200px"></div>
                                     </div>
                                     <div class="row">
@@ -210,13 +198,6 @@
 
                                 <div class="tab-pane fade profile-edit pt-3" id="edit">
                                     <form action="">
-
-                                        <div class="row mb-3">
-                                            <label for="doc" class="col-md-4 col-lg-3 col-form-label">Documento</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="doc" type="text" class="form-control" id="doc" value="1104936650">
-                                            </div>
-                                        </div>
 
                                         <div class="row mb-3">
                                             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
@@ -233,30 +214,9 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="tel" class="col-md-4 col-lg-3 col-form-label">Telefono</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="tel" type="text" class="form-control" id="tel" value="3143872538">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="ciu" class="col-md-4 col-lg-3 col-form-label">Ciudad</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="ciu" type="text" class="form-control" id="ciu" value="Ibague">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="dir" class="col-md-4 col-lg-3 col-form-label">Dirección</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="dir" type="text" class="form-control" id="dir" value="sena">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
                                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Imagen de Perfil</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <img src="Vista/img/fotom.png" alt="Perfil" height="150px" width="300px">
+                                                <img src="Vista/img/fotom.png" alt="Perfil" height="150px" width="150px">
                                                 <div class="pt-2">
                                                     <a href="" class="btn btn-primary" title="Subir Nueva Imagen"><i class="bi bi-upload"></i></a>
                                                 </div>

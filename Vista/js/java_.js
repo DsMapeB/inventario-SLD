@@ -1,12 +1,19 @@
 $(document).ready(function(){
   cargarRol();
   cargarRol2();
+  cargarRol3();
   cargarNit();
   cargarUsuario();
   cargarCliente();
   cargarProducto();
 
 })
+
+function cargarRol3(){
+  $.post("Modelo/cargarRol3.php", {}, function (mensaje){
+    $("#rol3").html(mensaje);
+});
+}
 
 // Usuario
 function consultarusu(){

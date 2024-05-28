@@ -32,37 +32,41 @@
                                 <div class="card-body">
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">
-                                            Ingrese a su Cuenta Personal
+                                            Cree una Cuenta
                                         </h5>
                                         <p class="text-center small">
-                                            Ingrese su Usuario y Contraseña para Ingresar
+                                            Ingrese sus datos para crear la Cuenta
                                         </p>
                                     </div>
                                     <?php
                                     if (isset($_GET["error"])) {
                                         $mensaje = "Error";
                                         if ($_GET["error"] == 1) {
-                                            $mensaje = "¡La contraseña ingresada es incorrecta!";
+                                            $mensaje = "¡Registro Exitoso!";
                                         }
                                         if ($_GET["error"] == 2) {
-                                            $mensaje = "¡El usuario ingresado no corresponde a ninguna cuenta!";
+                                            $mensaje = "¡El usuario ingresado se encuentra Registrado!";
+                                        }
+                                        if ($_GET["error"] == 3) {
+                                            $mensaje = "¡Error al registrar!";
                                         }
                                     ?>
-                                        <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                            <div>
-                                                <i class="bi bi-exclamation-triangle-fill"></i> <?php echo $mensaje; ?>
-                                            </div>
+                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i> 
+                                            <?php echo $mensaje;?>
                                         </div>
+                                    </div>
                                     <?php
                                     }
                                     ?>
-                                    <form action="index.php?accion=login" method="post" class="row g-3 needs-validation" novalidate>
+                                    <form action="index.php?accion=registrar" method="post" class="row g-3 needs-validation" novalidate>
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">Usuario
-                                            </label>
+                                            <span for="yourUsername" class="form-label">Usuario
+                                            </span>
                                             <div class="input-group has-validation">
                                                 <!--  <span class="input-group-text" id="inputGroupPrepend">@</span>  -->
-                                                <input type="text" name="user" class="form-control" id="yourUsername" required>
+                                                <input type="text" name="usuario" class="form-control" id="usuario" required>
                                                 <div class="invalid-feedback">
                                                     Por favor Ingrese Su Usuario
                                                 </div>
@@ -70,10 +74,21 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">
+                                            <span for="yourPassword" class="form-label">
                                                 Contraseña
-                                            </label>
-                                            <input type="password" name="pass" class="form-control" id="yourPassword" required>
+                                            </span>
+                                            <input type="password" name="password" class="form-control" id="password" required>
+                                            <div class="invalid-feedback">
+                                                Por favor Ingrese su Contraseña
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <span for="rol" class="form-label">
+                                                Rol
+                                            </span>
+                                            <select class="form-select" id="rol3" name="rol3">
+                                            </select>
                                             <div class="invalid-feedback">
                                                 Por favor Ingrese su Contraseña
                                             </div>
@@ -81,11 +96,11 @@
 
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100" type="submit">
-                                                Ingresar
+                                                Registrar
                                             </button>
                                         </div>
                                         <div class="col-12">
-                                            <p class="small mb-0">No Tienes Una Cuenta? <a href="index.php?accion=registro">Create Una</a></p>
+                                            <p class="small mb-0">Ya Tienes Una Cuenta? <a href="index.php?accion=log">Accede a Ella</a></p>
                                         </div>
                                     </form>
                                 </div>

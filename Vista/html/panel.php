@@ -2,239 +2,81 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CPanel - Sistema de Gestion Onlinde de Inventario</title>
     <link rel="shortcut icon" href="Vista/ico/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="Vista/bootstrap-5.3.3-dist/css/bootstrap.css">
-    <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
-    <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
-    <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
+    <link href="Vista/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Vista/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="Vista/css/main.css" rel="stylesheet">
+
 </head>
 
-<body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center">
+<body class="index-page">
 
-        <div class="d-flex align-items-center justify-content-between">
-            <a href="index.php?accion=panel" class="logo d-flex align-items-center">
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+            <a href="index.php" class="logo d-flex align-items-center me-auto">
                 <img src="Vista/img/logo.png" alt="">
-                <span class="d-none d-lg-block">Sistema Gestion de Inventario</span>
+                <h1 class="sitename">SLD</h1>
             </a>
-            <i class="bi bi-list toggle-sidebar-btn"></i>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="index.php?accion=registro" class="">Register</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+
+            <a class="btn-getstarted" href="index.php?accion=log">Inicia Sesion</a>
+
         </div>
-
-
-        <nav class="header-nav ms-auto">
-            <ul class="d-flex align-items-center">
-
-                <li class="nav-item d-block d-lg-none">
-                    <a class="nav-link nav-icon search-bar-toggle " href="#">
-                        <i class="bi bi-search"></i>
-                    </a>
-                </li><!-- End Search Icon-->
-
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number">4</span>
-                    </a><!-- End Notification Icon -->
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                        <li class="dropdown-header">
-                            Tienes 4 nuevas notificaciones
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">ver todo</span></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-exclamation-circle text-warning"></i>
-                            <div>
-                                <h4>Lorem Ipsum</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>30 min. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-x-circle text-danger"></i>
-                            <div>
-                                <h4>Atque rerum nesciunt</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>1 hr. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-check-circle text-success"></i>
-                            <div>
-                                <h4>Sit rerum fuga</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>2 hrs. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-info-circle text-primary"></i>
-                            <div>
-                                <h4>Dicta reprehenderit</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>4 hrs. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li class="dropdown-footer">
-                            <a href="#">Mostrar todas las notificaciones</a>
-                        </li>
-
-                    </ul><!-- End Notification Dropdown Items -->
-
-                </li><!-- End Notification Nav -->
-
-                <!-- End Messages Nav -->
-
-                <li class="nav-item dropdown pe-3">
-
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="Vista/img/fotom.png" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Santiago Gongora Ramirez</span>
-                    </a><!-- End Profile Iamge Icon -->
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            <h6>Santiago Gongora Ramirez</h6>
-                            <span>Administrador</span><br>
-                            <span><?php date_default_timezone_set('America/Bogota');
-                                    $dia = date("d/m/y");
-                                    echo "Ibague, ", $dia;
-                                    ?></span>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-person"></i>
-                                <span>Mi Perfil</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Configuraciones</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>¿Necesitas ayuda?</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="index.php?accion=login">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Salir</span>
-                            </a>
-                        </li>
-
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
-
-            </ul>
-        </nav><!-- End Icons Navigation -->
-
     </header>
-    <!-- fin header -->
-    <aside id="sidebar" class="sidebar">
 
-        <ul class="sidebar-nav" id="sidebar-nav">
+    <main class="main">
 
-            <li class="nav-item">
-                <a class="nav-link " href="index.php?accion=inicio">
-                    <i class="bi bi-grid"></i>
-                    <span>Inicio</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
+        <!-- Hero Section -->
+        <section id="hero" class="hero section">
+            <div class="hero-bg">
+                <img src="Vista/img/hero-bg-light.webp" alt="">
+            </div>
+            <div class="container text-center">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <h1 data-aos="fade-up" class="">Bienvenidos a <span>SLD</span></h1>
+                    <p data-aos="fade-up" data-aos-delay="100" class="">¡Bienvenidos al Sistema de Gestion Online de Inventario!<br>Este sistema te permitirá controlar de manera eficiente tus existencias, optimizar el flujo de productos y mejorar la gestión de tus activos.<br>¡Comencemos a maximizar la eficiencia y la rentabilidad de tu inventario juntos!<br></p>
+                    <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+                        <a href="index.php?accion=registro" class="btn-get-started">¡Comencemos!</a>
+                    </div>
+                    <img src="Vista/img/prueba22.png" class="img-fluid hero-img" alt="" data-aos="zoom-out"
+                        data-aos-delay="300">
+                </div>
+            </div>
+        </section><!-- /Hero Section -->
+    </main>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person "></i>
-                    <span>Usuarios</span>
-                </a>
-            </li><!-- End Components Nav -->
+    <footer>
+        <div class="container copyright text-center mt-4">
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">Sistema Gestion Online de
+                    Inventario</strong><span>Todos los Derechos Reservados</span></p>
+            <div class="credits">
+                Diseñado Por: <a href="https://zajuna.sena.edu.co/">Estudiantes del SENA</a>
+            </div>
+        </div>
+    </footer>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-people"></i>
-                    <span>Clientes</span>
-                </a>
-            </li>
-            <!-- End Tables Nav -->
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php?accion=login">
-                    <i class="bi bi-building"></i>
-                    <span>Proveedores</span>
-                </a>
-            </li>
+    <!-- Vendor JS Files -->
+    <script src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
-            </li><!-- End Charts Nav -->
+    <!-- Main JS File -->
+    <script src="Vista/js/main.js"></script>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-boxes"></i>
-                    <span>Productos</span>
-                </a>
-            </li>
-            </li><!-- End Icons Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="">
-                    <i class="bi bi-cart3"></i>
-                    <span>Ventas</span>
-                </a>
-            </li>
-        </ul>
-
-    </aside><!-- End Sidebar-->
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short">
-        </i>
-    </a>
-
-    <script src="Vista/js/java.js"></script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2024 a las 08:30:13
+-- Tiempo de generación: 28-05-2024 a las 07:06:41
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -38,7 +38,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`docclie`, `nombreclie`, `telefonoclie`) VALUES
-(65763948, 'santiago', '3143872538');
+(65763948, 'Santiago', '3163326545');
 
 -- --------------------------------------------------------
 
@@ -53,6 +53,13 @@ CREATE TABLE `producto` (
   `existenciaprodu` float NOT NULL,
   `nitprodu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`codprodu`, `nombreprodu`, `precioprodu`, `existenciaprodu`, `nitprodu`) VALUES
+(1212, 'Pan', 10.000000, 19, 22);
 
 -- --------------------------------------------------------
 
@@ -74,7 +81,7 @@ CREATE TABLE `proveedores` (
 --
 
 INSERT INTO `proveedores` (`nitpro`, `nombrePro`, `contactoPro`, `telefonoPro`, `direccionPro`, `ciudadPro`) VALUES
-(22, 'acer', 'messi', '3245649855', 'sena', 'barranquilla');
+(22, 'Acer', 'messi', '3245649855', 'sena', 'barranquilla');
 
 -- --------------------------------------------------------
 
@@ -92,7 +99,7 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`cargoUsu`, `nombrerol`) VALUES
-(1, 'administrador'),
+(1, 'Administrador'),
 (2, 'Empleado');
 
 -- --------------------------------------------------------
@@ -104,16 +111,17 @@ INSERT INTO `rol` (`cargoUsu`, `nombrerol`) VALUES
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `usuario` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(20) NOT NULL,
+  `rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `usuario`, `password`) VALUES
-(1, 'presi', '123'),
-(2, 'lau', '321');
+INSERT INTO `usuario` (`id`, `usuario`, `password`, `rol`) VALUES
+(1, 'presi', '123', 1),
+(2, 'lau', '321', 2);
 
 -- --------------------------------------------------------
 
@@ -124,10 +132,10 @@ INSERT INTO `usuario` (`id`, `usuario`, `password`) VALUES
 CREATE TABLE `usuarios` (
   `docUsu` int(15) NOT NULL,
   `nombreUsu` varchar(25) NOT NULL,
+  `contraseñaUsu` varchar(25) NOT NULL,
   `telefonoUsu` varchar(10) NOT NULL,
   `ciudadUsu` varchar(30) NOT NULL,
   `direccionUsu` varchar(50) NOT NULL,
-  `fotoUsu` varchar(100) NOT NULL,
   `cargoUsu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
 
@@ -135,8 +143,9 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`docUsu`, `nombreUsu`, `telefonoUsu`, `ciudadUsu`, `direccionUsu`, `fotoUsu`, `cargoUsu`) VALUES
-(1104936650, 'santiago', '3143872538', 'ibague', 'sena', 'sena-removebg-preview.png', 1);
+INSERT INTO `usuarios` (`docUsu`, `nombreUsu`, `contraseñaUsu`, `telefonoUsu`, `ciudadUsu`, `direccionUsu`, `cargoUsu`) VALUES
+(1005789852, 'Laura Gongora', '258', '3218455879', 'ibague', 'sena', 2),
+(1104936650, 'Santiago', '321', '3143872538', 'ibague', 'sena', 1);
 
 -- --------------------------------------------------------
 
@@ -154,6 +163,13 @@ CREATE TABLE `venta` (
   `observacion` varchar(100) NOT NULL,
   `total` decimal(10,6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`codventa`, `fecha`, `hora`, `docUsu`, `docclie`, `codprodu`, `observacion`, `total`) VALUES
+(787, '2024-05-24', '15:42:00', 1005789852, 65763948, 1212, 'producto entregado, venta realizada con exito', 40.000000);
 
 --
 -- Índices para tablas volcadas
@@ -188,7 +204,8 @@ ALTER TABLE `rol`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rol` (`rol`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -220,7 +237,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `codprodu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1414;
+  MODIFY `codprodu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1415;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -238,7 +255,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `docUsu` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1104936651;
+  MODIFY `docUsu` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1104936652;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
@@ -257,6 +274,12 @@ ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`nitprodu`) REFERENCES `proveedores` (`nitpro`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rol`) REFERENCES `rol` (`cargoUsu`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -266,9 +289,9 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`codprodu`) REFERENCES `producto` (`codprodu`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`docclie`) REFERENCES `cliente` (`docclie`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `venta_ibfk_4` FOREIGN KEY (`docUsu`) REFERENCES `usuarios` (`docUsu`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`docUsu`) REFERENCES `usuarios` (`docUsu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`docclie`) REFERENCES `cliente` (`docclie`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`codprodu`) REFERENCES `producto` (`codprodu`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
