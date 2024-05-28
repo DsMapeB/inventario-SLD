@@ -8,6 +8,7 @@ require_once("Controlador/controladorProdu.php");
 require_once("Controlador/controladorVenta.php");
 require_once("Modelo/conexion.php");
 require_once("Modelo/gestor.php");
+require_once("Modelo/usu.php");
 require_once("Modelo/proveedor.php");
 require_once("Modelo/gestorPro.php");
 require_once("Modelo/producto.php");
@@ -227,7 +228,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"])) {
                 $controlador->registrar(
                     $_POST["usuario"], 
                     $_POST["password"],
-                    $_POST["rol3"]
+                    $_POST["cargo"]
                 );
                 break;
             default:

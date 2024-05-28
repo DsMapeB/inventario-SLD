@@ -26,7 +26,7 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->nombreprodu; ?></td>
                         <td><?php echo $fila->precioprodu; ?></td>
                         <td><?php echo $fila->existenciaprodu; ?></td>
-                        <td><?php echo $fila->nitprodu; ?></td>
+                        <td><?php echo $fila->nombrePro; ?></td>
                         <td>
                             <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProdu" onclick="editarprodu(<?php echo $fila->codprodu; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
                             |

@@ -33,7 +33,7 @@ class gestorusuario
   public function consultarUsu()
   {
     $conexion = new conexion();
-    $sql = "SELECT * FROM usuarios";
+    $sql = "SELECT * FROM usuarios join rol on usuarios.cargoUsu=rol.cargoUsu";
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
     return $result;

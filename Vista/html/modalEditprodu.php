@@ -19,8 +19,7 @@
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Proveedor</span>
-            <select class="form-select" value="<?php echo $filas['nitprodu']; ?>" name="proprodu">
-                <option value="22">Acer</option>
+            <select class="form-select" id="nitEdit" name="proprodu">
             </select>
         </div>
     </div>
@@ -29,3 +28,6 @@
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
     </div>
 </form>
+
+<script src="Vista/js/java_.js"></script>
+<script src="Vista/js/java.js"></script>

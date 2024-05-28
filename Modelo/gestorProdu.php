@@ -28,7 +28,7 @@ class gestorprodu
 
     public function consultarProdu(){
         $conexion = new conexion();
-        $sql = "SELECT * FROM producto";
+        $sql = "SELECT * FROM producto join proveedores on proveedores.nitpro=proveedores.nitpro;";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
         return $result;

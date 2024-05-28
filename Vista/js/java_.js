@@ -3,6 +3,7 @@ $(document).ready(function(){
   cargarRol2();
   cargarRol3();
   cargarNit();
+  cargarNitEdit();
   cargarUsuario();
   cargarCliente();
   cargarProducto();
@@ -11,7 +12,7 @@ $(document).ready(function(){
 
 function cargarRol3(){
   $.post("Modelo/cargarRol3.php", {}, function (mensaje){
-    $("#rol3").html(mensaje);
+    $("#cargo").html(mensaje);
 });
 }
 
@@ -103,6 +104,11 @@ function eliminarprodu(numero4){
 function cargarNit(){
   $.post("Modelo/cargarNit.php", {} , function(mensaje){
     $("#nit").html(mensaje);
+  });
+}
+function cargarNitEdit(){
+  $.post("Modelo/cargarNit.php", {} , function(mensaje){
+    $("#nitEdit").html(mensaje);
   });
 }
 

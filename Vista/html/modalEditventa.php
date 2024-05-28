@@ -43,3 +43,6 @@
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
     </div>
 </form>
+
+<script src="Vista/js/java_.js"></script>
+<script src="Vista/js/java.js"></script>

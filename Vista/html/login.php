@@ -10,6 +10,9 @@
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
     <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
+    <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <script src="Vista/jquery/jquery.js"></script>
 
 
 </head>
@@ -80,6 +83,7 @@
                                         </div>
 
                                         <div class="col-12">
+                                            
                                             <button class="btn btn-primary w-100" type="submit">
                                                 Ingresar
                                             </button>
@@ -96,6 +100,9 @@
             </section>
         </div>
     </main>
+
+    <script src="Vista/js/java.js"></script>
+    <script src="Vista/js/java_.js"></script>
 </body>
 
 </html>

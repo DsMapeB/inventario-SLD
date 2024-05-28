@@ -10,6 +10,9 @@
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
     <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
+    <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <script src="Vista/jquery/jquery.js"></script>
 
 
 </head>
@@ -43,20 +46,39 @@
                                         $mensaje = "Error";
                                         if ($_GET["error"] == 1) {
                                             $mensaje = "¡Registro Exitoso!";
+                                    ?>
+                                            <div class="alert alert-success d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-check-lg"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
                                         }
                                         if ($_GET["error"] == 2) {
                                             $mensaje = "¡El usuario ingresado se encuentra Registrado!";
+                                        ?>
+                                            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
                                         }
                                         if ($_GET["error"] == 3) {
                                             $mensaje = "¡Error al registrar!";
+                                        ?>
+                                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
                                         }
-                                    ?>
-                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i> 
-                                            <?php echo $mensaje;?>
-                                        </div>
-                                    </div>
+                                        ?>
+
                                     <?php
                                     }
                                     ?>
@@ -87,10 +109,10 @@
                                             <span for="rol" class="form-label">
                                                 Rol
                                             </span>
-                                            <select class="form-select" id="rol3" name="rol3">
+                                            <select class="form-select" id="cargo" name="cargo">
                                             </select>
                                             <div class="invalid-feedback">
-                                                Por favor Ingrese su Contraseña
+                                                Por favor Ingrese su Rol
                                             </div>
                                         </div>
 
@@ -111,6 +133,9 @@
             </section>
         </div>
     </main>
+
+    <script src="Vista/js/java_.js"></script>
+    <script src="Vista/js/java.js"></script>
 </body>
 
 </html>

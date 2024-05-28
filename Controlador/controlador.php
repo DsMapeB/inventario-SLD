@@ -29,9 +29,9 @@
   }
 
   public function registrar($usu, $pass, $rol){
-    $usu = new usuarios($usu, $pass, $rol);
+    $usu = new usu($usu, $pass, $rol);
     $gestor = new gestor();
-    $result = $gestor->registrar($usu, $pass, $rol);
+    $result = $gestor->registrar($usu);
 
     if ($result==1) {
 			/***   Registro satisfactorio    ***/

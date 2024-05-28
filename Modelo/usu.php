@@ -1,5 +1,5 @@
 <?php
-    class usuarios{
+    class usu{
         private $usuario;
         private $password;
         private $rol;

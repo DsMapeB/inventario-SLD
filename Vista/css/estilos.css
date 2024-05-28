@@ -13,7 +13,7 @@
   scroll-behavior: smooth;
 }
 #ini {
-  background-image: url('../img/prueba3.png') ;
+  background-image: url('../img/hero-bg-light.webp') ;
   background-size: 100% 100% ;
   /* Posición de la imagen */
   background-position: center center; /* Posiciona la imagen en el centro */
