@@ -7,9 +7,11 @@
     public function login($user, $pass){
     $gestor = new gestor();
     $result = $gestor->login($user,$pass);
-    if ($result!=1 && $result!=2){
+    if ($result!=1 && $result!=2 && $result!=3){
       $_SESSION["usuario"] = $result[0];
       $_SESSION["rol"] = $result[1];
+      $_SESSION["password"] = $result[2];
+      $_SESSION["nombrerol"] = $result[3];
       require_once("Vista/html/inicio.php");
     }
     if ($result==1){
@@ -45,6 +47,12 @@
 			/***   Error en registro    ***/
 			header("Location:index.php?accion=registro&error=3");
 		}
+  }
+
+  public function editar(){
+    $gestor = new gestor();
+    $result = $gestor->editar();
+    require_once 'Vista/html/modaleditPerfil.php';
   }
   
 }

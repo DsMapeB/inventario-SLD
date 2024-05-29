@@ -44,7 +44,7 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6><?php echo $_SESSION["usuario"]; ?></h6>
-                            <span><?php echo $_SESSION["rol"]; ?></span><br>
+                            <span><?php echo $_SESSION["nombrerol"]; ?></span><br>
                             <span><?php date_default_timezone_set('America/Bogota');
                                     $dia = date("d/m/y");
                                     echo "Ibague, ", $dia;
@@ -166,8 +166,8 @@
                                         <div class="modal-body">
                                             <form action="index.php?accion=ingresarusuario" method="POST" id="agregarusuario" novalidate>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="docUsuario">Documento</span>
-                                                    <input type="text" class="form-control" placeholder="Numero de Documento" aria-label="Numero Documento" aria-describedby="basic-addon1" id="docUsuario" name="docUsuario">
+                                                    <span class="input-group-text" id="docUsuario" for="validationDefault01">Documento</span>
+                                                    <input type="text" class="form-control" placeholder="Numero de Documento" aria-label="Numero Documento" aria-describedby="basic-addon1" id="docUsuario" name="docUsuario" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="nombreUsuario">Nombre</span>

@@ -2,13 +2,13 @@
   class gestor{
     public function login($user, $pass){
       $conexion = new conexion();
-      $sql = "SELECT usuario, password, rol FROM usuario WHERE usuario = '$user' AND password = '$pass'";
+      $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE usuario = '$user' AND password = '$pass'";
       $conexion->buscar_query($sql);
       $existe = $conexion->obtener_filas();
       if($existe>0){
         $result = $conexion->obtener_resultado();
         $filas = $result->fetch();
-        $datos = [$filas["usuario"], $filas["rol"]];
+        $datos = [$filas["usuario"], $filas["rol"], $filas["password"], $filas["nombrerol"]];
         return $datos;
       }
       else{
@@ -50,6 +50,14 @@
           return 3;
         }
       }
+    }
+
+    public function editar(){
+      $conexion = new conexion();
+      $sql = "SELECT * FROM usuario WHERE id ='".$_SESSION['usuario']."'";
+      $conexion->buscar_query($sql);
+      $result = $conexion->obtener_resultado();
+      return $result;
     }
   }
 ?>

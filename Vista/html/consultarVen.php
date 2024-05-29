@@ -28,9 +28,9 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->codventa; ?></td>
                         <td><?php echo $fila->fecha; ?></td>
                         <td><?php echo $fila->hora; ?></td>
-                        <td><?php echo $fila->docUsu ?></td>
-                        <td><?php echo $fila->docclie ?></td>
-                        <td><?php echo $fila->codprodu; ?></td>
+                        <td><?php echo $fila->nombreUsu ?></td>
+                        <td><?php echo $fila->nombreclie ?></td>
+                        <td><?php echo $fila->nombreprodu; ?></td>
                         <td><?php echo $fila->observacion; ?></td>
                         <td><?php echo $fila->total; ?></td>
                         <td>

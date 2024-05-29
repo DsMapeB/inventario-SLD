@@ -440,8 +440,8 @@ h6 {
 }
 
 .header-nav .nav-profile span {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .header-nav .badge-number {
@@ -841,4 +841,7 @@ h6 {
 #carouselExampleCaptions{
   width: 495px;
   height: 100%;
+}
+#perfild{
+  margin-right: 5px;
 }

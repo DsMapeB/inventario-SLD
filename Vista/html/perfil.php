@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios</title>
+    <title>Perfil</title>
     <link rel="shortcut icon" href="Vista/ico/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="Vista/bootstrap-5.3.3-dist/css/bootstrap.css">
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
-    <script src="Vista/js/java_.js"></script>
+
 </head>
 
 <body>
@@ -149,9 +149,12 @@
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                            <img src="Vista/img/fotom.png" alt="Profile" class="rounded-circle">
+                            <img src="Vista/img/" alt="Profile" class="rounded-circle">
                             <h2><?php echo $_SESSION["usuario"]; ?></h2>
-                            <h3>Administrador</h3>
+                            <h3><?php echo $_SESSION["nombrerol"]; ?></h3>
+                            <button type="button" class="btn btn-success" onclik= data-bs-toggle="modal" data-bs-target="#aggproveedor">
+                                <i class="bi bi-image"></i> Editar Imagen
+                            </button>
                         </div>
                     </div>
 
@@ -165,10 +168,10 @@
                             <ul class="nav nav-tabs nav-tabs-bordered">
 
                                 <li class="nav-item">
-                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#detalles">Detalles</button>
+                                    <button type="button" class="btn btn-primary" id="perfild" class="nav-link active" data-bs-toggle="tab" data-bs-target="#detalles">Detalles</button>
                                 </li>
                                 <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#edit">Editar Perfil</button>
+                                    <button class="btn btn-primary" onclick="editarperfil()" data-bs-toggle="modal" data-bs-target="#editperfil">Editar Perfil</button>
                                 </li>
                                 <li class="nav-item"></li>
                             </ul>
@@ -179,66 +182,52 @@
                                     <h5 class="card-title">Detalles del Perfil</h5>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Nombre</div>
-                                        <div class="col-lg-9 col-md-8 "><?php echo $_SESSION["usuario"]; ?></div>
+                                        <div class="col-lg-9 col-md-8 "><?php echo $_SESSION['usuario']; ?></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Contraseña</div>
-                                        <div class="col-lg-9 col-md-8 ">123</div>
+                                        <div class="col-lg-9 col-md-8"><?php 
+                                        $cant = strlen($_SESSION['password']);
+                                        for ($i=0; $i < $cant; $i++) { 
+                                            echo "*";
+                                        }
+                                        ?></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Imagen de Perfil</div>
-                                        <div class="col-lg-9 col-md-8 "><img src="Vista/img/fotom.png" alt="Perfil" class="rounded-circle" height="200px" width="200px"></div>
+                                        <div class="col-lg-9 col-md-8 "><img src="Vista/img/" alt="Perfil" class="rounded-circle" height="200px" width="200px"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Cargo</div>
-                                        <div class="col-lg-9 col-md-8 ">Administrador</div>
+                                        <div class="col-lg-9 col-md-8 "><?php echo $_SESSION["nombrerol"]; ?></div>
                                     </div>
                                 </div>
 
-
-                                <div class="tab-pane fade profile-edit pt-3" id="edit">
-                                    <form action="">
-
-                                        <div class="row mb-3">
-                                            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="fullName" type="text" class="form-control" id="fullName" value="<?php echo $_SESSION["usuario"]; ?>">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="password" class="col-md-4 col-lg-3 col-form-label">Contraseña</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="password" type="text" class="form-control" id="password" value="<?php echo $_SESSION["password"]; ?>">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Imagen de Perfil</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <img src="Vista/img/fotom.png" alt="Perfil" height="150px" width="150px">
-                                                <div class="pt-2">
-                                                    <a href="" class="btn btn-primary" title="Subir Nueva Imagen"><i class="bi bi-upload"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="car" class="col-md-4 col-lg-3 col-form-label">Cargo</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="car" type="text" class="form-control" id="car" value="Administrador">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
-
-        <script src="Vista/js/java.js"></script>
     </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="editperfil" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Perfil</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="modalEditperfil"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Vista/js/java.js"></script>
+    <script src="Vista/js/java_.js"></script>
 </body>
 
 </html>

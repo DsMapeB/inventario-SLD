@@ -10,6 +10,13 @@ $(document).ready(function(){
 
 })
 
+//perfil
+function editarperfil(){
+  var url = "index.php?accion=editarPerfil";
+  $("#modalEditperfil").load(url);
+}
+
+//Login
 function cargarRol3(){
   $.post("Modelo/cargarRol3.php", {}, function (mensaje){
     $("#cargo").html(mensaje);
@@ -131,16 +138,16 @@ function eliminarventa(numero5){
 }
 function cargarUsuario(){
   $.post("Modelo/cargarUsu.php", {} , function (mensaje){
-    $("#idUsu").html(mensaje);
+    $("#idUsu2").html(mensaje);
   });
 }
 function cargarCliente(){
   $.post("Modelo/cargarCli.php", {} , function (mensaje){
-    $("#docclie").html(mensaje);
+    $("#docclie2").html(mensaje);
   });
 }
 function cargarProducto(){
   $.post("Modelo/cargarProdu.php", {} , function (mensaje){
-    $("#codprodu").html(mensaje);
+    $("#codprodu2").html(mensaje);
   });
 }

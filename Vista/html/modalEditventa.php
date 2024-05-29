@@ -15,19 +15,19 @@
     <div class="input-group mb-3">
         <span class="input-group-text" for="inputGroupSelect01">Usuario</span>
         <select class="form-select" id="idUsu2" name="idUsu2"> 
-        <option value=""><?php echo $filas['docUsu']; ?></option>
+        <option value="<?php echo $filas['docUsu']; ?>"><?php echo $filas['nombreUsu']; ?></option>
         </select>
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" for="inputGroupSelect02">Documento Cliente</span>
         <select class="form-select" id="docclie2" name="docclie2">
-        <option value=""><?php echo $filas['docclie']; ?></option>
+        <option value="<?php echo $filas['docclie']; ?>"><?php echo $filas['nombreclie']; ?></option>
         </select>
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" for="inputGroupSelect03">Codigo de producto</span>
         <select class="form-select" id="codprodu2" name="codprodu2">
-        <option value=""><?php echo $filas['codprodu']; ?></option>
+        <option value="<?php echo $filas['codprodu']; ?>"><?php echo $filas['nombreprodu']; ?></option>
         </select>
     </div>
     <div class="input-group mb-3">

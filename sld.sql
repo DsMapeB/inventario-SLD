@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2024 a las 07:06:41
+-- Tiempo de generación: 29-05-2024 a las 18:50:03
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -38,7 +38,8 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`docclie`, `nombreclie`, `telefonoclie`) VALUES
-(65763948, 'Santiago', '3163326545');
+(1005814662, 'LorenaL', '787'),
+(1104936650, 'David', '3007382102');
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,7 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`codprodu`, `nombreprodu`, `precioprodu`, `existenciaprodu`, `nitprodu`) VALUES
-(1212, 'Pan', 10.000000, 19, 22);
+(22, 'ACEITE', 10.000000, 32, 900736182);
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,7 @@ CREATE TABLE `proveedores` (
 --
 
 INSERT INTO `proveedores` (`nitpro`, `nombrePro`, `contactoPro`, `telefonoPro`, `direccionPro`, `ciudadPro`) VALUES
-(22, 'Acer', 'messi', '3245649855', 'sena', 'barranquilla');
+(900736182, 'Apple Colombia Sas', 'Steve Jobs', '800 380230', 'KR 7 # 120 - 20 PI 3', 'Bogota');
 
 -- --------------------------------------------------------
 
@@ -121,7 +122,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `usuario`, `password`, `rol`) VALUES
 (1, 'presi', '123', 1),
-(2, 'lau', '321', 2);
+(2, 'lau', '987654', 2),
+(9, 'IguanALES', '963', 1);
 
 -- --------------------------------------------------------
 
@@ -144,8 +146,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`docUsu`, `nombreUsu`, `contraseñaUsu`, `telefonoUsu`, `ciudadUsu`, `direccionUsu`, `cargoUsu`) VALUES
-(1005789852, 'Laura Gongora', '258', '3218455879', 'ibague', 'sena', 2),
-(1104936650, 'Santiago', '321', '3143872538', 'ibague', 'sena', 1);
+(1005874663, 'Laura Gongora', '456', '3003782120', 'sena', 'sena', 1),
+(1104936650, 'Santiago', '321', '3143872538', 'ibague', 'sena', 2);
 
 -- --------------------------------------------------------
 
@@ -157,19 +159,19 @@ CREATE TABLE `venta` (
   `codventa` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `docUsu` int(11) NOT NULL,
-  `docclie` int(11) NOT NULL,
-  `codprodu` int(11) NOT NULL,
+  `Usu` int(11) NOT NULL,
+  `clie` int(11) NOT NULL,
+  `produ` int(11) NOT NULL,
   `observacion` varchar(100) NOT NULL,
-  `total` decimal(10,6) NOT NULL
+  `total` float(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `venta`
 --
 
-INSERT INTO `venta` (`codventa`, `fecha`, `hora`, `docUsu`, `docclie`, `codprodu`, `observacion`, `total`) VALUES
-(787, '2024-05-24', '15:42:00', 1005789852, 65763948, 1212, 'producto entregado, venta realizada con exito', 40.000000);
+INSERT INTO `venta` (`codventa`, `fecha`, `hora`, `Usu`, `clie`, `produ`, `observacion`, `total`) VALUES
+(1212, '2024-05-28', '11:15:00', 1104936650, 1104936650, 22, 'ninguna', 40000.20);
 
 --
 -- Índices para tablas volcadas
@@ -219,9 +221,9 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `venta`
   ADD PRIMARY KEY (`codventa`),
-  ADD KEY `codprodu` (`codprodu`),
-  ADD KEY `docclie` (`docclie`),
-  ADD KEY `docUsu` (`docUsu`);
+  ADD KEY `codprodu` (`produ`),
+  ADD KEY `docclie` (`clie`),
+  ADD KEY `docUsu` (`Usu`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -249,19 +251,19 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `docUsu` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1104936652;
+  MODIFY `docUsu` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1104936656;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `codventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=788;
+  MODIFY `codventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1213;
 
 --
 -- Restricciones para tablas volcadas
@@ -289,9 +291,9 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`docUsu`) REFERENCES `usuarios` (`docUsu`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`docclie`) REFERENCES `cliente` (`docclie`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`codprodu`) REFERENCES `producto` (`codprodu`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`Usu`) REFERENCES `usuarios` (`docUsu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`clie`) REFERENCES `cliente` (`docclie`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`produ`) REFERENCES `producto` (`codprodu`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
