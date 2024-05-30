@@ -10,12 +10,17 @@ class controladorproveedor
         $proveedor = new proveedor($nitpro, $nompro, $contpro, $telpro, $direpro, $ciupro);
         $gestorproveedor = new gestorproveedor();
         $result = $gestorproveedor->agregarproveedor($proveedor);
-        if ($result == "0") {
-            echo "<script>alert('No Se Registro Correctamente');</script>";
-            header("Location:index.php?accion=provee");
-        } else {
-            echo "<script>alert('Registro Exitoso');</script>";
-            header("Location:index.php?accion=provee");
+        if ($result == 1) {
+            /***   Registro satisfactorio    ***/
+            header("Location:index.php?accion=provee&error=1");
+        }
+        if ($result == 2) {
+            /***   Usuario Repetido    ***/
+            header("Location:index.php?accion=provee&error=2");
+        }
+        if ($result == 3) {
+            /***   Error en registro    ***/
+            header("Location:index.php?accion=provee&error=3");
         }
     }
 

@@ -11,21 +11,22 @@ class gestorproveedor
         $direccion_pro = $proveedor->obtenerdireccion();
         $ciudad_pro = $proveedor->obtenerciudad();
 
-        $sql = "INSERT INTO proveedores VALUES ('$nit_pro', '$nombre_pro', '$contacto_pro', '$telefono_pro', '$direccion_pro', '$ciudad_pro')";
-
-        $conexion->ejecutar_query($sql);
-
         $sql2 = "SELECT * FROM proveedores WHERE nitpro=$nit_pro";
         $conexion->buscar_query($sql2);
-
         $validar = $conexion->obtener_filas();
         if ($validar > 0) {
-            $result = $conexion->obtener_resultado();
-            return $result;
-        } else {
+            return 2;
+        } else{
+
+        $sql = "INSERT INTO proveedores VALUES ('$nit_pro', '$nombre_pro', '$contacto_pro', '$telefono_pro', '$direccion_pro', '$ciudad_pro')";
+        $result2 = $conexion->ejecutar_query($sql);
+        if ($result2>0){
             return 1;
+        } else{
+            return 3;
         }
-    }
+
+    }}
     public function consultarPro()
     {
         $conexion = new conexion();

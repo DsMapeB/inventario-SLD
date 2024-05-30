@@ -8,7 +8,7 @@
       if($existe>0){
         $result = $conexion->obtener_resultado();
         $filas = $result->fetch();
-        $datos = [$filas["usuario"], $filas["rol"], $filas["password"], $filas["nombrerol"]];
+        $datos = [$filas["usuario"], $filas["rol"], $filas["password"], $filas["nombrerol"] , $filas["id"]];
         return $datos;
       }
       else{
@@ -58,6 +58,25 @@
       $conexion->buscar_query($sql);
       $result = $conexion->obtener_resultado();
       return $result;
+    }
+
+    public function actualizar($usua){
+      $conexion = new conexion();
+      $id = $_SESSION["id"];
+      $usuarios = $usua;
+
+      $usuario = $usuarios->obtenerusuario();
+      $password = $usuarios->obtenerpassword();
+      $rol = $usuarios->obtenerrol();
+
+      $sql = "UPDATE usuario SET password = '$password', rol = '$rol' WHERE id = '$id' AND usuario = '$usuario'";
+      $result = $conexion->ejecutar_query($sql);
+      if($result>0){
+        return 1;
+      }
+      else{
+        return 2;
+      }
     }
   }
 ?>

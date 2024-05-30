@@ -9,12 +9,17 @@ class controladorusuario
     $usuario = new usuario($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $cargo);
     $gestorusuario = new gestorusuario();
     $result = $gestorusuario->agregarusuario($usuario);
-    if ($result == "0") {
-      echo "<scripalert('No se registro correctamente');</script>";
-      header("Location:index.php?accion=usuario");
-    } else {
-      echo "<script>alert('Registro Existoso');</scripalert>";
-      header("Location:index.php?accion=usuario");
+    if ($result == 1) {
+      /***   Registro satisfactorio    ***/
+      header("Location:index.php?accion=usuario&error=1");
+    }
+    if ($result == 2) {
+      /***   Usuario Repetido    ***/
+      header("Location:index.php?accion=usuario&error=2");
+    }
+    if ($result == 3) {
+      /***   Error en registro    ***/
+      header("Location:index.php?accion=usuario&error=3");
     }
   }
 
@@ -37,10 +42,11 @@ class controladorusuario
     $usuario = new usuario($docUsu, $nomUsu, $passUsu, $telUsu, $ciuUsu, $direUsu, $cargo);
     $gestorusuario = new gestorusuario();
     $result = $gestorusuario->actualizarUsu($usuario);
-    if ($result > 0) {
-      header("Location:index.php?accion=usuario");
-    } else {
-      header("Location:index.php?accion=usuario");
+    if ($result == 1) {
+      header("Location:index.php?accion=usuario&error2=1");
+    }
+    if ($result == 2) {
+      header("Location:index.php?accion=usuario&error2=2");
     }
   }
 

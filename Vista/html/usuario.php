@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
-    
+
 </head>
 
 <body>
@@ -149,6 +149,74 @@
                         <div class="card-body">
                             <h5 class="card-title">Tabla Usuarios</h5>
                             <p>Aca podras encontrar toda la informacion sobre tus usuarios</p>
+
+                            <?php
+                                    if (isset($_GET["error"])) {
+                                        $mensaje = "Error";
+                                        if ($_GET["error"] == 1) {
+                                            $mensaje = "¡Registro Exitoso!";
+                                    ?>
+                                            <div class="alert alert-success d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-check-lg"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        if ($_GET["error"] == 2) {
+                                            $mensaje = "¡El usuario ingresado se encuentra Registrado!";
+                                        ?>
+                                            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        if ($_GET["error"] == 3) {
+                                            $mensaje = "¡Error al Agregar!";
+                                        ?>
+                                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if (isset($_GET["error2"])) {
+                                        $mensaje = "Error2";
+                                        if ($_GET["error2"] == 1) {
+                                            $mensaje = "¡Actualizacion de Usuario Exitosa!";
+                                    ?>
+                                            <div class="alert alert-success d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-check-lg"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        if ($_GET["error2"] == 2) {
+                                            $mensaje = "¡Error al Actualizar, Vuelva a Intentar!";
+                                        ?>
+                                            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }}
+                                        ?>
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalusuario">

@@ -44,7 +44,7 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6><?php echo $_SESSION["usuario"]; ?></h6>
-                            <span>Administrador</span><br>
+                            <span><?php echo $_SESSION["nombrerol"]; ?></span><br>
                             <span><?php date_default_timezone_set('America/Bogota');
                                     $dia = date("d/m/y");
                                     echo "Ibague, ", $dia;
@@ -149,6 +149,48 @@
                         <div class="card-body">
                             <h5 class="card-title">Tabla Proveedores</h5>
                             <p>Aca podras encontrar toda la informacion sobre tus Proveedores</p>
+
+                            <?php
+                                    if (isset($_GET["error"])) {
+                                        $mensaje = "Error";
+                                        if ($_GET["error"] == 1) {
+                                            $mensaje = "¡Registro Exitoso!";
+                                    ?>
+                                            <div class="alert alert-success d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-check-lg"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        if ($_GET["error"] == 2) {
+                                            $mensaje = "¡El Proveedor ingresado ya se encuentra Registrado!";
+                                        ?>
+                                            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        if ($_GET["error"] == 3) {
+                                            $mensaje = "¡Error al Agregar!";
+                                        ?>
+                                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+
+                                    <?php
+                                    }
+                                    ?>
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggproveedor">

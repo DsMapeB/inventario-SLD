@@ -6,20 +6,23 @@
             $nombre_cli = $cliente->obtenernombre();
             $telefono_cli = $cliente->obtenertelefono();
 
-            $sql = "INSERT INTO cliente VALUES ('$doc_cli', '$nombre_cli', '$telefono_cli')";
-            $conexion->ejecutar_query($sql);
-
             $sql2 = "SELECT * FROM cliente WHERE docclie=$doc_cli";
             $conexion->buscar_query($sql2);
-
             $validar = $conexion->obtener_filas();
             if ($validar > 0){
-                $result = $conexion->obtener_resultado();
-                return $result;
-            } else{
-                return 1;
+                return 2;
             }
-        }
+            else{ 
+            $sql = "INSERT INTO cliente VALUES ('$doc_cli', '$nombre_cli', '$telefono_cli')";
+            $result2 = $conexion->ejecutar_query($sql);
+            if ($result2>0){
+                return 1;
+            } else{
+                return 3;
+            }
+
+            
+        }}
 
         public function consultarCli(){
             $conexion = new conexion();
@@ -47,7 +50,12 @@
 
             $sql = "UPDATE cliente SET nombreclie = '$nombre_cli' , telefonoclie = '$telefono_cli' WHERE docclie = '$doc_cli' ";
             $result = $conexion->ejecutar_query($sql);
-            return $result;
+            if($result>0){
+                return 1;
+            }
+            else{
+                return 2;
+            }
         }
 
         public function eliminarCli($cliente){

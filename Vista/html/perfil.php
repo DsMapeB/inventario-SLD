@@ -44,7 +44,7 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6><?php echo $_SESSION["usuario"]; ?></h6>
-                            <span>Administrador</span><br>
+                            <span><?php echo $_SESSION["nombrerol"]; ?></span><br>
                             <span><?php date_default_timezone_set('America/Bogota');
                                     $dia = date("d/m/y");
                                     echo "Ibague, ", $dia;
@@ -179,6 +179,34 @@
                             <div class="tab-content pt-2">
 
                                 <div class="tab-pane fade show active profile-overview" id="detalles">
+
+                                <?php
+                                    if (isset($_GET["error"])) {
+                                        $mensaje = "Error";
+                                        if ($_GET["error"] == 1) {
+                                            $mensaje = "¡La actualizacion ha sido exitosa!";
+                                        ?>
+                                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                                                <div>
+                                                    <i class="bi bi-check-lg"></i>
+                                                    <?php echo $mensaje; ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        if ($_GET["error"] == 2) {
+                                            $mensaje = "¡Error al Editar, Vuelve a intentar!";
+                                        }
+                                    ?>
+                                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                            <div>
+                                                <i class="bi bi-exclamation-triangle-fill"></i> <?php echo $mensaje; ?>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+
                                     <h5 class="card-title">Detalles del Perfil</h5>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Nombre</div>

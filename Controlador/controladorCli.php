@@ -4,12 +4,17 @@
             $cliente = new cliente($doccli, $nomcli, $telcli);
             $gestorcliente = new gestorcliente();
             $result = $gestorcliente->agregarcliente($cliente);
-            if ($result == "0") {
-                echo "<script>alert('No Se Registro Correctamente');</script>";
-                header("Location:index.php?accion=cliente");
-            } else {
-                echo "<script>alert('Registro Exitoso');</script>";
-                header("Location:index.php?accion=cliente");
+            if ($result == 1) {
+                /***   Registro satisfactorio    ***/
+                header("Location:index.php?accion=cliente&error=1");
+            }
+            if ($result == 2) {
+                /***   Usuario Repetido    ***/
+                header("Location:index.php?accion=cliente&error=2");
+            }
+            if ($result == 3) {
+                /***   Error en registro    ***/
+                header("Location:index.php?accion=cliente&error=3");
             }
         }
 
@@ -30,10 +35,11 @@
             $cliente = new cliente($doccli, $nomcli, $telcli);
             $gestorcliente = new gestorcliente();
             $result = $gestorcliente->actualizarCli($cliente);
-            if ($result > 0) {
-                header("Location:index.php?accion=cliente");
-            } else{
-                header("Location:index.php?accion=cliente");
+            if ($result == 1) {
+                header("Location:index.php?accion=cliente&error2=1");
+            }
+            if ($result == 2) {
+                header("Location:index.php?accion=cliente&error2=2");
             }
             
         }

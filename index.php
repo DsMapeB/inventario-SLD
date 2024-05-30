@@ -28,7 +28,7 @@ $controladorCli = new controladorcli();
 $controladorProdu = new controladorprodu();
 $controladorVenta = new controladorventa();
 
-if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["password"]) && isset($_SESSION["nombrerol"]) ) {
+if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["password"]) && isset($_SESSION["nombrerol"]) && isset($_SESSION["id"]) ) {
     if (isset($_GET["accion"])) {
         switch ($_GET["accion"]) {
             case 'logout':
@@ -39,6 +39,13 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["p
                 break;
             case 'editarPerfil';
                 $controlador->editar();
+                break;
+            case 'actualizarPerfil';
+                $controlador->actualizar(
+                    $_REQUEST["usuario"],
+                    $_REQUEST["contraseña"],
+                    $_REQUEST["rol"]
+                );
                 break;
 
                 //Usuario

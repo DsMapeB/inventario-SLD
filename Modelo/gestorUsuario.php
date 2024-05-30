@@ -14,21 +14,24 @@ class gestorusuario
     $direccionUsu = $usuario->obtenerdireccion();
     $cargoUsu = $usuario->obtenercargo();
 
-    $sql = "INSERT INTO usuarios VALUES ('$docUsu', '$nombreUsu', '$passwordUsu' , '$telefonoUsu', '$ciudadUsu', '$direccionUsu', '$cargoUsu')";
-
-    $conexion->ejecutar_query($sql);
-
     $sql2 = "SELECT * FROM usuarios WHERE docUsu=$docUsu";
     $conexion->buscar_query($sql2);
-
     $validar = $conexion->obtener_filas();
-    if ($validar > 0) {
-      $result = $conexion->obtener_resultado();
-      return $result;
-    } else {
-      return 1;
+    if($validar>0){
+      return 2;
     }
-  }
+    else{
+
+    $sql = "INSERT INTO usuarios VALUES ('$docUsu', '$nombreUsu', '$passwordUsu' , '$telefonoUsu', '$ciudadUsu', '$direccionUsu', '$cargoUsu')";
+    $result2 = $conexion->ejecutar_query($sql);
+    if ($result2>0){
+      return 1;
+    } else{
+      return 3;
+    }
+
+
+  }}
 
   public function consultarUsu()
   {
@@ -63,7 +66,12 @@ class gestorusuario
 
     $sql = "UPDATE usuarios SET nombreUsu = '$nombreUsu', contraseñaUsu = '$passwordUsu', telefonoUsu = '$telefonoUsu', ciudadUsu = '$ciudadUsu', direccionUsu = '$direccionUsu', cargoUsu = '$cargoUsu' WHERE docUsu = '$docUsu'";
     $result = $conexion->ejecutar_query($sql);
-    return $result;
+    if($result>0){
+      return 1;
+    }
+    else{
+      return 2;
+    }
   }
 
   public function eliminarUsu($usuario)
