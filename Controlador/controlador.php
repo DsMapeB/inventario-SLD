@@ -74,5 +74,42 @@ class controlador
       header("Location:index.php?accion=perfil&error=2");
     }
   }
+
+  //roles
+  public function agregarRol($rol)
+  {
+    $rol1 = new roles($rol);
+    $gestor = new gestor();
+    $result = $gestor->agregarRol($rol1);
+    if ($result == 1) {
+      /***   Registro satisfactorio    ***/
+      header("Location:index.php?accion=rol&error=1");
+    }
+    if ($result == 2) {
+      /***   Usuario Repetido    ***/
+      header("Location:index.php?accion=rol&error=2");
+    }
+    if ($result == 3) {
+      /***   Error en registro    ***/
+      header("Location:index.php?accion=rol&error=3");
+    }
+  }
+
+  public function consultarRol()
+  {
+    $gestor = new gestor();
+    $result = $gestor->consultarRol();
+    require_once 'Vista/html/consultarRol.php';
+  }
+
+  public function eliminarRol($rol)
+  {
+    $gestor = new gestor();
+    $result = $gestor->eliminarRol($rol);
+    if ($result > 0) {
+      echo "El Rol se ha eliminado con exito";
+    } else {
+      echo "El Rol no se ha podido eliminar";
+    }
+  }
 }
-?>

@@ -94,6 +94,15 @@
                 </a>
             </li><!-- End Usuario -->
 
+            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.php?accion=rol">
+                        <i class="bi bi-person-rolodex"></i>
+                        <span>Roles</span>
+                    </a>
+                </li><!-- End rol -->
+            <?php endif; ?>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=cliente">
                     <i class="bi bi-people"></i>
@@ -179,15 +188,15 @@
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" for="inputGroupSelect01">Usuario</span>
-                                                    <select class="form-select"  id="idUsu" name="idUsu"></select>
+                                                    <select class="form-select" id="idUsu" name="idUsu"></select>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" for="inputGroupSelect02">Documento Cliente</span>
-                                                    <select class="form-select"  id="docclie" name="docclie"></select>
+                                                    <select class="form-select" id="docclie" name="docclie"></select>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" for="inputGroupSelect03">Codigo de producto</span>
-                                                    <select class="form-select"  id="codprodu" name="codprodu"></select>
+                                                    <select class="form-select" id="codprodu" name="codprodu"></select>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Observación</span>

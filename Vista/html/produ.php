@@ -94,6 +94,15 @@
                 </a>
             </li><!-- End Usuario -->
 
+            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.php?accion=rol">
+                        <i class="bi bi-person-rolodex"></i>
+                        <span>Roles</span>
+                    </a>
+                </li><!-- End rol -->
+            <?php endif; ?>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=cliente">
                     <i class="bi bi-people"></i>

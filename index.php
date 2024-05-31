@@ -9,6 +9,7 @@ require_once("Controlador/controladorVenta.php");
 require_once("Modelo/conexion.php");
 require_once("Modelo/gestor.php");
 require_once("Modelo/usu.php");
+require_once("Modelo/rol.php");
 require_once("Modelo/proveedor.php");
 require_once("Modelo/gestorPro.php");
 require_once("Modelo/producto.php");
@@ -28,7 +29,7 @@ $controladorCli = new controladorcli();
 $controladorProdu = new controladorprodu();
 $controladorVenta = new controladorventa();
 
-if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["password"]) && isset($_SESSION["nombrerol"]) && isset($_SESSION["id"]) ) {
+if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["password"]) && isset($_SESSION["nombrerol"]) && isset($_SESSION["id"])) {
     if (isset($_GET["accion"])) {
         switch ($_GET["accion"]) {
             case 'logout':
@@ -47,8 +48,20 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["p
                     $_REQUEST["rol"]
                 );
                 break;
+            case 'rol':
+                $controlador->verpagina("Vista/html/roles.php");
+                break;
+            case 'ingresarRol':
+                $controlador->agregarRol($_REQUEST["rol"]);
+                break;
+            case 'consultarRol':
+                $controlador->consultarRol();
+                break;
+            case 'eliminarRol':
+                $controlador->eliminarRol($_GET["numero"]);
+                break;
 
-                //Usuario
+                //-----------------------------------Usuario----------------------------------------
             case 'usuario':
                 $controlador->verpagina("Vista/html/usuario.php");
                 break;
@@ -84,7 +97,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["p
                 $controladorUsuario->eliminarUsu($_GET["numero2"]);
                 break;
 
-                //Cliente
+                //----------------------------Cliente------------------------------------------------
             case 'cliente':
                 $controlador->verpagina("Vista/html/cliente.php");
                 break;
@@ -236,7 +249,7 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["p
                 break;
             case 'registrar':
                 $controlador->registrar(
-                    $_POST["usuario"], 
+                    $_POST["usuario"],
                     $_POST["password"],
                     $_POST["cargo"]
                 );

@@ -25,7 +25,7 @@
       }
     }
 
-    public function registrar($usu){
+    public function registrar(usu $usu){
       $conexion =  new conexion();
       $usuarios = $usu;
 
@@ -77,6 +77,42 @@
       else{
         return 2;
       }
+    }
+
+    //roles
+    public function agregarRol(roles $rol1){
+      $conexion = new conexion();
+      $cargo = $rol1->obtenerrol();
+      $sql2 = "SELECT * FROM rol WHERE nombrerol='$cargo'";
+      $conexion->buscar_query($sql2);
+      $validar = $conexion->obtener_filas();
+      if ($validar > 0){
+        return 2;
+      } else{
+        $sql = "INSERT INTO rol (nombrerol) VALUES ('$cargo')";
+        $result = $conexion->ejecutar_query($sql);
+        if ($result > 0){
+          return 1;
+        } else{
+          return 3;
+        }
+      }
+    }
+
+    public function consultarRol(){
+      $conexion = new conexion();
+      $sql = "SELECT * FROM rol";
+      $conexion->buscar_query($sql);
+      $result = $conexion->obtener_resultado();
+      return $result;
+    }
+
+    public function eliminarRol($rol){
+      $conexion = new conexion();
+      $sql = "DELETE FROM rol WHERE cargoUsu = ?";
+      $params = array($rol);
+      $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
+      return $filasAfectadas;
     }
   }
 ?>

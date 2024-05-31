@@ -82,44 +82,22 @@
                                     <?php
                                     }
                                     ?>
-                                    <form action="index.php?accion=registrar" method="post" class="row g-3 needs-validation" novalidate>
+                                    <form action="index.php?accion=registrar" method="post" class="row g-3">
                                         <div class="col-12">
-                                            <span for="yourUsername" class="form-label">Usuario
-                                            </span>
-                                            <div class="input-group has-validation">
-                                                <!--  <span class="input-group-text" id="inputGroupPrepend">@</span>  -->
-                                                <input type="text" name="usuario" class="form-control" id="usuario" required>
-                                                <div class="invalid-feedback">
-                                                    Por favor Ingrese Su Usuario
-                                                </div>
-                                            </div>
+                                            <label for="validationDefault01" class="form-label">Usuario</label>
+                                            <input type="text" class="form-control" id="validationDefault01" name="usuario" required>
                                         </div>
-
                                         <div class="col-12">
-                                            <span for="yourPassword" class="form-label">
-                                                Contraseña
-                                            </span>
-                                            <input type="password" name="password" class="form-control" id="password" required>
-                                            <div class="invalid-feedback">
-                                                Por favor Ingrese su Contraseña
-                                            </div>
+                                            <label for="validationDefault02" class="form-label">Contraseña</label>
+                                            <input type="password" class="form-control" name="password" id="validationDefault02" required>
                                         </div>
-
                                         <div class="col-12">
-                                            <span for="rol" class="form-label">
-                                                Rol
-                                            </span>
-                                            <select class="form-select" id="cargo" name="cargo">
+                                            <label for="validationDefault04" class="form-label">Rol</label>
+                                            <select class="form-select" id="cargo" name="cargo" required>
                                             </select>
-                                            <div class="invalid-feedback">
-                                                Por favor Ingrese su Rol
-                                            </div>
                                         </div>
-
                                         <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">
-                                                Registrar
-                                            </button>
+                                            <button class="btn btn-primary" type="submit">Registrar</button>
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Ya Tienes Una Cuenta? <a href="index.php?accion=log">Accede a Ella</a></p>

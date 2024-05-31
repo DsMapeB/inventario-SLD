@@ -95,6 +95,15 @@
                 </a>
             </li><!-- End Usuario -->
 
+            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.php?accion=rol">
+                        <i class="bi bi-person-rolodex"></i>
+                        <span>Roles</span>
+                    </a>
+                </li><!-- End rol -->
+            <?php endif; ?>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=cliente">
                     <i class="bi bi-people"></i>
@@ -152,7 +161,7 @@
                             <img src="Vista/img/" alt="Profile" class="rounded-circle">
                             <h2><?php echo $_SESSION["usuario"]; ?></h2>
                             <h3><?php echo $_SESSION["nombrerol"]; ?></h3>
-                            <button type="button" class="btn btn-success" onclik= data-bs-toggle="modal" data-bs-target="#aggproveedor">
+                            <button type="button" class="btn btn-success" onclik=data-bs-toggle="modal" data-bs-target="#aggproveedor">
                                 <i class="bi bi-image"></i> Editar Imagen
                             </button>
                         </div>
@@ -180,13 +189,13 @@
 
                                 <div class="tab-pane fade show active profile-overview" id="detalles">
 
-                                <?php
+                                    <?php
                                     if (isset($_GET["error"])) {
                                         $mensaje = "Error";
                                         if ($_GET["error"] == 1) {
                                             $mensaje = "¡La actualizacion ha sido exitosa!";
-                                        ?>
-                                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                                    ?>
+                                            <div class="alert alert-success d-flex align-items-center" role="alert">
                                                 <div>
                                                     <i class="bi bi-check-lg"></i>
                                                     <?php echo $mensaje; ?>
@@ -197,7 +206,7 @@
                                         if ($_GET["error"] == 2) {
                                             $mensaje = "¡Error al Editar, Vuelve a intentar!";
                                         }
-                                    ?>
+                                        ?>
                                         <div class="alert alert-danger d-flex align-items-center" role="alert">
                                             <div>
                                                 <i class="bi bi-exclamation-triangle-fill"></i> <?php echo $mensaje; ?>
@@ -214,12 +223,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Contraseña</div>
-                                        <div class="col-lg-9 col-md-8"><?php 
-                                        $cant = strlen($_SESSION['password']);
-                                        for ($i=0; $i < $cant; $i++) { 
-                                            echo "*";
-                                        }
-                                        ?></div>
+                                        <div class="col-lg-9 col-md-8"><?php
+                                                                        $cant = strlen($_SESSION['password']);
+                                                                        for ($i = 0; $i < $cant; $i++) {
+                                                                            echo "*";
+                                                                        }
+                                                                        ?></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Imagen de Perfil</div>

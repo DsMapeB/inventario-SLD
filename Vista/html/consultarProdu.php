@@ -24,7 +24,10 @@ if ($result->rowCount() > 0) {
                         <th scope="row"><?php echo $cont ?></th>
                         <td><?php echo $fila->codprodu; ?></td>
                         <td><?php echo $fila->nombreprodu; ?></td>
-                        <td><?php echo $fila->precioprodu; ?></td>
+                        <?php $fila->precioprodu; 
+                        $fila2 = $fila->precioprodu;
+                        $formateado = number_format((float)$fila2, 3, '.', '');?>
+                        <td><?php echo $formateado; ?></td>
                         <td><?php echo $fila->existenciaprodu; ?></td>
                         <td><?php echo $fila->nombrePro; ?></td>
                         <td>

@@ -95,6 +95,15 @@
                 </a>
             </li><!-- End Usuario -->
 
+            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.php?accion=rol">
+                        <i class="bi bi-person-rolodex"></i>
+                        <span>Roles</span>
+                    </a>
+                </li><!-- End rol -->
+            <?php endif; ?>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=cliente">
                     <i class="bi bi-people"></i>
@@ -151,46 +160,46 @@
                             <p>Aca podras encontrar toda la informacion sobre tus Proveedores</p>
 
                             <?php
-                                    if (isset($_GET["error"])) {
-                                        $mensaje = "Error";
-                                        if ($_GET["error"] == 1) {
-                                            $mensaje = "¡Registro Exitoso!";
-                                    ?>
-                                            <div class="alert alert-success d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-check-lg"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        if ($_GET["error"] == 2) {
-                                            $mensaje = "¡El Proveedor ingresado ya se encuentra Registrado!";
-                                        ?>
-                                            <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-exclamation-triangle-fill"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        if ($_GET["error"] == 3) {
-                                            $mensaje = "¡Error al Agregar!";
-                                        ?>
-                                            <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-exclamation-triangle-fill"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
+                            if (isset($_GET["error"])) {
+                                $mensaje = "Error";
+                                if ($_GET["error"] == 1) {
+                                    $mensaje = "¡Registro Exitoso!";
+                            ?>
+                                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-check-lg"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error"] == 2) {
+                                    $mensaje = "¡El Proveedor ingresado ya se encuentra Registrado!";
+                                ?>
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error"] == 3) {
+                                    $mensaje = "¡Error al Agregar!";
+                                ?>
+                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                ?>
 
-                                    <?php
-                                    }
-                                    ?>
+                            <?php
+                            }
+                            ?>
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggproveedor">

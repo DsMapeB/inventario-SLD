@@ -10,20 +10,34 @@ $(document).ready(function(){
 
 })
 
-//perfil
+//--------------------------roles--------------------------
+function consultarRol(){
+  var url = "index.php?accion=consultarRol";
+  $("#consulRol").load(url);
+}
+function eliminarRole(numero){
+  if (confirm("Estas seguro de eliminar el Rol " + numero + "?")){
+    $.get("index.php", { accion: 'eliminarRol', numero: numero}, function (mensaje){
+      alert(mensaje);
+      location.reload();
+    });
+  }
+}
+
+//--------------------------perfil--------------------------
 function editarperfil(){
   var url = "index.php?accion=editarPerfil";
   $("#modalEditperfil").load(url);
 }
 
-//Login
+//--------------------------Login--------------------------
 function cargarRol3(){
   $.post("Modelo/cargarRol3.php", {}, function (mensaje){
     $("#cargo").html(mensaje);
 });
 }
 
-// Usuario
+// --------------------------Usuario------------------------
 function consultarusu(){
   var url = "index.php?accion=consultarUsu";
   $("#usuario").load(url);
@@ -53,7 +67,7 @@ function cargarRol2(){
   });
 }
 
-//Cliente
+//---------------------------Cliente----------------------------
 function consultarcli(){
   var url = "index.php?accion=consultarCli";
   $("#cliente").load(url);
@@ -72,7 +86,7 @@ function eliminarcli(numero3){
   }
 }
 
-//Proveedor
+//------------------------Proveedor--------------------------
 function consultarpro(){
   var url = "index.php?accion=consultarPro";
   $("#proveedor").load(url);
@@ -91,7 +105,7 @@ function eliminarpro(numero){
   }
 }
 
-//Producto
+//-----------------------------------Producto---------------------------------
 function consultarprodu(){
   var url = "index.php?accion=consultarprodu";
   $("#producto").load(url);
@@ -119,7 +133,7 @@ function cargarNitEdit(){
   });
 }
 
-//Venta
+//---------------------------Venta---------------------------------
 function consultarven(){
   var url = "index.php?accion=consultarVen";
   $("#venta").load(url);
