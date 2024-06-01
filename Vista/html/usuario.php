@@ -95,13 +95,13 @@
                 </a>
             </li><!-- End Usuario -->
 
-            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador" ): ?>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php?accion=rol">
-                    <i class="bi bi-person-rolodex"></i>
-                    <span>Roles</span>
-                </a>
-            </li><!-- End rol -->
+            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.php?accion=rol">
+                        <i class="bi bi-person-rolodex"></i>
+                        <span>Roles</span>
+                    </a>
+                </li><!-- End rol -->
             <?php endif; ?>
 
             <li class="nav-item">
@@ -160,72 +160,73 @@
                             <p>Aca podras encontrar toda la informacion sobre tus usuarios</p>
 
                             <?php
-                                    if (isset($_GET["error"])) {
-                                        $mensaje = "Error";
-                                        if ($_GET["error"] == 1) {
-                                            $mensaje = "¡Registro Exitoso!";
-                                    ?>
-                                            <div class="alert alert-success d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-check-lg"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        if ($_GET["error"] == 2) {
-                                            $mensaje = "¡El usuario ingresado se encuentra Registrado!";
-                                        ?>
-                                            <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-exclamation-triangle-fill"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        if ($_GET["error"] == 3) {
-                                            $mensaje = "¡Error al Agregar!";
-                                        ?>
-                                            <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-exclamation-triangle-fill"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
+                            if (isset($_GET["error"])) {
+                                $mensaje = "Error";
+                                if ($_GET["error"] == 1) {
+                                    $mensaje = "¡Registro Exitoso!";
+                            ?>
+                                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-check-lg"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error"] == 2) {
+                                    $mensaje = "¡El usuario ingresado se encuentra Registrado!";
+                                ?>
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error"] == 3) {
+                                    $mensaje = "¡Error al Agregar!";
+                                ?>
+                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                ?>
 
-                                    <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if (isset($_GET["error2"])) {
-                                        $mensaje = "Error2";
-                                        if ($_GET["error2"] == 1) {
-                                            $mensaje = "¡Actualizacion de Usuario Exitosa!";
-                                    ?>
-                                            <div class="alert alert-success d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-check-lg"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        if ($_GET["error2"] == 2) {
-                                            $mensaje = "¡Error al Actualizar, Vuelva a Intentar!";
-                                        ?>
-                                            <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-exclamation-triangle-fill"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }}
-                                        ?>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if (isset($_GET["error2"])) {
+                                $mensaje = "Error2";
+                                if ($_GET["error2"] == 1) {
+                                    $mensaje = "¡Actualizacion de Usuario Exitosa!";
+                            ?>
+                                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-check-lg"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error2"] == 2) {
+                                    $mensaje = "¡Error al Actualizar, Vuelva a Intentar!";
+                                ?>
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            }
+                            ?>
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalusuario">
@@ -241,46 +242,37 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=ingresarusuario" method="POST" id="agregarusuario" novalidate>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="docUsuario" for="validationDefault01">Documento</span>
-                                                    <input type="text" class="form-control" placeholder="Numero de Documento" aria-label="Numero Documento" aria-describedby="basic-addon1" id="docUsuario" name="docUsuario" required>
+                                            <form action="index.php?accion=ingresarusuario" method="post" class="row g-3">
+                                                <div class="col-12">
+                                                    <label for="validationDefault01" class="form-label">Documento</label>
+                                                    <input type="text" class="form-control" id="validationDefault01" name="Usudoc" required>
                                                 </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="nombreUsuario">Nombre</span>
-                                                    <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreUsuario" name="nombreUsuario">
+                                                <div class="col-12">
+                                                    <label for="validationDefault02" class="form-label">Usuario</label>
+                                                    <input type="text" class="form-control" id="validationDefault02" name="usuario" required>
                                                 </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="passUsuario">Contraseña</span>
-                                                    <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1" id="passUsuario" name="passUsuario">
+                                                <div class="col-12">
+                                                    <label for="validationDefault03" class="form-label">Contraseña</label>
+                                                    <input type="password" class="form-control" name="password" id="validationDefault03" required>
                                                 </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="telUsuario">Telefono</span>
-                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" id="telUsuario" name="telUsuario">
+                                                <div class="col-12">
+                                                    <label for="validationDefault04" class="form-label">Foto</label>
+                                                    <input type="file" class="form-control" name="foto" id="validationDefault04">
                                                 </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="ciudadUsuario">Ciudad</span>
-                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" id="ciudadUsuario" name="ciudadUsuario">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="direcUsuario">Dirección</span>
-                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" id="direcUsuario" name="direcUsuario">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" for="inputGroupSelect01">Tipo de Cargo</span>
-                                                    <select class="form-select" id="rol" name="cargoUsuario">
+                                                <div class="col-12">
+                                                    <label for="validationDefault05" class="form-label">Rol</label>
+                                                    <select class="form-select" id="cargo" name="cargo" required>
                                                     </select>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary" type="submit">Registrar</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="usuario"></div>
+                            <div id="Usuario"></div>
                         </div>
                     </div>
                 </div>
@@ -306,7 +298,7 @@
     <script src="Vista/js/java_.js"></script>
 
     <script>
-        consultarusu();
+        consultarUsu();
     </script>
 </body>
 

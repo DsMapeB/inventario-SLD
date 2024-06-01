@@ -84,12 +84,20 @@
                                     ?>
                                     <form action="index.php?accion=registrar" method="post" class="row g-3">
                                         <div class="col-12">
+                                            <label for="validationDefault01" class="form-label">Documento</label>
+                                            <input type="text" class="form-control" id="validationDefault01" name="Usudoc" required>
+                                        </div>
+                                        <div class="col-12">
                                             <label for="validationDefault01" class="form-label">Usuario</label>
                                             <input type="text" class="form-control" id="validationDefault01" name="usuario" required>
                                         </div>
                                         <div class="col-12">
                                             <label for="validationDefault02" class="form-label">Contraseña</label>
                                             <input type="password" class="form-control" name="password" id="validationDefault02" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="validationDefault03" class="form-label">Foto</label>
+                                            <input type="file" class="form-control" name="foto" id="validationDefault03">
                                         </div>
                                         <div class="col-12">
                                             <label for="validationDefault04" class="form-label">Rol</label>

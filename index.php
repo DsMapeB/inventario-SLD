@@ -29,7 +29,7 @@ $controladorCli = new controladorcli();
 $controladorProdu = new controladorprodu();
 $controladorVenta = new controladorventa();
 
-if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["password"]) && isset($_SESSION["nombrerol"]) && isset($_SESSION["id"])) {
+if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["password"]) && isset($_SESSION["nombrerol"])) {
     if (isset($_GET["accion"])) {
         switch ($_GET["accion"]) {
             case 'logout':
@@ -38,16 +38,43 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["p
             case 'perfil':
                 $controlador->verpagina("Vista/html/perfil.php");
                 break;
+            case 'ingresarusuario':
+                $controlador->agregarUsuario(
+                    $_REQUEST["Usudoc"],
+                    $_REQUEST["usuario"],
+                    $_REQUEST["password"],
+                    $_REQUEST["foto"],
+                    $_REQUEST["cargo"]
+                );
+                break;
+            case 'consultarUsu';
+                $controlador->consultarUsu();
+                break;
             case 'editarPerfil';
                 $controlador->editar();
                 break;
-            case 'actualizarPerfil';
-                $controlador->actualizar(
-                    $_REQUEST["usuario"],
-                    $_REQUEST["contraseña"],
-                    $_REQUEST["rol"]
+            case 'editarUsu':
+                $controlador->editarUsu($_GET["numero"]);
+                break;
+            case 'actualizarUsuario':
+                $controlador->actualizarUsu(
+                    $_POST["Usudoc2"],
+                    $_POST["usuario2"],
+                    $_POST["password2"],
+                    $_POST["foto2"],
+                    $_POST["cargo2"]
                 );
                 break;
+            case 'eliminarusu':
+                $controlador->eliminarUsu($_GET["numero"]);
+                break;
+                // case 'actualizarPerfil';
+                //     $controlador->actualizar(
+                //         $_REQUEST["usuario"],
+                //         $_REQUEST["contraseña"],
+                //         $_REQUEST["rol"]
+                //     );
+                //     break;
             case 'rol':
                 $controlador->verpagina("Vista/html/roles.php");
                 break;
@@ -65,37 +92,11 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["p
             case 'usuario':
                 $controlador->verpagina("Vista/html/usuario.php");
                 break;
-            case 'ingresarusuario':
-                $controladorUsuario->agregarusuario(
-                    $_REQUEST["docUsuario"],
-                    $_REQUEST["nombreUsuario"],
-                    $_REQUEST["passUsuario"],
-                    $_REQUEST["telUsuario"],
-                    $_REQUEST["ciudadUsuario"],
-                    $_REQUEST["direcUsuario"],
-                    $_REQUEST["cargoUsuario"]
-                );
-                break;
-            case 'consultarUsu':
+            case 'consultarusu':
                 $controladorUsuario->consultarUsu();
                 break;
-            case 'editarUsu':
-                $controladorUsuario->editarUsu($_GET["numero"]);
-                break;
-            case 'actualizarUsuario':
-                $controladorUsuario->actualizarUsu(
-                    $_POST["docUsuario2"],
-                    $_POST["nombreUsuario2"],
-                    $_POST["passUsuario2"],
-                    $_POST["telUsuario2"],
-                    $_POST["ciudadUsuario2"],
-                    $_POST["direcUsuario2"],
-                    $_POST["rol2"]
-                );
-                break;
-            case 'eliminarusu':
-                $controladorUsuario->eliminarUsu($_GET["numero2"]);
-                break;
+
+
 
                 //----------------------------Cliente------------------------------------------------
             case 'cliente':
@@ -249,8 +250,10 @@ if (isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["p
                 break;
             case 'registrar':
                 $controlador->registrar(
+                    $_REQUEST["Usudoc"],
                     $_POST["usuario"],
                     $_POST["password"],
+                    $_POST["foto"],
                     $_POST["cargo"]
                 );
                 break;

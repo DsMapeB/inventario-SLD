@@ -1,118 +1,197 @@
 <?php
-  class gestor{
-    public function login($user, $pass){
-      $conexion = new conexion();
-      $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE usuario = '$user' AND password = '$pass'";
-      $conexion->buscar_query($sql);
-      $existe = $conexion->obtener_filas();
-      if($existe>0){
-        $result = $conexion->obtener_resultado();
-        $filas = $result->fetch();
-        $datos = [$filas["usuario"], $filas["rol"], $filas["password"], $filas["nombrerol"] , $filas["id"]];
-        return $datos;
-      }
-      else{
-        $sql2 = "SELECT usuario FROM usuario WHERE usuario = '$user'";
-        $conexion->buscar_query($sql2);
-        $existe2 = $conexion->obtener_filas();
-
-        if($existe2>0){
-          return 1;
-        }
-        else{
-          return 2;
-        }
-      }
-    }
-
-    public function registrar(usu $usu){
-      $conexion =  new conexion();
-      $usuarios = $usu;
-
-      $usuario = $usuarios->obtenerusuario();
-      $password = $usuarios->obtenerpassword();
-      $rol = $usuarios->obtenerrol();
-
-      $sql = "SELECT usuario FROM usuario WHERE usuario = '$usuario' ";
-      $conexion->buscar_query($sql);
-      $result = $conexion->obtener_filas();
-
-      if ($result>0){
-        return 2;
-      }
-      else{
-        $sql2 = "INSERT INTO usuario (usuario, password, rol) VALUES ('$usuario', '$password', '$rol')";
-        $result2 = $conexion->ejecutar_query($sql2);
-
-        if ($result2>0){
-          return 1;
-        } else{
-          return 3;
-        }
-      }
-    }
-
-    public function editar(){
-      $conexion = new conexion();
-      $sql = "SELECT * FROM usuario WHERE id ='".$_SESSION['usuario']."'";
-      $conexion->buscar_query($sql);
+class gestor
+{
+  //-------------------------------Login y Registro
+  public function login($user, $pass)
+  {
+    $conexion = new conexion();
+    $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE usuario = '$user' AND password = '$pass'";
+    $conexion->buscar_query($sql);
+    $existe = $conexion->obtener_filas();
+    if ($existe > 0) {
       $result = $conexion->obtener_resultado();
-      return $result;
-    }
-
-    public function actualizar($usua){
-      $conexion = new conexion();
-      $id = $_SESSION["id"];
-      $usuarios = $usua;
-
-      $usuario = $usuarios->obtenerusuario();
-      $password = $usuarios->obtenerpassword();
-      $rol = $usuarios->obtenerrol();
-
-      $sql = "UPDATE usuario SET password = '$password', rol = '$rol' WHERE id = '$id' AND usuario = '$usuario'";
-      $result = $conexion->ejecutar_query($sql);
-      if($result>0){
-        return 1;
-      }
-      else{
-        return 2;
-      }
-    }
-
-    //roles
-    public function agregarRol(roles $rol1){
-      $conexion = new conexion();
-      $cargo = $rol1->obtenerrol();
-      $sql2 = "SELECT * FROM rol WHERE nombrerol='$cargo'";
+      $filas = $result->fetch();
+      $datos = [$filas["usuario"], $filas["rol"], $filas["password"], $filas["nombrerol"], $filas["Usudoc"]];
+      return $datos;
+    } else {
+      $sql2 = "SELECT usuario FROM usuario WHERE usuario = '$user'";
       $conexion->buscar_query($sql2);
-      $validar = $conexion->obtener_filas();
-      if ($validar > 0){
+      $existe2 = $conexion->obtener_filas();
+
+      if ($existe2 > 0) {
+        return 1;
+      } else {
         return 2;
-      } else{
-        $sql = "INSERT INTO rol (nombrerol) VALUES ('$cargo')";
-        $result = $conexion->ejecutar_query($sql);
-        if ($result > 0){
-          return 1;
-        } else{
-          return 3;
-        }
       }
-    }
-
-    public function consultarRol(){
-      $conexion = new conexion();
-      $sql = "SELECT * FROM rol";
-      $conexion->buscar_query($sql);
-      $result = $conexion->obtener_resultado();
-      return $result;
-    }
-
-    public function eliminarRol($rol){
-      $conexion = new conexion();
-      $sql = "DELETE FROM rol WHERE cargoUsu = ?";
-      $params = array($rol);
-      $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
-      return $filasAfectadas;
     }
   }
-?>
+
+  public function registrar(usu $usu)
+  {
+    $conexion =  new conexion();
+    $usuarios = $usu;
+
+    $doc = $usuarios->obtenerdocumento();
+    $usuario = $usuarios->obtenerusuario();
+    $password = $usuarios->obtenerpassword();
+    $foto = $usuarios->obtenerfoto();
+    $rol = $usuarios->obtenerrol();
+
+    $sql = "SELECT usuario FROM usuario WHERE Usudoc = '$doc' ";
+    $conexion->buscar_query($sql);
+    $result = $conexion->obtener_filas();
+
+    if ($result > 0) {
+      return 2;
+    } else {
+      $sql2 = "INSERT INTO usuario (Usudoc,usuario, password, foto, rol) VALUES ('$doc','$usuario', '$password', '$foto', '$rol')";
+      $result2 = $conexion->ejecutar_query($sql2);
+
+      if ($result2 > 0) {
+        return 1;
+      } else {
+        return 3;
+      }
+    }
+  }
+  //-----------------------Fin Login y Registro--------------------\\
+
+
+  //------------------------------Panel------------------------------\\
+  public function consultarUsu()
+  {
+    $conexion = new conexion();
+    $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu";
+    $conexion->buscar_query($sql);
+    $result = $conexion->obtener_resultado();
+    return $result;
+  }
+
+  public function agregarUsuario(usu $usuarios)
+  {
+    $conexion = new conexion();
+    $doc = $usuarios->obtenerdocumento();
+    $usuario = $usuarios->obtenerusuario();
+    $password = $usuarios->obtenerpassword();
+    $foto = $usuarios->obtenerfoto();
+    $rol = $usuarios->obtenerrol();
+
+    $sql2 = "SELECT usuario FROM usuario WHERE Usudoc = $doc";
+    $conexion->buscar_query($sql2);
+    $validar = $conexion->obtener_filas();
+    if ($validar > 0) {
+      return 2;
+    } else {
+      $sql = "INSERT INTO usuario (Usudoc,usuario, password, foto, rol) VALUES ('$doc','$usuario','$password', '$foto', '$rol' )";
+      $result = $conexion->ejecutar_query($sql);
+      if ($result > 0) {
+        return 1;
+      } else {
+        return 3;
+      }
+    }
+  }
+
+  public function editarUsu($doc)
+  {
+    $conexion = new conexion();
+    $sql = "SELECT * FROM usuario WHERE Usudoc = '$doc'";
+    $conexion->buscar_query($sql);
+    $result = $conexion->obtener_resultado();
+    return $result;
+  }
+
+  public function actualizarUsu($usu)
+  {
+    $conexion = new conexion();
+    $doc = $usu->obtenerdocumento();
+    $usuario = $usu->obtenerusuario();
+    $password = $usu->obtenerpassword();
+    $foto = $usu->obtenerfoto();
+    $rol = $usu->obtenerrol();
+
+    $sql = "UPDATE usuario SET usuario = '$usuario', password = '$password', foto = '$foto', rol = '$rol' WHERE Usudoc = '$doc'";
+    $result = $conexion->ejecutar_query($sql);
+    if ($result > 0) {
+      return 1;
+    } else {
+      return 2;
+    }
+  }
+
+  public function eliminarUsu($usuario)
+  {
+    $conexion = new conexion();
+    $sql = "DELETE FROM usuario WHERE Usudoc = ?";
+    $params = array($usuario);
+    $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
+    return $filasAfectadas;
+  }
+
+  public function editar()
+  {
+    $conexion = new conexion();
+    $sql = "SELECT * FROM usuario WHERE id ='" . $_SESSION['usuario'] . "'";
+    $conexion->buscar_query($sql);
+    $result = $conexion->obtener_resultado();
+    return $result;
+  }
+
+  // public function actualizar($usua){
+  //   $conexion = new conexion();
+  //   $id = $_SESSION["id"];
+  //   $usuarios = $usua;
+
+  //   $usuario = $usuarios->obtenerusuario();
+  //   $password = $usuarios->obtenerpassword();
+  //   $rol = $usuarios->obtenerrol();
+
+  //   $sql = "UPDATE usuario SET password = '$password', rol = '$rol' WHERE id = '$id' AND usuario = '$usuario'";
+  //   $result = $conexion->ejecutar_query($sql);
+  //   if($result>0){
+  //     return 1;
+  //   }
+  //   else{
+  //     return 2;
+  //   }
+  // }
+
+  //roles
+  public function agregarRol(roles $rol1)
+  {
+    $conexion = new conexion();
+    $cargo = $rol1->obtenerrol();
+    $sql2 = "SELECT * FROM rol WHERE nombrerol='$cargo'";
+    $conexion->buscar_query($sql2);
+    $validar = $conexion->obtener_filas();
+    if ($validar > 0) {
+      return 2;
+    } else {
+      $sql = "INSERT INTO rol (nombrerol) VALUES ('$cargo')";
+      $result = $conexion->ejecutar_query($sql);
+      if ($result > 0) {
+        return 1;
+      } else {
+        return 3;
+      }
+    }
+  }
+
+  public function consultarRol()
+  {
+    $conexion = new conexion();
+    $sql = "SELECT * FROM rol";
+    $conexion->buscar_query($sql);
+    $result = $conexion->obtener_resultado();
+    return $result;
+  }
+
+  public function eliminarRol($rol)
+  {
+    $conexion = new conexion();
+    $sql = "DELETE FROM rol WHERE cargoUsu = ?";
+    $params = array($rol);
+    $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
+    return $filasAfectadas;
+  }
+}

@@ -27,7 +27,6 @@ class controladorusuario
   {
     $gestorusuario = new gestorusuario();
     $result = $gestorusuario->consultarUsu();
-    require_once 'Vista/html/consultarUsu.php';
   }
 
   public function editarUsu($docUsu)

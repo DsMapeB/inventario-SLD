@@ -25,9 +25,25 @@ function eliminarRole(numero){
 }
 
 //--------------------------perfil--------------------------
+function consultarUsu(){
+  var url = "index.php?accion=consultarUsu";
+  $("#Usuario").load(url);
+}
 function editarperfil(){
   var url = "index.php?accion=editarPerfil";
   $("#modalEditperfil").load(url);
+}
+function eliminarUsu(numero){
+  if (confirm("Estas seguro de eliminar el Usuario " + numero + "?")){
+    $.get("index.php", { accion: 'eliminarusu', numero: numero}, function (mensaje){
+      alert(mensaje);
+      location.reload();
+    });
+  }
+}
+function editarUsuario(val){
+  var url = "index.php?accion=editarUsu&numero="+val;
+  $("#modaleditusu").load(url);
 }
 
 //--------------------------Login--------------------------
@@ -39,13 +55,10 @@ function cargarRol3(){
 
 // --------------------------Usuario------------------------
 function consultarusu(){
-  var url = "index.php?accion=consultarUsu";
+  var url = "index.php?accion=consultarusu";
   $("#usuario").load(url);
 }
-function editarUsuario(val){
-  var url = "index.php?accion=editarUsu&numero="+val;
-  $("#modaleditusu").load(url);
-}
+
 function eliminarusu(numero2){
   if (confirm("Estas seguro de eliminar el Usuario " + numero2 + "?")){
     $.get("index.php", { accion: 'eliminarusu', numero2: numero2}, function (mensaje){

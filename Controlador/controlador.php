@@ -6,6 +6,7 @@ class controlador
     require_once($url);
   }
 
+  //------------------------------Login Y Registro---------------------------------
   public function login($user, $pass)
   {
     $gestor = new gestor();
@@ -15,7 +16,7 @@ class controlador
       $_SESSION["rol"] = $result[1];
       $_SESSION["password"] = $result[2];
       $_SESSION["nombrerol"] = $result[3];
-      $_SESSION["id"] = $result[4];
+      $_SESSION["Usudoc"] = $result[4];
       require_once("Vista/html/inicio.php");
     }
     if ($result == 1) {
@@ -35,9 +36,9 @@ class controlador
     header("Location:index.php");
   }
 
-  public function registrar($usu, $pass, $rol)
+  public function registrar($doc,$usu, $pass, $foto, $rol)
   {
-    $usu = new usu($usu, $pass, $rol);
+    $usu = new usu($doc,$usu, $pass, $foto, $rol);
     $gestor = new gestor();
     $result = $gestor->registrar($usu);
 
@@ -55,6 +56,61 @@ class controlador
     }
   }
 
+  //----------------------------------Panel--------------------------------------\\
+  public function consultarUsu(){
+    $gestor = new gestor();
+    $result = $gestor->consultarUsu();
+    require_once 'Vista/html/consultarUsu.php';
+  }
+
+  public function agregarUsuario($doc,$usu, $pass, $foto, $rol){
+    $usuarios = new usu($doc,$usu, $pass, $foto, $rol);
+    $gestor = new gestor();
+    $result = $gestor->agregarUsuario($usuarios);
+    if ($result == 1) {
+      /***   Registro satisfactorio    ***/
+      header("Location:index.php?accion=usuario&error=1");
+    }
+    if ($result == 2) {
+      /***   Usuario Repetido    ***/
+      header("Location:index.php?accion=usuario&error=2");
+    }
+    if ($result == 3) {
+      /***   Error en registro    ***/
+      header("Location:index.php?accion=usuario&error=3");
+    }
+  }
+
+  public function editarUsu($doc){
+    $gestor = new gestor();
+    $result = $gestor->editarUsu($doc);
+    require_once 'Vista/html/modalEditusu.php';
+  }
+
+  public function actualizarUsu($doc,$usu, $pass, $foto, $rol){
+    $usu = new usu($doc,$usu, $pass, $foto, $rol);
+    $gestor = new gestor();
+    $result = $gestor->actualizarUsu($usu);
+    if ($result == 1) {
+      header("Location:index.php?accion=usuario&error2=1");
+    }
+    if ($result == 2) {
+      header("Location:index.php?accion=usuario&error2=2");
+    }
+  }
+
+  public function eliminarUsu($doc){
+    $gestor = new gestor();
+    $registro = $gestor->eliminarUsu($doc);
+    if ($registro > 0) {
+      echo "El Usuario se ha eliminado con exito";
+    } else {
+      echo "El Usuario no se ha podido eliminar";
+    }
+  }
+
+
+
   public function editar()
   {
     $gestor = new gestor();
@@ -62,18 +118,18 @@ class controlador
     require_once 'Vista/html/modaleditPerfil.php';
   }
 
-  public function actualizar($usua, $pass, $rol)
-  {
-    $usu = new usu($usua, $pass, $rol);
-    $gestor = new gestor();
-    $result = $gestor->actualizar($usu);
-    if ($result == 1) {
-      header("Location:index.php?accion=perfil&error=1");
-    }
-    if ($result == 2) {
-      header("Location:index.php?accion=perfil&error=2");
-    }
-  }
+  // public function actualizar($usua, $pass, $rol)
+  // {
+  //   $usu = new usu($usua, $pass, $rol);
+  //   $gestor = new gestor();
+  //   $result = $gestor->actualizar($usu);
+  //   if ($result == 1) {
+  //     header("Location:index.php?accion=perfil&error=1");
+  //   }
+  //   if ($result == 2) {
+  //     header("Location:index.php?accion=perfil&error=2");
+  //   }
+  // }
 
   //roles
   public function agregarRol($rol)
