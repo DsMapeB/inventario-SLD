@@ -11,7 +11,7 @@ class gestor
     if ($existe > 0) {
       $result = $conexion->obtener_resultado();
       $filas = $result->fetch();
-      $datos = [$filas["usuario"], $filas["rol"], $filas["password"], $filas["nombrerol"], $filas["Usudoc"]];
+      $datos = [$filas["usuario"], $filas["rol"], $filas["password"], $filas["nombrerol"], $filas["Usudoc"], $filas["foto"]];
       return $datos;
     } else {
       $sql2 = "SELECT usuario FROM usuario WHERE usuario = '$user'";

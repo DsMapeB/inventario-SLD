@@ -11,12 +11,13 @@ class controlador
   {
     $gestor = new gestor();
     $result = $gestor->login($user, $pass);
-    if ($result != 1 && $result != 2 && $result != 3 && $result != 4) {
+    if ($result != 1 && $result != 2 && $result != 3 && $result != 4 && $result != 5) {
       $_SESSION["usuario"] = $result[0];
       $_SESSION["rol"] = $result[1];
       $_SESSION["password"] = $result[2];
       $_SESSION["nombrerol"] = $result[3];
       $_SESSION["Usudoc"] = $result[4];
+      $_SESSION["foto"] = $result[5];
       require_once("Vista/html/inicio.php");
     }
     if ($result == 1) {
@@ -38,6 +39,19 @@ class controlador
 
   public function registrar($doc,$usu, $pass, $foto, $rol)
   {
+    if ($_FILES['foto']['error'] === UPLOAD_ERR_OK){
+      $rutaimg = 'uploads/';
+
+      $fotoname = $_FILES['foto']['name'];
+
+      move_uploaded_file($_FILES['foto']['tmp_name'], $rutaimg . $fotoname);
+
+      $foto = $rutaimg . $fotoname;
+    } else{
+      $foto = '';
+    }
+
+
     $usu = new usu($doc,$usu, $pass, $foto, $rol);
     $gestor = new gestor();
     $result = $gestor->registrar($usu);

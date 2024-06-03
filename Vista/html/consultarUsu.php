@@ -25,7 +25,7 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->Usudoc; ?></td>
                         <td><?php echo $fila->usuario; ?></td>
                         <td><?php echo $fila->password; ?></td>
-                        <td><?php echo $fila->foto; ?></td>
+                        <td><img src="<?php echo $fila->foto; ?>" alt="Foto de perfil" style="max-width: 100px; max-height: 100px;"></td>
                         <td><?php echo $fila->nombrerol; ?></td>
                         <td>
                             <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->Usudoc; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>

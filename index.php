@@ -1,35 +1,37 @@
 <?php
 session_start();
-require_once("Controlador/controlador.php");
-require_once("Controlador/controladorUsuario.php");
-require_once("Controlador/controladorPro.php");
-require_once("Controlador/controladorCli.php");
-require_once("Controlador/controladorProdu.php");
-require_once("Controlador/controladorVenta.php");
+//------------------------------------ Gestor conexion -----------------------------------------
 require_once("Modelo/conexion.php");
+//-------------------------- controlador y gestor usuario, logueos y rol ----------------------------------
+require_once("Controlador/controlador.php");
 require_once("Modelo/gestor.php");
 require_once("Modelo/usu.php");
 require_once("Modelo/rol.php");
-require_once("Modelo/proveedor.php");
-require_once("Modelo/gestorPro.php");
-require_once("Modelo/producto.php");
-require_once("Modelo/gestorProdu.php");
-require_once("Modelo/gestorVenta.php");
-require_once("Modelo/venta.php");
+// ----------------------------------- Controlador y Gestor Cliente -----------------------------------------
+require_once("Controlador/controladorCli.php");
 require_once("Modelo/gestorCli.php");
 require_once("Modelo/cliente.php");
-require_once("Modelo/gestorUsuario.php");
-require_once("Modelo/usuario.php");
-
+// ----------------------------------- Controlador y Gestor Proveedor -----------------------------------------
+require_once("Controlador/controladorPro.php");
+require_once("Modelo/proveedor.php");
+require_once("Modelo/gestorPro.php");
+// ----------------------------------- Controlador y Gestor Producto ------------------------------------------
+require_once("Controlador/controladorProdu.php");
+require_once("Modelo/producto.php");
+require_once("Modelo/gestorProdu.php");
+// ----------------------------------- Controlador y Gestor Venta ---------------------------------------------
+require_once("Controlador/controladorVenta.php");
+require_once("Modelo/gestorVenta.php");
+require_once("Modelo/venta.php");
+//--------------------------------------------------------------------------------------------------------------//
 
 $controlador = new controlador();
-$controladorUsuario = new controladorusuario();
 $controladorPro = new controladorproveedor();
 $controladorCli = new controladorcli();
 $controladorProdu = new controladorprodu();
 $controladorVenta = new controladorventa();
 
-if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["password"]) && isset($_SESSION["nombrerol"])) {
+if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["password"]) && isset($_SESSION["nombrerol"]) && isset($_SESSION["foto"])) {
     if (isset($_GET["accion"])) {
         switch ($_GET["accion"]) {
             case 'logout':
@@ -46,6 +48,9 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                     $_REQUEST["foto"],
                     $_REQUEST["cargo"]
                 );
+                break;
+            case 'usuario':
+                $controlador->verpagina("Vista/html/usuario.php");
                 break;
             case 'consultarUsu';
                 $controlador->consultarUsu();
@@ -75,6 +80,8 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 //         $_REQUEST["rol"]
                 //     );
                 //     break;
+
+                // -------------------------------------------- Rol ----------------------------------------------
             case 'rol':
                 $controlador->verpagina("Vista/html/roles.php");
                 break;
@@ -88,17 +95,7 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 $controlador->eliminarRol($_GET["numero"]);
                 break;
 
-                //-----------------------------------Usuario----------------------------------------
-            case 'usuario':
-                $controlador->verpagina("Vista/html/usuario.php");
-                break;
-            case 'consultarusu':
-                $controladorUsuario->consultarUsu();
-                break;
-
-
-
-                //----------------------------Cliente------------------------------------------------
+                //------------------------------------- Cliente ------------------------------------------------
             case 'cliente':
                 $controlador->verpagina("Vista/html/cliente.php");
                 break;
@@ -126,7 +123,7 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 $controladorCli->eliminarCli($_GET["numero3"]);
                 break;
 
-                //Proveedor
+                // -------------------------------------------- Proveedor ---------------------------------------//
             case 'provee':
                 $controlador->verpagina("Vista/html/provee.php");
                 break;
@@ -160,7 +157,7 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 $controladorPro->eliminarPro($_GET["numero"]);
                 break;
 
-                //Producto
+                // ------------------------------------------- Producto -------------------------------------------
             case 'produ':
                 $controlador->verpagina("Vista/html/produ.php");
                 break;
@@ -192,7 +189,7 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 $controladorProdu->eliminarProdu($_GET["numero4"]);
                 break;
 
-                //Venta
+                // --------------------------------------------- Venta -------------------------------------------
             case 'venta':
                 $controlador->verpagina("Vista/html/venta.php");
                 break;
@@ -250,7 +247,7 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 break;
             case 'registrar':
                 $controlador->registrar(
-                    $_REQUEST["Usudoc"],
+                    $_POST["Usudoc"],
                     $_POST["usuario"],
                     $_POST["password"],
                     $_POST["foto"],

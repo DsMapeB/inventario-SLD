@@ -25,6 +25,11 @@ function eliminarRole(numero){
 }
 
 //--------------------------perfil--------------------------
+function cargarRol2(){
+  $.post("Modelo/cargarRol2.php", {}, function (mensaje2){
+    $("#rol2").html(mensaje2);
+  });
+}
 function consultarUsu(){
   var url = "index.php?accion=consultarUsu";
   $("#Usuario").load(url);
@@ -73,12 +78,7 @@ function cargarRol(){
 });
 }
 
-function cargarRol2(){
 
-  $.post("Modelo/cargarRol2.php", {}, function (mensaje2){
-    $("#rol2").html(mensaje2);
-  });
-}
 
 //---------------------------Cliente----------------------------
 function consultarcli(){
