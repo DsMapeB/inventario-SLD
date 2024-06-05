@@ -11,7 +11,9 @@ if ($result->rowCount() > 0) {
                     <th scope="col">Contraseña</th>
                     <th scope="col">Foto</th>
                     <th scope="col">Rol</th>
-                    <th scope="col">Acciones</th>
+                    <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
+                        <th scope="col">Acciones</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +26,14 @@ if ($result->rowCount() > 0) {
                         <th scope="row"><?php echo $cont ?></th>
                         <td><?php echo !empty($fila->Usudoc) ? $fila->Usudoc : 'Sin documento'; ?></td>
                         <td><?php echo !empty($fila->usuario) ? $fila->usuario : 'Sin usuario'; ?></td>
-                        <td><?php echo !empty($fila->password) ? $fila->password : 'Sin contraseña'; ?></td>
+                        <td><?php
+                            if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") {
+                                echo !empty($fila->password) ? $fila->password : 'Sin contraseña';
+                            } else {
+                                echo !empty($fila->password) ? str_repeat("*", strlen($fila->password)) : 'Sin contraseña';
+                            }
+                            ?>
+                        </td>
                         <td>
                             <?php if (!empty($fila->foto)) { ?>
                                 <img src="<?php echo $fila->foto; ?>" alt="Foto de perfil" style="max-width: 100px; max-height: 100px;">
@@ -34,9 +43,11 @@ if ($result->rowCount() > 0) {
                         </td>
                         <td><?php echo !empty($fila->nombrerol) ? $fila->nombrerol : 'Sin rol'; ?></td>
                         <td>
-                            <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->Usudoc; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
-                            |
-                            <button class="icon-button btn btn-danger" onclick="eliminarUsu(<?php echo $fila->Usudoc; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>
+                            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
+                                <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->Usudoc; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
+                                |
+                                <button class="icon-button btn btn-danger" onclick="eliminarUsu(<?php echo $fila->Usudoc; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php
@@ -51,5 +62,5 @@ if ($result->rowCount() > 0) {
         <p>No hay Usuarios Registrados</p>
     <?php
 }
-?>
+    ?>
     </div>

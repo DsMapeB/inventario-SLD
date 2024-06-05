@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roles</title>
   <link rel="shortcut icon" href="Vista/ico/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="Vista/bootstrap-5.3.3-dist/css/bootstrap.css">
-    <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
-    <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
-    <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
-    <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
-    <script src="Vista/jquery/jquery.js"></script>
+  <link rel="stylesheet" href="Vista/bootstrap-5.3.3-dist/css/bootstrap.css">
+  <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
+  <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
+  <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
+  <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+  <script src="Vista/jquery/jquery.js"></script>
 
 </head>
 
@@ -200,14 +200,41 @@
               <?php
               }
               ?>
+              <?php
+              if (isset($_GET["error2"])) {
+                $mensaje = "Error2";
+                if ($_GET["error2"] == 1) {
+                  $mensaje = "¡Actualizacion de Rol Exitosa!";
+              ?>
+                  <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <div>
+                      <i class="bi bi-check-lg"></i>
+                      <?php echo $mensaje; ?>
+                    </div>
+                  </div>
+                <?php
+                }
+                if ($_GET["error2"] == 2) {
+                  $mensaje = "¡Error al Actualizar, Vuelva a Intentar!";
+                ?>
+                  <div class="alert alert-warning d-flex align-items-center" role="alert">
+                    <div>
+                      <i class="bi bi-exclamation-triangle-fill"></i>
+                      <?php echo $mensaje; ?>
+                    </div>
+                  </div>
+              <?php
+                }
+              }
+              ?>
 
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#rol">
+              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggrol">
                 <i class="bi bi-person-rolodex"></i> Agregar Nuevo Rol
               </button>
 
               <!-- Modal -->
-              <div class="modal fade" id="rol" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal fade" id="aggrol" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -236,6 +263,21 @@
       </div>
     </section>
   </main>
+
+  <div class="modal fade" id="editRol" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Rol</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="modaleditRol"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
     <i class="bi bi-arrow-up-short"></i>
   </a>

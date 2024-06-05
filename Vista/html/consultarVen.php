@@ -11,7 +11,7 @@ if ($result->rowCount() > 0) {
                     <th scope="col">Hora</th>
                     <th scope="col">Usuario</th>
                     <th scope="col">Cliente</th>
-                    <th scope="col">C. de Producto</th>
+                    <th scope="col">Producto</th>
                     <th scope="col">Observaciones</th>
                     <th scope="col">Total</th>
                     <th scope="col">Acciones</th>

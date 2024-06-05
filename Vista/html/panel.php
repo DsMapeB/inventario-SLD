@@ -50,7 +50,7 @@
                     <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                         <a href="index.php?accion=registro" class="btn-get-started">¡Comencemos!</a>
                     </div>
-                    <img src="Vista/img/hero-services-img.png" class="img-fluid hero-img" alt="" data-aos="zoom-out"
+                    <img src="Vista/img/logo2.png" class="img-fluid hero-img" alt="" data-aos="zoom-out"
                         data-aos-delay="300">
                 </div>
             </div>

@@ -37,9 +37,7 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
             case 'logout':
                 $controlador->logout();
                 break;
-            case 'perfil':
-                $controlador->verpagina("Vista/html/perfil.php");
-                break;
+
             case 'ingresarusuario':
                 $controlador->agregarUsuario(
                     $_REQUEST["Usudoc"],
@@ -55,31 +53,39 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
             case 'consultarUsu';
                 $controlador->consultarUsu();
                 break;
-            case 'editarPerfil';
-                $controlador->editar();
-                break;
             case 'editarUsu':
                 $controlador->editarUsu($_GET["numero"]);
                 break;
             case 'actualizarUsuario':
                 $controlador->actualizarUsu(
-                    $_POST["Usudoc2"],
-                    $_POST["usuario2"],
-                    $_POST["password2"],
-                    $_POST["foto2"],
-                    $_POST["cargo2"]
+                    $_REQUEST["Usudoc2"],
+                    $_REQUEST["usuario2"],
+                    $_REQUEST["password2"],
+                    $_FILES["foto2"],
+                    $_REQUEST["cargo2"]
                 );
                 break;
             case 'eliminarusu':
                 $controlador->eliminarUsu($_GET["numero"]);
                 break;
-                // case 'actualizarPerfil';
-                //     $controlador->actualizar(
-                //         $_REQUEST["usuario"],
-                //         $_REQUEST["contraseña"],
-                //         $_REQUEST["rol"]
-                //     );
-                //     break;
+
+// -------------------------------------------------- Perfil ----------------------------------------------------------------
+            case 'perfil':
+                $controlador->verpagina("Vista/html/perfil.php");
+                break;
+            case 'editarPerfil';
+                $controlador->editar();
+                break;
+            case 'actualizarPerfil':
+                $controlador->actualizarPerfil(
+                    $_REQUEST["Usudoc3"],
+                    $_REQUEST["usuario3"],
+                    $_REQUEST["contraseña3"],
+                    $_FILES["foto3"],
+                    $_REQUEST["rol3"]
+                );
+                break;
+
 
                 // -------------------------------------------- Rol ----------------------------------------------
             case 'rol':
@@ -90,6 +96,16 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 break;
             case 'consultarRol':
                 $controlador->consultarRol();
+                break;
+            case 'editarRol':
+                $controlador->editarRol($_GET["numero"]);
+                break;
+            case 'actualizarRol':
+                $controlador->actualizarRol(
+                    $_REQUEST["rol2"],
+                    $_REQUEST["numrol2"]
+
+                );
                 break;
             case 'eliminarRol':
                 $controlador->eliminarRol($_GET["numero"]);

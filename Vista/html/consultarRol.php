@@ -17,10 +17,10 @@ if ($result->rowCount() > 0) {
                     $cont++;
                 ?>
                     <tr>
-                        <td><?php echo $fila->cargoUsu; ?></td>
+                        <th scope="row"><?php echo $fila->cargoUsu; ?></th>
                         <td><?php echo $fila->nombrerol; ?></td>
                         <td>
-                            <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->docUsu; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
+                            <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editRol" onclick="editarRol(<?php echo $fila->cargoUsu; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
                             |
                             <button class="icon-button btn btn-danger" onclick="eliminarRole(<?php echo $fila->cargoUsu; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>
                         </td>

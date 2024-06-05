@@ -37,9 +37,9 @@ class controlador
     header("Location:index.php");
   }
 
-  public function registrar($doc,$usu, $pass, $foto, $rol)
+  public function registrar($doc, $usu, $pass, $foto, $rol)
   {
-    if ($_FILES['foto']['error'] === UPLOAD_ERR_OK){
+    if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
       $rutaimg = 'uploads/';
 
       $fotoname = $_FILES['foto']['name'];
@@ -47,12 +47,12 @@ class controlador
       move_uploaded_file($_FILES['foto']['tmp_name'], $rutaimg . $fotoname);
 
       $foto = $rutaimg . $fotoname;
-    } else{
+    } else {
       $foto = '';
     }
 
 
-    $usu = new usu($doc,$usu, $pass, $foto, $rol);
+    $usu = new usu($doc, $usu, $pass, $foto, $rol);
     $gestor = new gestor();
     $result = $gestor->registrar($usu);
 
@@ -71,14 +71,16 @@ class controlador
   }
 
   //----------------------------------Panel--------------------------------------\\
-  public function consultarUsu(){
+  public function consultarUsu()
+  {
     $gestor = new gestor();
     $result = $gestor->consultarUsu();
     require_once 'Vista/html/consultarUsu.php';
   }
 
-  public function agregarUsuario($doc,$usu, $pass, $foto, $rol){
-    if ($_FILES['foto']['error'] === UPLOAD_ERR_OK){
+  public function agregarUsuario($doc, $usu, $pass, $foto, $rol)
+  {
+    if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
       $rutaimg = 'uploads/';
 
       $fotoname = $_FILES['foto']['name'];
@@ -86,10 +88,10 @@ class controlador
       move_uploaded_file($_FILES['foto']['tmp_name'], $rutaimg . $fotoname);
 
       $foto = $rutaimg . $fotoname;
-    } else{
+    } else {
       $foto = '';
     }
-    $usuarios = new usu($doc,$usu, $pass, $foto, $rol);
+    $usuarios = new usu($doc, $usu, $pass, $foto, $rol);
     $gestor = new gestor();
     $result = $gestor->agregarUsuario($usuarios);
     if ($result == 1) {
@@ -106,14 +108,24 @@ class controlador
     }
   }
 
-  public function editarUsu($doc){
+  public function editarUsu($doc)
+  {
     $gestor = new gestor();
     $result = $gestor->editarUsu($doc);
     require_once 'Vista/html/modalEditusu.php';
   }
 
-  public function actualizarUsu($doc,$usu, $pass, $foto, $rol){
-    $usu = new usu($doc,$usu, $pass, $foto, $rol);
+  public function actualizarUsu($doc, $usu, $pass, $foto, $rol)
+  {
+    if ($foto['error'] === UPLOAD_ERR_OK) {
+      $rutaimg = 'uploads/';
+      $fotoname = $foto['name'];
+      move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
+      $foto = $rutaimg . $fotoname;
+    } else {
+      $foto = ''; // Opcionalmente, puedes establecer un valor predeterminado si no se carga ninguna imagen.
+    }
+    $usu = new usu($doc, $usu, $pass, $foto, $rol);
     $gestor = new gestor();
     $result = $gestor->actualizarUsu($usu);
     if ($result == 1) {
@@ -124,7 +136,8 @@ class controlador
     }
   }
 
-  public function eliminarUsu($doc){
+  public function eliminarUsu($doc)
+  {
     $gestor = new gestor();
     $registro = $gestor->eliminarUsu($doc);
     if ($registro > 0) {
@@ -135,7 +148,7 @@ class controlador
   }
 
 
-
+//------------------------------------- Perfil --------------------------------
   public function editar()
   {
     $gestor = new gestor();
@@ -143,20 +156,27 @@ class controlador
     require_once 'Vista/html/modaleditPerfil.php';
   }
 
-  // public function actualizar($usua, $pass, $rol)
-  // {
-  //   $usu = new usu($usua, $pass, $rol);
-  //   $gestor = new gestor();
-  //   $result = $gestor->actualizar($usu);
-  //   if ($result == 1) {
-  //     header("Location:index.php?accion=perfil&error=1");
-  //   }
-  //   if ($result == 2) {
-  //     header("Location:index.php?accion=perfil&error=2");
-  //   }
-  // }
+  public function actualizarPerfil($doc, $usu, $pass, $foto, $rol){
+    if ($foto['error'] === UPLOAD_ERR_OK) {
+      $rutaimg = 'uploads/';
+      $fotoname = $foto['name'];
+      move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
+      $foto = $rutaimg . $fotoname;
+    } else {
+      $foto = ''; // Opcionalmente, puedes establecer un valor predeterminado si no se carga ninguna imagen.
+    }
+    $usu = new usu($doc, $usu, $pass, $foto, $rol);
+    $gestor = new gestor();
+    $result = $gestor->actualizarperfil($usu);
+    if ($result == 1) {
+      header("Location:index.php?accion=perfil&error=1");
+    }
+    if ($result == 2) {
+      header("Location:index.php?accion=perfil&error=2");
+    }
+  }
 
-  //roles
+  //----------------------------------------------------roles-----------------------------------------------------------------
   public function agregarRol($rol)
   {
     $rol1 = new roles($rol);
@@ -181,6 +201,26 @@ class controlador
     $gestor = new gestor();
     $result = $gestor->consultarRol();
     require_once 'Vista/html/consultarRol.php';
+  }
+
+  public function editarRol($rol)
+  {
+    $gestor = new gestor();
+    $result = $gestor->editarRol($rol);
+    require_once 'Vista/html/modaleditRol.php';
+  }
+
+  public function actualizarRol($rol, $num)
+  {
+    $nomrol = new roles($rol);
+    $gestor = new gestor();
+    $result = $gestor->actualizarRol($nomrol, $num);
+    if ($result == 1) {
+      header("Location:index.php?accion=rol&error2=1");
+    }
+    if ($result == 2) {
+      header("Location:index.php?accion=rol&error2=2");
+    }
   }
 
   public function eliminarRol($rol)

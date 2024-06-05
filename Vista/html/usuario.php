@@ -228,10 +228,12 @@
                             }
                             ?>
 
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalusuario">
-                                <i class="bi bi-person-fill-add"></i> Agregar Nuevo Usuario
-                            </button>
+                            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalusuario">
+                                    <i class="bi bi-person-fill-add"></i> Agregar Nuevo Usuario
+                                </button>
+                            <?php endif; ?>
 
                             <!-- Modal -->
                             <div class="modal fade" id="modalusuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -257,7 +259,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="validationDefault04" class="form-label">Foto</label>
-                                                    <input type="file" class="form-control" name="foto" id="validationDefault04">
+                                                    <input type="file" class="form-control" name="foto" id="validationDefault04" required>
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="validationDefault05" class="form-label">Rol</label>
@@ -293,6 +295,10 @@
             </div>
         </div>
     </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
 
     <script src="Vista/js/java.js"></script>
     <script src="Vista/js/java_.js"></script>

@@ -18,6 +18,10 @@ function consultarRol(){
   var url = "index.php?accion=consultarRol";
   $("#consulRol").load(url);
 }
+function editarRol(val){
+  var url = "index.php?accion=editarRol&numero="+val;
+  $("#modaleditRol").load(url);
+}
 function eliminarRole(numero){
   if (confirm("Estas seguro de eliminar el Rol " + numero + "?")){
     $.get("index.php", { accion: 'eliminarRol', numero: numero}, function (mensaje){

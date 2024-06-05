@@ -131,32 +131,29 @@ class gestor
   public function editar()
   {
     $conexion = new conexion();
-    $sql = "SELECT * FROM usuario WHERE id ='" . $_SESSION['usuario'] . "'";
+    $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE Usudoc ='" . $_SESSION['Usudoc'] . "'";
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
     return $result;
   }
 
-  // public function actualizar($usua){
-  //   $conexion = new conexion();
-  //   $id = $_SESSION["id"];
-  //   $usuarios = $usua;
+  public function actualizarPerfil($usu){
+    $conexion = new conexion();
 
-  //   $usuario = $usuarios->obtenerusuario();
-  //   $password = $usuarios->obtenerpassword();
-  //   $rol = $usuarios->obtenerrol();
+    $doc = $_SESSION["Usudoc"];
+    $user = $usu;
 
-  //   $sql = "UPDATE usuario SET password = '$password', rol = '$rol' WHERE id = '$id' AND usuario = '$usuario'";
-  //   $result = $conexion->ejecutar_query($sql);
-  //   if($result>0){
-  //     return 1;
-  //   }
-  //   else{
-  //     return 2;
-  //   }
-  // }
+    $usuario = $user->obtenerusuario();
+    $password = $user->obtenerpassword();
+    $foto = $user->obtenerfoto();
+    $rol = $user->obtenerrol();
 
-  //roles
+    $sql = "UPDATE usuario SET password = '$password', foto = '$foto', rol = '$rol' WHERE Usudoc = '$doc' AND usuario = '$usuario'";
+    $result = $conexion->ejecutar_query($sql);
+    return $result;
+  }
+
+  //---------------------------------------------------------------roles-------------------------------------------------------------------
   public function agregarRol(roles $rol1)
   {
     $conexion = new conexion();
@@ -184,6 +181,27 @@ class gestor
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
     return $result;
+  }
+
+  public function editarRol($nomrol){
+    $conexion = new conexion();
+    $sql = "SELECT * FROM rol WHERE cargoUsu = '$nomrol'";
+    $conexion->buscar_query($sql);
+    $result = $conexion->obtener_resultado();
+    return $result;
+  }
+
+  public function actualizarRol(roles $nomrol, $num){
+    $conexion = new conexion();
+    $cargo = $nomrol->obtenerrol();
+
+    $sql = "UPDATE rol SET nombrerol = '$cargo' WHERE cargoUsu = '$num'";
+    $result = $conexion->ejecutar_query($sql);
+    if ($result > 0) {
+      return 1;
+    } else {
+      return 2;
+    }
   }
 
   public function eliminarRol($rol)
