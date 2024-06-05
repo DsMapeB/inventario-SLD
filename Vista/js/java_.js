@@ -4,9 +4,12 @@ $(document).ready(function(){
   cargarRol3();
   cargarNit();
   cargarNitEdit();
-  cargarUsuario();
-  cargarCliente();
-  cargarProducto();
+  cargarUsuario1();
+  cargarCliente1();
+  cargarProducto1();
+  cargarUsuario2();
+  cargarCliente2();
+  cargarProducto2();
 
 })
 
@@ -163,17 +166,32 @@ function eliminarventa(numero5){
     })
   }
 }
-function cargarUsuario(){
+function cargarUsuario1(){
+  $.post("Modelo/cargarUsu.php", {} , function (mensaje){
+    $("#idUsu").html(mensaje);
+  });
+}
+function cargarCliente1(){
+  $.post("Modelo/cargarCli.php", {} , function (mensaje){
+    $("#docclie").html(mensaje);
+  });
+}
+function cargarProducto1(){
+  $.post("Modelo/cargarProdu.php", {} , function (mensaje){
+    $("#codprodu").html(mensaje);
+  });
+}
+function cargarUsuario2(){
   $.post("Modelo/cargarUsu.php", {} , function (mensaje){
     $("#idUsu2").html(mensaje);
   });
 }
-function cargarCliente(){
+function cargarCliente2(){
   $.post("Modelo/cargarCli.php", {} , function (mensaje){
     $("#docclie2").html(mensaje);
   });
 }
-function cargarProducto(){
+function cargarProducto2(){
   $.post("Modelo/cargarProdu.php", {} , function (mensaje){
     $("#codprodu2").html(mensaje);
   });

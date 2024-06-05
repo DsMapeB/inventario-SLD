@@ -156,16 +156,16 @@
                 <div class="col-xl-4">
 
                     <div class="card">
-                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
+                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center text-center">
                             <img src="<?php echo $_SESSION["foto"]; ?>" alt="Profile" class="rounded-circle">
                             <h2><?php echo $_SESSION["usuario"]; ?></h2>
                             <h3><?php echo $_SESSION["nombrerol"]; ?></h3>
-                            <button type="button" class="btn btn-success" onclik=data-bs-toggle="modal" data-bs-target="#aggproveedor">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggproveedor">
                                 <i class="bi bi-image"></i> Editar Imagen
                             </button>
                         </div>
                     </div>
+
 
                 </div>
 

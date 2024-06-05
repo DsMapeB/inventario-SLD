@@ -1,7 +1,7 @@
 <?php
 require_once 'conexion.php';
 $conexion = new conexion();
-$sql = "SELECT * FROM usuarios";
+$sql = "SELECT * FROM usuario";
 $conexion->buscar_query($sql);
 $result = $conexion->obtener_resultado();
 ?>
@@ -10,7 +10,7 @@ $result = $conexion->obtener_resultado();
 while($filas = $result->fetch()){; 
 ?>
 
-<option value="<?php echo $filas['docUsu'] ?>"><?php echo $filas['nombreUsu'] ?></option>
+<option value="<?php echo $filas['Usudoc'] ?>"><?php echo $filas['usuario'] ?></option>
 <?php
 }
 ?>

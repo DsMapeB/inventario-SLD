@@ -31,7 +31,7 @@ class gestorVenta
 
     public function consultarVenta(){
         $conexion = new conexion();
-        $sql = "SELECT * FROM venta join usuarios on venta.Usu=usuarios.docUsu join cliente on venta.clie=cliente.docclie join producto on venta.produ=producto.codprodu";
+        $sql = "SELECT * FROM venta join usuario on venta.Usu=usuario.Usudoc join cliente on venta.clie=cliente.docclie join producto on venta.produ=producto.codprodu";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
         return $result;
@@ -39,7 +39,7 @@ class gestorVenta
 
     public function editarventa($codventa){
         $conexion = new conexion();
-        $sql = "SELECT * FROM venta join usuarios on venta.Usu=usuarios.docUsu join cliente on venta.clie=cliente.docclie join producto on venta.produ=producto.codprodu WHERE codventa = '$codventa'";
+        $sql = "SELECT * FROM venta join usuario on venta.Usu=usuario.Usudoc join cliente on venta.clie=cliente.docclie join producto on venta.produ=producto.codprodu WHERE codventa = '$codventa'";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
         return $result;
@@ -58,7 +58,7 @@ class gestorVenta
         $observacionventa = $venta->obtenerobs();
         $totalventa = $venta->obtenertotal();
 
-        $sql = "UPDATE venta SET fecha = '$fechaventa', hora = '$horaventa', docUsu = '$idusu', docclie = '$docclie', codprodu = '$codprodu', observacion = '$observacionventa', total = '$totalventa' WHERE codventa = '$codventa'";
+        $sql = "UPDATE venta SET fecha = '$fechaventa', hora = '$horaventa', Usu = '$idusu', docclie = '$docclie', codprodu = '$codprodu', observacion = '$observacionventa', total = '$totalventa' WHERE codventa = '$codventa'";
         $result = $conexion->ejecutar_query($sql);
         return $result;
     }

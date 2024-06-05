@@ -78,6 +78,17 @@ class controlador
   }
 
   public function agregarUsuario($doc,$usu, $pass, $foto, $rol){
+    if ($_FILES['foto']['error'] === UPLOAD_ERR_OK){
+      $rutaimg = 'uploads/';
+
+      $fotoname = $_FILES['foto']['name'];
+
+      move_uploaded_file($_FILES['foto']['tmp_name'], $rutaimg . $fotoname);
+
+      $foto = $rutaimg . $fotoname;
+    } else{
+      $foto = '';
+    }
     $usuarios = new usu($doc,$usu, $pass, $foto, $rol);
     $gestor = new gestor();
     $result = $gestor->agregarUsuario($usuarios);

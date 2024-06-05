@@ -28,11 +28,14 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->codventa; ?></td>
                         <td><?php echo $fila->fecha; ?></td>
                         <td><?php echo $fila->hora; ?></td>
-                        <td><?php echo $fila->nombreUsu ?></td>
+                        <td><?php echo $fila->usuario ?></td>
                         <td><?php echo $fila->nombreclie ?></td>
                         <td><?php echo $fila->nombreprodu; ?></td>
                         <td><?php echo $fila->observacion; ?></td>
-                        <td><?php echo $fila->total; ?></td>
+                        <?php $fila->total; 
+                        $fila2 = $fila->total;
+                        $formateado = number_format((float)$fila2, 3, '.', '');?>
+                        <td><?php echo $formateado; ?></td>
                         <td>
                             <button class="icon-button btn btn-warning" onclick="editarven(<?php echo $fila->codventa; ?>)" data-bs-toggle="modal" data-bs-target="#accventa"><i class="bi bi-pencil-square"></i> Editar</button>
                             <button class="icon-button btn btn-danger" onclick="eliminarventa(<?php echo $fila->codventa; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>

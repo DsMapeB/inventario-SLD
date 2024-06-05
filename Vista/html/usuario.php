@@ -242,7 +242,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=ingresarusuario" method="post" class="row g-3">
+                                            <form action="index.php?accion=ingresarusuario" method="post" class="row g-3" enctype="multipart/form-data">
                                                 <div class="col-12">
                                                     <label for="validationDefault01" class="form-label">Documento</label>
                                                     <input type="text" class="form-control" id="validationDefault01" name="Usudoc" required>

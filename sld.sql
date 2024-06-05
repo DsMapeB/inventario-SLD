@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2024 a las 18:45:50
+-- Tiempo de generación: 05-06-2024 a las 03:19:35
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -110,27 +110,20 @@ INSERT INTO `rol` (`cargoUsu`, `nombrerol`) VALUES
 --
 
 CREATE TABLE `usuario` (
-  `id` int(11) NOT NULL,
-  `usuario` varchar(255) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `Usudoc` int(255) NOT NULL,
+  `usuario` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `foto` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `rol` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `docUsu` int(15) NOT NULL,
-  `nombreUsu` varchar(25) NOT NULL,
-  `contraseñaUsu` varchar(25) NOT NULL,
-  `telefonoUsu` varchar(10) NOT NULL,
-  `ciudadUsu` varchar(30) NOT NULL,
-  `direccionUsu` varchar(50) NOT NULL,
-  `cargoUsu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`Usudoc`, `usuario`, `password`, `foto`, `rol`) VALUES
+(1005814662, 'Laura Stefanny Góngora Medina', '321', 'laug.png', 2),
+(1104936650, 'David Santiago Mape Burgos', '123', 'uploads/fotom.png', 1);
 
 -- --------------------------------------------------------
 
@@ -148,6 +141,13 @@ CREATE TABLE `venta` (
   `observacion` varchar(100) NOT NULL,
   `total` float(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`codventa`, `fecha`, `hora`, `Usu`, `clie`, `produ`, `observacion`, `total`) VALUES
+(1, '2024-06-05', '20:16:00', 1104936650, 1104936650, 22, 'producto entregado, venta realizada con exito', 40.00);
 
 --
 -- Índices para tablas volcadas
@@ -182,15 +182,8 @@ ALTER TABLE `rol`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`Usudoc`),
   ADD KEY `rol` (`rol`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`docUsu`),
-  ADD KEY `cargoUsu` (`cargoUsu`);
 
 --
 -- Indices de la tabla `venta`
@@ -224,22 +217,10 @@ ALTER TABLE `rol`
   MODIFY `cargoUsu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `docUsu` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1104936656;
-
---
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `codventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1213;
+  MODIFY `codventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -258,16 +239,10 @@ ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rol`) REFERENCES `rol` (`cargoUsu`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`cargoUsu`) REFERENCES `rol` (`cargoUsu`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`Usu`) REFERENCES `usuarios` (`docUsu`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`Usu`) REFERENCES `usuario` (`Usudoc`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`clie`) REFERENCES `cliente` (`docclie`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`produ`) REFERENCES `producto` (`codprodu`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;

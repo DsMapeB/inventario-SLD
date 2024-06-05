@@ -22,11 +22,17 @@ if ($result->rowCount() > 0) {
                 ?>
                     <tr>
                         <th scope="row"><?php echo $cont ?></th>
-                        <td><?php echo $fila->Usudoc; ?></td>
-                        <td><?php echo $fila->usuario; ?></td>
-                        <td><?php echo $fila->password; ?></td>
-                        <td><img src="<?php echo $fila->foto; ?>" alt="Foto de perfil" style="max-width: 100px; max-height: 100px;"></td>
-                        <td><?php echo $fila->nombrerol; ?></td>
+                        <td><?php echo !empty($fila->Usudoc) ? $fila->Usudoc : 'Sin documento'; ?></td>
+                        <td><?php echo !empty($fila->usuario) ? $fila->usuario : 'Sin usuario'; ?></td>
+                        <td><?php echo !empty($fila->password) ? $fila->password : 'Sin contraseña'; ?></td>
+                        <td>
+                            <?php if (!empty($fila->foto)) { ?>
+                                <img src="<?php echo $fila->foto; ?>" alt="Foto de perfil" style="max-width: 100px; max-height: 100px;">
+                            <?php } else { ?>
+                                Sin foto de perfil
+                            <?php } ?>
+                        </td>
+                        <td><?php echo !empty($fila->nombrerol) ? $fila->nombrerol : 'Sin rol'; ?></td>
                         <td>
                             <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->Usudoc; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
                             |
@@ -45,5 +51,5 @@ if ($result->rowCount() > 0) {
         <p>No hay Usuarios Registrados</p>
     <?php
 }
-    ?>
+?>
     </div>
