@@ -76,13 +76,13 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
             case 'editarPerfil';
                 $controlador->editar();
                 break;
-            case 'actualizarPerfil':
+            case 'actualizarPerfilF':
                 $controlador->actualizarPerfil(
-                    $_REQUEST["Usudoc3"],
-                    $_REQUEST["usuario3"],
-                    $_REQUEST["contraseña3"],
+                    $_POST["Usudoc3"],
+                    $_POST["usuario3"],
+                    $_POST["contraseña3"],
                     $_FILES["foto3"],
-                    $_REQUEST["rol3"]
+                    $_POST["rol3"]
                 );
                 break;
 

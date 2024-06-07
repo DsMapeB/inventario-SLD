@@ -172,26 +172,26 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=ingresarprodu" method="POST" id="agregarusuario" novalidate>
+                                            <form action="index.php?accion=ingresarprodu" method="POST" id="agregarusuario" >
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Codigo</span>
-                                                    <input type="text" class="form-control" placeholder="Codigo del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="codprodu" name="codprodu">
+                                                    <input type="text" class="form-control" placeholder="Codigo del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="codprodu" name="codprodu" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                                    <input type="text" class="form-control" placeholder="Nombre del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreprodu" name="nombreprodu">
+                                                    <input type="text" class="form-control" placeholder="Nombre del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreprodu" name="nombreprodu" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" for="inputGroupSelect01">Precio</span>
-                                                    <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Telefono" aria-describedby="basic-addon1" id="precioprodu" name="precioprodu">
+                                                    <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Telefono" aria-describedby="basic-addon1" id="precioprodu" name="precioprodu" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Existencia</span>
-                                                    <input type="text" class="form-control" placeholder="Existencia" aria-label="existencia" aria-describedby="basic-addon1" id="exisprodu" name="exisprodu">
+                                                    <input type="text" class="form-control" placeholder="Existencia" aria-label="existencia" aria-describedby="basic-addon1" id="exisprodu" name="exisprodu" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Proveedor</span>
-                                                    <select class="form-select" id="nit" name="proprodu">
+                                                    <select class="form-select" id="nit" name="proprodu" required>
                                                     </select>
                                                 </div>
                                                 <div class="modal-footer">

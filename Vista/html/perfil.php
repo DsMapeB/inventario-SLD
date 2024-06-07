@@ -166,7 +166,7 @@
                             if (isset($_GET["error"])) {
                                 $mensaje = "Error";
                                 if ($_GET["error"] == 1) {
-                                    $mensaje = "¡Actualizacion de Usuario Exitosa!";
+                                    $mensaje = "¡Actualizacion de Usuario Exitosa!, Para ver la Actualización Cierre Sesion y vuelva abrirla";
                             ?>
                                     <div class="alert alert-success d-flex align-items-center" role="alert">
                                         <div>
@@ -202,7 +202,7 @@
                             <ul class="nav nav-tabs nav-tabs-bordered">
 
                                 <li class="nav-item">
-                                    <button type="button" class="btn btn-primary" id="perfild" class="nav-link active" data-bs-toggle="tab" data-bs-target="#detalles">Detalles</button>
+                                    <button  id="perfild" class="nav-link active" data-bs-toggle="tab" data-bs-target="#detalles">Detalles</button>
                                 </li>
                                 <li class="nav-item">
                                     <button class="btn btn-primary" onclick="editarperfil()" data-bs-toggle="modal" data-bs-target="#editperfil">Editar Perfil</button>

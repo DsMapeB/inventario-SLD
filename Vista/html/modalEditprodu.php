@@ -10,7 +10,7 @@
             <input type="text" class="form-control" placeholder="Nombre del Producto" aria-label="Nombre" aria-describedby="basic-addon1" value="<?php echo $filas['nombreprodu']; ?>" id="nombreprodu" name="nombreprodu">
         </div>
         <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Precio</label>
+            <span class="input-group-text" for="inputGroupSelect01">Precio</span>
             <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Telefono" aria-describedby="basic-addon1" value="<?php echo $filas['precioprodu']; ?>" id="precioprodu" name="precioprodu">
         </div>
         <div class="input-group mb-3">

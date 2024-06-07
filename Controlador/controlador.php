@@ -148,15 +148,16 @@ class controlador
   }
 
 
-//------------------------------------- Perfil --------------------------------
+  //------------------------------------- Perfil --------------------------------
   public function editar()
   {
     $gestor = new gestor();
-    $result = $gestor->editar();
+    $result = $gestor->editarP();
     require_once 'Vista/html/modaleditPerfil.php';
   }
 
-  public function actualizarPerfil($doc, $usu, $pass, $foto, $rol){
+  public function actualizarPerfil($doc, $usu, $pass, $foto, $rol)
+  {
     if ($foto['error'] === UPLOAD_ERR_OK) {
       $rutaimg = 'uploads/';
       $fotoname = $foto['name'];
@@ -167,7 +168,7 @@ class controlador
     }
     $usu = new usu($doc, $usu, $pass, $foto, $rol);
     $gestor = new gestor();
-    $result = $gestor->actualizarperfil($usu);
+    $result = $gestor->actualizarPerfil($usu);
     if ($result == 1) {
       header("Location:index.php?accion=perfil&error=1");
     }

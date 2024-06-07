@@ -2,6 +2,7 @@ $(document).ready(function(){
   cargarRol();
   cargarRol2();
   cargarRol3();
+  cargarRolP();
   cargarNit();
   cargarNitEdit();
   cargarUsuario1();
@@ -56,6 +57,11 @@ function eliminarUsu(numero){
 function editarUsuario(val){
   var url = "index.php?accion=editarUsu&numero="+val;
   $("#modaleditusu").load(url);
+}
+function cargarRolP(){
+  $.post("Modelo/cargarRolP.php", {}, function (mensaje){
+    $("#rolP").html(mensaje);
+});
 }
 
 //--------------------------Login--------------------------

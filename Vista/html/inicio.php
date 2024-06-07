@@ -250,7 +250,6 @@
     </a>
 
     <script src="Vista/js/java.js"></script>
-    <script src="Vista/js/java_.js"></script>
 </body>
 
 </html>

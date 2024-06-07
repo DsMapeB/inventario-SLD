@@ -200,6 +200,33 @@
                             <?php
                             }
                             ?>
+                            <?php
+                            if (isset($_GET["error2"])) {
+                                $mensaje = "Error2";
+                                if ($_GET["error2"] == 1) {
+                                    $mensaje = "¡Actualización Exitosa!";
+                            ?>
+                                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-check-lg"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error2"] == 2) {
+                                    $mensaje = "¡Error al actualizar Proveedor, Vuelva a Intentar!";
+                                ?>
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            }
+                            ?>
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggproveedor">
@@ -215,30 +242,30 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=ingresarProveedor" novalidate method="POST" id="agregarproveedor">
+                                            <form action="index.php?accion=ingresarProveedor" method="POST" id="agregarproveedor">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Nit</span>
-                                                    <input type="text" class="form-control" placeholder="Nit del proveedor" aria-label="Ciudad" aria-describedby="basic-addon1" id="nitprovee" name="nitprovee">
+                                                    <input type="text" class="form-control" placeholder="Nit del proveedor" aria-label="Ciudad" aria-describedby="basic-addon1" id="nitprovee" name="nitprovee" maxlength="9" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Proveedor</span>
-                                                    <input type="text" class="form-control" placeholder="Nombre del Proveedor" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreprovee" name="nombreprovee">
+                                                    <input type="text" class="form-control" placeholder="Nombre del Proveedor" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreprovee" name="nombreprovee" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Contacto</span>
-                                                    <input type="text" class="form-control" placeholder="Nombre completo del contacto" aria-label="contacto" aria-describedby="basic-addon1" id="contactoprovee" name="contactoprovee">
+                                                    <input type="text" class="form-control" placeholder="Nombre completo del contacto" aria-label="contacto" aria-describedby="basic-addon1" id="contactoprovee" name="contactoprovee" required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Telefono</label>
-                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" id="telprovee" name="telprovee">
+                                                    <span class="input-group-text" for="inputGroupSelect01">Telefono</span>
+                                                    <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" id="telprovee" name="telprovee" maxlength="10" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Dirección</span>
-                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" id="direcprovee" name="direcprovee">
+                                                    <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1" id="direcprovee" name="direcprovee" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Ciudad</span>
-                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" id="ciuprovee" name="ciuprovee">
+                                                    <input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1" id="ciuprovee" name="ciuprovee" required>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

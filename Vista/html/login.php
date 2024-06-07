@@ -34,7 +34,7 @@
 
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <div class="pt-4 pb-2">
+                                    <div class="pt-2 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">
                                             Ingrese a su Cuenta Personal
                                         </h5>
@@ -67,8 +67,8 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="validationDefault01" class="form-label">Contraseña</label>
-                                            <input type="password" class="form-control" id="validationDefault01" name="pass" required>
+                                            <label for="validationDefault02" class="form-label">Contraseña</label>
+                                            <input type="password" class="form-control" id="validationDefault02" name="pass" required>
                                         </div>
 
                                         <div class="col-12">

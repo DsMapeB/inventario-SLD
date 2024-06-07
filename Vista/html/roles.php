@@ -243,9 +243,9 @@
                     </div>
                     <div class="modal-body">
                       <form action="index.php?accion=ingresarRol" method="post" class="row g-3 needs-validation">
-                        <div class="col-12">
-                          <label for="validationDefault02" class="form-label">Nombre Rol</label>
-                          <input type="text" class="form-control" id="validationDefault02" name="rol" required>
+                        <div class="input-group mb-3">
+                          <span for="validationDefault01" class="input-group-text">Nombre Rol</span>
+                          <input type="text" class="form-control" id="validationDefault01" name="rol" required>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

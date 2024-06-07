@@ -41,12 +41,14 @@ class controladorproveedor
         $proveedor = new proveedor($nitpro,$nombrepro,$contactopro,$telpro,$direcpro,$ciupro);
         $gestorproveedor = new gestorproveedor();
         $result = $gestorproveedor->actualizarprovee($proveedor);
-        if ($result > 0) {
-            header("Location:index.php?accion=provee");
-        } else{
-            header("Location:index.php?accion=provee");
+        if ($result == 1) {
+            /***   Registro satisfactorio    ***/
+            header("Location:index.php?accion=provee&error2=1");
         }
-         //($cliente); //
+        if ($result == 2) {
+            /***   Usuario Repetido    ***/
+            header("Location:index.php?accion=provee&error2=2");
+        }
     }
 
     public function eliminarPro($proveedor)

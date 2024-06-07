@@ -16,17 +16,17 @@ class gestorproveedor
         $validar = $conexion->obtener_filas();
         if ($validar > 0) {
             return 2;
-        } else{
+        } else {
 
-        $sql = "INSERT INTO proveedores VALUES ('$nit_pro', '$nombre_pro', '$contacto_pro', '$telefono_pro', '$direccion_pro', '$ciudad_pro')";
-        $result2 = $conexion->ejecutar_query($sql);
-        if ($result2>0){
-            return 1;
-        } else{
-            return 3;
+            $sql = "INSERT INTO proveedores VALUES ('$nit_pro', '$nombre_pro', '$contacto_pro', '$telefono_pro', '$direccion_pro', '$ciudad_pro')";
+            $result2 = $conexion->ejecutar_query($sql);
+            if ($result2 > 0) {
+                return 1;
+            } else {
+                return 3;
+            }
         }
-
-    }}
+    }
     public function consultarPro()
     {
         $conexion = new conexion();
@@ -36,7 +36,8 @@ class gestorproveedor
         return $result;
     }
 
-    public function editarPro($nitpro){
+    public function editarPro($nitpro)
+    {
         $conexion = new conexion();
         $sql = "SELECT * FROM proveedores WHERE nitpro = $nitpro";
         $conexion->buscar_query($sql);
@@ -44,7 +45,8 @@ class gestorproveedor
         return $result;
     }
 
-    public function actualizarprovee($provee){
+    public function actualizarprovee($provee)
+    {
         $conexion =  new conexion();
         $proveedor = $provee;
 
@@ -57,7 +59,12 @@ class gestorproveedor
 
         $sql = "UPDATE proveedores SET nombrePro = '$nombrepro', contactoPro = '$contactopro', telefonoPro = '$telefonopro', direccionPro = '$direccionpro', ciudadPro = '$ciudadpro' WHERE nitpro = '$nitpro'";
         $result = $conexion->ejecutar_query($sql);
-        return $result;
+        if($result>0){
+            return 1;
+        }
+        else{
+            return 2;
+        }
     }
 
     public function eliminarPro($proveedor)

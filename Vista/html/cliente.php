@@ -246,15 +246,15 @@
                                             <div class="modal-body">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Documento</span>
-                                                    <input type="text" class="form-control" placeholder="Documento del Cliente" aria-label="Documento" aria-describedby="basic-addon1" name="doccliente" id="doccliente">
+                                                    <input type="text" class="form-control" placeholder="Documento del Cliente" aria-label="Documento" aria-describedby="basic-addon1" name="doccliente" id="doccliente" maxlength="10" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                                    <input type="text" class="form-control" placeholder="Nombre del Cliente" aria-label="Nombre" aria-describedby="basic-addon1" name="nombrecliente" id="nombrecliente">
+                                                    <input type="text" class="form-control" placeholder="Nombre del Cliente" aria-label="Nombre" aria-describedby="basic-addon1" name="nombrecliente" id="nombrecliente" required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Telefono</label>
-                                                    <input type="text" class="form-control" placeholder="Telefono del Cliente" aria-label="Telefono" aria-describedby="basic-addon1" name="telcliente" id="telcliente">
+                                                    <span class="input-group-text" for="inputGroupSelect01">Telefono</span>
+                                                    <input type="text" class="form-control" placeholder="Telefono del Cliente" aria-label="Telefono" aria-describedby="basic-addon1" name="telcliente" id="telcliente" maxlength="10" required>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

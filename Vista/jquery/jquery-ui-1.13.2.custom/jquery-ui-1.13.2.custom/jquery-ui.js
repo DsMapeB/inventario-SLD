@@ -12,8 +12,7 @@
 		define( [ "jquery" ], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+
 	}
 } )( function( $ ) {
 "use strict";

@@ -33,7 +33,7 @@
 
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <div class="pt-4 pb-2">
+                                    <div class="pt-2 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">
                                             Cree una Cuenta
                                         </h5>
@@ -88,20 +88,20 @@
                                             <input type="text" class="form-control" id="validationDefault01" name="Usudoc" required>
                                         </div>
                                         <div class="col-12">
-                                            <label for="validationDefault01" class="form-label">Usuario</label>
-                                            <input type="text" class="form-control" id="validationDefault01" name="usuario" required>
+                                            <label for="validationDefault02" class="form-label">Usuario</label>
+                                            <input type="text" class="form-control" id="validationDefault02" name="usuario" required>
                                         </div>
                                         <div class="col-12">
-                                            <label for="validationDefault02" class="form-label">Contraseña</label>
-                                            <input type="password" class="form-control" name="password" id="validationDefault02" required>
+                                            <label for="validationDefault03" class="form-label">Contraseña</label>
+                                            <input type="password" class="form-control" name="password" id="validationDefault03" required>
                                         </div>
                                         <div class="col-12">
-                                            <label for="validationDefault03" class="form-label">Foto</label>
-                                            <input type="file" class="form-control" name="foto" id="validationDefault03">
+                                            <label for="validationDefault04" class="form-label">Foto</label>
+                                            <input type="file" class="form-control" name="foto" id="validationDefault04">
                                         </div>
                                         <div class="col-12">
-                                            <label for="validationDefault04" class="form-label">Rol</label>
-                                            <select class="form-select" id="cargo" name="cargo" required>
+                                            <label for="validationDefault05" class="form-label">Rol</label>
+                                            <select class="form-select" id="cargo" name="cargo" id="validationDefault05" required>
                                             </select>
                                         </div>
                                         <div class="col-12">

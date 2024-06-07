@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>CPanel - Sistema de Gestion Onlinde de Inventario</title>
+    <title>Sistema de Gestion Onlinde de Inventario - Panel</title>
     <link rel="shortcut icon" href="Vista/ico/favicon.ico" type="image/x-icon">
     <link href="Vista/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="Vista/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -26,7 +26,7 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="index.php?accion=registro" class="">Register</a></li>
+                    <li><a href="index.php?accion=registro" class="">Registro</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -60,9 +60,9 @@
     <footer>
         <div class="container copyright text-center mt-4">
             <p>© <span>Copyright</span> <strong class="px-1 sitename">Sistema Gestion Online de
-                    Inventario</strong><span>Todos los Derechos Reservados</span></p>
+                    Inventario</strong><span>. Todos los Derechos Reservados</span></p>
             <div class="credits">
-                Diseñado Por: <a href="https://zajuna.sena.edu.co/">Estudiantes del SENA</a>
+                Diseñado Por <a href="https://zajuna.sena.edu.co/">Estudiantes del SENA</a>
             </div>
         </div>
     </footer>

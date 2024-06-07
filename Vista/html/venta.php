@@ -173,38 +173,38 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=ingresarventa" novalidate method="POST" id="agregarproveedor">
+                                            <form action="index.php?accion=ingresarventa" method="POST" id="agregarproveedor">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Codigo de venta</span>
-                                                    <input type="text" class="form-control" placeholder="Codigo de venta" aria-label="Codigo" aria-describedby="basic-addon1" id="codventa" name="codventa">
+                                                    <input type="text" class="form-control" placeholder="Codigo de venta" aria-label="Codigo" aria-describedby="basic-addon1" id="codventa" name="codventa" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Fecha</span>
-                                                    <input type="date" class="form-control" placeholder="Fecha" aria-label="fecha" aria-describedby="basic-addon1" id="fecha" name="fecha">
+                                                    <input type="date" class="form-control" placeholder="Fecha" aria-label="fecha" aria-describedby="basic-addon1" id="fecha" name="fecha" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Hora</span>
-                                                    <input type="time" class="form-control" placeholder="Hora" aria-label="hora" aria-describedby="basic-addon1" id="hora" name="hora">
+                                                    <input type="time" class="form-control" placeholder="Hora" aria-label="hora" aria-describedby="basic-addon1" id="hora" name="hora" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" for="inputGroupSelect01">Usuario</span>
-                                                    <select class="form-select" id="idUsu" name="idUsu"></select>
+                                                    <select class="form-select" id="idUsu" name="idUsu" required></select>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" for="inputGroupSelect02">Documento Cliente</span>
-                                                    <select class="form-select" id="docclie" name="docclie"></select>
+                                                    <select class="form-select" id="docclie" name="docclie" required></select>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" for="inputGroupSelect03">Codigo de producto</span>
-                                                    <select class="form-select" id="codprodu" name="codprodu"></select>
+                                                    <select class="form-select" id="codprodu" name="codprodu" required></select>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Observación</span>
-                                                    <input type="text" class="form-control" placeholder="Observación" aria-label="Observación" aria-describedby="basic-addon1" id="obs" name="obs">
+                                                    <input type="text" class="form-control" placeholder="Observación" aria-label="Observación" aria-describedby="basic-addon1" id="obs" name="obs" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Total</span>
-                                                    <input type="text" class="form-control" placeholder="Total" aria-label="total" aria-describedby="basic-addon1" id="total" name="total">
+                                                    <input type="text" class="form-control" placeholder="Total" aria-label="total" aria-describedby="basic-addon1" id="total" name="total" required>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

@@ -16,7 +16,7 @@
         <input type="text" class="form-control" placeholder="Nombre completo del contacto" aria-label="contacto" aria-describedby="basic-addon1" value="<?php echo $filas['contactoPro']; ?>" aria-describedby="basic-addon1" id="contactoprovee" name="contactoprovee">
       </div>
       <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Telefono</label>
+        <span class="input-group-text" for="inputGroupSelect01">Telefono</span>
         <input type="text" class="form-control" placeholder="Numero de Telefono" aria-label="Telefono" aria-describedby="basic-addon1" value="<?php echo $filas['telefonoPro']; ?>" id="telprovee" name="telprovee">
       </div>
       <div class="input-group mb-3">

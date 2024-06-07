@@ -38,6 +38,7 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $formateado; ?></td>
                         <td>
                             <button class="icon-button btn btn-warning" onclick="editarven(<?php echo $fila->codventa; ?>)" data-bs-toggle="modal" data-bs-target="#accventa"><i class="bi bi-pencil-square"></i> Editar</button>
+                            |
                             <button class="icon-button btn btn-danger" onclick="eliminarventa(<?php echo $fila->codventa; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>
                         </td>
                     </tr>

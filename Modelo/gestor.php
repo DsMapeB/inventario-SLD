@@ -1,7 +1,7 @@
 <?php
 class gestor
 {
-  //-------------------------------Login y Registro
+  //-------------------------------Login y Registro ------------------------------------
   public function login($user, $pass)
   {
     $conexion = new conexion();
@@ -128,7 +128,7 @@ class gestor
     return $filasAfectadas;
   }
 
-  public function editar()
+  public function editarP()
   {
     $conexion = new conexion();
     $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE Usudoc ='" . $_SESSION['Usudoc'] . "'";
