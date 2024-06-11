@@ -158,6 +158,77 @@
                             <h5 class="card-title">Tabla Productos</h5>
                             <p>Aca podras encontrar toda la informacion sobre tus Productos</p>
 
+                            <?php
+                            if (isset($_GET["error"])) {
+                                $mensaje = "Error";
+                                if ($_GET["error"] == 1) {
+                                    $mensaje = "¡Producto Registrado Exitosamente!";
+                            ?>
+                                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-check-lg"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error"] == 2) {
+                                    $mensaje = "¡El Producto ingresado ya se encuentra Registrado!";
+                                ?>
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error"] == 3) {
+                                    $mensaje = "¡Error al registrar!";
+                                ?>
+                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+
+                            <?php
+                            }
+                            ?>
+
+
+                            <?php
+                            if (isset($_GET["error2"])) {
+                                $mensaje = "Error2";
+                                if ($_GET["error2"] == 1) {
+                                    $mensaje = "¡Producto Actualizado Exitosamente!";
+                            ?>
+                                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-check-lg"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error2"] == 2) {
+                                    $mensaje = "Al parecer, no hubo cambios o hubo un error al actualizar el producto. ¡Inténtelo de nuevo!";
+                                ?>
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            }
+                            ?>
+
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdropprodu">
                                 <i class="bi bi-plus-lg"></i> Agregar Nuevo Producto
@@ -172,7 +243,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=ingresarprodu" method="POST" id="agregarusuario" >
+                                            <form action="index.php?accion=ingresarprodu" method="POST" id="agregarusuario">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Codigo</span>
                                                     <input type="text" class="form-control" placeholder="Codigo del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="codprodu" name="codprodu" required>
@@ -183,7 +254,7 @@
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" for="inputGroupSelect01">Precio</span>
-                                                    <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Telefono" aria-describedby="basic-addon1" id="precioprodu" name="precioprodu" required>
+                                                    <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Precio" aria-describedby="basic-addon1" id="precioprodu" name="precioprodu" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Existencia</span>
@@ -195,8 +266,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                    <button type="submit" class="btn btn-primary">Registrar</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -210,6 +280,11 @@
             </div>
         </section>
     </main>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short">
+        </i>
+    </a>
 
     <div class="modal fade" id="editProdu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">

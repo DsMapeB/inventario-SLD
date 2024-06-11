@@ -159,6 +159,75 @@
                             <h5 class="card-title">Ventas</h5>
                             <p>Aca podras encontrar toda la informacion acerca de tus ventas</p>
 
+                            <?php
+                            if (isset($_GET["error"])) {
+                                $mensaje = "Error";
+                                if ($_GET["error"] == 1) {
+                                    $mensaje = "¡Venta Registrada Exitosamente!";
+                            ?>
+                                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-check-lg"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error"] == 2) {
+                                    $mensaje = "¡La Venta ingresada ya se encuentra Registrada!";
+                                ?>
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error"] == 3) {
+                                    $mensaje = "¡Error al registrar!";
+                                ?>
+                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if (isset($_GET["error2"])) {
+                                $mensaje = "Error2";
+                                if ($_GET["error2"] == 1) {
+                                    $mensaje = "¡Venta Actualizada Exitosamente!";
+                            ?>
+                                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-check-lg"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                if ($_GET["error2"] == 2) {
+                                    $mensaje = "Al parecer, no hubo cambios o hubo un error al actualizar la Venta. ¡Inténtelo de nuevo!";
+                                ?>
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <div>
+                                            <i class="bi bi-exclamation-triangle-fill"></i>
+                                            <?php echo $mensaje; ?>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            }
+                            ?>
+
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggventa">
                                 <i class="bi bi-cart-plus-fill"></i> Agregar Nueva Venta
@@ -191,11 +260,11 @@
                                                     <select class="form-select" id="idUsu" name="idUsu" required></select>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" for="inputGroupSelect02">Documento Cliente</span>
+                                                    <span class="input-group-text" for="inputGroupSelect02">Cliente</span>
                                                     <select class="form-select" id="docclie" name="docclie" required></select>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" for="inputGroupSelect03">Codigo de producto</span>
+                                                    <span class="input-group-text" for="inputGroupSelect03">Producto</span>
                                                     <select class="form-select" id="codprodu" name="codprodu" required></select>
                                                 </div>
                                                 <div class="input-group mb-3">
@@ -207,8 +276,7 @@
                                                     <input type="text" class="form-control" placeholder="Total" aria-label="total" aria-describedby="basic-addon1" id="total" name="total" required>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                    <button type="submit" class="btn btn-primary">Registrar</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -222,6 +290,11 @@
             </div>
         </section>
     </main>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short">
+        </i>
+    </a>
 
     <div class="modal fade" id="accventa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">

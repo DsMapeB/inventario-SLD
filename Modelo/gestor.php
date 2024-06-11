@@ -11,7 +11,7 @@ class gestor
     if ($existe > 0) {
       $result = $conexion->obtener_resultado();
       $filas = $result->fetch();
-      $datos = [$filas["usuario"], $filas["rol"], $filas["password"], $filas["nombrerol"], $filas["Usudoc"], $filas["foto"]];
+      $datos = [$filas["telefono"], $filas["usuario"], $filas["rol"], $filas["password"], $filas["nombrerol"], $filas["Usudoc"], $filas["foto"]];
       return $datos;
     } else {
       $sql2 = "SELECT usuario FROM usuario WHERE usuario = '$user'";
@@ -33,6 +33,7 @@ class gestor
 
     $doc = $usuarios->obtenerdocumento();
     $usuario = $usuarios->obtenerusuario();
+    $tel = $usuarios->obtenertelefono();
     $password = $usuarios->obtenerpassword();
     $foto = $usuarios->obtenerfoto();
     $rol = $usuarios->obtenerrol();
@@ -44,7 +45,7 @@ class gestor
     if ($result > 0) {
       return 2;
     } else {
-      $sql2 = "INSERT INTO usuario (Usudoc,usuario, password, foto, rol) VALUES ('$doc','$usuario', '$password', '$foto', '$rol')";
+      $sql2 = "INSERT INTO usuario (Usudoc, usuario, telefono, password, foto, rol) VALUES ('$doc', '$usuario', '$tel', '$password', '$foto', '$rol')";
       $result2 = $conexion->ejecutar_query($sql2);
 
       if ($result2 > 0) {
@@ -72,6 +73,7 @@ class gestor
     $conexion = new conexion();
     $doc = $usuarios->obtenerdocumento();
     $usuario = $usuarios->obtenerusuario();
+    $tel = $usuarios->obtenertelefono();
     $password = $usuarios->obtenerpassword();
     $foto = $usuarios->obtenerfoto();
     $rol = $usuarios->obtenerrol();
@@ -82,7 +84,7 @@ class gestor
     if ($validar > 0) {
       return 2;
     } else {
-      $sql = "INSERT INTO usuario (Usudoc,usuario, password, foto, rol) VALUES ('$doc','$usuario','$password', '$foto', '$rol' )";
+      $sql = "INSERT INTO usuario (Usudoc, usuario, telefono, password, foto, rol) VALUES ('$doc', '$usuario', '$tel', '$password', '$foto', '$rol')";
       $result = $conexion->ejecutar_query($sql);
       if ($result > 0) {
         return 1;
@@ -128,6 +130,7 @@ class gestor
     return $filasAfectadas;
   }
 
+  // ------------------------------------ Perfil --------------------------------------------------------------
   public function editarP()
   {
     $conexion = new conexion();
@@ -137,21 +140,31 @@ class gestor
     return $result;
   }
 
-  public function actualizarPerfil($usu){
-    $conexion = new conexion();
-
-    $doc = $_SESSION["Usudoc"];
-    $user = $usu;
-
-    $usuario = $user->obtenerusuario();
-    $password = $user->obtenerpassword();
-    $foto = $user->obtenerfoto();
-    $rol = $user->obtenerrol();
-
-    $sql = "UPDATE usuario SET password = '$password', foto = '$foto', rol = '$rol' WHERE Usudoc = '$doc' AND usuario = '$usuario'";
-    $result = $conexion->ejecutar_query($sql);
-    return $result;
+  public function actualizarPerfil($usu)
+  {
+      $conexion = new conexion();
+  
+      $doc = $_SESSION["Usudoc"];
+      $user = $usu;
+  
+      $tel = $user->obtenertelefono();
+      $usuario = $user->obtenerusuario();
+      $password = $user->obtenerpassword();
+      $foto = $user->obtenerfoto();
+      $rol = $user->obtenerrol(); // Aunque no se use, podemos obtenerlo para mantener el código consistente
+  
+      // Actualizar solo los campos editables
+      $sql = "UPDATE usuario SET telefono = '$tel', password = '$password', foto = '$foto' WHERE Usudoc = '$doc' AND usuario = '$usuario'";
+      $result = $conexion->ejecutar_query($sql);
+  
+      if ($result > 0) {
+          return 1;
+      } else {
+          return 2;
+      }
   }
+  
+  // ------------------------------------- fin Perfil ---------------------------------------------------------
 
   //---------------------------------------------------------------roles-------------------------------------------------------------------
   public function agregarRol(roles $rol1)

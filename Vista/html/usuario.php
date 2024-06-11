@@ -244,26 +244,30 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="index.php?accion=ingresarusuario" method="post" class="row g-3" enctype="multipart/form-data">
+                                            <form action="index.php?accion=ingresarusuario" method="post" enctype="multipart/form-data">
                                                 <div class="input-group mb-3">
                                                     <span for="validationDefault01" class="input-group-text">Documento</span>
-                                                    <input type="text" class="form-control" id="validationDefault01" name="Usudoc" maxlength="10" required>
+                                                    <input type="text" class="form-control" id="validationDefault01" name="Usudoc" maxlength="10" placeholder="Ingrese Documento" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span for="validationDefault02" class="input-group-text">Usuario</span>
-                                                    <input type="text" class="form-control" id="validationDefault02" name="usuario" required>
+                                                    <input type="text" class="form-control" id="validationDefault02" name="usuario" placeholder="Ingrese Usuario" required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span for="validationDefault03" class="input-group-text">Contraseña</span>
-                                                    <input type="password" class="form-control" name="password" id="validationDefault03" required>
+                                                    <span for="validationDefault03" class="input-group-text">Telefono</span>
+                                                    <input type="tel" class="form-control" name="tel" id="validationDefault03" placeholder="Solo Valores Numericos" maxlength="10" required autocomplete="off">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span for="validationDefault04" class="input-group-text">Foto</span>
-                                                    <input type="file" class="form-control" name="foto" id="validationDefault04" required>
+                                                    <span for="validationDefault04" class="input-group-text">Contraseña</span>
+                                                    <input type="password" class="form-control" name="password" id="validationDefault04" placeholder="Ingrese Una Contraseña" required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span for="validationDefault05" class="input-group-text">Rol</span>
-                                                    <select class="form-select" id="cargo" name="cargo" id="validationDefault05" required>
+                                                    <span for="validationDefault05" class="input-group-text">Foto</span>
+                                                    <input type="file" class="form-control" name="foto" id="validationDefault05" required>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span for="validationDefault06" class="input-group-text">Rol</span>
+                                                    <select class="form-select" id="cargo" name="cargo" id="validationDefault06" required>
                                                     </select>
                                                 </div>
                                                 <div class="modal-footer">
@@ -297,7 +301,8 @@
     </div>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
+        <i class="bi bi-arrow-up-short">
+        </i>
     </a>
 
     <script src="Vista/js/java.js"></script>

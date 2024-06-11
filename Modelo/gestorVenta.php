@@ -13,23 +13,25 @@ class gestorVenta
         $observacion_venta = $venta->obtenerobs();
         $total_venta = $venta->obtenertotal();
 
-        $sql = "INSERT INTO venta VALUES ('$cod_venta','$fecha_venta','$hora_venta','$id_usu','$doc_clie','$cod_produ','$observacion_venta','$total_venta')";
-
-        $conexion->ejecutar_query($sql);
-        
         $sql2 = "SELECT * FROM venta WHERE codventa=$cod_venta";
         $conexion->buscar_query($sql2);
 
         $validar = $conexion->obtener_filas();
         if ($validar > 0) {
-            $result = $conexion->obtener_resultado();
-            return $result;
+            return 2;
         } else {
-            return 1;
+            $sql = "INSERT INTO venta VALUES ('$cod_venta','$fecha_venta','$hora_venta','$id_usu','$doc_clie','$cod_produ','$observacion_venta','$total_venta')";
+            $result = $conexion->ejecutar_query($sql);
+            if ($result > 0) {
+                return 1;
+            } else {
+                return 3;
+            }
         }
     }
 
-    public function consultarVenta(){
+    public function consultarVenta()
+    {
         $conexion = new conexion();
         $sql = "SELECT * FROM venta join usuario on venta.Usu=usuario.Usudoc join cliente on venta.clie=cliente.docclie join producto on venta.produ=producto.codprodu";
         $conexion->buscar_query($sql);
@@ -37,7 +39,8 @@ class gestorVenta
         return $result;
     }
 
-    public function editarventa($codventa){
+    public function editarventa($codventa)
+    {
         $conexion = new conexion();
         $sql = "SELECT * FROM venta join usuario on venta.Usu=usuario.Usudoc join cliente on venta.clie=cliente.docclie join producto on venta.produ=producto.codprodu WHERE codventa = '$codventa'";
         $conexion->buscar_query($sql);
@@ -45,7 +48,8 @@ class gestorVenta
         return $result;
     }
 
-    public function actualizarVenta($vent){
+    public function actualizarVenta($vent)
+    {
         $conexion = new conexion();
         $venta = $vent;
 
@@ -58,12 +62,17 @@ class gestorVenta
         $observacionventa = $venta->obtenerobs();
         $totalventa = $venta->obtenertotal();
 
-        $sql = "UPDATE venta SET fecha = '$fechaventa', hora = '$horaventa', Usu = '$idusu', docclie = '$docclie', codprodu = '$codprodu', observacion = '$observacionventa', total = '$totalventa' WHERE codventa = '$codventa'";
+        $sql = "UPDATE venta SET fecha = '$fechaventa', hora = '$horaventa', Usu = '$idusu', clie = '$docclie', produ = '$codprodu', observacion = '$observacionventa', total = '$totalventa' WHERE codventa = '$codventa'";
         $result = $conexion->ejecutar_query($sql);
-        return $result;
+        if ($result > 0) {
+            return 1;
+        } else {
+            return 2;
+        }
     }
 
-    public function eliminarVenta($venta){
+    public function eliminarVenta($venta)
+    {
         $conexion = new conexion();
         $sql = "DELETE FROM venta WHERE codventa = ?";
         $params = array($venta);

@@ -5,7 +5,7 @@ if ($result->rowCount() > 0) {
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Codigo</th>
                     <th scope="col">Nombre Rol</th>
                     <th scope="col">Acciones</th>
                 </tr>

@@ -258,8 +258,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                                <button type="submit" class="btn btn-primary">Registrar</button>
                                             </div>
                                         </form>
                                     </div>
@@ -272,6 +271,11 @@
             </div>
         </section>
     </main>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short">
+        </i>
+    </a>
 
     <div class="modal fade" id="editcli" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">

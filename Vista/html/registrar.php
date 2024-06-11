@@ -85,23 +85,27 @@
                                     <form action="index.php?accion=registrar" method="post" class="row g-3" enctype="multipart/form-data">
                                         <div class="col-12">
                                             <label for="validationDefault01" class="form-label">Documento</label>
-                                            <input type="text" class="form-control" id="validationDefault01" name="Usudoc" required>
+                                            <input type="text" class="form-control" id="validationDefault01" name="Usudoc" placeholder="Ingrese Documento" required>
                                         </div>
                                         <div class="col-12">
                                             <label for="validationDefault02" class="form-label">Usuario</label>
-                                            <input type="text" class="form-control" id="validationDefault02" name="usuario" required>
+                                            <input type="text" class="form-control" id="validationDefault02" name="usuario" placeholder="Ingrese Usuario" required>
                                         </div>
                                         <div class="col-12">
-                                            <label for="validationDefault03" class="form-label">Contraseña</label>
-                                            <input type="password" class="form-control" name="password" id="validationDefault03" required>
+                                            <label for="validationDefault03" class="form-label">Telefono</label>
+                                            <input type="tel" class="form-control" name="tel" id="validationDefault03" placeholder="Solo Valores Numericos" maxlength="10" required>
                                         </div>
                                         <div class="col-12">
-                                            <label for="validationDefault04" class="form-label">Foto</label>
-                                            <input type="file" class="form-control" name="foto" id="validationDefault04">
+                                            <label for="validationDefault04" class="form-label">Contraseña</label>
+                                            <input type="password" class="form-control" name="password" id="validationDefault04" placeholder="Ingrese Contraseña" required>
                                         </div>
                                         <div class="col-12">
-                                            <label for="validationDefault05" class="form-label">Rol</label>
-                                            <select class="form-select" id="cargo" name="cargo" id="validationDefault05" required>
+                                            <label for="validationDefault05" class="form-label">Foto</label>
+                                            <input type="file" class="form-control" name="foto" id="validationDefault05">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="validationDefault06" class="form-label">Rol</label>
+                                            <select class="form-select" id="cargo" name="cargo" id="validationDefault06" required>
                                             </select>
                                         </div>
                                         <div class="col-12">
@@ -119,6 +123,11 @@
             </section>
         </div>
     </main>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short">
+        </i>
+    </a>
 
     <script src="Vista/js/java_.js"></script>
     <script src="Vista/js/java.js"></script>

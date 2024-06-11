@@ -9,12 +9,17 @@ class controladorventa
         $venta = new venta($codventa,$fechaventa,$horaventa,$idusu,$docclie,$codprodu,$obs,$total);
         $gestorventa = new gestorVenta();
         $result = $gestorventa->agregarventa($venta);
-        if ($result == "0") {
-            echo "<script>alert('No se registró correctamente');</script>";
-            header("Location:index.php?accion=venta");
-        } else {
-            echo "<script>alert('Registro exitoso');</script>";
-            header("Location:index.php?accion=venta");
+        if ($result == 1) {
+            /***   Registro satisfactorio    ***/
+            header("Location:index.php?accion=venta&error=1");
+        }
+        if ($result == 2) {
+            /***   Usuario Repetido    ***/
+            header("Location:index.php?accion=venta&error=2");
+        }
+        if ($result == 3) {
+            /***   Error en registro    ***/
+            header("Location:index.php?accion=venta&error=3");
         }
     }
 
@@ -34,10 +39,13 @@ class controladorventa
         $venta = new venta($codventa,$fechaventa,$horaventa,$idusu,$docclie,$codprodu,$obs,$total);
         $gestorventa = new gestorventa();
         $result = $gestorventa->actualizarVenta($venta);
-        if ($result > 0) {
-            header("Location:index.php?accion=venta");
-        } else {
-            header("Location:index.php?accion=venta");
+        if ($result == 1) {
+            /***   Registro satisfactorio    ***/
+            header("Location:index.php?accion=venta&error2=1");
+        }
+        if ($result == 2) {
+            /***   Usuario Repetido    ***/
+            header("Location:index.php?accion=venta&error2=2");
         }
     }
 

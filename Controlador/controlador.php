@@ -11,13 +11,14 @@ class controlador
   {
     $gestor = new gestor();
     $result = $gestor->login($user, $pass);
-    if ($result != 1 && $result != 2 && $result != 3 && $result != 4 && $result != 5) {
-      $_SESSION["usuario"] = $result[0];
-      $_SESSION["rol"] = $result[1];
-      $_SESSION["password"] = $result[2];
-      $_SESSION["nombrerol"] = $result[3];
-      $_SESSION["Usudoc"] = $result[4];
-      $_SESSION["foto"] = $result[5];
+    if ($result != 1 && $result != 2 && $result != 3 && $result != 4 && $result != 5 && $result != 6 ) {
+      $_SESSION["telefono"] = $result[0];
+      $_SESSION["usuario"] = $result[1];
+      $_SESSION["rol"] = $result[2];
+      $_SESSION["password"] = $result[3];
+      $_SESSION["nombrerol"] = $result[4];
+      $_SESSION["Usudoc"] = $result[5];
+      $_SESSION["foto"] = $result[6];
       require_once("Vista/html/inicio.php");
     }
     if ($result == 1) {
@@ -37,7 +38,7 @@ class controlador
     header("Location:index.php");
   }
 
-  public function registrar($doc, $usu, $pass, $foto, $rol)
+  public function registrar($doc,$usu,$tel, $pass, $foto, $rol)
   {
     if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
       $rutaimg = 'uploads/';
@@ -52,7 +53,7 @@ class controlador
     }
 
 
-    $usu = new usu($doc, $usu, $pass, $foto, $rol);
+    $usu = new usu($doc,$usu,$tel, $pass, $foto, $rol);
     $gestor = new gestor();
     $result = $gestor->registrar($usu);
 
@@ -78,7 +79,7 @@ class controlador
     require_once 'Vista/html/consultarUsu.php';
   }
 
-  public function agregarUsuario($doc, $usu, $pass, $foto, $rol)
+  public function agregarUsuario($doc,$usu,$tel, $pass, $foto, $rol)
   {
     if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
       $rutaimg = 'uploads/';
@@ -91,7 +92,7 @@ class controlador
     } else {
       $foto = '';
     }
-    $usuarios = new usu($doc, $usu, $pass, $foto, $rol);
+    $usuarios = new usu($doc,$usu,$tel, $pass, $foto, $rol);
     $gestor = new gestor();
     $result = $gestor->agregarUsuario($usuarios);
     if ($result == 1) {
@@ -115,7 +116,7 @@ class controlador
     require_once 'Vista/html/modalEditusu.php';
   }
 
-  public function actualizarUsu($doc, $usu, $pass, $foto, $rol)
+  public function actualizarUsu($doc,$usu,$tel, $pass, $foto, $rol)
   {
     if ($foto['error'] === UPLOAD_ERR_OK) {
       $rutaimg = 'uploads/';
@@ -125,7 +126,7 @@ class controlador
     } else {
       $foto = ''; // Opcionalmente, puedes establecer un valor predeterminado si no se carga ninguna imagen.
     }
-    $usu = new usu($doc, $usu, $pass, $foto, $rol);
+    $usu = new usu($doc,$usu,$tel, $pass, $foto, $rol);
     $gestor = new gestor();
     $result = $gestor->actualizarUsu($usu);
     if ($result == 1) {
@@ -149,14 +150,14 @@ class controlador
 
 
   //------------------------------------- Perfil --------------------------------
-  public function editar()
+  public function editarP()
   {
     $gestor = new gestor();
     $result = $gestor->editarP();
     require_once 'Vista/html/modaleditPerfil.php';
   }
 
-  public function actualizarPerfil($doc, $usu, $pass, $foto, $rol)
+  public function actualizarPerfil($doc,$usu,$tel, $pass, $foto, $rol)
   {
     if ($foto['error'] === UPLOAD_ERR_OK) {
       $rutaimg = 'uploads/';
@@ -166,7 +167,7 @@ class controlador
     } else {
       $foto = ''; // Opcionalmente, puedes establecer un valor predeterminado si no se carga ninguna imagen.
     }
-    $usu = new usu($doc, $usu, $pass, $foto, $rol);
+    $usu = new usu($doc,$usu,$tel, $pass, $foto, $rol);
     $gestor = new gestor();
     $result = $gestor->actualizarPerfil($usu);
     if ($result == 1) {

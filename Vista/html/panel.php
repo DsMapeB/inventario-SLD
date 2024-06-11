@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Sistema de Gestion Onlinde de Inventario - Panel</title>
+    <title>Sistema de Gestion Online de Inventario - Panel</title>
     <link rel="shortcut icon" href="Vista/ico/favicon.ico" type="image/x-icon">
     <link href="Vista/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="Vista/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -50,15 +50,14 @@
                     <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                         <a href="index.php?accion=registro" class="btn-get-started">¡Comencemos!</a>
                     </div>
-                    <img src="Vista/img/logo2.png" class="img-fluid hero-img" alt="" data-aos="zoom-out"
-                        data-aos-delay="300">
+                    <img src="Vista/img/logo2.png" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
                 </div>
             </div>
         </section><!-- /Hero Section -->
     </main>
 
     <footer>
-        <div class="container copyright text-center mt-4">
+        <div class="container copyright text-center mt-2">
             <p>© <span>Copyright</span> <strong class="px-1 sitename">Sistema Gestion Online de
                     Inventario</strong><span>. Todos los Derechos Reservados</span></p>
             <div class="credits">
@@ -68,8 +67,7 @@
     </footer>
 
     <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
     <script src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>

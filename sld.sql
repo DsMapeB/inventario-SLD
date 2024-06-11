@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2024 a las 03:19:35
+-- Tiempo de generación: 11-06-2024 a las 06:39:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -38,8 +38,8 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`docclie`, `nombreclie`, `telefonoclie`) VALUES
-(1005814662, 'LorenaL', '787'),
-(1104936650, 'David', '3007382102');
+(1104936650, 'David', '3102818138'),
+(1105095366, 'Lorena Contreras', '3017904397');
 
 -- --------------------------------------------------------
 
@@ -60,7 +60,7 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`codprodu`, `nombreprodu`, `precioprodu`, `existenciaprodu`, `nitprodu`) VALUES
-(22, 'ACEITE', 10.000000, 32, 900736182);
+(22, 'Aceite', 10.000000, 32, 900736182);
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,7 @@ CREATE TABLE `proveedores` (
 --
 
 INSERT INTO `proveedores` (`nitpro`, `nombrePro`, `contactoPro`, `telefonoPro`, `direccionPro`, `ciudadPro`) VALUES
-(900736182, 'Apple Colombia Sas', 'Steve Jobs', '800 380230', 'KR 7 # 120 - 20 PI 3', 'Bogota');
+(900736182, 'Apple Colombia SAS', 'Steve Jobs', '800 380230', 'KR 7 # 120 - 20 PI 3', 'Bogota');
 
 -- --------------------------------------------------------
 
@@ -112,6 +112,7 @@ INSERT INTO `rol` (`cargoUsu`, `nombrerol`) VALUES
 CREATE TABLE `usuario` (
   `Usudoc` int(255) NOT NULL,
   `usuario` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(10) NOT NULL,
   `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `foto` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `rol` int(11) NOT NULL
@@ -121,9 +122,9 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`Usudoc`, `usuario`, `password`, `foto`, `rol`) VALUES
-(1005814662, 'Laura Stefanny Góngora Medina', '321', 'laug.png', 2),
-(1104936650, 'David Santiago Mape Burgos', '123', 'uploads/fotom.png', 1);
+INSERT INTO `usuario` (`Usudoc`, `usuario`, `telefono`, `password`, `foto`, `rol`) VALUES
+(1005814662, 'Laura Góngora', '3007382102', '321', 'uploads/laug.png', 2),
+(1104936650, 'Santiago Mape', '3143872538', '123', 'uploads/fotom.png', 1);
 
 -- --------------------------------------------------------
 
@@ -139,15 +140,8 @@ CREATE TABLE `venta` (
   `clie` int(11) NOT NULL,
   `produ` int(11) NOT NULL,
   `observacion` varchar(100) NOT NULL,
-  `total` float(10,2) NOT NULL
+  `total` float(10,3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
-
---
--- Volcado de datos para la tabla `venta`
---
-
-INSERT INTO `venta` (`codventa`, `fecha`, `hora`, `Usu`, `clie`, `produ`, `observacion`, `total`) VALUES
-(1, '2024-06-05', '20:16:00', 1104936650, 1104936650, 22, 'producto entregado, venta realizada con exito', 40.00);
 
 --
 -- Índices para tablas volcadas
@@ -202,13 +196,13 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `docclie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1104936651;
+  MODIFY `docclie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1105095367;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `codprodu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1416;
+  MODIFY `codprodu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1417;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`

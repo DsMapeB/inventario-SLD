@@ -5,7 +5,7 @@
   $conexion2->buscar_query($sql2);
   $result2 = $conexion2->obtener_resultado();
 ?>
-<option value="">-- Seleccione el Rol --</option>
+<option value="">-- Seleccione el Rol asignado --</option>
 <?php
 while($filas2 = $result2->fetch()){;
 ?>

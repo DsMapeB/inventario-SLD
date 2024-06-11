@@ -166,7 +166,7 @@
                             if (isset($_GET["error"])) {
                                 $mensaje = "Error";
                                 if ($_GET["error"] == 1) {
-                                    $mensaje = "¡Actualizacion de Usuario Exitosa!, Para ver la Actualización Cierre Sesion y vuelva abrirla";
+                                    $mensaje = "¡Actualización de usuario exitosa! Para ver los cambios, cierre sesión y vuelva a iniciarla.";
                             ?>
                                     <div class="alert alert-success d-flex align-items-center" role="alert">
                                         <div>
@@ -216,8 +216,16 @@
 
                                     <h5 class="card-title">Detalles del Perfil</h5>
                                     <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Documento</div>
+                                        <div class="col-lg-9 col-md-8 "><?php echo $_SESSION['Usudoc']; ?></div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Nombre</div>
                                         <div class="col-lg-9 col-md-8 "><?php echo $_SESSION['usuario']; ?></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Telefono</div>
+                                        <div class="col-lg-9 col-md-8 "><?php echo $_SESSION['telefono']; ?></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Contraseña</div>
@@ -247,6 +255,11 @@
             </div>
         </section>
     </main>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short">
+        </i>
+    </a>
 
     <!-- Modal -->
     <div class="modal fade" id="editperfil" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -31,7 +31,15 @@ $controladorCli = new controladorcli();
 $controladorProdu = new controladorprodu();
 $controladorVenta = new controladorventa();
 
-if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION["rol"]) && isset($_SESSION["password"]) && isset($_SESSION["nombrerol"]) && isset($_SESSION["foto"])) {
+if (
+    isset($_SESSION["Usudoc"])
+    && isset($_SESSION["usuario"])
+    && isset($_SESSION["telefono"])
+    && isset($_SESSION["rol"])
+    && isset($_SESSION["password"]) 
+    && isset($_SESSION["nombrerol"]) 
+    && isset($_SESSION["foto"])
+) {
     if (isset($_GET["accion"])) {
         switch ($_GET["accion"]) {
             case 'logout':
@@ -42,6 +50,7 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 $controlador->agregarUsuario(
                     $_REQUEST["Usudoc"],
                     $_REQUEST["usuario"],
+                    $_REQUEST["tel"],
                     $_REQUEST["password"],
                     $_REQUEST["foto"],
                     $_REQUEST["cargo"]
@@ -60,6 +69,7 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 $controlador->actualizarUsu(
                     $_REQUEST["Usudoc2"],
                     $_REQUEST["usuario2"],
+                    $_REQUEST["tel2"],
                     $_REQUEST["password2"],
                     $_FILES["foto2"],
                     $_REQUEST["cargo2"]
@@ -69,17 +79,18 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 $controlador->eliminarUsu($_GET["numero"]);
                 break;
 
-// -------------------------------------------------- Perfil ----------------------------------------------------------------
+                // -------------------------------------------------- Perfil ----------------------------------------------------------------
             case 'perfil':
                 $controlador->verpagina("Vista/html/perfil.php");
                 break;
             case 'editarPerfil';
-                $controlador->editar();
+                $controlador->editarP();
                 break;
             case 'actualizarPerfilF':
                 $controlador->actualizarPerfil(
                     $_POST["Usudoc3"],
                     $_POST["usuario3"],
+                    $_POST["tel3"],
                     $_POST["contraseña3"],
                     $_FILES["foto3"],
                     $_POST["rol3"]
@@ -265,6 +276,7 @@ if (isset($_SESSION["Usudoc"]) && isset($_SESSION["usuario"]) && isset($_SESSION
                 $controlador->registrar(
                     $_POST["Usudoc"],
                     $_POST["usuario"],
+                    $_POST["tel"],
                     $_POST["password"],
                     $_POST["foto"],
                     $_POST["cargo"]

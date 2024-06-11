@@ -10,31 +10,33 @@ class gestorprodu
         $existencia_produ = $producto->obtenerexistencia();
         $prove_produ = $producto->obtenerproveedor();
 
-        $sql = "INSERT INTO producto VALUES ('$cod_produ', '$nombre_produ', '$precio_produ', '$existencia_produ', '$prove_produ')";
-
-        $conexion->ejecutar_query($sql);
-
         $sql2 = "SELECT * FROM producto WHERE codprodu='$cod_produ'";
         $conexion->buscar_query($sql2);
-        
         $validar = $conexion->obtener_filas();
         if ($validar > 0) {
-            $result = $conexion->obtener_resultado();
-            return $result;
+            return 2;
         } else {
+            $sql = "INSERT INTO producto VALUES ('$cod_produ', '$nombre_produ', '$precio_produ', '$existencia_produ', '$prove_produ')";
+            $result = $conexion->ejecutar_query($sql);
+            if ($result > 0){ 
             return 1;
+        } else {
+            return 3;
         }
     }
+}
 
-    public function consultarProdu(){
+    public function consultarProdu()
+    {
         $conexion = new conexion();
-        $sql = "SELECT * FROM producto join proveedores on producto.nitprodu=proveedores.nitpro;;";
+        $sql = "SELECT * FROM producto join proveedores on producto.nitprodu=proveedores.nitpro;";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
         return $result;
     }
 
-    public function editarProdu($codprodu){
+    public function editarProdu($codprodu)
+    {
         $conexion = new conexion();
         $sql = "SELECT * FROM producto WHERE codprodu = $codprodu";
         $conexion->buscar_query($sql);
@@ -42,7 +44,8 @@ class gestorprodu
         return $result;
     }
 
-    public function actualizarProdu($produ){
+    public function actualizarProdu($produ)
+    {
         $conexion = new conexion();
         $producto = $produ;
 
@@ -54,10 +57,15 @@ class gestorprodu
 
         $sql = "UPDATE producto SET codprodu = '$codprodu', nombreprodu = '$nombreprodu', precioprodu = '$precioprodu', existenciaprodu = '$exisprodu', nitprodu = '$proveprodu' ";
         $result = $conexion->ejecutar_query($sql);
-        return $result;
+        if ($result > 0){
+            return 1;
+        } else {
+            return 2;
+        }
     }
 
-    public function eliminarProdu($producto){
+    public function eliminarProdu($producto)
+    {
         $conexion = new conexion();
         $sql = "DELETE FROM producto WHERE codprodu = ?";
         $params = array($producto);

@@ -8,6 +8,7 @@ if ($result->rowCount() > 0) {
                     <th scope="col">#</th>
                     <th scope="col">Documento</th>
                     <th scope="col">Usuario</th>
+                    <th scope="col">Telefono</th>
                     <th scope="col">Contraseña</th>
                     <th scope="col">Foto</th>
                     <th scope="col">Rol</th>
@@ -26,6 +27,7 @@ if ($result->rowCount() > 0) {
                         <th scope="row"><?php echo $cont ?></th>
                         <td><?php echo !empty($fila->Usudoc) ? $fila->Usudoc : 'Sin documento'; ?></td>
                         <td><?php echo !empty($fila->usuario) ? $fila->usuario : 'Sin usuario'; ?></td>
+                        <td><?php echo !empty($fila->telefono) ? $fila->telefono : 'Sin Telefono'; ?></td>
                         <td><?php
                             if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") {
                                 echo !empty($fila->password) ? $fila->password : 'Sin contraseña';

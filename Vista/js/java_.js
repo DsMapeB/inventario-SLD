@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  cargarRol();
   cargarRol2();
   cargarRol3();
   cargarRolP();
@@ -14,22 +13,11 @@ $(document).ready(function(){
 
 })
 
-//--------------------------roles--------------------------
-function consultarRol(){
-  var url = "index.php?accion=consultarRol";
-  $("#consulRol").load(url);
-}
-function editarRol(val){
-  var url = "index.php?accion=editarRol&numero="+val;
-  $("#modaleditRol").load(url);
-}
-function eliminarRole(numero){
-  if (confirm("Estas seguro de eliminar el Rol " + numero + "?")){
-    $.get("index.php", { accion: 'eliminarRol', numero: numero}, function (mensaje){
-      alert(mensaje);
-      location.reload();
-    });
-  }
+//-------------------------- Login y Registro --------------------------
+function cargarRol3(){
+  $.post("Modelo/cargarRol3.php", {}, function (mensaje){
+    $("#cargo").html(mensaje);
+});
 }
 
 //--------------------------perfil--------------------------
@@ -64,33 +52,23 @@ function cargarRolP(){
 });
 }
 
-//--------------------------Login--------------------------
-function cargarRol3(){
-  $.post("Modelo/cargarRol3.php", {}, function (mensaje){
-    $("#cargo").html(mensaje);
-});
+//--------------------------roles--------------------------
+function consultarRol(){
+  var url = "index.php?accion=consultarRol";
+  $("#consulRol").load(url);
 }
-
-// --------------------------Usuario------------------------
-function consultarusu(){
-  var url = "index.php?accion=consultarusu";
-  $("#usuario").load(url);
+function editarRol(val){
+  var url = "index.php?accion=editarRol&numero="+val;
+  $("#modaleditRol").load(url);
 }
-
-function eliminarusu(numero2){
-  if (confirm("Estas seguro de eliminar el Usuario " + numero2 + "?")){
-    $.get("index.php", { accion: 'eliminarusu', numero2: numero2}, function (mensaje){
+function eliminarRole(numero){
+  if (confirm("Estas seguro de eliminar el Rol " + numero + "?")){
+    $.get("index.php", { accion: 'eliminarRol', numero: numero}, function (mensaje){
       alert(mensaje);
       location.reload();
     });
   }
 }
-function cargarRol(){
-  $.post("Modelo/cargarRol.php", {}, function (mensaje){
-    $("#rol").html(mensaje);
-});
-}
-
 
 
 //---------------------------Cliente----------------------------

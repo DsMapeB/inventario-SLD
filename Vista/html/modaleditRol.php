@@ -1,7 +1,7 @@
 <?php $filas = $result->fetch(); ?>
-<form action="index.php?accion=actualizarRol" method="post" class="row g-3 needs-validation">
+<form action="index.php?accion=actualizarRol" method="post">
 <div class="input-group mb-3">
-    <span for="validationDefault01" class="input-group-text">Id Rol</span>
+    <span for="validationDefault01" class="input-group-text">Rol</span>
     <input type="text" class="form-control" id="validationDefault01" name="numrol2" value="<?php echo $filas['cargoUsu'] ?>" required readonly>
   </div>
   <div class="input-group mb-3">

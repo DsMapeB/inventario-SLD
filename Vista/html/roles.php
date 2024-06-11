@@ -242,14 +242,13 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form action="index.php?accion=ingresarRol" method="post" class="row g-3 needs-validation">
+                      <form action="index.php?accion=ingresarRol" method="post">
                         <div class="input-group mb-3">
                           <span for="validationDefault01" class="input-group-text">Nombre Rol</span>
                           <input type="text" class="form-control" id="validationDefault01" name="rol" required>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                          <button type="submit" class="btn btn-primary">Registrar</button>
                         </div>
                       </form>
                     </div>
@@ -279,7 +278,8 @@
   </div>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-    <i class="bi bi-arrow-up-short"></i>
+    <i class="bi bi-arrow-up-short">
+    </i>
   </a>
 
   <script src="Vista/js/java.js"></script>
