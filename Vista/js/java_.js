@@ -46,11 +46,6 @@ function editarUsuario(val){
   var url = "index.php?accion=editarUsu&numero="+val;
   $("#modaleditusu").load(url);
 }
-function cargarRolP(){
-  $.post("Modelo/cargarRolP.php", {}, function (mensaje){
-    $("#rolP").html(mensaje);
-});
-}
 
 //--------------------------roles--------------------------
 function consultarRol(){

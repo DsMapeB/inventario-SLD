@@ -5,7 +5,7 @@ require_once("Modelo/conexion.php");
 //-------------------------- controlador y gestor usuario, logueos y rol ----------------------------------
 require_once("Controlador/controlador.php");
 require_once("Modelo/gestor.php");
-require_once("Modelo/usu.php");
+require_once("Modelo/usuario.php");
 require_once("Modelo/rol.php");
 // ----------------------------------- Controlador y Gestor Cliente -----------------------------------------
 require_once("Controlador/controladorCli.php");

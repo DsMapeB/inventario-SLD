@@ -23,7 +23,7 @@
     </div>
     <div class="input-group mb-3">
       <span for="validationDefault06" class="input-group-text">Rol</span>
-      <input type="text" class="form-control" name="rol3" id="validationDefault04" value="<?php echo $filas['nombrerol']; ?>" readonly required>
+      <input type="text" class="form-control" name="rol3" id="validationDefault06" value="<?php echo $filas['nombrerol']; ?>" readonly required>
     </div>
   </div>
   <div class="modal-footer">
