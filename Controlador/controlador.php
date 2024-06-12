@@ -118,22 +118,28 @@ class controlador
 
   public function actualizarUsu($doc,$usu,$tel, $pass, $foto, $rol)
   {
+    // Obtener el nombre del archivo de la imagen existente en la base de datos
+    $foto_existente = $_POST["foto_existente"];
+
+    // Comprobar si se cargó una nueva imagen
     if ($foto['error'] === UPLOAD_ERR_OK) {
-      $rutaimg = 'uploads/';
-      $fotoname = $foto['name'];
-      move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
-      $foto = $rutaimg . $fotoname;
+        $rutaimg = 'uploads/';
+        $fotoname = $foto['name'];
+        move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
+        $foto_actualizada = $rutaimg . $fotoname;
     } else {
-      $foto = ''; // Opcionalmente, puedes establecer un valor predeterminado si no se carga ninguna imagen.
+        // Si no se cargó una nueva imagen, usar la imagen existente
+        $foto_actualizada = $foto_existente;
     }
-    $usu = new usu($doc,$usu,$tel, $pass, $foto, $rol);
+
+    $usu = new usu($doc,$usu,$tel, $pass, $foto_actualizada, $rol);
     $gestor = new gestor();
-    $result = $gestor->actualizarUsu($usu);
+    $result = $gestor->actualizarPerfil($usu);
     if ($result == 1) {
-      header("Location:index.php?accion=usuario&error2=1");
+        header("Location:index.php?accion=usuario&error2=1");
     }
     if ($result == 2) {
-      header("Location:index.php?accion=usuario&error2=2");
+        header("Location:index.php?accion=usuario&error2=2");
     }
   }
 
@@ -158,25 +164,32 @@ class controlador
   }
 
   public function actualizarPerfil($doc,$usu,$tel, $pass, $foto, $rol)
-  {
+{
+    // Obtener el nombre del archivo de la imagen existente en la base de datos
+    $foto_existente = $_POST["foto_existente"];
+
+    // Comprobar si se cargó una nueva imagen
     if ($foto['error'] === UPLOAD_ERR_OK) {
-      $rutaimg = 'uploads/';
-      $fotoname = $foto['name'];
-      move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
-      $foto = $rutaimg . $fotoname;
+        $rutaimg = 'uploads/';
+        $fotoname = $foto['name'];
+        move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
+        $foto_actualizada = $rutaimg . $fotoname;
     } else {
-      $foto = ''; // Opcionalmente, puedes establecer un valor predeterminado si no se carga ninguna imagen.
+        // Si no se cargó una nueva imagen, usar la imagen existente
+        $foto_actualizada = $foto_existente;
     }
-    $usu = new usu($doc,$usu,$tel, $pass, $foto, $rol);
+
+    $usu = new usu($doc,$usu,$tel, $pass, $foto_actualizada, $rol);
     $gestor = new gestor();
     $result = $gestor->actualizarPerfil($usu);
     if ($result == 1) {
-      header("Location:index.php?accion=perfil&error=1");
+        header("Location:index.php?accion=perfil&error=1");
     }
     if ($result == 2) {
-      header("Location:index.php?accion=perfil&error=2");
+        header("Location:index.php?accion=perfil&error=2");
     }
-  }
+}
+
 
   //----------------------------------------------------roles-----------------------------------------------------------------
   public function agregarRol($rol)

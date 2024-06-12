@@ -10,7 +10,10 @@
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="Vista/css/estilos.css">
     <link rel="stylesheet" href="Vista/bootstrap-icons/bootstrap-icons.min.css">
-    
+    <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
+    <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <script src="Vista/jquery/jquery.js"></script>
+
 </head>
 
 <body>
@@ -85,7 +88,7 @@
                     <span>Inicio</span>
                 </a>
             </li><!-- End Inicio -->
-            
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=usuario">
                     <i class="bi bi-person "></i>
@@ -93,13 +96,13 @@
                 </a>
             </li><!-- End Usuario -->
 
-            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador" ): ?>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php?accion=rol">
-                    <i class="bi bi-person-rolodex"></i>
-                    <span>Roles</span>
-                </a>
-            </li><!-- End rol -->
+            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.php?accion=rol">
+                        <i class="bi bi-person-rolodex"></i>
+                        <span>Roles</span>
+                    </a>
+                </li><!-- End rol -->
             <?php endif; ?>
 
             <li class="nav-item">
@@ -150,13 +153,11 @@
         </div><!--fin titulo de pagina -->
 
 
-        <div class="mai2 w-100">
-            <div class="mai21 ">
-                <h3 class="card-title">Bienvenidos a su Sistema de Gestion Online de Inventario</h3>
-                <p class="w-100">
-                    ¡Bienvenidos al Sistema de Gestion Online de Inventario! Este sistema te permitirá controlar de manera eficiente tus existencias, optimizar el flujo de productos y mejorar la gestión de tus activos. ¡Comencemos a maximizar la eficiencia y la rentabilidad de tu inventario juntos!
-                </p>
-            </div>
+        <div class="bienvenida">
+            <h3 class="card-title">Bienvenidos a su Sistema de Gestion Online de Inventario</h3>
+            <p class="w-100">
+                ¡Bienvenidos al Sistema de Gestion Online de Inventario! Este sistema te permitirá controlar de manera eficiente tus existencias, optimizar el flujo de productos y mejorar la gestión de tus activos. ¡Comencemos a maximizar la eficiencia y la rentabilidad de tu inventario juntos!
+            </p>
         </div><!--fin bienvenida -->
 
         <section class="mai">
@@ -188,7 +189,7 @@
             </div>
         </section><!--fin sobre el sistema -->
 
-        <section class="somos w-100">
+        <section class="somos ">
             <h2 class="card-titlem w-100">¿Quienes Somos?</h2>
             <p>En SLD estamos dedicados a revolucionar la gestión online de inventario a través de soluciones tecnológicas avanzadas y un enfoque centrado en el cliente. Nuestro equipo está comprometido con la excelencia en cada aspecto de nuestro trabajo, desde el desarrollo de software hasta el servicio al cliente, con el objetivo de ofrecer la mejor experiencia posible a nuestros usuarios.</p>
         </section><!--fin quienes somos -->
@@ -204,6 +205,12 @@
             </div>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
+                    <h5 class="card-titlem">Nuestros Valores</h5>
+                    <p class="card-text">Nos vemos como la vanguardia en el ámbito de los Sistemas de Gestión Online de Inventario, comprometidos en proporcionar a nuestros usuarios las herramientas más avanzadas y eficaces para manejar sus existencias de manera óptima. Nos esforzamos por ser reconocidos por nuestros valores fundamentales de innovación, confiabilidad y capacidad para adaptarnos a las cambiantes necesidades del mercado. Nuestra misión es ofrecer soluciones integrales que impulsen el crecimiento y la eficiencia de las empresas en todo el mundo, asegurando un camino hacia el éxito empresarial.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
                     <h5 class="card-titlem">Nuestra Mision</h5>
                     <p class="card-text">Nuestra misión es simplificar y optimizar la gestión de inventario para empresas de todos los tamaños, brindando un sistema online accesible, intuitivo y completo. Nos comprometemos a ofrecer herramientas que permitan a nuestros clientes tener un control preciso y en tiempo real de sus existencias, reduciendo costos, minimizando pérdidas y mejorando la eficiencia operativa. Nos esforzamos por proporcionar un servicio de alta calidad, respaldado por un equipo comprometido y orientado al cliente, con el objetivo de impulsar el éxito y el crecimiento de nuestros usuarios.</p>
                 </div>
@@ -211,7 +218,8 @@
         </section><!--fin vision mision -->
 
 
-        <div class="carr w-100">
+        <div class="carr ">
+            <h5 class="card-titlem w-100">Fundadores/Creadores</h5>
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -244,13 +252,14 @@
             </div>
         </div>
     </main>
-    
+
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
         <i class="bi bi-arrow-up-short">
         </i>
     </a>
 
     <script src="Vista/js/java.js"></script>
+    <script src="Vista/js/java_.js"></script>
 </body>
 
 </html>

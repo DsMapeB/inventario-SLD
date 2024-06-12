@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -164,27 +165,26 @@
 
                         <?php
                             if (isset($_GET["error"])) {
-                                $mensaje = "Error";
                                 if ($_GET["error"] == 1) {
-                                    $mensaje = "¡Actualización de usuario exitosa! Para ver los cambios, cierre sesión y vuelva a iniciarla.";
                             ?>
-                                    <div class="alert alert-success d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-check-lg"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "¡Actualización de usuario exitosa! Para ver los cambios, cierre sesión y vuelva a iniciarla.",
+                                            showConfirmButton: false,
+                                            timer: 2500
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 if ($_GET["error"] == 2) {
-                                    $mensaje = "¡Error al Actualizar, Vuelva a Intentar!";
                                 ?>
-                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Oops... ¡Error al Actualizar, Vuelva a Intentar!",
+                                        });
+                                    </script>
                             <?php
                                 }
                             }

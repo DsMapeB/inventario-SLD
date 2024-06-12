@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </head>
@@ -45,36 +46,37 @@
                                     if (isset($_GET["error"])) {
                                         $mensaje = "Error";
                                         if ($_GET["error"] == 1) {
-                                            $mensaje = "¡Registro Exitoso!";
                                     ?>
-                                            <div class="alert alert-success d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-check-lg"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
+                                            <script>
+                                                Swal.fire({
+                                                    icon: "success",
+                                                    title: "¡Registro Exitoso!",
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                });
+                                            </script>
                                         <?php
                                         }
                                         if ($_GET["error"] == 2) {
-                                            $mensaje = "¡El usuario ingresado se encuentra Registrado!";
                                         ?>
-                                            <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-exclamation-triangle-fill"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
+                                            <script>
+                                                Swal.fire({
+                                                    icon: "warning",
+                                                    title: "¡El usuario ingresado se encuentra Registrado!",
+                                                    showConfirmButton: false,
+                                                    timer: 2000
+                                                });
+                                            </script>
                                         <?php
                                         }
                                         if ($_GET["error"] == 3) {
-                                            $mensaje = "¡Error al registrar!";
                                         ?>
-                                            <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                                <div>
-                                                    <i class="bi bi-exclamation-triangle-fill"></i>
-                                                    <?php echo $mensaje; ?>
-                                                </div>
-                                            </div>
+                                            <script>
+                                                Swal.fire({
+                                                    icon: "error",
+                                                    title: "Oops... ¡Error al registrar!",
+                                                });
+                                            </script>
                                         <?php
                                         }
                                         ?>
@@ -85,16 +87,32 @@
                                     <form action="index.php?accion=registrar" method="post" class="row g-3" enctype="multipart/form-data">
                                         <div class="col-12">
                                             <label for="validationDefault01" class="form-label">Documento</label>
-                                            <input type="text" class="form-control" id="validationDefault01" name="Usudoc" placeholder="Ingrese Documento" required>
+                                            <input type="text" class="form-control" id="doc" id="validationDefault01" name="Usudoc" minlength="6" maxlength="10" placeholder="Ingrese Documento" required>
                                         </div>
+                                        <script>
+                                            document.getElementById('doc').addEventListener('input', function(e) {
+                                                var input = e.target;
+                                                var value = input.value;
+                                                // Eliminar cualquier carácter no numérico
+                                                input.value = value.replace(/\D/g, '');
+                                            });
+                                        </script>
                                         <div class="col-12">
                                             <label for="validationDefault02" class="form-label">Usuario</label>
                                             <input type="text" class="form-control" id="validationDefault02" name="usuario" placeholder="Ingrese Usuario" required>
                                         </div>
                                         <div class="col-12">
-                                            <label for="validationDefault03" class="form-label">Telefono</label>
-                                            <input type="tel" class="form-control" name="tel" id="validationDefault03" placeholder="Solo Valores Numericos" maxlength="10" required>
+                                            <label for="validationDefault03" class="form-label">Teléfono</label>
+                                            <input type="tel" class="form-control" name="tel" id="tel" id="validationDefault03" placeholder="Ingrese Teléfono" maxlength="10" required>
                                         </div>
+                                        <script>
+                                            document.getElementById('tel').addEventListener('input', function(e) {
+                                                var input = e.target;
+                                                var value = input.value;
+                                                // Eliminar cualquier carácter no numérico
+                                                input.value = value.replace(/\D/g, '');
+                                            });
+                                        </script>
                                         <div class="col-12">
                                             <label for="validationDefault04" class="form-label">Contraseña</label>
                                             <input type="password" class="form-control" name="password" id="validationDefault04" placeholder="Ingrese Contraseña" required>

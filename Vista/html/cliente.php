@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -164,36 +165,37 @@
                             if (isset($_GET["error"])) {
                                 $mensaje = "Error";
                                 if ($_GET["error"] == 1) {
-                                    $mensaje = "¡Cliente Registrado Exitosamente!";
                             ?>
-                                    <div class="alert alert-success d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-check-lg"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "¡Cliente Agregado Exitosamente!",
+                                            showConfirmButton: false,
+                                            timer: 2000
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 if ($_GET["error"] == 2) {
-                                    $mensaje = "¡El Cliente ingresado ya se encuentra Registrado!";
                                 ?>
-                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "warning",
+                                            title: "¡El Cliente ingresado ya se encuentra Registrado!",
+                                            showConfirmButton: false,
+                                            timer: 2000
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 if ($_GET["error"] == 3) {
-                                    $mensaje = "¡Error al registrar!";
                                 ?>
-                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Oops... ¡Error al registrar!",
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 ?>
@@ -203,27 +205,27 @@
                             ?>
                             <?php
                             if (isset($_GET["error2"])) {
-                                $mensaje = "Error2";
                                 if ($_GET["error2"] == 1) {
-                                    $mensaje = "¡Cliente Actualizado Exitosamente!";
                             ?>
-                                    <div class="alert alert-success d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-check-lg"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            position: "top-end",
+                                            icon: "success",
+                                            title: "¡Cliente Actualizado Exitosamente!",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 if ($_GET["error2"] == 2) {
-                                    $mensaje = "¡Error al Actualizar al Cliente!";
                                 ?>
-                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Oops... ¡Error al Actualizar Cliente!",
+                                        });
+                                    </script>
                             <?php
                                 }
                             }

@@ -798,7 +798,7 @@ h6 {
 
 .carr{
   background-color: #d6d8e6;
-  width: 400%;
+  width: 85%;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -810,37 +810,37 @@ h6 {
 }
 .mai{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 .w-100{
   text-align: center;
 }
-.mai21{
+
+.bienvenida {
   background-color: #d6d8e6;
-  width: 100%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10px;
-}
-.mai2{
-  background-color: #d6d8e6;
-  width: 750px;
+  width: 85%;
   text-align: center;
   border-radius: 10px;
+  margin: 20px auto; /* Ajuste el valor del margen según sea necesario */
+  padding: 5px; /* Agregamos un padding de 20px en todos los lados */
 }
 .somos{
   background-color: #d6d8e6;
-  width: 850px;
+  width: 85%;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
   border-radius: 10px;
+  margin: 20px auto; /* Ajuste el valor del margen según sea necesario */
+  padding: 5px; /* Agregamos un padding de 20px en todos los lados */
 }
 #carouselExampleCaptions{
   width: 495px;
   height: 100%;
+  background-color: #d6d8e6;
+  text-align: center;
+  border-radius: 10px;
+  margin: 20px auto; /* Ajuste el valor del margen según sea necesario */
+  padding: 5px; /* Agregamos un padding de 20px en todos los lados */
 }
 #perfild{
   margin-right: 5px;

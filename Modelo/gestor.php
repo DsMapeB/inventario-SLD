@@ -154,7 +154,7 @@ class gestor
       $rol = $user->obtenerrol(); // Aunque no se use, podemos obtenerlo para mantener el código consistente
   
       // Actualizar solo los campos editables
-      $sql = "UPDATE usuario SET telefono = '$tel', password = '$password', foto = '$foto' WHERE Usudoc = '$doc' AND usuario = '$usuario'";
+      $sql = "UPDATE usuario SET usuario = '$usuario', telefono = '$tel', password = '$password', foto = '$foto' WHERE Usudoc = '$doc'";
       $result = $conexion->ejecutar_query($sql);
   
       if ($result > 0) {

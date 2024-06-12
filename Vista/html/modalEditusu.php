@@ -18,7 +18,8 @@
   </div>
   <div class="input-group mb-3">
     <span for="validationDefault05" class="input-group-text">Foto</span>
-    <input type="file" class="form-control" name="foto2" id="validationDefault05" required>
+    <input type="file" class="form-control" name="foto2" id="validationDefault05">
+    <input type="hidden" name="foto_existente" value="<?php echo $fila['foto']; ?>">
   </div>
   <div class="input-group mb-3">
     <span for="validationDefault06" class="input-group-text">Rol</span>

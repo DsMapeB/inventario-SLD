@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body id="ini">
@@ -44,20 +43,28 @@
                                     </div>
                                     <?php
                                     if (isset($_GET["error"])) {
-                                        $mensaje = "Error";
                                         if ($_GET["error"] == 1) {
-                                            $mensaje = "¡La contraseña ingresada es incorrecta!";
+                                    ?>
+                                            <script>
+                                                Swal.fire({
+                                                    icon: "warning",
+                                                    title: "¡La contraseña Ingresada es Incorrecta!",
+                                                    showConfirmButton: false,
+                                                    timer: 2000
+                                                });
+                                            </script>
+                                        <?php
                                         }
                                         if ($_GET["error"] == 2) {
-                                            $mensaje = "¡El usuario ingresado no corresponde a ninguna cuenta!";
+                                        ?>
+                                            <script>
+                                                Swal.fire({
+                                                    icon: "error",
+                                                    title: "Oops... ¡El usuario ingresado no corresponde a ninguna cuenta!",
+                                                });
+                                            </script>
+                                        <?php
                                         }
-                                    ?>
-                                        <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                            <div>
-                                                <i class="bi bi-exclamation-triangle-fill"></i> <?php echo $mensaje; ?>
-                                            </div>
-                                        </div>
-                                    <?php
                                     }
                                     ?>
                                     <form action="index.php?accion=login" method="post" class="row g-3 needs-validation">

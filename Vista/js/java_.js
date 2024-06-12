@@ -1,7 +1,6 @@
 $(document).ready(function(){
   cargarRol2();
   cargarRol3();
-  cargarRolP();
   cargarNit();
   cargarNitEdit();
   cargarUsuario1();
