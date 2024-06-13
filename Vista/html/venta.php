@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php?accion=inicio" class="logo d-flex align-items-center">
-                <img src="Vista/img/logo.png" alt="">
+                <img src="Vista/img/logo.webp" alt="">
                 <span class="d-none d-lg-block">Sistema Gestion Online de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -90,7 +91,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=usuario">
                     <i class="bi bi-person "></i>
-                    <span>Usuarios</span>
+                    <span>Trabajadores</span>
                 </a>
             </li><!-- End Usuario -->
 
@@ -161,38 +162,39 @@
 
                             <?php
                             if (isset($_GET["error"])) {
-                                $mensaje = "Error";
                                 if ($_GET["error"] == 1) {
-                                    $mensaje = "¡Venta Registrada Exitosamente!";
                             ?>
-                                    <div class="alert alert-success d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-check-lg"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "¡Venta Realizada Exitosamente!",
+                                            showConfirmButton: false,
+                                            timer: 2000
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 if ($_GET["error"] == 2) {
-                                    $mensaje = "¡La Venta ingresada ya se encuentra Registrada!";
                                 ?>
-                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "warning",
+                                            title: "¡La Venta ingresada ya se encuentra Registrado!",
+                                            showConfirmButton: false,
+                                            timer: 2000
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 if ($_GET["error"] == 3) {
                                     $mensaje = "¡Error al registrar!";
                                 ?>
-                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Oops... ¡Error al registrar!",
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 ?>
@@ -202,27 +204,27 @@
                             ?>
                             <?php
                             if (isset($_GET["error2"])) {
-                                $mensaje = "Error2";
                                 if ($_GET["error2"] == 1) {
-                                    $mensaje = "¡Venta Actualizada Exitosamente!";
                             ?>
-                                    <div class="alert alert-success d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-check-lg"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            position: "top-end",
+                                            icon: "success",
+                                            title: "¡Venta Actualizada Exitosamente!",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 if ($_GET["error2"] == 2) {
-                                    $mensaje = "Al parecer, no hubo cambios o hubo un error al actualizar la Venta. ¡Inténtelo de nuevo!";
                                 ?>
-                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Oops... Al parecer, no hubo cambios o hubo un error al actualizar la Venta. ¡Inténtelo de nuevo!",
+                                        });
+                                    </script>
                             <?php
                                 }
                             }

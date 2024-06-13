@@ -23,7 +23,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php?accion=inicio" class="logo d-flex align-items-center">
-                <img src="Vista/img/logo.png" alt="">
+                <img src="Vista/img/logo.webp" alt="">
                 <span class="d-none d-lg-block">Sistema Gestion Online de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -92,7 +92,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=usuario">
                     <i class="bi bi-person "></i>
-                    <span>Usuarios</span>
+                    <span>Trabajadores</span>
                 </a>
             </li><!-- End Usuario -->
 
@@ -162,74 +162,64 @@
                             <p>Aca podras encontrar toda la informacion sobre tus Clientes</p>
 
                             <?php
-                            if (isset($_GET["error"])) {
-                                $mensaje = "Error";
-                                if ($_GET["error"] == 1) {
-                            ?>
-                                    <script>
-                                        Swal.fire({
-                                            icon: "success",
-                                            title: "¡Cliente Agregado Exitosamente!",
-                                            showConfirmButton: false,
-                                            timer: 2000
-                                        });
-                                    </script>
-                                <?php
-                                }
-                                if ($_GET["error"] == 2) {
-                                ?>
-                                    <script>
-                                        Swal.fire({
-                                            icon: "warning",
-                                            title: "¡El Cliente ingresado ya se encuentra Registrado!",
-                                            showConfirmButton: false,
-                                            timer: 2000
-                                        });
-                                    </script>
-                                <?php
-                                }
-                                if ($_GET["error"] == 3) {
-                                ?>
-                                    <script>
-                                        Swal.fire({
-                                            icon: "error",
-                                            title: "Oops... ¡Error al registrar!",
-                                        });
-                                    </script>
-                                <?php
-                                }
-                                ?>
+if (isset($_GET["error"])) {
+    $mensaje = "Error";
+    switch ($_GET["error"]) {
+        case 1:
+            echo '<script>
+                    Swal.fire({
+                        icon: "success",
+                        title: "¡Cliente Agregado Exitosamente!",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                  </script>';
+            break;
+        case 2:
+            echo '<script>
+                    Swal.fire({
+                        icon: "warning",
+                        title: "¡El Cliente ingresado ya se encuentra Registrado!",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                  </script>';
+            break;
+        case 3:
+            echo '<script>
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops... ¡Error al registrar!",
+                    });
+                  </script>';
+            break;
+    }
+}
 
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if (isset($_GET["error2"])) {
-                                if ($_GET["error2"] == 1) {
-                            ?>
-                                    <script>
-                                        Swal.fire({
-                                            position: "top-end",
-                                            icon: "success",
-                                            title: "¡Cliente Actualizado Exitosamente!",
-                                            showConfirmButton: false,
-                                            timer: 1500
-                                        });
-                                    </script>
-                                <?php
-                                }
-                                if ($_GET["error2"] == 2) {
-                                ?>
-                                    <script>
-                                        Swal.fire({
-                                            icon: "error",
-                                            title: "Oops... ¡Error al Actualizar Cliente!",
-                                        });
-                                    </script>
-                            <?php
-                                }
-                            }
-                            ?>
+if (isset($_GET["error2"])) {
+    switch ($_GET["error2"]) {
+        case 1:
+            echo '<script>
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "¡Cliente Actualizado Exitosamente!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                  </script>';
+            break;
+        case 2:
+            echo '<script>
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops... Al parecer, no hubo cambios o hubo un error al actualizar el Cliente. ¡Inténtelo de nuevo!",
+                    });
+                  </script>';
+            break;
+    }
+}
+?>
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggclie">

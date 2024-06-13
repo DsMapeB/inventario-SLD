@@ -20,7 +20,7 @@
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
             <a href="index.php" class="logo d-flex align-items-center me-auto">
-                <img src="Vista/img/logo.png" alt="">
+                <img src="Vista/img/logo2.webp" alt="">
                 <h1 class="sitename">SLD</h1>
             </a>
 
@@ -50,7 +50,7 @@
                     <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                         <a href="index.php?accion=registro" class="btn-get-started">¡Comencemos!</a>
                     </div>
-                    <img src="Vista/img/logo2.png" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
+                    <img src="Vista/img/logo2.webp" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
                 </div>
             </div>
         </section><!-- /Hero Section -->

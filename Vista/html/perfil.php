@@ -23,7 +23,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php?accion=inicio" class="logo d-flex align-items-center">
-                <img src="Vista/img/logo.png" alt="">
+                <img src="Vista/img/logo.webp" alt="">
                 <span class="d-none d-lg-block">Sistema Gestion Online de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -92,7 +92,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=usuario">
                     <i class="bi bi-person "></i>
-                    <span>Usuarios</span>
+                    <span>Trabajadores</span>
                 </a>
             </li><!-- End Usuario -->
 

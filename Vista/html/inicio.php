@@ -22,7 +22,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php?accion=inicio" class="logo d-flex align-items-center">
-                <img src="Vista/img/logo.png" alt="">
+                <img src="Vista/img/logo.webp" alt="">
                 <span class="d-none d-lg-block">Sistema Gestion Online de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -92,7 +92,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=usuario">
                     <i class="bi bi-person "></i>
-                    <span>Usuarios</span>
+                    <span>Trabajadores</span>
                 </a>
             </li><!-- End Usuario -->
 
@@ -164,7 +164,7 @@
             <h5 class="card-titlem w-100">Sobre el Sistema de Gestion Online de Inventario</h5>
             <p class="w-100">Aca te mostraremos todo lo que puede traer Nuestro sistema online de Inventario </p>
             <div class="card" style="width: 18rem;">
-                <img src="Vista/img/usua.png" class="card-img-top" alt="...">
+                <img src="Vista/img/usuarios.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-titlem">Usuarios</h5>
                     <p class="card-text">En la seccion de Usuarios podras ver todos los Usuarios Inscritos por el Administrador</p>
@@ -172,7 +172,7 @@
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
-                <img src="Vista/img/provee.png" class="card-img-top" alt="..." height="171.65px" width="448px">
+                <img src="Vista/img/provee.webp" class="card-img-top" alt="..." height="171.65px" width="448px">
                 <div class="card-body">
                     <h5 class="card-titlem">Proveedores</h5>
                     <p class="card-text">En la seccion de Proveedores podras ver todos los proveedores que te suministran la tienda</p>
@@ -180,7 +180,7 @@
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
-                <img src="Vista/img/produ.png" class="card-img-top" alt="..." height="171.65px">
+                <img src="Vista/img/produ.webp" class="card-img-top" alt="..." height="171.65px">
                 <div class="card-body">
                     <h5 class="card-titlem">Productos</h5>
                     <p class="card-text">En la seccion de Productos podras ver todos los productos en adquisicion en tu tienda</p>
@@ -227,14 +227,14 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="Vista/img/fotom.png" class=" w-100" alt="">
+                        <img src="Vista/img/fotom.webp" class=" w-100" alt="">
                         <div class="carousel-caption d-none d-md-block ">
                             <h5>Fundador/Creador de SLD</h5>
                             <p>Mi nombre es Santiago Mape y soy Creador del Sistema de Gestion Online de Inventario SLD</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="Vista/img/laug.png" class="d-block w-100" alt="...">
+                        <img src="Vista/img/laug.webp" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Fundadora/Creadora de SLD</h5>
                             <p>Mi nombre es Laura Medina y soy Creadora del Sistema de Gestion Online de Inventario SLD</p>

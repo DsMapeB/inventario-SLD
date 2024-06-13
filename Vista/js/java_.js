@@ -76,12 +76,45 @@ function editarcli(val){
 }
 
 function eliminarcli(numero3){
-  if (confirm("Estas seguro de eliminar el Cliente " + numero3 + "?")){
-    $.get("index.php", { accion: 'eliminarcli', numero3: numero3}, function (mensaje){
-      alert(mensaje);
-      location.reload();
-    });
-  }
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger"
+    },
+    buttonsStyling: false
+  });
+  swalWithBootstrapButtons.fire({
+    title: "Eliminar Cliente",
+    text: "Estas seguro de Eliminar al Cliente "+ numero3 + "?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Si, Deseo eliminarlo!",
+    cancelButtonText: "No, Cancelar!",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.get("index.php", { accion: 'eliminarcli', numero3: numero3 }, function (mensaje) {
+        swalWithBootstrapButtons.fire({
+          title: "Eliminado!",
+          text: mensaje,
+          icon: "success"
+        }).then(() => {
+          // Recarga la página después de la confirmación de eliminación
+          location.reload();
+        });
+      });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire({
+        title: "Cancelado",
+        text: "Tu cliente esta a Salvo :)",
+        icon: "error"
+      });
+    }
+  });
+
 }
 
 //------------------------Proveedor--------------------------

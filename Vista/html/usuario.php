@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios</title>
+    <title>Trabajadores</title>
     <link rel="shortcut icon" href="Vista/ico/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="Vista/bootstrap-5.3.3-dist/css/bootstrap.css">
     <script type="text/javascript" src="Vista/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -22,7 +23,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php?accion=inicio" class="logo d-flex align-items-center">
-                <img src="Vista/img/logo.png" alt="">
+                <img src="Vista/img/logo.webp" alt="">
                 <span class="d-none d-lg-block">Sistema Gestion Online de Inventario</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -91,7 +92,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php?accion=usuario">
                     <i class="bi bi-person "></i>
-                    <span>Usuarios</span>
+                    <span>Trabajadores</span>
                 </a>
             </li><!-- End Usuario -->
 
@@ -145,7 +146,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php?accion=inicio">Inicio</a></li>
-                    <li class="breadcrumb-item">Usuarios</li>
+                    <li class="breadcrumb-item">Trabajadores</li>
                     <li class="breadcrumb-item">Info</li>
                 </ol>
             </nav>
@@ -156,43 +157,43 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Tabla Usuarios</h5>
-                            <p>Aca podras encontrar toda la informacion sobre tus usuarios</p>
+                            <h5 class="card-title">Tabla Trabajadores</h5>
+                            <p>Aca podras encontrar toda la informacion sobre tus Trabajadores</p>
 
                             <?php
                             if (isset($_GET["error"])) {
-                                $mensaje = "Error";
                                 if ($_GET["error"] == 1) {
-                                    $mensaje = "¡Registro Exitoso!";
                             ?>
-                                    <div class="alert alert-success d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-check-lg"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "¡Trabajador Registrado Exitosamente!",
+                                            showConfirmButton: false,
+                                            timer: 2500
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 if ($_GET["error"] == 2) {
-                                    $mensaje = "¡El usuario ingresado se encuentra Registrado!";
                                 ?>
-                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "warning",
+                                            title: "¡El Trabajador ingresado ya se encuentra Registrado!",
+                                            showConfirmButton: false,
+                                            timer: 2500
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 if ($_GET["error"] == 3) {
-                                    $mensaje = "¡Error al Agregar!";
                                 ?>
-                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Oops... ¡Error al registrar!",
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 ?>
@@ -202,27 +203,26 @@
                             ?>
                             <?php
                             if (isset($_GET["error2"])) {
-                                $mensaje = "Error2";
                                 if ($_GET["error2"] == 1) {
-                                    $mensaje = "¡Actualizacion de Usuario Exitosa!";
                             ?>
-                                    <div class="alert alert-success d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-check-lg"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "¡Actualizacion de Trabajador Exitosa!",
+                                            showConfirmButton: false,
+                                            timer: 2500
+                                        });
+                                    </script>
                                 <?php
                                 }
                                 if ($_GET["error2"] == 2) {
-                                    $mensaje = "¡Error al Actualizar, Vuelva a Intentar!";
                                 ?>
-                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                        <div>
-                                            <i class="bi bi-exclamation-triangle-fill"></i>
-                                            <?php echo $mensaje; ?>
-                                        </div>
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: "warning",
+                                            title: "Oops... Al parecer, no hubo cambios o hubo un error al actualizar el Trabajador. ¡Inténtelo de nuevo!",
+                                        });
+                                    </script>
                             <?php
                                 }
                             }
@@ -231,7 +231,7 @@
                             <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalusuario">
-                                    <i class="bi bi-person-fill-add"></i> Agregar Nuevo Usuario
+                                    <i class="bi bi-person-fill-add"></i> Agregar Nuevo Trabajador
                                 </button>
                             <?php endif; ?>
 
@@ -247,23 +247,39 @@
                                             <form action="index.php?accion=ingresarusuario" method="post" enctype="multipart/form-data">
                                                 <div class="input-group mb-3">
                                                     <span for="validationDefault01" class="input-group-text">Documento</span>
-                                                    <input type="text" class="form-control" id="validationDefault01" name="Usudoc" maxlength="10" placeholder="Ingrese Documento" required>
+                                                    <input type="text" class="form-control" id="usudoc" id="validationDefault01" name="Usudoc" maxlength="10" placeholder="Ingrese Documento" required>
                                                 </div>
+                                                <script>
+                                                    document.getElementById('usudoc').addEventListener('input', function(e) {
+                                                        var input = e.target;
+                                                        var value = input.value;
+                                                        // Eliminar cualquier carácter no numérico
+                                                        input.value = value.replace(/\D/g, '');
+                                                    });
+                                                </script>
                                                 <div class="input-group mb-3">
                                                     <span for="validationDefault02" class="input-group-text">Usuario</span>
                                                     <input type="text" class="form-control" id="validationDefault02" name="usuario" placeholder="Ingrese Usuario" required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span for="validationDefault03" class="input-group-text">Telefono</span>
-                                                    <input type="tel" class="form-control" name="tel" id="validationDefault03" placeholder="Solo Valores Numericos" maxlength="10" required autocomplete="off">
+                                                    <span for="validationDefault03" class="input-group-text">Teléfono</span>
+                                                    <input type="tel" class="form-control" name="tel" id="teltra" id="validationDefault03" placeholder="Numero de Teléfono" maxlength="10" required autocomplete="off">
                                                 </div>
+                                                <script>
+                                                    document.getElementById('teltra').addEventListener('input', function(e) {
+                                                        var input = e.target;
+                                                        var value = input.value;
+                                                        // Eliminar cualquier carácter no numérico
+                                                        input.value = value.replace(/\D/g, '');
+                                                    });
+                                                </script>
                                                 <div class="input-group mb-3">
                                                     <span for="validationDefault04" class="input-group-text">Contraseña</span>
                                                     <input type="password" class="form-control" name="password" id="validationDefault04" placeholder="Ingrese Una Contraseña" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span for="validationDefault05" class="input-group-text">Foto</span>
-                                                    <input type="file" class="form-control" name="foto" id="validationDefault05" required>
+                                                    <input type="file" class="form-control" name="foto" id="validationDefault05" >
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span for="validationDefault06" class="input-group-text">Rol</span>
@@ -290,7 +306,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Usuario</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Trabajador</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
