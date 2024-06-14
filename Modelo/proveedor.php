@@ -1,5 +1,5 @@
 <?php
-    class proveedor{
+    class Proveedor{
         private $nit_pro;
         private $nombre_pro;
         private $contacto_pro;

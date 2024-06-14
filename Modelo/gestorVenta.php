@@ -1,9 +1,9 @@
 <?php
-class gestorVenta
+class GestorVenta
 {
-    public function agregarventa(venta $venta)
+    public function agregarventa(Venta $venta)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $cod_venta = $venta->obtenercodigo();
         $fecha_venta = $venta->obtenerfecha();
         $hora_venta = $venta->obtenerhora();
@@ -32,7 +32,7 @@ class gestorVenta
 
     public function consultarVenta()
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "SELECT * FROM venta join usuario on venta.Usu=usuario.Usudoc join cliente on venta.clie=cliente.docclie join producto on venta.produ=producto.codprodu";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
@@ -41,7 +41,7 @@ class gestorVenta
 
     public function editarventa($codventa)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "SELECT * FROM venta join usuario on venta.Usu=usuario.Usudoc join cliente on venta.clie=cliente.docclie join producto on venta.produ=producto.codprodu WHERE codventa = '$codventa'";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
@@ -50,7 +50,7 @@ class gestorVenta
 
     public function actualizarVenta($vent)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $venta = $vent;
 
         $codventa = $venta->obtenercodigo();
@@ -73,7 +73,7 @@ class gestorVenta
 
     public function eliminarVenta($venta)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "DELETE FROM venta WHERE codventa = ?";
         $params = array($venta);
         $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);

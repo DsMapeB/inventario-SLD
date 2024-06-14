@@ -1,5 +1,5 @@
 <?php
-class venta{
+class Venta{
     private $cod_venta;
     private $fecha_venta;
     private $hora_venta;

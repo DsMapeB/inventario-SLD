@@ -1,6 +1,6 @@
 <?php
 require_once 'conexion.php';
-$conexion = new conexion();
+$conexion = new Conexion();
 $sql = "SELECT * FROM cliente";
 $conexion->buscar_query($sql);
 $result = $conexion->obtener_resultado();

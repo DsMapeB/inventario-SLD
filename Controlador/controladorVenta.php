@@ -1,13 +1,13 @@
 <?php
-class controladorventa
+class ControladorVenta
 {
     /*=============================================
         REGISTRO DE VENTAS
         =============================================*/
     public function agregarventa($codventa,$fechaventa,$horaventa,$idusu,$docclie,$codprodu,$obs,$total)
     {
-        $venta = new venta($codventa,$fechaventa,$horaventa,$idusu,$docclie,$codprodu,$obs,$total);
-        $gestorventa = new gestorVenta();
+        $venta = new Venta($codventa,$fechaventa,$horaventa,$idusu,$docclie,$codprodu,$obs,$total);
+        $gestorventa = new GestorVenta();
         $result = $gestorventa->agregarventa($venta);
         if ($result == 1) {
             /***   Registro satisfactorio    ***/
@@ -24,20 +24,20 @@ class controladorventa
     }
 
     public function consultarVenta(){
-        $gestorventa = new gestorVenta();
+        $gestorventa = new GestorVenta();
         $result = $gestorventa->consultarVenta();
         require_once 'Vista/html/consultarVen.php';
     }
 
     public function editarventa($codventa){
-        $gestorventa = new gestorventa();
+        $gestorventa = new GestorVenta();
         $result = $gestorventa->editarventa($codventa);
         require_once 'Vista/html/modalEditventa.php';
     }
 
     public function actualizarVenta($codventa,$fechaventa,$horaventa,$idusu,$docclie,$codprodu,$obs,$total){
         $venta = new venta($codventa,$fechaventa,$horaventa,$idusu,$docclie,$codprodu,$obs,$total);
-        $gestorventa = new gestorventa();
+        $gestorventa = new GestorVenta();
         $result = $gestorventa->actualizarVenta($venta);
         if ($result == 1) {
             /***   Registro satisfactorio    ***/
@@ -50,7 +50,7 @@ class controladorventa
     }
 
     public function eliminarVenta($venta){
-        $gestorventa = new gestorventa();
+        $gestorventa = new GestorVenta();
         $registro = $gestorventa->eliminarVenta($venta);
         if ($registro > 0) {
             echo "La venta se ha eliminado con exito";

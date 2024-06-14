@@ -1,5 +1,5 @@
 <?php
-    class usu{
+    class Usu{
         private $usuarioDoc;
         private $usuario;
         private $telefono;

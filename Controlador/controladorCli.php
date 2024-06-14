@@ -1,8 +1,8 @@
 <?php
-    class controladorcli {
+    class ControladorCli {
         public function agregarclientes ($doccli, $nomcli, $telcli){
-            $cliente = new cliente($doccli, $nomcli, $telcli);
-            $gestorcliente = new gestorcliente();
+            $cliente = new Cliente($doccli, $nomcli, $telcli);
+            $gestorcliente = new GestorCliente();
             $result = $gestorcliente->agregarcliente($cliente);
             if ($result == 1) {
                 /***   Registro satisfactorio    ***/
@@ -19,21 +19,21 @@
         }
 
         public function consultarCli(){
-            $gestorcliente = new gestorcliente();
+            $gestorcliente = new GestorCliente();
             $result = $gestorcliente->consultarCli();
             require_once 'Vista/html/consultarCli.php';
         }
 
         public function editarCli($docclie){
             
-            $gestorcliente = new gestorcliente();
+            $gestorcliente = new GestorCliente();
             $result2 = $gestorcliente->editarcli($docclie);
             require_once 'Vista/html/modalEditCli.php';
         }
 
         public function actualizarCli($doccli, $nomcli, $telcli){
-            $cliente = new cliente($doccli, $nomcli, $telcli);
-            $gestorcliente = new gestorcliente();
+            $cliente = new Cliente($doccli, $nomcli, $telcli);
+            $gestorcliente = new GestorCliente();
             $result = $gestorcliente->actualizarCli($cliente);
             if ($result == 1) {
                 header("Location:index.php?accion=cliente&error2=1");
@@ -45,7 +45,7 @@
         }
 
         public function eliminarCli($cliente){
-            $gestorcliente = new gestorcliente();
+            $gestorcliente = new GestorCliente();
             $registro = $gestorcliente->eliminarCli($cliente);
             if ($registro > 0) {
                 echo "El Cliente se ha eliminado con exito";

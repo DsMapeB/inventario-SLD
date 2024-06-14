@@ -1,9 +1,9 @@
 <?php
-class gestorcliente
+class GestorCliente
 {
-    public function agregarcliente(cliente $cliente)
+    public function agregarcliente(Cliente $cliente)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $doc_cli = $cliente->obtenerdocumento();
         $nombre_cli = $cliente->obtenernombre();
         $telefono_cli = $cliente->obtenertelefono();
@@ -26,7 +26,7 @@ class gestorcliente
 
     public function consultarCli()
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "SELECT * FROM cliente";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
@@ -35,7 +35,7 @@ class gestorcliente
 
     public function editarCli($docclie)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "SELECT * FROM cliente WHERE docclie = $docclie";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
@@ -44,7 +44,7 @@ class gestorcliente
 
     public function actualizarCli($cli)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $cliente = $cli;
 
         $doc_cli = $cliente->obtenerdocumento();
@@ -62,7 +62,7 @@ class gestorcliente
 
     public function eliminarCli($cliente)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "DELETE FROM cliente WHERE docclie = ?";
         $params = array($cliente);
         $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);

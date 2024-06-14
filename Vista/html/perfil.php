@@ -65,6 +65,15 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li>
+                            <a class="dropdown-item d-flex align-items-center" href="Vista/manuales/MANUAL DE USU-ADMIN.pdf" download="MANUAL DE USU-ADMIN.pdf">
+                                <i class="bi bi-question-circle"></i>
+                                <span>¿Necesitas ayuda?</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
                             <a class="dropdown-item d-flex align-items-center" href="index.php?accion=logout">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Salir</span>
@@ -164,31 +173,31 @@
                         </div>
 
                         <?php
-                            if (isset($_GET["error"])) {
-                                if ($_GET["error"] == 1) {
-                            ?>
-                                    <script>
-                                        Swal.fire({
-                                            icon: "success",
-                                            title: "¡Actualización de usuario exitosa! Para ver los cambios, cierre sesión y vuelva a iniciarla.",
-                                            showConfirmButton: false,
-                                            timer: 2500
-                                        });
-                                    </script>
-                                <?php
-                                }
-                                if ($_GET["error"] == 2) {
-                                ?>
-                                    <script>
-                                        Swal.fire({
-                                            icon: "error",
-                                            title: "Oops... ¡Error al Actualizar, Vuelva a Intentar!",
-                                        });
-                                    </script>
+                        if (isset($_GET["error"])) {
+                            if ($_GET["error"] == 1) {
+                        ?>
+                                <script>
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "¡Actualización de usuario exitosa!.",
+                                        showConfirmButton: false,
+                                        timer: 2500
+                                    });
+                                </script>
                             <?php
-                                }
                             }
+                            if ($_GET["error"] == 2) {
                             ?>
+                                <script>
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Oops... ¡Error al Actualizar, Vuelva a Intentar!",
+                                    });
+                                </script>
+                        <?php
+                            }
+                        }
+                        ?>
                     </div>
 
 
@@ -202,7 +211,7 @@
                             <ul class="nav nav-tabs nav-tabs-bordered">
 
                                 <li class="nav-item">
-                                    <button  id="perfild" class="nav-link active" data-bs-toggle="tab" data-bs-target="#detalles">Detalles</button>
+                                    <button id="perfild" class="nav-link active" data-bs-toggle="tab" data-bs-target="#detalles">Detalles</button>
                                 </li>
                                 <li class="nav-item">
                                     <button class="btn btn-primary" onclick="editarperfil()" data-bs-toggle="modal" data-bs-target="#editperfil">Editar Perfil</button>

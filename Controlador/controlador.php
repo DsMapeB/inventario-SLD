@@ -1,5 +1,5 @@
 <?php
-class controlador
+class Controlador
 {
   public function verpagina($url)
   {
@@ -9,9 +9,9 @@ class controlador
   //------------------------------Login Y Registro---------------------------------
   public function login($user, $pass)
   {
-    $gestor = new gestor();
+    $gestor = new Gestor();
     $result = $gestor->login($user, $pass);
-    if ($result != 1 && $result != 2 && $result != 3 && $result != 4 && $result != 5 && $result != 6 ) {
+    if ($result != 1 && $result != 2 && $result != 3 && $result != 4 && $result != 5 && $result != 6) {
       $_SESSION["telefono"] = $result[0];
       $_SESSION["usuario"] = $result[1];
       $_SESSION["rol"] = $result[2];
@@ -19,7 +19,7 @@ class controlador
       $_SESSION["nombrerol"] = $result[4];
       $_SESSION["Usudoc"] = $result[5];
       $_SESSION["foto"] = $result[6];
-      require_once("Vista/html/inicio.php");
+      header("Location:index.php?accion=inicio&error=1");
     }
     if ($result == 1) {
       header("Location:index.php?accion=log&error=1");
@@ -38,7 +38,7 @@ class controlador
     header("Location:index.php");
   }
 
-  public function registrar($doc,$usu,$tel, $pass, $foto, $rol)
+  public function registrar($doc, $usu, $tel, $pass, $foto, $rol)
   {
     if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
       $rutaimg = 'uploads/';
@@ -53,8 +53,8 @@ class controlador
     }
 
 
-    $usu = new usu($doc,$usu,$tel, $pass, $foto, $rol);
-    $gestor = new gestor();
+    $usu = new Usu($doc, $usu, $tel, $pass, $foto, $rol);
+    $gestor = new Gestor();
     $result = $gestor->registrar($usu);
 
     if ($result == 1) {
@@ -74,12 +74,12 @@ class controlador
   //----------------------------------Panel--------------------------------------\\
   public function consultarUsu()
   {
-    $gestor = new gestor();
+    $gestor = new Gestor();
     $result = $gestor->consultarUsu();
     require_once 'Vista/html/consultarUsu.php';
   }
 
-  public function agregarUsuario($doc,$usu,$tel, $pass, $foto, $rol)
+  public function agregarUsuario($doc, $usu, $tel, $pass, $foto, $rol)
   {
     if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
       $rutaimg = 'uploads/';
@@ -92,8 +92,8 @@ class controlador
     } else {
       $foto = '';
     }
-    $usuarios = new usu($doc,$usu,$tel, $pass, $foto, $rol);
-    $gestor = new gestor();
+    $usuarios = new Usu($doc, $usu, $tel, $pass, $foto, $rol);
+    $gestor = new Gestor();
     $result = $gestor->agregarUsuario($usuarios);
     if ($result == 1) {
       /***   Registro satisfactorio    ***/
@@ -111,41 +111,41 @@ class controlador
 
   public function editarUsu($doc)
   {
-    $gestor = new gestor();
+    $gestor = new Gestor();
     $result = $gestor->editarUsu($doc);
     require_once 'Vista/html/modalEditusu.php';
   }
 
-  public function actualizarUsu($doc,$usu,$tel, $pass, $foto, $rol)
+  public function actualizarUsu($doc, $usu, $tel, $pass, $foto, $rol)
   {
     // Obtener el nombre del archivo de la imagen existente en la base de datos
     $foto_existente = $_POST["foto_existente"];
 
     // Comprobar si se cargó una nueva imagen
     if ($foto['error'] === UPLOAD_ERR_OK) {
-        $rutaimg = 'uploads/';
-        $fotoname = $foto['name'];
-        move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
-        $foto_actualizada = $rutaimg . $fotoname;
+      $rutaimg = 'uploads/';
+      $fotoname = $foto['name'];
+      move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
+      $foto_actualizada = $rutaimg . $fotoname;
     } else {
-        // Si no se cargó una nueva imagen, usar la imagen existente
-        $foto_actualizada = $foto_existente;
+      // Si no se cargó una nueva imagen, usar la imagen existente
+      $foto_actualizada = $foto_existente;
     }
 
-    $usu = new usu($doc,$usu,$tel, $pass, $foto_actualizada, $rol);
-    $gestor = new gestor();
+    $usu = new Usu($doc, $usu, $tel, $pass, $foto_actualizada, $rol);
+    $gestor = new Gestor();
     $result = $gestor->actualizarPerfil($usu);
     if ($result == 1) {
-        header("Location:index.php?accion=usuario&error2=1");
+      header("Location:index.php?accion=usuario&error2=1");
     }
     if ($result == 2) {
-        header("Location:index.php?accion=usuario&error2=2");
+      header("Location:index.php?accion=usuario&error2=2");
     }
   }
 
   public function eliminarUsu($doc)
   {
-    $gestor = new gestor();
+    $gestor = new Gestor();
     $registro = $gestor->eliminarUsu($doc);
     if ($registro > 0) {
       echo "El Usuario se ha eliminado con exito";
@@ -158,44 +158,50 @@ class controlador
   //------------------------------------- Perfil --------------------------------
   public function editarP()
   {
-    $gestor = new gestor();
+    $gestor = new Gestor();
     $result = $gestor->editarP();
     require_once 'Vista/html/modaleditPerfil.php';
   }
 
-  public function actualizarPerfil($doc,$usu,$tel, $pass, $foto, $rol)
-{
+  public function actualizarPerfil($doc, $usuario, $tel, $pass, $foto, $rol)
+  {
     // Obtener el nombre del archivo de la imagen existente en la base de datos
     $foto_existente = $_POST["foto_existente"];
 
     // Comprobar si se cargó una nueva imagen
     if ($foto['error'] === UPLOAD_ERR_OK) {
-        $rutaimg = 'uploads/';
-        $fotoname = $foto['name'];
-        move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
-        $foto_actualizada = $rutaimg . $fotoname;
+      $rutaimg = 'uploads/';
+      $fotoname = $foto['name'];
+      move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
+      $foto_actualizada = $rutaimg . $fotoname;
     } else {
-        // Si no se cargó una nueva imagen, usar la imagen existente
-        $foto_actualizada = $foto_existente;
+      // Si no se cargó una nueva imagen, usar la imagen existente
+      $foto_actualizada = $foto_existente;
     }
 
-    $usu = new usu($doc,$usu,$tel, $pass, $foto_actualizada, $rol);
-    $gestor = new gestor();
+    $usu = new Usu($doc, $usuario, $tel, $pass, $foto_actualizada, $rol);
+    $gestor = new Gestor();
     $result = $gestor->actualizarPerfil($usu);
     if ($result == 1) {
-        header("Location:index.php?accion=perfil&error=1");
+      $_SESSION['Usudoc'] = $doc;
+      $_SESSION['usuario'] = $usuario;
+      $_SESSION['telefono'] = $tel;
+      $_SESSION['password'] = $pass;
+      $_SESSION['foto'] = $foto_actualizada;
+      $_SESSION['rol'] = $rol;
+      header("Location:index.php?accion=perfil&error=1");
     }
     if ($result == 2) {
-        header("Location:index.php?accion=perfil&error=2");
+      header("Location:index.php?accion=perfil&error=2");
     }
-}
+  }
 
 
   //----------------------------------------------------roles-----------------------------------------------------------------
   public function agregarRol($rol)
   {
-    $rol1 = new roles($rol);
-    $gestor = new gestor();
+    $rol1 = new Roles($rol);
+    $gestor = new Gestor();
     $result = $gestor->agregarRol($rol1);
     if ($result == 1) {
       /***   Registro satisfactorio    ***/
@@ -216,22 +222,22 @@ class controlador
 
   public function consultarRol()
   {
-    $gestor = new gestor();
+    $gestor = new Gestor();
     $result = $gestor->consultarRol();
     require_once 'Vista/html/consultarRol.php';
   }
 
   public function editarRol($rol)
   {
-    $gestor = new gestor();
+    $gestor = new Gestor();
     $result = $gestor->editarRol($rol);
     require_once 'Vista/html/modaleditRol.php';
   }
 
   public function actualizarRol($rol, $num)
   {
-    $nomrol = new roles($rol);
-    $gestor = new gestor();
+    $nomrol = new Roles($rol);
+    $gestor = new Gestor();
     $result = $gestor->actualizarRol($nomrol, $num);
     if ($result == 1) {
       header("Location:index.php?accion=rol&error2=1");
@@ -243,7 +249,7 @@ class controlador
 
   public function eliminarRol($rol)
   {
-    $gestor = new gestor();
+    $gestor = new Gestor();
     $result = $gestor->eliminarRol($rol);
     if ($result > 0) {
       echo "El Rol se ha eliminado con éxito";

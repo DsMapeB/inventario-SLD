@@ -1,10 +1,10 @@
 <?php
-class controladorProdu
+class ControladorProdu
 {
     public function agregarproductos($codprodu, $nomprodu, $precioprodu, $exisprodu, $proveprodu)
     {
-        $producto = new producto($codprodu, $nomprodu, $precioprodu, $exisprodu, $proveprodu);
-        $gestorprodu = new gestorprodu();
+        $producto = new Producto($codprodu, $nomprodu, $precioprodu, $exisprodu, $proveprodu);
+        $gestorprodu = new GestorProdu();
         $result = $gestorprodu->agregarproducto($producto);
         if ($result == 1) {
             /***   Registro satisfactorio    ***/
@@ -22,22 +22,22 @@ class controladorProdu
 
     public function consultarProdu()
     {
-        $gestorprodu = new gestorprodu();
+        $gestorprodu = new GestorProdu();
         $result = $gestorprodu->consultarProdu();
         require_once 'Vista/html/consultarProdu.php';
     }
 
     public function editarProdu($codprodu)
     {
-        $gestorprodu = new gestorprodu();
+        $gestorprodu = new GestorProdu();
         $result = $gestorprodu->editarProdu($codprodu);
         require_once 'Vista/html/modalEditprodu.php';
     }
 
     public function actualizarProdu($codprodu, $nomprodu, $precioprodu, $exisprodu, $proveprodu)
     {
-        $producto = new producto($codprodu, $nomprodu, $precioprodu, $exisprodu, $proveprodu);
-        $gestorprodu = new gestorprodu();
+        $producto = new Producto($codprodu, $nomprodu, $precioprodu, $exisprodu, $proveprodu);
+        $gestorprodu = new GestorProdu();
         $result = $gestorprodu->actualizarProdu($producto);
         if ($result == 1) {
             /***   Registro satisfactorio    ***/
@@ -51,7 +51,7 @@ class controladorProdu
 
     public function eliminarProdu($producto)
     {
-        $gestorprodu = new gestorprodu();
+        $gestorprodu = new GestorProdu();
         $registro = $gestorprodu->eliminarProdu($producto);
         if ($registro > 0) {
             echo "El Producto se ha eliminado con exito";

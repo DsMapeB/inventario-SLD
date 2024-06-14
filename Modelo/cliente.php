@@ -1,5 +1,5 @@
 <?php
-    class cliente{
+    class Cliente{
         private $doc_cli;
         private $nombre_cli;
         private $telefono_cli;

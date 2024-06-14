@@ -1,9 +1,9 @@
 <?php
-class gestorprodu
+class GestorProdu
 {
-    public function agregarproducto(producto $producto)
+    public function agregarproducto(Producto $producto)
     {
-        $conexion = new conexion;
+        $conexion = new Conexion;
         $cod_produ = $producto->obtenercodigo();
         $nombre_produ = $producto->obtenernombre();
         $precio_produ = $producto->obtenerprecio();
@@ -28,7 +28,7 @@ class gestorprodu
 
     public function consultarProdu()
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "SELECT * FROM producto join proveedores on producto.nitprodu=proveedores.nitpro;";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
@@ -37,7 +37,7 @@ class gestorprodu
 
     public function editarProdu($codprodu)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "SELECT * FROM producto WHERE codprodu = $codprodu";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
@@ -46,7 +46,7 @@ class gestorprodu
 
     public function actualizarProdu($produ)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $producto = $produ;
 
         $codprodu = $producto->obtenercodigo();
@@ -66,7 +66,7 @@ class gestorprodu
 
     public function eliminarProdu($producto)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "DELETE FROM producto WHERE codprodu = ?";
         $params = array($producto);
         $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);

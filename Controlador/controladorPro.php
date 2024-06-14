@@ -1,5 +1,5 @@
 <?php
-class controladorproveedor
+class ControladorProveedor
 {
     /*=============================================
         REGISTRO DE proveedores
@@ -7,8 +7,8 @@ class controladorproveedor
 
     public function agregarproveedores($nitpro, $nompro, $contpro, $telpro, $direpro, $ciupro)
     {
-        $proveedor = new proveedor($nitpro, $nompro, $contpro, $telpro, $direpro, $ciupro);
-        $gestorproveedor = new gestorproveedor();
+        $proveedor = new Proveedor($nitpro, $nompro, $contpro, $telpro, $direpro, $ciupro);
+        $gestorproveedor = new GestorProveedor();
         $result = $gestorproveedor->agregarproveedor($proveedor);
         if ($result == 1) {
             /***   Registro satisfactorio    ***/
@@ -26,20 +26,20 @@ class controladorproveedor
 
     public function consultarPro()
     {
-        $gestorproveedor = new gestorproveedor();
+        $gestorproveedor = new GestorProveedor();
         $result = $gestorproveedor->consultarPro();
         require_once 'Vista/html/consultarPro.php';
     }
 
     public function editarprove($nitpro){
-        $gestorproveedor = new gestorproveedor();
+        $gestorproveedor = new GestorProveedor();
         $result = $gestorproveedor->editarPro($nitpro);
         require_once 'Vista/html/modalEditprove.php';
     }
 
     public function actualizarprove($nitpro,$nombrepro,$contactopro,$telpro,$direcpro,$ciupro){
-        $proveedor = new proveedor($nitpro,$nombrepro,$contactopro,$telpro,$direcpro,$ciupro);
-        $gestorproveedor = new gestorproveedor();
+        $proveedor = new Proveedor($nitpro,$nombrepro,$contactopro,$telpro,$direcpro,$ciupro);
+        $gestorproveedor = new GestorProveedor();
         $result = $gestorproveedor->actualizarprovee($proveedor);
         if ($result == 1) {
             /***   Registro satisfactorio    ***/
@@ -53,7 +53,7 @@ class controladorproveedor
 
     public function eliminarPro($proveedor)
     {
-        $gestorproveedor = new gestorproveedor();
+        $gestorproveedor = new GestorProveedor();
         $registro = $gestorproveedor->eliminarPro($proveedor);
         if ($registro > 0) {
             echo "El Proveedor se ha eliminado con exito";

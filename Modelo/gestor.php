@@ -1,10 +1,10 @@
 <?php
-class gestor
+class Gestor
 {
   //-------------------------------Login y Registro ------------------------------------
   public function login($user, $pass)
   {
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE usuario = '$user' AND password = '$pass'";
     $conexion->buscar_query($sql);
     $existe = $conexion->obtener_filas();
@@ -28,7 +28,7 @@ class gestor
 
   public function registrar(usu $usu)
   {
-    $conexion =  new conexion();
+    $conexion =  new Conexion();
     $usuarios = $usu;
 
     $doc = $usuarios->obtenerdocumento();
@@ -61,7 +61,7 @@ class gestor
   //------------------------------Panel------------------------------\\
   public function consultarUsu()
   {
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu";
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
@@ -70,7 +70,7 @@ class gestor
 
   public function agregarUsuario(usu $usuarios)
   {
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $doc = $usuarios->obtenerdocumento();
     $usuario = $usuarios->obtenerusuario();
     $tel = $usuarios->obtenertelefono();
@@ -96,7 +96,7 @@ class gestor
 
   public function editarUsu($doc)
   {
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $sql = "SELECT * FROM usuario WHERE Usudoc = '$doc'";
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
@@ -105,7 +105,7 @@ class gestor
 
   public function actualizarUsu($usu)
   {
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $doc = $usu->obtenerdocumento();
     $usuario = $usu->obtenerusuario();
     $password = $usu->obtenerpassword();
@@ -123,7 +123,7 @@ class gestor
 
   public function eliminarUsu($usuario)
   {
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $sql = "DELETE FROM usuario WHERE Usudoc = ?";
     $params = array($usuario);
     $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
@@ -133,7 +133,7 @@ class gestor
   // ------------------------------------ Perfil --------------------------------------------------------------
   public function editarP()
   {
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE Usudoc ='" . $_SESSION['Usudoc'] . "'";
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
@@ -142,7 +142,7 @@ class gestor
 
   public function actualizarPerfil($usu)
   {
-      $conexion = new conexion();
+      $conexion = new Conexion();
   
       $doc = $_SESSION["Usudoc"];
       $user = $usu;
@@ -169,7 +169,7 @@ class gestor
   //---------------------------------------------------------------roles-------------------------------------------------------------------
   public function agregarRol(roles $rol1)
   {
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $cargo = $rol1->obtenerrol();
     $sql2 = "SELECT * FROM rol WHERE nombrerol='$cargo'";
     $conexion->buscar_query($sql2);
@@ -189,7 +189,7 @@ class gestor
 
   public function consultarRol()
   {
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $sql = "SELECT * FROM rol";
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
@@ -197,7 +197,7 @@ class gestor
   }
 
   public function editarRol($nomrol){
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $sql = "SELECT * FROM rol WHERE cargoUsu = '$nomrol'";
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
@@ -205,7 +205,7 @@ class gestor
   }
 
   public function actualizarRol(roles $nomrol, $num){
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $cargo = $nomrol->obtenerrol();
 
     $sql = "UPDATE rol SET nombrerol = '$cargo' WHERE cargoUsu = '$num'";
@@ -219,7 +219,7 @@ class gestor
 
   public function eliminarRol($rol)
   {
-    $conexion = new conexion();
+    $conexion = new Conexion();
     $sql = "DELETE FROM rol WHERE cargoUsu = ?";
     $params = array($rol);
     $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);

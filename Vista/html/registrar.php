@@ -86,8 +86,8 @@
                                     ?>
                                     <form action="index.php?accion=registrar" method="post" class="row g-3" enctype="multipart/form-data">
                                         <div class="col-12">
-                                            <label for="validationDefault01" class="form-label">Documento</label>
-                                            <input type="text" class="form-control" id="doc" id="validationDefault01" name="Usudoc" minlength="6" maxlength="10" placeholder="Ingrese Documento" required>
+                                            <label for="doc" class="form-label">Documento</label>
+                                            <input type="text" class="form-control" id="doc" name="Usudoc" minlength="6" maxlength="10" placeholder="Ingrese Documento" required>
                                         </div>
                                         <script>
                                             document.getElementById('doc').addEventListener('input', function(e) {
@@ -102,8 +102,8 @@
                                             <input type="text" class="form-control" id="validationDefault02" name="usuario" placeholder="Ingrese Usuario" required>
                                         </div>
                                         <div class="col-12">
-                                            <label for="validationDefault03" class="form-label">Teléfono</label>
-                                            <input type="tel" class="form-control" name="tel" id="tel" id="validationDefault03" placeholder="Ingrese Teléfono" maxlength="10" required>
+                                            <label for="tel" class="form-label">Teléfono</label>
+                                            <input type="tel" class="form-control" name="tel" id="tel" placeholder="Ingrese Teléfono" maxlength="10" autocomplete="off" required>
                                         </div>
                                         <script>
                                             document.getElementById('tel').addEventListener('input', function(e) {
@@ -122,8 +122,9 @@
                                             <input type="file" class="form-control" name="foto" id="validationDefault05">
                                         </div>
                                         <div class="col-12">
-                                            <label for="validationDefault06" class="form-label">Rol</label>
-                                            <select class="form-select" id="cargo" name="cargo" id="validationDefault06" required>
+                                            <label for="cargo" class="form-label">Rol</label>
+                                            <select class="form-select" id="cargo" name="cargo" required>
+                                                <!-- Opciones del select -->
                                             </select>
                                         </div>
                                         <div class="col-12">

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.css">
     <script src="Vista/jquery/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
     <script src="Vista/jquery/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -58,6 +59,15 @@
                             <a class="dropdown-item d-flex align-items-center" href="index.php?accion=perfil">
                                 <i class="bi bi-person"></i>
                                 <span>Mi Perfil</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="Vista/manuales/MANUAL DE USU-ADMIN.pdf" download="MANUAL DE USU-ADMIN.pdf">
+                                <i class="bi bi-question-circle"></i>
+                                <span>¿Necesitas ayuda?</span>
                             </a>
                         </li>
                         <li>
@@ -152,6 +162,22 @@
             </nav>
         </div><!--fin titulo de pagina -->
 
+        <?php
+            if (isset($_GET["error"])) {
+                if ($_GET["error"] == 1) {
+            ?>
+                    <script>
+                        Swal.fire({
+                            position: "top" ,
+                            title: " Bienvenido <?php echo $_SESSION["usuario"]; ?>",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    </script>
+                <?php
+                }
+            }
+            ?>
 
         <div class="bienvenida">
             <h3 class="card-title">Bienvenidos a su Sistema de Gestion Online de Inventario</h3>

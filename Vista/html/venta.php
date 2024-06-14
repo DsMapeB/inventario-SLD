@@ -64,6 +64,15 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li>
+                            <a class="dropdown-item d-flex align-items-center" href="Vista/manuales/MANUAL DE USU-ADMIN.pdf" download="MANUAL DE USU-ADMIN.pdf">
+                                <i class="bi bi-question-circle"></i>
+                                <span>¿Necesitas ayuda?</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
                             <a class="dropdown-item d-flex align-items-center" href="index.php?accion=logout">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Salir</span>

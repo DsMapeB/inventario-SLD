@@ -1,5 +1,5 @@
 <?php
-    class producto{
+    class Producto{
         private $cod_produ;
         private $nombre_produ;
         private $precio_produ;

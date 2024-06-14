@@ -333,7 +333,7 @@
       position: absolute;
       inset: 60px 20px 20px 20px;
       padding: 10px 0;
-      height: 80px;
+      height: 120px;
       border-radius: 6px;
       background-color: var(--nav-dropdown-background-color);
       overflow-y: auto;

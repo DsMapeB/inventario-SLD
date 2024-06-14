@@ -1,6 +1,6 @@
 <?php
 require_once 'conexion.php';
-$conexion = new conexion();
+$conexion = new Conexion();
 
 // Consulta para obtener el máximo código de venta
 $sql = "SELECT MAX(codventa) AS max_codventa FROM venta";

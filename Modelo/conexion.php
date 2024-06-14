@@ -1,5 +1,5 @@
 <?php 
-class conexion{
+class Conexion{
 	private static $db_host = "localhost";
 	private static $db_user = "root";
 	private static $db_password = "";

@@ -1,6 +1,6 @@
 <?php
   require_once 'conexion.php';
-  $conexion2 = new conexion();
+  $conexion2 = new Conexion();
   $sql2 = "SELECT * FROM rol";
   $conexion2->buscar_query($sql2);
   $result2 = $conexion2->obtener_resultado();

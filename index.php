@@ -25,25 +25,29 @@ require_once("Modelo/gestorVenta.php");
 require_once("Modelo/venta.php");
 //--------------------------------------------------------------------------------------------------------------//
 
-$controlador = new controlador();
-$controladorPro = new controladorproveedor();
-$controladorCli = new controladorcli();
-$controladorProdu = new controladorprodu();
-$controladorVenta = new controladorventa();
+$controlador = new Controlador();
+$controladorPro = new ControladorProveedor();
+$controladorCli = new ControladorCli();
+$controladorProdu = new ControladorProdu();
+$controladorVenta = new ControladorVenta();
 
 if (
     isset($_SESSION["Usudoc"])
     && isset($_SESSION["usuario"])
     && isset($_SESSION["telefono"])
     && isset($_SESSION["rol"])
-    && isset($_SESSION["password"]) 
-    && isset($_SESSION["nombrerol"]) 
+    && isset($_SESSION["password"])
+    && isset($_SESSION["nombrerol"])
     && isset($_SESSION["foto"])
 ) {
     if (isset($_GET["accion"])) {
         switch ($_GET["accion"]) {
             case 'logout':
                 $controlador->logout();
+                break;
+
+            case 'inicio':
+                $controlador->verpagina("Vista/html/inicio.php");
                 break;
 
             case 'ingresarusuario':

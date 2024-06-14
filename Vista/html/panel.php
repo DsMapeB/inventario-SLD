@@ -26,7 +26,12 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="index.php?accion=registro" class="">Registro</a></li>
+                    <li>
+                        <a href="Vista/manuales/MANUAL DE USU-ADMIN.docx" download="MANUAL DE USU-ADMIN.docx" class="">Necesitas Ayuda?</a>
+                    </li>
+                    <li>
+                        <a href="index.php?accion=registro" class="">Registro</a>
+                    </li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>

@@ -1,9 +1,9 @@
 <?php
-class gestorproveedor
+class GestorProveedor
 {
-    public function agregarproveedor(proveedor $proveedor)
+    public function agregarproveedor(Proveedor $proveedor)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $nit_pro = $proveedor->obtenernit();
         $nombre_pro = $proveedor->obtenernombre();
         $contacto_pro = $proveedor->obtenercontacto();
@@ -29,7 +29,7 @@ class gestorproveedor
     }
     public function consultarPro()
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "SELECT * FROM proveedores";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
@@ -38,7 +38,7 @@ class gestorproveedor
 
     public function editarPro($nitpro)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "SELECT * FROM proveedores WHERE nitpro = $nitpro";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
@@ -47,7 +47,7 @@ class gestorproveedor
 
     public function actualizarprovee($provee)
     {
-        $conexion =  new conexion();
+        $conexion =  new Conexion();
         $proveedor = $provee;
 
         $nitpro = $proveedor->obtenernit();
@@ -69,7 +69,7 @@ class gestorproveedor
 
     public function eliminarPro($proveedor)
     {
-        $conexion = new conexion();
+        $conexion = new Conexion();
         $sql = "DELETE FROM proveedores WHERE nitpro = ?";
         $params = array($proveedor);
         $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
