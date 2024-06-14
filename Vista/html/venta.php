@@ -247,7 +247,7 @@
                                             <form action="index.php?accion=ingresarventa" method="POST" id="agregarproveedor">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Codigo de venta</span>
-                                                    <input type="text" class="form-control" placeholder="Codigo de venta" aria-label="Codigo" aria-describedby="basic-addon1" id="codventa" name="codventa" required>
+                                                    <input type="text" class="form-control" id="codven" placeholder="Código de venta" aria-label="Código" aria-describedby="basic-addon1" name="codventa" required readonly>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Fecha</span>

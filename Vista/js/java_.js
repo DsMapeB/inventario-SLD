@@ -10,6 +10,7 @@ $(document).ready(function(){
   cargarCliente2();
   cargarProducto2();
   cleanURLAfterMessage();
+  cargarCod();
 
 })
 
@@ -380,5 +381,10 @@ function cargarCliente2(){
 function cargarProducto2(){
   $.post("Modelo/cargarProdu.php", {} , function (mensaje){
     $("#codprodu2").html(mensaje);
+  });
+}
+function cargarCod() {
+  $.post("Modelo/cargarCod.php", {}, function(mensaje) {
+      $("#codven").val(mensaje); // Actualiza el valor del input con el código de venta obtenido
   });
 }
