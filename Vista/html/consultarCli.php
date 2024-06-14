@@ -20,13 +20,13 @@ if ($result->rowCount() > 0) {
                 ?>
                     <tr>
                         <th scope="row"><?php echo $cont ?></th>
-                        <td> <?php echo $fila->docclie; ?></td>
+                        <td><?php echo $fila->docclie; ?></td>
                         <td><?php echo $fila->nombreclie; ?></td>
                         <td><?php echo $fila->telefonoclie; ?></td>
                         <td>
                             <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editcli" onclick="editarcli(<?php echo $fila->docclie; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
                             |
-                            <button class="icon-button btn btn-danger" onclick="eliminarcli(<?php echo $fila->docclie; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>
+                            <button class="icon-button btn btn-danger" onclick="eliminarcli('<?php echo $fila->docclie; ?>' , '<?php echo $fila->nombreclie; ?>')"><i class="bi bi-trash3"></i> Eliminar</button>
                         </td>
                     </tr>
                 <?php

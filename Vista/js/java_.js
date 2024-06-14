@@ -9,8 +9,22 @@ $(document).ready(function(){
   cargarUsuario2();
   cargarCliente2();
   cargarProducto2();
+  cleanURLAfterMessage();
 
 })
+
+// Función para limpiar la URL después de mostrar mensajes
+function cleanURLAfterMessage() {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('error')) {
+      // Mostrar el mensaje de SweetAlert2
+      setTimeout(function() {
+          // Limpiar solo los parámetros relacionados con los mensajes
+          urlParams.delete('error');
+          window.history.replaceState({}, document.title, window.location.pathname + '?' + urlParams.toString());
+      }, 2000); // Ajusta el tiempo según sea necesario
+  }
+}
 
 //-------------------------- Login y Registro --------------------------
 function cargarRol3(){
@@ -33,14 +47,46 @@ function editarperfil(){
   var url = "index.php?accion=editarPerfil";
   $("#modalEditperfil").load(url);
 }
-function eliminarUsu(numero){
-  if (confirm("Estas seguro de eliminar el Usuario " + numero + "?")){
-    $.get("index.php", { accion: 'eliminarusu', numero: numero}, function (mensaje){
-      alert(mensaje);
-      location.reload();
+function eliminarUsu(numero, nombre){
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger me-2"
+    },
+    buttonsStyling: false
+  });
+  swalWithBootstrapButtons.fire({
+    title: "Eliminar Trabajador",
+    text: "Estas seguro de eliminar el Trabajador/a " + nombre + "?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Si, Deseo Eliminarlo!",
+    cancelButtonText: "No, Cancelar!",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.get("index.php", { accion: 'eliminarusu', numero: numero}, function (){
+      swalWithBootstrapButtons.fire({
+        title: "El Trabajador/a " + nombre + " ha sido Eliminado Exitosamente!",
+        icon: "success"
+      }).then(() => {
+        // Recarga la página después de la confirmación de eliminación
+        location.reload();
+      });
     });
-  }
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire({
+        title: "Cancelado",
+        text: "Tu Trabajador esta a salvo :)",
+        icon: "error"
+      });
+    }
+  });
 }
+
 function editarUsuario(val){
   var url = "index.php?accion=editarUsu&numero="+val;
   $("#modaleditusu").load(url);
@@ -55,14 +101,46 @@ function editarRol(val){
   var url = "index.php?accion=editarRol&numero="+val;
   $("#modaleditRol").load(url);
 }
-function eliminarRole(numero){
-  if (confirm("Estas seguro de eliminar el Rol " + numero + "?")){
-    $.get("index.php", { accion: 'eliminarRol', numero: numero}, function (mensaje){
-      alert(mensaje);
-      location.reload();
+function eliminarRole(numero, nombre){
+  const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: "btn btn-success",
+    cancelButton: "btn btn-danger me-2"
+  },
+  buttonsStyling: false
+});
+swalWithBootstrapButtons.fire({
+  title: "Eliminar Rol",
+  text: "Estas seguro de eliminar el Rol "+ nombre +"?",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonText: "Si, Deseo Eliminarlo!",
+  cancelButtonText: "No, Cancelar!",
+  reverseButtons: true
+}).then((result) => {
+  if (result.isConfirmed) {
+    $.get("index.php", { accion: 'eliminarRol', numero: numero}, function (){
+      swalWithBootstrapButtons.fire({
+        title: "El Rol " + nombre + " ha sido Eliminado Exitosamente!",
+        icon: "success"
+      }).then(() => {
+        // Recarga la página después de la confirmación de eliminación
+        location.reload();
+      });
+    });
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    swalWithBootstrapButtons.fire({
+      title: "Cancelado",
+      text: "Tu Rol esta a salvo :)",
+      icon: "error"
     });
   }
+});
 }
+
 
 
 //---------------------------Cliente----------------------------
@@ -75,17 +153,17 @@ function editarcli(val){
   $("#modaleditcli").load(url);
 }
 
-function eliminarcli(numero3){
+function eliminarcli(numero3, nombreclie){
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",
-      cancelButton: "btn btn-danger"
+      cancelButton: "btn btn-danger me-2"
     },
     buttonsStyling: false
   });
   swalWithBootstrapButtons.fire({
     title: "Eliminar Cliente",
-    text: "Estas seguro de Eliminar al Cliente "+ numero3 + "?",
+    text: "Estas seguro de Eliminar al Cliente "+ nombreclie + "?",
     icon: "warning",
     showCancelButton: true,
     confirmButtonText: "Si, Deseo eliminarlo!",
@@ -93,11 +171,10 @@ function eliminarcli(numero3){
     reverseButtons: true
   }).then((result) => {
     if (result.isConfirmed) {
-      $.get("index.php", { accion: 'eliminarcli', numero3: numero3 }, function (mensaje) {
+      $.get("index.php", { accion: 'eliminarcli', numero3: numero3 }, function () {
         swalWithBootstrapButtons.fire({
-          title: "Eliminado!",
-          text: mensaje,
-          icon: "success"
+        title: "El Cliente " + nombre + " ha sido Eliminado Exitosamente!",
+        icon: "success"
         }).then(() => {
           // Recarga la página después de la confirmación de eliminación
           location.reload();
@@ -126,14 +203,44 @@ function editarprove(val){
   var url = "index.php?accion=editarProvee&numero="+val;
   $("#modalEditprove").load(url);
 }
-function eliminarpro(numero){
-  if (confirm("Estas seguro de Eliminar el Proveedor " + numero + "?")){
-    $.get("index.php", { accion: 'eliminarpro', numero: numero }, function (mensaje){
-      alert(mensaje);
-      // Recargar la página después de eliminar para actualizar la tabla
-      location.reload();
+function eliminarpro(numero, nombre){
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger me-2"
+    },
+    buttonsStyling: false
+  });
+  swalWithBootstrapButtons.fire({
+    title: "Eliminar Proveedor",
+    text: "Estas seguro de Eliminar el Proveedor " + nombre + "?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Si, Deseo Eliminar!",
+    cancelButtonText: "No, Cancelar!",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.get("index.php", { accion: 'eliminarpro', numero: numero }, function (){
+      swalWithBootstrapButtons.fire({
+        title: "El Proveedor " + nombre + " ha sido Eliminado Exitosamente!",
+        icon: "success"
+      }).then(() => {
+        // Recarga la página después de la confirmación de eliminación
+        location.reload();
+      });
     });
-  }
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire({
+        title: "Cancelado",
+        text: "Tu Proveedor esta a salvo :)",
+        icon: "error"
+      });
+    }
+  });
 }
 
 //-----------------------------------Producto---------------------------------
@@ -145,14 +252,46 @@ function editarprodu(val){
   var url = "index.php?accion=editarprodu&numero="+val;
   $("#modalEditProdu").load(url);
 } 
-function eliminarprodu(numero4){
-  if (confirm("Estas seguro de Eliminar el Producto " + numero4 + "?")){
-    $.get("index.php", {accion: 'eliminarprodu', numero4: numero4}, function (mensaje){
-      alert(mensaje);
-      location.reload();
-    })
+function eliminarprodu(numero4, nombre){
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger me-2"
+    },
+    buttonsStyling: false
+  });
+  swalWithBootstrapButtons.fire({
+    title: "Eliminar Producto",
+    text: "Estas seguro de Eliminar el Producto " + nombre + "?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Si, Deseo Eliminarlo!",
+    cancelButtonText: "No, Cancelar!",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.get("index.php", {accion: 'eliminarprodu', numero4: numero4}, function (){
+      swalWithBootstrapButtons.fire({
+        title: "El Producto " + nombre + " ha sido Eliminado Exitosamente!",
+        icon: "success"
+      }).then(() => {
+        // Recarga la página después de la confirmación de eliminación
+        location.reload();
+      });
+    });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire({
+        title: "Cancelado",
+        text: "Tu Producto esta a salvo :)",
+        icon: "error"
+      });
+    }
+  });
   }
-}
+
 function cargarNit(){
   $.post("Modelo/cargarNit.php", {} , function(mensaje){
     $("#nit").html(mensaje);
@@ -173,14 +312,46 @@ function editarven(val){
   var url = "index.php?accion=editarVen&numero="+val;
   $("#modalEditVen").load(url);
 }
-function eliminarventa(numero5){
-  if (confirm("Estas seguro de Eliminar la Venta " + numero5 + "?")){
-    $.get("index.php", {accion: 'eliminarven', numero5: numero5}, function (mensaje){
-      alert(mensaje);
-      location.reload();
-    })
-  }
+function eliminarventa(numero5, producto){
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger me-2"
+    },
+    buttonsStyling: false
+  });
+  swalWithBootstrapButtons.fire({
+    title: "Eliminar Venta",
+    text: "Estas seguro de Eliminar la Venta " + numero5 + "?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Si, Deseo Eliminarla!",
+    cancelButtonText: "No, Cancelar!",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.get("index.php", {accion: 'eliminarven', numero5: numero5}, function (){
+      swalWithBootstrapButtons.fire({
+        title: "La Venta " + numero5 + " ha sido Eliminada Exitosamente!",
+        icon: "success"
+      }).then(() => {
+        // Recarga la página después de la confirmación de eliminación
+        location.reload();
+      });
+    });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire({
+        title: "Cancelado",
+        text: "Tu Venta esta a salvo :)",
+        icon: "error"
+      });
+    }
+  });
 }
+
 function cargarUsuario1(){
   $.post("Modelo/cargarUsu.php", {} , function (mensaje){
     $("#idUsu").html(mensaje);

@@ -48,7 +48,7 @@ if ($result->rowCount() > 0) {
                             <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
                                 <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->Usudoc; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
                                 |
-                                <button class="icon-button btn btn-danger" onclick="eliminarUsu(<?php echo $fila->Usudoc; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>
+                                <button class="icon-button btn btn-danger" onclick="eliminarUsu('<?php echo $fila->Usudoc; ?>' , '<?php echo $fila->usuario; ?>')"><i class="bi bi-trash3"></i> Eliminar</button>
                             <?php endif; ?>
                         </td>
                     </tr>

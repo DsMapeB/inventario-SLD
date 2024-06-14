@@ -8,7 +8,7 @@ if ($result->rowCount() > 0) {
                     <th scope="col">Codigo</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Hora</th>
-                    <th scope="col">Usuario</th>
+                    <th scope="col">Trabajador</th>
                     <th scope="col">Cliente</th>
                     <th scope="col">Producto</th>
                     <th scope="col">Observaciones</th>
@@ -41,7 +41,7 @@ if ($result->rowCount() > 0) {
                         <td>
                             <button class="icon-button btn btn-warning" onclick="editarven(<?php echo $fila->codventa; ?>)" data-bs-toggle="modal" data-bs-target="#accventa"><i class="bi bi-pencil-square"></i> Editar</button>
                             |
-                            <button class="icon-button btn btn-danger" onclick="eliminarventa(<?php echo $fila->codventa; ?>)"><i class="bi bi-trash3"></i> Eliminar</button>
+                            <button class="icon-button btn btn-danger" onclick="eliminarventa('<?php echo $fila->codventa; ?>' , '<?php echo $fila->nombreprodu; ?>')"><i class="bi bi-trash3"></i> Eliminar</button>
                         </td>
                     </tr>
                 <?php

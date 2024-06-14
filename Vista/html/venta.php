@@ -258,7 +258,7 @@
                                                     <input type="time" class="form-control" placeholder="Hora" aria-label="hora" aria-describedby="basic-addon1" id="hora" name="hora" required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" for="inputGroupSelect01">Usuario</span>
+                                                    <span class="input-group-text" for="inputGroupSelect01">Trabajador</span>
                                                     <select class="form-select" id="idUsu" name="idUsu" required></select>
                                                 </div>
                                                 <div class="input-group mb-3">

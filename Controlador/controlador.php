@@ -200,14 +200,17 @@ class controlador
     if ($result == 1) {
       /***   Registro satisfactorio    ***/
       header("Location:index.php?accion=rol&error=1");
+      exit;
     }
     if ($result == 2) {
       /***   Usuario Repetido    ***/
       header("Location:index.php?accion=rol&error=2");
+      exit;
     }
     if ($result == 3) {
       /***   Error en registro    ***/
       header("Location:index.php?accion=rol&error=3");
+      exit;
     }
   }
 
@@ -243,9 +246,11 @@ class controlador
     $gestor = new gestor();
     $result = $gestor->eliminarRol($rol);
     if ($result > 0) {
-      echo "El Rol se ha eliminado con exito";
+      echo "El Rol se ha eliminado con éxito";
+      exit; // Detiene la ejecución aquí si el rol se eliminó con éxito
     } else {
       echo "El Rol no se ha podido eliminar";
+      exit; // Detiene la ejecución aquí si el rol no se pudo eliminar
     }
   }
 }

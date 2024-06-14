@@ -33,7 +33,7 @@ if ($result->rowCount() > 0) {
                         <td>
                             <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProdu" onclick="editarprodu(<?php echo $fila->codprodu; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
                             |
-                            <button class="icon-button btn btn-danger" onclick="eliminarprodu(<?php echo $fila->codprodu; ?>)"><i class="bi bi-trash"></i> Eliminar</button>
+                            <button class="icon-button btn btn-danger" onclick="eliminarprodu('<?php echo $fila->codprodu; ?>' , '<?php echo $fila->nombreprodu; ?>')"><i class="bi bi-trash"></i> Eliminar</button>
                         </td>
                     </tr>
                 <?php

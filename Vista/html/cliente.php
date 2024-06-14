@@ -162,64 +162,64 @@
                             <p>Aca podras encontrar toda la informacion sobre tus Clientes</p>
 
                             <?php
-if (isset($_GET["error"])) {
-    $mensaje = "Error";
-    switch ($_GET["error"]) {
-        case 1:
-            echo '<script>
-                    Swal.fire({
-                        icon: "success",
-                        title: "¡Cliente Agregado Exitosamente!",
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                  </script>';
-            break;
-        case 2:
-            echo '<script>
-                    Swal.fire({
-                        icon: "warning",
-                        title: "¡El Cliente ingresado ya se encuentra Registrado!",
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                  </script>';
-            break;
-        case 3:
-            echo '<script>
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops... ¡Error al registrar!",
-                    });
-                  </script>';
-            break;
-    }
-}
+                            if (isset($_GET["error"])) {
+                                $mensaje = "Error";
+                                switch ($_GET["error"]) {
+                                    case 1:
+                                        echo '<script>
+                                            Swal.fire({
+                                                icon: "success",
+                                                title: "¡Cliente Agregado Exitosamente!",
+                                                showConfirmButton: false,
+                                                timer: 2000
+                                            });
+                                            </script>';
+                                        break;
+                                    case 2:
+                                        echo '<script>
+                                            Swal.fire({
+                                                icon: "warning",
+                                                title: "¡El Cliente ingresado ya se encuentra Registrado!",
+                                                showConfirmButton: false,
+                                                timer: 2000
+                                            });
+                                            </script>';
+                                        break;
+                                    case 3:
+                                        echo '<script>
+                                            Swal.fire({
+                                                    icon: "error",
+                                                    title: "Oops... ¡Error al registrar!",
+                                            });
+                                            </script>';
+                                        break;
+                                }
+                            }
 
-if (isset($_GET["error2"])) {
-    switch ($_GET["error2"]) {
-        case 1:
-            echo '<script>
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "¡Cliente Actualizado Exitosamente!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                  </script>';
-            break;
-        case 2:
-            echo '<script>
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops... Al parecer, no hubo cambios o hubo un error al actualizar el Cliente. ¡Inténtelo de nuevo!",
-                    });
-                  </script>';
-            break;
-    }
-}
-?>
+                            if (isset($_GET["error2"])) {
+                                switch ($_GET["error2"]) {
+                                    case 1:
+                                        echo '<script>
+                                        Swal.fire({
+                                            position: "top-end",
+                                            icon: "success",
+                                            title: "¡Cliente Actualizado Exitosamente!",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                        </script>';
+                                        break;
+                                    case 2:
+                                        echo '<script>
+                                            Swal.fire({
+                                                icon: "error",
+                                                title: "Oops... Al parecer, no hubo cambios o hubo un error al actualizar el Cliente. ¡Inténtelo de nuevo!",
+                                            });
+                                            </script>';
+                                        break;
+                                }
+                            }
+                            ?>
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggclie">
