@@ -24,10 +24,10 @@ if ($result->rowCount() > 0) {
                     $cont++;
                 ?>
                     <tr>
-                        <th scope="row"><?php echo $cont ?></th>
-                        <td><?php echo !empty($fila->Usudoc) ? $fila->Usudoc : 'Sin documento'; ?></td>
-                        <td><?php echo !empty($fila->usuario) ? $fila->usuario : 'Sin usuario'; ?></td>
-                        <td><?php echo !empty($fila->telefono) ? $fila->telefono : 'Sin Telefono'; ?></td>
+                    <th scope="row"><?php echo $cont ?></th>
+                        <td><?php echo $fila->Usudoc ; ?></td>
+                        <td><?php echo $fila->usuario ; ?></td>
+                        <td><?php echo $fila->telefono ; ?></td>
                         <td><?php
                             if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") {
                                 echo !empty($fila->password) ? $fila->password : 'Sin contraseña';
@@ -43,7 +43,7 @@ if ($result->rowCount() > 0) {
                                 Sin foto de perfil
                             <?php } ?>
                         </td>
-                        <td><?php echo !empty($fila->nombrerol) ? $fila->nombrerol : 'Sin rol'; ?></td>
+                        <td><?php echo $fila->nombrerol ?></td>
                         <td>
                             <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
                                 <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->Usudoc; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>

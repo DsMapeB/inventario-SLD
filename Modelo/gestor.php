@@ -97,35 +97,47 @@ class Gestor
   public function editarUsu($doc)
   {
     $conexion = new Conexion();
-    $sql = "SELECT * FROM usuario WHERE Usudoc = '$doc'";
+    $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE Usudoc = '$doc'";
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
     return $result;
   }
 
-  public function actualizarUsu($usu)
-  {
+  public function consultarRolUsu(){
+    $conexion = new Conexion();
+    $sql2 = "SELECT * FROM rol";
+    $conexion->buscar_query($sql2);
+    $result2 = $conexion->obtener_resultado();
+    return $result2;
+  }
+
+  public function actualizarUsu($usu) {
     $conexion = new Conexion();
     $doc = $usu->obtenerdocumento();
     $usuario = $usu->obtenerusuario();
+    $telefono = $usu->obtenertelefono();
     $password = $usu->obtenerpassword();
     $foto = $usu->obtenerfoto();
     $rol = $usu->obtenerrol();
 
-    $sql = "UPDATE usuario SET usuario = '$usuario', password = '$password', foto = '$foto', rol = '$rol' WHERE Usudoc = '$doc'";
-    $result = $conexion->ejecutar_query($sql);
+    $sql = "UPDATE usuario SET usuario = ?, telefono = ?, password = ?, foto = ?, rol = ? WHERE Usudoc = ?";
+    $params = [$usuario, $telefono, $password, $foto, $rol, $doc];
+
+    $result = $conexion->ejecutar_query_preparado($sql, $params);
+    
     if ($result > 0) {
-      return 1;
+        return 1;
     } else {
-      return 2;
+        return 2;
     }
-  }
+}
+
 
   public function eliminarUsu($usuario)
   {
     $conexion = new Conexion();
-    $sql = "DELETE FROM usuario WHERE Usudoc = ?";
-    $params = array($usuario);
+    $sql = "DELETE FROM usuario WHERE Usudoc = :usuario";
+    $params = array(':usuario' => $usuario);
     $filasAfectadas = $conexion->ejecutar_query_preparado($sql, $params);
     return $filasAfectadas;
   }

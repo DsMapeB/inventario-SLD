@@ -1,14 +1,10 @@
 $(document).ready(function(){
-  cargarRol2();
-  cargarRol3();
+  cargarRol();
   cargarNit();
   cargarNitEdit();
-  cargarUsuario1();
-  cargarCliente1();
-  cargarProducto1();
-  cargarUsuario2();
-  cargarCliente2();
-  cargarProducto2();
+  cargarUsuario();
+  cargarCliente();
+  cargarProducto();
   cleanURLAfterMessage();
   cargarCod();
 
@@ -17,36 +13,46 @@ $(document).ready(function(){
 // Función para limpiar la URL después de mostrar mensajes
 function cleanURLAfterMessage() {
   const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.has('error')) {
-      // Mostrar el mensaje de SweetAlert2
-      setTimeout(function() {
-          // Limpiar solo los parámetros relacionados con los mensajes
-          urlParams.delete('error');
-          window.history.replaceState({}, document.title, window.location.pathname + '?' + urlParams.toString());
-      }, 2000); // Ajusta el tiempo según sea necesario
+  const paramsToDelete = ['error', 'error2']; // Lista de parámetros a eliminar
+
+  let hasMessageParam = false;
+
+  // Comprobar si alguno de los parámetros existe
+  paramsToDelete.forEach(param => {
+    if (urlParams.has(param)) {
+      hasMessageParam = true;
+    }
+  });
+
+  if (hasMessageParam) {
+    // Mostrar el mensaje de SweetAlert2
+    setTimeout(function() {
+      // Eliminar los parámetros relacionados con los mensajes
+      paramsToDelete.forEach(param => {
+        urlParams.delete(param);
+      });
+      // Actualizar la URL sin recargar la página
+      window.history.replaceState({}, document.title, window.location.pathname + '?' + urlParams.toString());
+    }, 2000); // Ajusta el tiempo según sea necesario
   }
 }
 
 //-------------------------- Login y Registro --------------------------
-function cargarRol3(){
-  $.post("Modelo/cargarRol3.php", {}, function (mensaje){
+function cargarRol(){
+  $.post("Modelo/cargarRol.php", {}, function (mensaje){
     $("#cargo").html(mensaje);
 });
 }
 
 //--------------------------perfil--------------------------
-function cargarRol2(){
-  $.post("Modelo/cargarRol2.php", {}, function (mensaje2){
-    $("#rol2").html(mensaje2);
-  });
-}
+
 function consultarUsu(){
   var url = "index.php?accion=consultarUsu";
   $("#Usuario").load(url);
 }
-function editarperfil(){
-  var url = "index.php?accion=editarPerfil";
-  $("#modalEditperfil").load(url);
+function editarUsuario(val){
+  var url = "index.php?accion=editarUsu&numero="+val;
+  $("#modaleditusu").load(url);
 }
 function eliminarUsu(numero, nombre){
   const swalWithBootstrapButtons = Swal.mixin({
@@ -87,10 +93,9 @@ function eliminarUsu(numero, nombre){
     }
   });
 }
-
-function editarUsuario(val){
-  var url = "index.php?accion=editarUsu&numero="+val;
-  $("#modaleditusu").load(url);
+function editarperfil(){
+  var url = "index.php?accion=editarPerfil";
+  $("#modalEditperfil").load(url);
 }
 
 //--------------------------roles--------------------------
@@ -143,7 +148,6 @@ swalWithBootstrapButtons.fire({
 }
 
 
-
 //---------------------------Cliente----------------------------
 function consultarcli(){
   var url = "index.php?accion=consultarCli";
@@ -174,7 +178,7 @@ function eliminarcli(numero3, nombreclie){
     if (result.isConfirmed) {
       $.get("index.php", { accion: 'eliminarcli', numero3: numero3 }, function () {
         swalWithBootstrapButtons.fire({
-        title: "El Cliente " + nombre + " ha sido Eliminado Exitosamente!",
+        title: "El Cliente " + nombreclie + " ha sido Eliminado Exitosamente!",
         icon: "success"
         }).then(() => {
           // Recarga la página después de la confirmación de eliminación
@@ -353,34 +357,19 @@ function eliminarventa(numero5, producto){
   });
 }
 
-function cargarUsuario1(){
+function cargarUsuario(){
   $.post("Modelo/cargarUsu.php", {} , function (mensaje){
     $("#idUsu").html(mensaje);
   });
 }
-function cargarCliente1(){
+function cargarCliente(){
   $.post("Modelo/cargarCli.php", {} , function (mensaje){
     $("#docclie").html(mensaje);
   });
 }
-function cargarProducto1(){
+function cargarProducto(){
   $.post("Modelo/cargarProdu.php", {} , function (mensaje){
     $("#codprodu").html(mensaje);
-  });
-}
-function cargarUsuario2(){
-  $.post("Modelo/cargarUsu.php", {} , function (mensaje){
-    $("#idUsu2").html(mensaje);
-  });
-}
-function cargarCliente2(){
-  $.post("Modelo/cargarCli.php", {} , function (mensaje){
-    $("#docclie2").html(mensaje);
-  });
-}
-function cargarProducto2(){
-  $.post("Modelo/cargarProdu.php", {} , function (mensaje){
-    $("#codprodu2").html(mensaje);
   });
 }
 function cargarCod() {

@@ -31,6 +31,7 @@ class ControladorProdu
     {
         $gestorprodu = new GestorProdu();
         $result = $gestorprodu->editarProdu($codprodu);
+        $result2 = $gestorprodu->consultarProve();
         require_once 'Vista/html/modalEditprodu.php';
     }
 

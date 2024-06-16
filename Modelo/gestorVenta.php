@@ -48,6 +48,30 @@ class GestorVenta
         return $result;
     }
 
+    public function consultarUsuario(){
+        $conexion = new Conexion();
+        $sql = "SELECT * FROM usuario";
+        $conexion->buscar_query($sql);
+        $result = $conexion->obtener_resultado();
+        return $result;
+    }
+
+    public function consultarCliente(){
+        $conexion = new Conexion();
+        $sql = "SELECT * FROM cliente";
+        $conexion->buscar_query($sql);
+        $result = $conexion->obtener_resultado();
+        return $result;
+    }
+
+    public function consultarProducto(){
+        $conexion = new Conexion();
+        $sql = "SELECT * FROM producto";
+        $conexion->buscar_query($sql);
+        $result = $conexion->obtener_resultado();
+        return $result;
+    }
+
     public function actualizarVenta($vent)
     {
         $conexion = new Conexion();

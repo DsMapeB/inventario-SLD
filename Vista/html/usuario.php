@@ -216,6 +216,7 @@
                             ?>
                                     <script>
                                         Swal.fire({
+                                            position: "top-end",
                                             icon: "success",
                                             title: "¡Actualizacion de Trabajador Exitosa!",
                                             showConfirmButton: false,
@@ -249,7 +250,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Usuario</h1>
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Trabajador</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -288,7 +289,7 @@
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span for="validationDefault05" class="input-group-text">Foto</span>
-                                                    <input type="file" class="form-control" name="foto" id="validationDefault05" >
+                                                    <input type="file" class="form-control" name="foto" id="validationDefault05">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span for="validationDefault06" class="input-group-text">Rol</span>
@@ -303,6 +304,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Final del Modal -->
                             <div id="Usuario"></div>
                         </div>
                     </div>

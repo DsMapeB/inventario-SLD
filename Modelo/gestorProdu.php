@@ -29,7 +29,7 @@ class GestorProdu
     public function consultarProdu()
     {
         $conexion = new Conexion();
-        $sql = "SELECT * FROM producto join proveedores on producto.nitprodu=proveedores.nitpro;";
+        $sql = "SELECT * FROM producto join proveedores on producto.nitprodu=proveedores.nitpro";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
         return $result;
@@ -38,7 +38,15 @@ class GestorProdu
     public function editarProdu($codprodu)
     {
         $conexion = new Conexion();
-        $sql = "SELECT * FROM producto WHERE codprodu = $codprodu";
+        $sql = "SELECT * FROM producto join proveedores on producto.nitprodu=proveedores.nitpro WHERE codprodu = $codprodu";
+        $conexion->buscar_query($sql);
+        $result = $conexion->obtener_resultado();
+        return $result;
+    }
+
+    public function consultarProve(){
+        $conexion = new Conexion();
+        $sql = "SELECT * FROM proveedores";
         $conexion->buscar_query($sql);
         $result = $conexion->obtener_resultado();
         return $result;

@@ -22,10 +22,31 @@
     <input type="hidden" name="foto_existente" value="<?php echo $fila['foto']; ?>">
   </div>
   <div class="input-group mb-3">
-    <span for="validationDefault06" class="input-group-text">Rol</span>
-    <select class="form-select" id="rol2" name="cargo2" id="validationDefault06" required>
+    <span class="input-group-text">Rol</span>
+    <select class="form-select" name="cargo2" id="validationDefault06" required>
+      <!-- Imprimir opción del rol actual fuera del bucle -->
+      <option value="<?php echo $fila['rol']; ?>">Rol actual: <?php echo $fila['nombrerol']; ?></option>
+
+      <?php
+      // Iniciar el bucle para las opciones adicionales
+      while ($filas2 = $result2->fetch()) {
+        // Omitir la impresión del rol actual dentro del bucle
+        if ($filas2['cargoUsu'] != $fila['rol']) {
+      ?>
+          <option disabled>-- Seleccione el Rol a Actualizar --</option>
+          <option value="<?php echo $filas2['cargoUsu'] ?>"><?php echo $filas2['nombrerol'] ?></option>
+        <?php
+        }
+      }
+      if (!$filas2['cargoUsu']) {
+        ?>
+        <option disabled>No hay mas Roles disponibles</option>
+      <?php
+      }
+      ?>
     </select>
   </div>
+
   <div class="modal-footer">
     <button class="btn btn-primary" type="submit">Guardar Cambios</button>
   </div>

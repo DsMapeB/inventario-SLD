@@ -13,18 +13,66 @@
         <input type="time" class="form-control" placeholder="Hora" aria-label="hora" aria-describedby="basic-addon1" value="<?php echo $filas['hora']; ?>" id="hora2" name="hora2" required>
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text" for="inputGroupSelect01">Usuario</span>
-        <select class="form-select" id="idUsu2" name="idUsu2" required> 
+        <span class="input-group-text" for="inputGroupSelect01">Trabajador</span>
+        <select class="form-select" name="idUsu2" required>
+            <option value="<?php echo $filas['Usu']; ?>"><?php echo $filas['usuario']; ?></option>
+            <?php
+            while ($filas2 = $result2->fetch()) {
+                if ($filas2['Usudoc'] != $filas['Usu']) {
+            ?>
+                    <option disabled>--Seleccione el Trabajador a Actualizar--</option>
+                    <option value="<?php echo $filas2['Usudoc']; ?>"><?php echo $filas2['usuario']; ?></option>
+                <?php
+                }
+            }
+            if (!$filas2['Usudoc']) {
+                ?>
+                <option disabled>No hay mas Trabajadores disponibles</option>
+            <?php
+            }
+            ?>
         </select>
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" for="inputGroupSelect02">Documento Cliente</span>
-        <select class="form-select" id="docclie2" name="docclie2" required>
+        <select class="form-select" name="docclie2" required>
+        <option value="<?php echo $filas['clie']; ?>"><?php echo $filas['nombreclie']; ?></option>
+            <?php
+            while ($filas3 = $result3->fetch()) {
+                if ($filas3['docclie'] != $filas['clie']) {
+            ?>
+                    <option disabled>--Seleccione el Cliente a Actualizar--</option>
+                    <option value="<?php echo $filas3['docclie']; ?>"><?php echo $filas3['nombreclie']; ?></option>
+                <?php
+                }
+            }
+            if (!$filas3['docclie']) {
+                ?>
+                <option disabled>No hay mas Clientes disponibles</option>
+            <?php
+            }
+            ?>
         </select>
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" for="inputGroupSelect03">Codigo de producto</span>
-        <select class="form-select" id="codprodu2" name="codprodu2" required>
+        <select class="form-select" name="codprodu2" required>
+        <option value="<?php echo $filas['produ']; ?>"><?php echo $filas['nombreprodu']; ?></option>
+            <?php
+            while ($filas4 = $result4->fetch()) {
+                if ($filas4['codprodu'] != $filas['produ']) {
+            ?>
+                    <option disabled>--Seleccione el Producto a Actualizar--</option>
+                    <option value="<?php echo $filas4['codprodu']; ?>"><?php echo $filas4['nombreprodu']; ?></option>
+                <?php
+                }
+            }
+            if (!$filas4['codprodu']) {
+                ?>
+                <option disabled>No hay mas Productos disponibles</option>
+            <?php
+            }
+            ?>
         </select>
     </div>
     <div class="input-group mb-3">

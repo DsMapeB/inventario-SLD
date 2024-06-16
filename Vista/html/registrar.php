@@ -124,7 +124,6 @@
                                         <div class="col-12">
                                             <label for="cargo" class="form-label">Rol</label>
                                             <select class="form-select" id="cargo" name="cargo" required>
-                                                <!-- Opciones del select -->
                                             </select>
                                         </div>
                                         <div class="col-12">

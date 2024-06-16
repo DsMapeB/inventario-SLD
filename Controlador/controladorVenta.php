@@ -32,6 +32,9 @@ class ControladorVenta
     public function editarventa($codventa){
         $gestorventa = new GestorVenta();
         $result = $gestorventa->editarventa($codventa);
+        $result2 = $gestorventa->consultarUsuario();
+        $result3 = $gestorventa->consultarCliente();
+        $result4 = $gestorventa->consultarProducto();
         require_once 'Vista/html/modalEditventa.php';
     }
 
