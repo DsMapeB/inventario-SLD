@@ -57,6 +57,14 @@ class Gestor
   }
   //-----------------------Fin Login y Registro--------------------\\
 
+  public function consultaTotal(){
+    $conexion = new Conexion();
+    $sql = "SELECT COUNT(*) AS cantUsu FROM usuario";
+    $conexion->buscar_query($sql);
+    $result = $conexion->obtener_resultado();
+    return $result;
+  }
+
 
   //------------------------------Panel------------------------------\\
   public function consultarUsu()

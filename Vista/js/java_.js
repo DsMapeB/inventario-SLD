@@ -44,6 +44,48 @@ function cargarRol(){
 });
 }
 
+function consultaTotalI(){
+  var url = "index.php?accion=consultaTotal";
+}
+
+function fundadores(){
+  Swal.fire({
+    title: "Fundadores / Creadores",
+    text: "Modal with a custom image.",
+    html: `
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="Vista/img/fotom.webp" class="w-100" alt="">
+            <div class="carousel-caption d-none d-md-block" >
+              <h5>Santiago Mape</h5>
+              <p id="si">Fundador y Desarrollador del Sistema de Gestion Online de Inventario SLD</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="Vista/img/laug.webp" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Laura Gongora</h5>
+              <p id="si">Creadora del Sistema de Gestion Online de Inventario SLD</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bg-black" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon bg-black" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    `,
+    imageAlt: "Sorry"
+  });
+}
+
+
+
 //--------------------------perfil--------------------------
 
 function consultarUsu(){

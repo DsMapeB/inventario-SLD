@@ -79,6 +79,12 @@ class Controlador
     require_once 'Vista/html/consultarUsu.php';
   }
 
+  public function consultaTotal(){
+    $gestor = new Gestor();
+    $result = $gestor->consultaTotal();
+    require_once 'Vista/html/inicio.php';
+  }
+
   public function agregarUsuario($doc, $usu, $tel, $pass, $foto, $rol)
   {
     if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {

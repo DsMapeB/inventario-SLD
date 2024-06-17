@@ -167,7 +167,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Tabla Trabajadores</h5>
+                            <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
                             <p>Aca podras encontrar toda la informacion sobre tus Trabajadores</p>
+                            <?php endif; ?>
 
                             <?php
                             if (isset($_GET["error"])) {

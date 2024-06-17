@@ -163,25 +163,25 @@
         </div><!--fin titulo de pagina -->
 
         <?php
-            if (isset($_GET["error"])) {
-                if ($_GET["error"] == 1) {
-            ?>
-                    <script>
-                        Swal.fire({
-                            position: "top" ,
-                            title: " Bienvenido <?php echo $_SESSION["usuario"]; ?>",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    </script>
-                <?php
-                }
+        if (isset($_GET["error"])) {
+            if ($_GET["error"] == 1) {
+        ?>
+                <script>
+                    Swal.fire({
+                        position: "top",
+                        title: " Bienvenid@ <?php echo $_SESSION["usuario"]; ?>",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                </script>
+        <?php
             }
-            ?>
+        }
+        ?>
 
         <div class="bienvenida">
-            <h3 class="card-title">Bienvenidos a su Sistema de Gestion Online de Inventario</h3>
-            <p class="w-100">
+            <h3 class="card-title w-100">Bienvenidos a su Sistema de Gestion Online de Inventario</h3>
+            <p>
                 ¡Bienvenidos al Sistema de Gestion Online de Inventario! Este sistema te permitirá controlar de manera eficiente tus existencias, optimizar el flujo de productos y mejorar la gestión de tus activos. ¡Comencemos a maximizar la eficiencia y la rentabilidad de tu inventario juntos!
             </p>
         </div><!--fin bienvenida -->
@@ -192,8 +192,18 @@
             <div class="card" style="width: 18rem;">
                 <img src="Vista/img/usuarios.webp" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-titlem">Usuarios</h5>
-                    <p class="card-text">En la seccion de Usuarios podras ver todos los Usuarios Inscritos por el Administrador</p>
+                    <h5 class="card-titlem">Trabajadores</h5>
+                    <?php if (isset($result) && $result->rowCount() > 0) : ?>
+                        <span>
+                            <?php while ($filas2 = $result->fetch()) : ?>
+                                <?php echo $filas2["cantUsu"]; ?>
+                            <?php endwhile; ?>
+                        </span>
+                    <?php else : ?>
+                        <span>Error: No se encontraron resultados.</span>
+                    <?php endif; ?>
+
+                    <p class="card-text">En la seccion de Trabajadores podras ver todos los que estan Inscritos por el Administrador Y/O se registraron.</p>
                     <a href="index.php?accion=usuario" class="btn btn-primary">Seccion Usuarios</a>
                 </div>
             </div>
@@ -201,7 +211,7 @@
                 <img src="Vista/img/provee.webp" class="card-img-top" alt="..." height="171.65px" width="448px">
                 <div class="card-body">
                     <h5 class="card-titlem">Proveedores</h5>
-                    <p class="card-text">En la seccion de Proveedores podras ver todos los proveedores que te suministran la tienda</p>
+                    <p class="card-text">En la seccion de Proveedores podras ver todos los que te suministran la tienda.</p>
                     <a href="index.php?accion=provee" class="btn btn-primary">Seccion Proveedores</a>
                 </div>
             </div>
@@ -209,7 +219,7 @@
                 <img src="Vista/img/produ.webp" class="card-img-top" alt="..." height="171.65px">
                 <div class="card-body">
                     <h5 class="card-titlem">Productos</h5>
-                    <p class="card-text">En la seccion de Productos podras ver todos los productos en adquisicion en tu tienda</p>
+                    <p class="card-text">En la seccion de Productos podras ver todos los productos en adquisicion en tu tienda.</p>
                     <a href="index.php?accion=produ" class="btn btn-primary">Seccion Productos</a>
                 </div>
             </div>
@@ -244,38 +254,10 @@
         </section><!--fin vision mision -->
 
 
-        <div class="carr ">
-            <h5 class="card-titlem w-100">Fundadores/Creadores</h5>
-            <div id="carouselExampleCaptions" class="carousel slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="Vista/img/fotom.webp" class=" w-100" alt="">
-                        <div class="carousel-caption d-none d-md-block ">
-                            <h5>Fundador/Creador de SLD</h5>
-                            <p>Mi nombre es Santiago Mape y soy Creador del Sistema de Gestion Online de Inventario SLD</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="Vista/img/laug.webp" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Fundadora/Creadora de SLD</h5>
-                            <p>Mi nombre es Laura Medina y soy Creadora del Sistema de Gestion Online de Inventario SLD</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon bg-black" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                    <span class="carousel-control-next-icon bg-black" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+        <div class="carr">
+            <button type="button" class="btn btn-success" id="btn" onclick="fundadores()">
+                <i class="bi bi-person-raised-hand"></i> Conocenos
+            </button>
         </div>
     </main>
 
@@ -286,6 +268,10 @@
 
     <script src="Vista/js/java.js"></script>
     <script src="Vista/js/java_.js"></script>
+
+    <script>
+        consultaTotalI();
+    </script>
 </body>
 
 </html>

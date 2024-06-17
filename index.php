@@ -49,6 +49,9 @@ if (
             case 'inicio':
                 $controlador->verpagina("Vista/html/inicio.php");
                 break;
+            case 'consultaTotal':
+                $controlador->consultaTotal();
+                break;
 
             case 'ingresarusuario':
                 $controlador->agregarUsuario(
