@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Inicio de Sesion</title>
     <link rel="shortcut icon" href="Vista/ico/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="Vista/bootstrap-5.3.3-dist/css/bootstrap.css">
     <link rel="stylesheet" href="Vista/bootstrap-5.3.3-dist/css/bootstrap.min.css">

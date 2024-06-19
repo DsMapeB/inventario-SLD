@@ -26,7 +26,7 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->nombreprodu; ?></td>
                         <?php $fila->precioprodu; 
                         $fila2 = $fila->precioprodu;
-                        $formateado = number_format((float)$fila2, 3, '.', '');?>
+                        $formateado = number_format($fila2, 0, ',', '.');?>
                         <td><?php echo $formateado; ?></td>
                         <td><?php echo $fila->existenciaprodu; ?></td>
                         <td><?php echo $fila->nombrePro; ?></td>

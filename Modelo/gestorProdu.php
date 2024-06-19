@@ -63,7 +63,7 @@ class GestorProdu
         $exisprodu = $producto->obtenerexistencia();
         $proveprodu = $producto->obtenerproveedor();
 
-        $sql = "UPDATE producto SET codprodu = '$codprodu', nombreprodu = '$nombreprodu', precioprodu = '$precioprodu', existenciaprodu = '$exisprodu', nitprodu = '$proveprodu' ";
+        $sql = "UPDATE producto SET nombreprodu = '$nombreprodu', precioprodu = '$precioprodu', existenciaprodu = '$exisprodu', nitprodu = '$proveprodu' WHERE codprodu = '$codprodu'";
         $result = $conexion->ejecutar_query($sql);
         if ($result > 0){
             return 1;
