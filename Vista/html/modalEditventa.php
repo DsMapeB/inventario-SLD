@@ -17,14 +17,22 @@
         <select class="form-select" name="idUsu2" required>
             <option value="<?php echo $filas['Usu']; ?>"><?php echo $filas['usuario']; ?></option>
             <?php
+            $Trabajadores = false;
+            
             while ($filas2 = $result2->fetch()) {
                 if ($filas2['Usudoc'] != $filas['Usu']) {
-            ?>
-                    <option disabled>--Seleccione el Trabajador a Actualizar--</option>
+                    if (!$filas2['Usu'] && !$Trabajadores) {
+                ?>
+                    <option disabled>-- Seleccione el Trabajador a Actualizar --</option>
+                    <?php
+                    $Trabajadores = true;
+                    }
+                    ?>
                     <option value="<?php echo $filas2['Usudoc']; ?>"><?php echo $filas2['usuario']; ?></option>
                 <?php
                 }
             }
+
             if (!$filas2['Usudoc']) {
                 ?>
                 <option disabled>No hay mas Trabajadores disponibles</option>
@@ -36,37 +44,55 @@
     <div class="input-group mb-3">
         <span class="input-group-text" for="inputGroupSelect02">Documento Cliente</span>
         <select class="form-select" name="docclie2" required>
-        <option value="<?php echo $filas['clie']; ?>"><?php echo $filas['nombreclie']; ?></option>
+            <option value="<?php echo $filas['clie']; ?>"><?php echo $filas['nombreclie']; ?></option>
             <?php
+            $Clientes = false; // Variable de control
+
             while ($filas3 = $result3->fetch()) {
                 if ($filas3['docclie'] != $filas['clie']) {
+                    if (!$filas3['clie'] && !$Clientes) {
+                        // Imprimir solo una vez
             ?>
-                    <option disabled>--Seleccione el Cliente a Actualizar--</option>
+                        <option disabled>-- Seleccione el Cliente a Actualizar --</option>
+                    <?php
+                        $Clientes = true; // Actualizar variable de control
+                    }
+                    ?>
                     <option value="<?php echo $filas3['docclie']; ?>"><?php echo $filas3['nombreclie']; ?></option>
                 <?php
                 }
             }
             if (!$filas3['docclie']) {
+                // Si la opción "Seleccione el Cliente a Actualizar" nunca fue imprimida
                 ?>
                 <option disabled>No hay mas Clientes disponibles</option>
             <?php
             }
             ?>
         </select>
+
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" for="inputGroupSelect03">Codigo de producto</span>
         <select class="form-select" name="codprodu2" required>
-        <option value="<?php echo $filas['produ']; ?>"><?php echo $filas['nombreprodu']; ?></option>
+            <option value="<?php echo $filas['produ']; ?>"><?php echo $filas['nombreprodu']; ?></option>
             <?php
+            $Productos = false;
+
             while ($filas4 = $result4->fetch()) {
                 if ($filas4['codprodu'] != $filas['produ']) {
+                    if (!$filas4['produ'] && !$Productos) {
             ?>
-                    <option disabled>--Seleccione el Producto a Actualizar--</option>
+                        <option disabled>-- Seleccione el Producto a Actualizar --</option>
+                    <?php
+                        $Productos = true;
+                    }
+                    ?>
                     <option value="<?php echo $filas4['codprodu']; ?>"><?php echo $filas4['nombreprodu']; ?></option>
                 <?php
                 }
             }
+
             if (!$filas4['codprodu']) {
                 ?>
                 <option disabled>No hay mas Productos disponibles</option>

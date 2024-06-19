@@ -65,6 +65,21 @@ class Gestor
     return $result;
   }
 
+  public function consultaTotalProvee(){
+    $conexion = new Conexion();
+    $sql = "SELECT COUNT(*) AS cantProve FROM proveedores";
+    $conexion->buscar_query($sql);
+    $result2 = $conexion->obtener_resultado();
+    return $result2;
+  }
+
+  public function consultaTotalProduc(){
+    $conexion = new Conexion();
+    $sql = "SELECT COUNT(*) AS cantProdu FROM producto";
+    $conexion->buscar_query($sql);
+    $result3 = $conexion->obtener_resultado();
+    return $result3;
+  }
 
   //------------------------------Panel------------------------------\\
   public function consultarUsu()

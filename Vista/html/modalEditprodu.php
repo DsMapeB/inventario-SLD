@@ -21,12 +21,11 @@
             <span class="input-group-text" id="basic-addon1">Proveedor</span>
             <select class="form-select" name="proprodu" required>
                 <option value="<?php echo $filas['nitprodu']; ?>">Proveedor Actual: <?php echo $filas['nombrePro']; ?></option>
-
+                <option disabled>-- Seleccione el Nit del Proveedor --</option>
                 <?php
                 while ($filas2 = $result2->fetch()) {
                     if ($filas2['nitpro'] != $filas['nitprodu']) {
                 ?>
-                        <option disabled>-- Seleccione el Nit del Proveedor --</option>
                         <option value="<?php echo $filas2['nitpro'] ?>"><?php echo $filas2['nombrePro'] ?></option>
                     <?php
                     }

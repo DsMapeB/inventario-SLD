@@ -248,7 +248,7 @@ h6 {
   font-family: "Poppins", sans-serif;
 }
 .card-titlem {
-  padding: 20px 0 15px 0;
+  padding: 20px 0 0 0;
   font-size: 25px;
   font-weight: 500;
   color: #cea14e;
@@ -848,7 +848,17 @@ h6 {
   font-size: 1.5rem; /* Ajusta el tamaño del texto del botón */
   height: 55%;
 }
-
 #si{
   margin-bottom: -1.5rem;
 }
+#h6Cant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #012970;
+  height: 55px;
+  font-size: 40px; /* Ajusta el tamaño de la fuente según tu preferencia */
+  font-weight: 700; /* Hace que el texto sea negrita */
+}
+
+

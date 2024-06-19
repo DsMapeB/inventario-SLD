@@ -26,14 +26,13 @@
     <select class="form-select" name="cargo2" id="validationDefault06" required>
       <!-- Imprimir opción del rol actual fuera del bucle -->
       <option value="<?php echo $fila['rol']; ?>">Rol actual: <?php echo $fila['nombrerol']; ?></option>
-
+      <option disabled>-- Seleccione el Rol a Actualizar --</option>
       <?php
       // Iniciar el bucle para las opciones adicionales
       while ($filas2 = $result2->fetch()) {
         // Omitir la impresión del rol actual dentro del bucle
         if ($filas2['cargoUsu'] != $fila['rol']) {
       ?>
-          <option disabled>-- Seleccione el Rol a Actualizar --</option>
           <option value="<?php echo $filas2['cargoUsu'] ?>"><?php echo $filas2['nombrerol'] ?></option>
         <?php
         }

@@ -44,8 +44,9 @@ function cargarRol(){
 });
 }
 
-function consultaTotalI(){
+function consultaTotal(){
   var url = "index.php?accion=consultaTotal";
+  $("#cant").load(url);
 }
 
 function fundadores(){
@@ -70,12 +71,12 @@ function fundadores(){
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon bg-black" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+        <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="bi bi-chevron-left" style="  color: #000000; font-size: 2rem;" aria-hidden="true"></span>
+          <span class="visually-hidden ">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="carousel-control-next-icon bg-black" aria-hidden="true"></span>
+                    <span class="bi bi-chevron-right" style="  color: #000000; font-size: 2rem;" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>

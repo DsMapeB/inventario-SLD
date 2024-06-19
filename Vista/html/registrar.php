@@ -38,6 +38,14 @@
                                         <h5 class="card-title text-center pb-0 fs-4">
                                             Cree una Cuenta
                                         </h5>
+                                        <script>
+                                            Swal.fire({
+                                                icon: "info",
+                                                title: "¡Oye! Ten en cuenta lo siguiente antes de crear tu cuenta:",
+                                                html: '1. Si al momento del registro no deseas subir una foto, no hay problema.<br> 2. Sé muy correcto con el rol asignado.',
+                                                showConfirmButton: true,
+                                            });
+                                        </script>
                                         <p class="text-center small">
                                             Ingrese sus datos para crear la Cuenta
                                         </p>

@@ -82,7 +82,9 @@ class Controlador
   public function consultaTotal(){
     $gestor = new Gestor();
     $result = $gestor->consultaTotal();
-    require_once 'Vista/html/inicio.php';
+    $result2 = $gestor->consultaTotalProvee();
+    $result3 = $gestor->consultaTotalProduc();
+    require_once 'Vista/html/cantIni.php';
   }
 
   public function agregarUsuario($doc, $usu, $tel, $pass, $foto, $rol)

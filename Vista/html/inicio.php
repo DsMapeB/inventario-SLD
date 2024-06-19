@@ -186,43 +186,7 @@
             </p>
         </div><!--fin bienvenida -->
 
-        <section class="mai">
-            <h5 class="card-titlem w-100">Sobre el Sistema de Gestion Online de Inventario</h5>
-            <p class="w-100">Aca te mostraremos todo lo que puede traer Nuestro sistema online de Inventario </p>
-            <div class="card" style="width: 18rem;">
-                <img src="Vista/img/usuarios.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-titlem">Trabajadores</h5>
-                    <?php if (isset($result) && $result->rowCount() > 0) : ?>
-                        <span>
-                            <?php while ($filas2 = $result->fetch()) : ?>
-                                <?php echo $filas2["cantUsu"]; ?>
-                            <?php endwhile; ?>
-                        </span>
-                    <?php else : ?>
-                        <span>Error: No se encontraron resultados.</span>
-                    <?php endif; ?>
-
-                    <p class="card-text">En la seccion de Trabajadores podras ver todos los que estan Inscritos por el Administrador Y/O se registraron.</p>
-                    <a href="index.php?accion=usuario" class="btn btn-primary">Seccion Usuarios</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img src="Vista/img/provee.webp" class="card-img-top" alt="..." height="171.65px" width="448px">
-                <div class="card-body">
-                    <h5 class="card-titlem">Proveedores</h5>
-                    <p class="card-text">En la seccion de Proveedores podras ver todos los que te suministran la tienda.</p>
-                    <a href="index.php?accion=provee" class="btn btn-primary">Seccion Proveedores</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img src="Vista/img/produ.webp" class="card-img-top" alt="..." height="171.65px">
-                <div class="card-body">
-                    <h5 class="card-titlem">Productos</h5>
-                    <p class="card-text">En la seccion de Productos podras ver todos los productos en adquisicion en tu tienda.</p>
-                    <a href="index.php?accion=produ" class="btn btn-primary">Seccion Productos</a>
-                </div>
-            </div>
+        <section id="cant" class="mai">
         </section><!--fin sobre el sistema -->
 
         <section class="somos ">
@@ -270,7 +234,7 @@
     <script src="Vista/js/java_.js"></script>
 
     <script>
-        consultaTotalI();
+        consultaTotal();
     </script>
 </body>
 
