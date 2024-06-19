@@ -38,7 +38,11 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo $_SESSION["foto"]; ?>" alt="Profile" class="rounded-circle">
+                        <?php if (!empty($_SESSION["foto"])) { ?>
+                            <img src="<?php echo $_SESSION["foto"]; ?>" alt="Foto de Perfil" class="rounded-circle">
+                        <?php } else { ?>
+                            Sin foto de perfil
+                        <?php } ?>
                         <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION["usuario"]; ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -167,7 +171,11 @@
 
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center text-center">
-                            <img src="<?php echo $_SESSION["foto"]; ?>" alt="Profile" class="rounded-circle">
+                        <?php if (!empty($_SESSION["foto"])) { ?>
+                            <img src="<?php echo $_SESSION["foto"]; ?>" alt="Foto de Perfil" class="rounded-circle">
+                        <?php } else { ?>
+                            Sin foto de perfil
+                        <?php } ?>
                             <h2><?php echo $_SESSION["usuario"]; ?></h2>
                             <h3><?php echo $_SESSION["nombrerol"]; ?></h3>
                         </div>
@@ -249,7 +257,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Imagen de Perfil</div>
-                                        <div class="col-lg-9 col-md-8 "><img src="<?php echo $_SESSION["foto"]; ?>" alt="Perfil" class="rounded-circle" height="200px" width="200px"></div>
+                                        <div class="col-lg-9 col-md-8 "><?php if (!empty($_SESSION["foto"])) { ?>
+                                                <img src="<?php echo $_SESSION["foto"]; ?>" alt="Perfil" class="rounded-circle" height="200px" width="200px">
+                                            <?php } else { ?>
+                                                Sin foto de perfil
+                                            <?php } ?>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Cargo</div>

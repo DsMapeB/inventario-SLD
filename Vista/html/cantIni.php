@@ -17,7 +17,7 @@
         <?php endif; ?>
 
         <p class="card-text">En la seccion de Trabajadores podras ver todos los que estan Inscritos por el Administrador y/o se registraron.</p>
-        <a href="index.php?accion=usuario" class="btn btn-primary">Seccion Usuarios</a>
+        <a href="index.php?accion=usuario" class="btn btn-primary">Seccion Trabajadores</a>
     </div>
 </div>
 <div class="card" style="width: 18rem;">

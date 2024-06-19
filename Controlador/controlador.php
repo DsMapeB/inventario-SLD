@@ -72,6 +72,11 @@ class Controlador
   }
 
   //----------------------------------Panel--------------------------------------\\
+  public function Descarga_BD(){
+    $gestor = new Gestor();
+    $result = $gestor->DescargaBD();
+  }
+
   public function consultarUsu()
   {
     $gestor = new Gestor();

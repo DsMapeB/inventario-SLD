@@ -37,7 +37,11 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo $_SESSION["foto"]; ?>" alt="Profile" class="rounded-circle">
+                        <?php if (!empty($_SESSION["foto"])) { ?>
+                            <img src="<?php echo $_SESSION["foto"]; ?>" alt="Foto de Perfil" class="rounded-circle">
+                        <?php } else { ?>
+                            Sin foto de perfil
+                        <?php } ?>
                         <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION["usuario"]; ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -243,6 +247,9 @@
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggventa">
                                 <i class="bi bi-cart-plus-fill"></i> Agregar Nueva Venta
                             </button>
+                            <a type="button" class="btn btn-outline-secondary" href="#" onclick="Descarga()">
+                                <i class="bi bi-download"></i> Descarga Tu Reporte
+                            </a>
 
                             <!-- Modal -->
                             <div class="modal fade" id="aggventa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

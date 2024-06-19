@@ -1,5 +1,7 @@
 <?php
 session_start();
+//------------------------------------ Descarga BD ------------------------------------------------------
+require_once("vendor/autoload.php");
 //------------------------------------ Gestor conexion -----------------------------------------
 require_once("Modelo/conexion.php");
 //-------------------------- controlador y gestor usuario, logueos y rol ----------------------------------
@@ -44,6 +46,10 @@ if (
         switch ($_GET["accion"]) {
             case 'logout':
                 $controlador->logout();
+                break;
+
+            case 'Descarga':
+                $controlador->Descarga_BD();
                 break;
 
             case 'inicio':

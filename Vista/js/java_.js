@@ -81,9 +81,52 @@ function fundadores(){
         </button>
       </div>
     `,
-    imageAlt: "Sorry"
+    imageAlt: "Tenemos Problemas al cargar Los Fundadores"
   });
 }
+
+function Descarga() {
+  // Configuración de SweetAlert2 con estilos de Bootstrap
+  const swalConBotonesBootstrap = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success", // Clase para el botón de confirmación
+      cancelButton: "btn btn-danger me-2" // Clase para el botón de cancelación
+    },
+    buttonsStyling: false // Evita que SweetAlert2 aplique estilos propios a los botones
+  });
+
+  // Mostrar el cuadro de diálogo de SweetAlert2
+  swalConBotonesBootstrap.fire({
+    title: "Descarga de Reporte", // Título del cuadro de diálogo
+    text: "Al descargar tendrás tu reporte de: Proveedores, Productos y Ventas", // Texto principal
+    icon: "warning", // Ícono de advertencia
+    showCancelButton: true, // Mostrar botón de cancelar
+    confirmButtonText: "Sí, deseo continuar!", // Texto del botón de confirmación
+    cancelButtonText: "No, cancelar!", // Texto del botón de cancelación
+    reverseButtons: true // Invertir posición de los botones (confirmar y cancelar)
+  }).then((result) => {
+    // Manejar la acción después de hacer clic en los botones de confirmar o cancelar
+    if (result.isConfirmed) {
+      // Si se confirma la descarga
+        // Mostrar un mensaje de éxito después de iniciar la descarga
+        swalConBotonesBootstrap.fire({
+          title: "Tu descarga comenzará en unos minutos", // Título del mensaje de éxito
+          icon: "success" // Ícono de éxito
+        });
+          // Recargar la página después de la confirmación de descarga
+          window.location.href = "index.php?accion=Descarga";
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      // Si se cancela la descarga
+      swalConBotonesBootstrap.fire({
+        title: "Cancelado", // Título del mensaje de cancelación
+        text: "Tu Reporte está a salvo :)", // Texto adicional del mensaje de cancelación
+        icon: "error" // Ícono de error
+      });
+    }
+  });
+}
+
+
 
 
 
