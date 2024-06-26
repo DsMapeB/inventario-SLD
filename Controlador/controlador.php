@@ -77,6 +77,11 @@ class Controlador
     $result = $gestor->DescargaBD();
   }
 
+  public function Descarga_BDUC(){
+    $gestor = new Gestor();
+    $result = $gestor->DescargaBDUC();
+  }
+
   public function consultarUsu()
   {
     $gestor = new Gestor();

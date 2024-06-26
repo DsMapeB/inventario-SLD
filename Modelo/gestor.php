@@ -2,6 +2,7 @@
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing as SpreadsheetDrawing;
 
 class Gestor
 {
@@ -107,8 +108,9 @@ class Gestor
     // Crear un nuevo libro de Excel
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setTitle('Informe_PPV'); // Nombrar la hoja de cálculo
 
-    // Encabezados de las columnas
+    // Encabezados de las columnas para proveedores
     $sheet->setCellValue('A1', 'Nit del Proveedor');
     $sheet->setCellValue('B1', 'Nombre del Proveedor');
     $sheet->setCellValue('C1', 'Contacto del Proveedor');
@@ -148,7 +150,13 @@ class Gestor
       $sheet->getColumnDimension($column)->setAutoSize(true);
     }
 
-    // Encabezados de las columnas
+    // Centramos todos los datos
+    $dataStyle = [
+      'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+    ];
+    $sheet->getStyle('A2:F' . ($fila - 1))->applyFromArray($dataStyle);
+
+    // Encabezados de las columnas para productos
     $sheet->setCellValue('A' . ($fila + 1), 'Codigo del Producto');
     $sheet->setCellValue('B' . ($fila + 1), 'Nombre del Producto');
     $sheet->setCellValue('C' . ($fila + 1), 'Precio de Producto');
@@ -164,75 +172,53 @@ class Gestor
       $sheet->setCellValue('D' . $fila_produ, $row->existenciaprodu);
       $sheet->setCellValue('E' . $fila_produ, $row->nitprodu);
       $sheet->setCellValue('F' . $fila_produ, $row->nombrePro);
-      $fila++;
+      $fila_produ++;
     }
 
-    // Aplicar estilo a los encabezados (color de fondo, centrado y bordes)
-    $headerStyle = [
-      'font' => ['bold' => true],
-      'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
-      'borders' => [
-        'allBorders' => [
-          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-        ],
-      ],
-      'fill' => [
-        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-      ],
-    ];
+    // Aplicar estilo a los encabezados para productos
+    $sheet->getStyle('A' . ($fila + 1) . ':F' . ($fila + 1))->applyFromArray($headerStyle);
 
-    // Aplicar estilo a los encabezados para OtraTabla (ejemplo)
-    $sheet->getStyle('A' . ($fila + 0) . ':F' . ($fila + 0))->applyFromArray($headerStyle);
-
-    // Ajustar el ancho de las columnas automáticamente para OtraTabla (ejemplo)
+    // Ajustar el ancho de las columnas automáticamente para productos
     foreach (range('A', 'F') as $column) {
-        $sheet->getColumnDimension($column)->setAutoSize(true);
+      $sheet->getColumnDimension($column)->setAutoSize(true);
     }
 
-    // Encabezados de las columnas
-    $sheet->setCellValue('A' . ($fila + 3), 'Codigo de la Venta');
-    $sheet->setCellValue('B' . ($fila + 3), 'Fecha de la Venta');
-    $sheet->setCellValue('C' . ($fila + 3), 'Hora de la Venta');
-    $sheet->setCellValue('D' . ($fila + 3), 'Trabajador ');
-    $sheet->setCellValue('E' . ($fila + 3), 'Cliente');
-    $sheet->setCellValue('F' . ($fila + 3), 'Producto');
-    $sheet->setCellValue('G' . ($fila + 3), 'Observacion de la Venta');
-    $sheet->setCellValue('H' . ($fila + 3), 'Precio de la Venta');
+    // Centramos todos los datos de productos
+    $sheet->getStyle('A' . ($fila + 2) . ':F' . ($fila_produ - 1))->applyFromArray($dataStyle);
 
-    $fila_venta = $fila + 4;
+    // Encabezados de las columnas para ventas
+    $sheet->setCellValue('A' . ($fila_produ + 1), 'Codigo de la Venta');
+    $sheet->setCellValue('B' . ($fila_produ + 1), 'Fecha de la Venta');
+    $sheet->setCellValue('C' . ($fila_produ + 1), 'Hora de la Venta');
+    $sheet->setCellValue('D' . ($fila_produ + 1), 'Trabajador');
+    $sheet->setCellValue('E' . ($fila_produ + 1), 'Cliente');
+    $sheet->setCellValue('F' . ($fila_produ + 1), 'Producto');
+    $sheet->setCellValue('G' . ($fila_produ + 1), 'Observacion de la Venta');
+    $sheet->setCellValue('H' . ($fila_produ + 1), 'Precio de la Venta');
+
+    $fila_venta = $fila_produ + 2;
     while ($row = $stmt_venta->fetch(PDO::FETCH_OBJ)) {
       $sheet->setCellValue('A' . $fila_venta, $row->codventa);
       $sheet->setCellValue('B' . $fila_venta, $row->fecha);
       $sheet->setCellValue('C' . $fila_venta, $row->hora);
-      $sheet->setCellValue('D' . $fila_venta, $row->Usu );
-      $sheet->setCellValue('E' . $fila_venta, $row->clie);
-      $sheet->setCellValue('F' . $fila_venta, $row->produ);
+      $sheet->setCellValue('D' . $fila_venta, $row->usuario);
+      $sheet->setCellValue('E' . $fila_venta, $row->nombreclie);
+      $sheet->setCellValue('F' . $fila_venta, $row->nombreprodu);
       $sheet->setCellValue('G' . $fila_venta, $row->observacion);
       $sheet->setCellValue('H' . $fila_venta, $row->total);
-      $fila++;
+      $fila_venta++;
     }
 
-    // Aplicar estilo a los encabezados (color de fondo, centrado y bordes)
-    $headerStyle = [
-      'font' => ['bold' => true],
-      'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
-      'borders' => [
-        'allBorders' => [
-          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-        ],
-      ],
-      'fill' => [
-        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-      ],
-    ];
+    // Aplicar estilo a los encabezados para ventas
+    $sheet->getStyle('A' . ($fila_produ + 1) . ':H' . ($fila_produ + 1))->applyFromArray($headerStyle);
 
-    // Aplicar estilo a los encabezados para OtraTabla (ejemplo)
-    $sheet->getStyle('A' . ($fila + 0) . ':H' . ($fila + 0))->applyFromArray($headerStyle);
-
-    // Ajustar el ancho de las columnas automáticamente para OtraTabla (ejemplo)
+    // Ajustar el ancho de las columnas automáticamente para ventas
     foreach (range('A', 'H') as $column) {
-        $sheet->getColumnDimension($column)->setAutoSize(true);
+      $sheet->getColumnDimension($column)->setAutoSize(true);
     }
+
+    // Centramos todos los datos de ventas
+    $sheet->getStyle('A' . ($fila_produ + 2) . ':H' . ($fila_venta - 1))->applyFromArray($dataStyle);
 
     // Guardar el archivo Excel
     $writer = new Xlsx($spreadsheet);
@@ -250,6 +236,221 @@ class Gestor
     $writer->save('php://output');
     exit;
   }
+
+  ///--------------------------------------------------//---------------------------------------------//
+
+  public function DescargaBDUC()
+  {
+    $conexion = new Conexion(); // Supongamos que esta es tu clase de conexión a la base de datos
+    $sql = "SELECT * FROM usuario JOIN rol ON usuario.rol = rol.cargoUsu";
+    $conexion->buscar_query($sql);
+    $stmt = $conexion->obtener_resultado(); // Obtener el objeto PDOStatement
+
+    $sql2 = "SELECT * FROM cliente";
+    $conexion->buscar_query($sql2);
+    $stmt2 = $conexion->obtener_resultado(); // Obtener el objeto PDOStatement
+
+    $sql3 = "SELECT * FROM proveedores";
+    $conexion->buscar_query($sql3);
+    $stmt3 = $conexion->obtener_resultado(); // Obtener el objeto PDOStatement
+
+    $sql4 = "SELECT * FROM producto JOIN proveedores ON producto.nitprodu = proveedores.nitpro";
+    $conexion->buscar_query($sql4);
+    $stmt4 = $conexion->obtener_resultado(); // Obtener el objeto PDOStatement
+
+    $sql5 = "SELECT * FROM venta JOIN usuario ON venta.Usu = usuario.Usudoc JOIN cliente ON venta.clie = cliente.docclie JOIN producto ON venta.produ = producto.codprodu";
+    $conexion->buscar_query($sql5);
+    $stmt5 = $conexion->obtener_resultado(); // Obtener el objeto PDOStatement
+
+    // Crear un nuevo libro de Excel
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setTitle('Informe_TCPPV'); // Nombrar la hoja de cálculo
+
+    // Encabezados de las columnas para Trabajadores
+    $sheet->setCellValue('A1', 'Documento del Trabajador');
+    $sheet->setCellValue('B1', 'Nombre del Trabajador');
+    $sheet->setCellValue('C1', 'Telefono del Trabajador');
+    $sheet->setCellValue('D1', 'Contraseña del Trabajador');
+    $sheet->setCellValue('E1', 'Rol del Trabajador');
+
+    $fila_trabajador = 2;
+    while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
+      $sheet->setCellValue('A' . $fila_trabajador, $row->Usudoc);
+      $sheet->setCellValue('B' . $fila_trabajador, $row->usuario);
+      $sheet->setCellValue('C' . $fila_trabajador, $row->telefono);
+      $sheet->setCellValue('D' . $fila_trabajador, $row->password);
+      $sheet->setCellValue('E' . $fila_trabajador, $row->nombrerol);
+      $fila_trabajador++;
+    }
+
+    // Aplicar estilo a los encabezados (color de fondo, centrado y bordes)
+    $headerStyle = [
+      'font' => ['bold' => true],
+      'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+      'borders' => [
+        'allBorders' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+        ],
+      ],
+      'fill' => [
+        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+      ],
+    ];
+
+    $sheet->getStyle('A1:E1')->applyFromArray($headerStyle);
+
+    // Centramos todos los datos
+    $dataStyle = [
+      'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+    ];
+
+    // Ajustar el ancho de las columnas automáticamente
+    foreach (range('A', 'E') as $column) {
+      $sheet->getColumnDimension($column)->setAutoSize(true);
+    }
+
+    $sheet->getStyle('A2:E' . ($fila_trabajador - 1))->applyFromArray($dataStyle);
+
+    // Encabezados de las columnas para clientes
+    $fila_En_cliente = $fila_trabajador + 1;
+    $sheet->setCellValue('A' . ($fila_En_cliente + 1), 'Documento del Cliente');
+    $sheet->setCellValue('B' . ($fila_En_cliente + 1), 'Nombre del Cliente');
+    $sheet->setCellValue('C' . ($fila_En_cliente + 1), 'Telefono del Cliente');
+
+    $fila_cliente = $fila_En_cliente + 2;
+    while ($row = $stmt2->fetch(PDO::FETCH_OBJ)) {
+      $sheet->setCellValue('A' . $fila_cliente, $row->docclie);
+      $sheet->setCellValue('B' . $fila_cliente, $row->nombreclie);
+      $sheet->setCellValue('C' . $fila_cliente, $row->telefonoclie);
+      $fila_cliente++;
+    }
+
+    // Aplicar estilo a los encabezados para clientes
+    $sheet->getStyle('A' . ($fila_En_cliente + 1) . ':C' . ($fila_En_cliente + 1))->applyFromArray($headerStyle);
+
+    // Ajustar el ancho de las columnas automáticamente para clientes
+    foreach (range('A', 'C') as $column) {
+      $sheet->getColumnDimension($column)->setAutoSize(true);
+    }
+
+    // Centramos todos los datos de clientes
+    $sheet->getStyle('A' . ($fila_En_cliente + 2) . ':C' . ($fila_cliente - 1))->applyFromArray($dataStyle);
+
+    // Encabezados de las columnas para proveedores
+    $fila_En_proveedor = $fila_cliente + 1;
+    $sheet->setCellValue('A' . ($fila_En_proveedor + 1), 'Nit del Proveedor');
+    $sheet->setCellValue('B' . ($fila_En_proveedor + 1), 'Nombre del Proveedor');
+    $sheet->setCellValue('C' . ($fila_En_proveedor + 1), 'Contacto del Proveedor');
+    $sheet->setCellValue('D' . ($fila_En_proveedor + 1), 'Telefono del Proveedor');
+    $sheet->setCellValue('E' . ($fila_En_proveedor + 1), 'Direccion del Proveedor');
+    $sheet->setCellValue('F' . ($fila_En_proveedor + 1), 'Ciudad del Proveedor');
+
+    $fila_proveedor = $fila_En_proveedor + 2;
+    while ($row = $stmt3->fetch(PDO::FETCH_OBJ)) {
+      $sheet->setCellValue('A' . $fila_proveedor, $row->nitpro);
+      $sheet->setCellValue('B' . $fila_proveedor, $row->nombrePro);
+      $sheet->setCellValue('C' . $fila_proveedor, $row->contactoPro);
+      $sheet->setCellValue('D' . $fila_proveedor, $row->telefonoPro);
+      $sheet->setCellValue('E' . $fila_proveedor, $row->direccionPro);
+      $sheet->setCellValue('F' . $fila_proveedor, $row->ciudadPro);
+      $fila_proveedor++;
+    }
+
+    // Aplicar estilo a los encabezados para proveedores
+    $sheet->getStyle('A' . ($fila_En_proveedor + 1) . ':F' . ($fila_En_proveedor + 1))->applyFromArray($headerStyle);
+
+    // Ajustar el ancho de las columnas automáticamente para proveedores
+    foreach (range('A', 'F') as $column) {
+      $sheet->getColumnDimension($column)->setAutoSize(true);
+    }
+
+    // Centramos todos los datos de proveedores
+    $sheet->getStyle('A' . ($fila_En_proveedor + 2) . ':F' . ($fila_proveedor - 1))->applyFromArray($dataStyle);
+
+    // Encabezados de las columnas para productos
+    $fila_En_producto = $fila_proveedor + 1;
+    $sheet->setCellValue('A' . ($fila_En_producto + 1), 'Codigo del Producto');
+    $sheet->setCellValue('B' . ($fila_En_producto + 1), 'Nombre del Producto');
+    $sheet->setCellValue('C' . ($fila_En_producto + 1), 'Precio de Producto');
+    $sheet->setCellValue('D' . ($fila_En_producto + 1), 'Existencia de Producto');
+    $sheet->setCellValue('E' . ($fila_En_producto + 1), 'Nit del Producto/Proveedor');
+    $sheet->setCellValue('F' . ($fila_En_producto + 1), 'Nombre de Proveedor');
+
+    $fila_producto = $fila_En_producto + 2;
+    while ($row = $stmt4->fetch(PDO::FETCH_OBJ)) {
+      $sheet->setCellValue('A' . $fila_producto, $row->codprodu);
+      $sheet->setCellValue('B' . $fila_producto, $row->nombreprodu);
+      $sheet->setCellValue('C' . $fila_producto, $row->precioprodu);
+      $sheet->setCellValue('D' . $fila_producto, $row->existenciaprodu);
+      $sheet->setCellValue('E' . $fila_producto, $row->nitprodu);
+      $sheet->setCellValue('F' . $fila_producto, $row->nombrePro);
+      $fila_producto++;
+    }
+
+    // Aplicar estilo a los encabezados para productos
+    $sheet->getStyle('A' . ($fila_En_producto + 1) . ':F' . ($fila_En_producto + 1))->applyFromArray($headerStyle);
+
+    // Ajustar el ancho de las columnas automáticamente para productos
+    foreach (range('A', 'F') as $column) {
+      $sheet->getColumnDimension($column)->setAutoSize(true);
+    }
+
+    // Centramos todos los datos de productos
+    $sheet->getStyle('A' . ($fila_En_producto + 2) . ':F' . ($fila_producto - 1))->applyFromArray($dataStyle);
+
+    // Encabezados de las columnas para ventas
+    $fila_En_venta = $fila_producto + 1;
+    $sheet->setCellValue('A' . ($fila_En_venta + 1), 'Codigo de la Venta');
+    $sheet->setCellValue('B' . ($fila_En_venta + 1), 'Fecha de la Venta');
+    $sheet->setCellValue('C' . ($fila_En_venta + 1), 'Hora de la Venta');
+    $sheet->setCellValue('D' . ($fila_En_venta + 1), 'Trabajador');
+    $sheet->setCellValue('E' . ($fila_En_venta + 1), 'Cliente');
+    $sheet->setCellValue('F' . ($fila_En_venta + 1), 'Producto');
+    $sheet->setCellValue('G' . ($fila_En_venta + 1), 'Observacion de la Venta');
+    $sheet->setCellValue('H' . ($fila_En_venta + 1), 'Precio de la Venta');
+
+    $fila_venta = $fila_En_venta + 2;
+    while ($row = $stmt5->fetch(PDO::FETCH_OBJ)) {
+      $sheet->setCellValue('A' . $fila_venta, $row->codventa);
+      $sheet->setCellValue('B' . $fila_venta, $row->fecha);
+      $sheet->setCellValue('C' . $fila_venta, $row->hora);
+      $sheet->setCellValue('D' . $fila_venta, $row->usuario);
+      $sheet->setCellValue('E' . $fila_venta, $row->nombreclie);
+      $sheet->setCellValue('F' . $fila_venta, $row->nombreprodu);
+      $sheet->setCellValue('G' . $fila_venta, $row->observacion);
+      $sheet->setCellValue('H' . $fila_venta, $row->total);
+      $fila_venta++;
+    }
+
+    // Aplicar estilo a los encabezados para ventas
+    $sheet->getStyle('A' . ($fila_En_venta + 1) . ':H' . ($fila_En_venta + 1))->applyFromArray($headerStyle);
+
+    // Ajustar el ancho de las columnas automáticamente para ventas
+    foreach (range('A', 'H') as $column) {
+      $sheet->getColumnDimension($column)->setAutoSize(true);
+    }
+
+    // Centramos todos los datos de ventas
+    $sheet->getStyle('A' . ($fila_En_venta + 2) . ':H' . ($fila_venta - 1))->applyFromArray($dataStyle);
+
+    // Guardar el archivo Excel
+    $writer = new Xlsx($spreadsheet);
+    $filename = 'Informe_TCPPV.xlsx'; // Nombre del archivo
+
+    // Limpiar el búfer de salida antes de enviar las cabeceras HTTP
+    ob_end_clean();
+
+    // Configurar cabeceras para la descarga del archivo
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+    header('Cache-Control: max-age=0');
+
+    // Leer y enviar el archivo Excel al navegador
+    $writer->save('php://output');
+    exit;
+  }
+//---------------------------------------------------//-----------------------------------------------//
 
   public function consultarUsu()
   {

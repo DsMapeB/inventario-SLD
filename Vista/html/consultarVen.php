@@ -18,31 +18,37 @@ if ($result->rowCount() > 0) {
             </thead>
             <tbody>
                 <?php
-                $cont = 0;
                 while ($fila = $result->fetch(PDO::FETCH_OBJ)) {
-                    $cont++;
                 ?>
                     <tr>
                         <th scope="row"><?php echo $fila->codventa; ?></th>
                         <td><?php $fechaOriginal = $fila->fecha;
                             $fechaFormateada = date("d-m-Y", strtotime($fechaOriginal));
                             echo $fechaFormateada; ?></td>
-                        <td><?php $horaMilitar = $fila->hora; 
+                        <td><?php $horaMilitar = $fila->hora;
                             $horaFormateada = date("h:i:s A", strtotime($horaMilitar));
                             echo $horaFormateada; ?></td>
                         <td><?php echo $fila->usuario ?></td>
                         <td><?php echo $fila->nombreclie ?></td>
                         <td><?php echo $fila->nombreprodu; ?></td>
                         <td><?php echo $fila->observacion; ?></td>
-                        <?php $fila->total;
-                        $fila2 = $fila->total;
-                        $formateado = number_format((float)$fila2, 3, '.', ''); ?>
+                        <?php $TotalVenta = $fila->total;
+                        $Precio = $fila->precioprodu;
+                        $total = $TotalVenta * $Precio;
+
+                        $formateado = number_format($total, 0, ',', '.'); ?>
                         <td><?php echo $formateado; ?></td>
                         <td>
-                            <button class="icon-button btn btn-warning" onclick="editarven(<?php echo $fila->codventa; ?>)" data-bs-toggle="modal" data-bs-target="#accventa"><i class="bi bi-pencil-square"></i> Editar</button>
-                            |
-                            <button class="icon-button btn btn-danger" onclick="eliminarventa('<?php echo $fila->codventa; ?>' , '<?php echo $fila->nombreprodu; ?>')"><i class="bi bi-trash3"></i> Eliminar</button>
+                            <div class="d-flex flex-column gap-2">
+                                <button class="icon-button btn btn-warning" onclick="editarven(<?php echo $fila->codventa; ?>)" data-bs-toggle="modal" data-bs-target="#accventa">
+                                    <i class="bi bi-pencil-square"></i> Editar
+                                </button>
+                                <button class="icon-button btn btn-danger" onclick="eliminarventa('<?php echo $fila->codventa; ?>', '<?php echo $fila->nombreprodu; ?>')">
+                                    <i class="bi bi-trash3"></i> Eliminar
+                                </button>
+                            </div>
                         </td>
+
                     </tr>
                 <?php
                 }

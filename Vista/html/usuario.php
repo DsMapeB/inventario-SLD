@@ -270,7 +270,16 @@
                                                         var input = e.target;
                                                         var value = input.value;
                                                         // Eliminar cualquier carácter no numérico
-                                                        input.value = value.replace(/\D/g, '');
+                                                        value = value.replace(/\D/g, '');
+                                                        // Aplicar la longitud mínima y máxima
+                                                        if (value.length < 7) {
+                                                            input.setCustomValidity('El Documento debe tener al menos 7 dígitos.');
+                                                        } else if (value.length > 10) {
+                                                            input.setCustomValidity('El Documento no puede tener más de 10 dígitos.');
+                                                        } else {
+                                                            input.setCustomValidity('');
+                                                        }
+                                                        input.value = value;
                                                     });
                                                 </script>
                                                 <div class="input-group mb-3">
@@ -286,7 +295,16 @@
                                                         var input = e.target;
                                                         var value = input.value;
                                                         // Eliminar cualquier carácter no numérico
-                                                        input.value = value.replace(/\D/g, '');
+                                                        value = value.replace(/\D/g, '');
+                                                        // Aplicar la longitud mínima y máxima
+                                                        if (value.length < 7) {
+                                                            input.setCustomValidity('El Teléfono debe tener al menos 7 dígitos.');
+                                                        } else if (value.length > 10) {
+                                                            input.setCustomValidity('El Teléfono no puede tener más de 10 dígitos.');
+                                                        } else {
+                                                            input.setCustomValidity('');
+                                                        }
+                                                        input.value = value;
                                                     });
                                                 </script>
                                                 <div class="input-group mb-3">

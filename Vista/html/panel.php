@@ -27,7 +27,7 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li>
-                        <a href="Vista/manuales/MANUAL DE USU-ADMIN.docx" download="MANUAL DE USU-ADMIN.docx" class="">Necesitas Ayuda?</a>
+                        <a href="Vista/manuales/MANUAL DE USU-ADMIN.pdf" download="MANUAL DE USU-ADMIN.pdf">¿Necesitas Ayuda?</a>
                     </li>
                     <li>
                         <a href="index.php?accion=registro" class="">Registro</a>
@@ -36,7 +36,7 @@
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted" href="index.php?accion=log">Inicia Sesion</a>
+            <a class="btn-getstarted" href="index.php?accion=log">Inicia Sesión</a>
 
         </div>
     </header>

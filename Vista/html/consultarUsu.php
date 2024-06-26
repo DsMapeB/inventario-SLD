@@ -24,10 +24,10 @@ if ($result->rowCount() > 0) {
                     $cont++;
                 ?>
                     <tr>
-                    <th scope="row"><?php echo $cont ?></th>
-                        <td><?php echo $fila->Usudoc ; ?></td>
-                        <td><?php echo $fila->usuario ; ?></td>
-                        <td><?php echo $fila->telefono ; ?></td>
+                        <th scope="row"><?php echo $cont ?></th>
+                        <td><?php echo $fila->Usudoc; ?></td>
+                        <td><?php echo $fila->usuario; ?></td>
+                        <td><?php echo $fila->telefono; ?></td>
                         <td><?php
                             if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") {
                                 echo !empty($fila->password) ? $fila->password : 'Sin contraseña';
@@ -46,9 +46,14 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->nombrerol ?></td>
                         <td>
                             <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
-                                <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->Usudoc; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
-                                |
-                                <button class="icon-button btn btn-danger" onclick="eliminarUsu('<?php echo $fila->Usudoc; ?>' , '<?php echo $fila->usuario; ?>')"><i class="bi bi-trash3"></i> Eliminar</button>
+                                <div class="d-flex flex-column gap-2">
+                                <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUsu" onclick="editarUsuario(<?php echo $fila->Usudoc; ?>)">
+                                    <i class="bi bi-pencil-square"></i> Editar
+                                </button>
+                                <button class="icon-button btn btn-danger" onclick="eliminarUsu('<?php echo $fila->Usudoc; ?>' , '<?php echo $fila->usuario; ?>')">
+                                    <i class="bi bi-trash3"></i> Eliminar
+                                </button>
+                                </div>
                             <?php endif; ?>
                         </td>
                     </tr>

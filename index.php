@@ -52,6 +52,10 @@ if (
                 $controlador->Descarga_BD();
                 break;
 
+                case 'DescargaUC':
+                    $controlador->Descarga_BDUC();
+                    break;
+
             case 'inicio':
                 $controlador->verpagina("Vista/html/inicio.php");
                 break;

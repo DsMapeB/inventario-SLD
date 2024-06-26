@@ -2,19 +2,53 @@
 <form action="index.php?accion=actualizarUsuario" method="post" enctype="multipart/form-data">
   <div class="input-group mb-3">
     <span for="validationDefault01" class="input-group-text">Documento</span>
-    <input type="text" class="form-control" id="validationDefault01" name="Usudoc2" value="<?php echo $fila['Usudoc']; ?>" required readonly>
+    <input type="text" id="doc" class="form-control" placeholder="Ingrese su Documento" id="validationDefault01" name="Usudoc2" value="<?php echo $fila['Usudoc']; ?>" required readonly>
   </div>
+  <script>
+    document.getElementById('doc').addEventListener('input', function(e) {
+      var input = e.target;
+      var value = input.value;
+      // Eliminar cualquier carácter no numérico
+      value = value.replace(/\D/g, '');
+      // Aplicar la longitud mínima y máxima
+      if (value.length < 7) {
+        input.setCustomValidity('El Documento debe tener al menos 7 dígitos.');
+      } else if (value.length > 10) {
+        input.setCustomValidity('El Documento no puede tener más de 10 dígitos.');
+      } else {
+        input.setCustomValidity('');
+      }
+      input.value = value;
+    });
+  </script>
   <div class="input-group mb-3">
     <span for="validationDefault02" class="input-group-text">Usuario</span>
-    <input type="text" class="form-control" id="validationDefault02" name="usuario2" value="<?php echo $fila['usuario']; ?>" required>
+    <input type="text" class="form-control" id="validationDefault02" placeholder="Ingrese su Usuario" name="usuario2" value="<?php echo $fila['usuario']; ?>" required>
   </div>
   <div class="input-group mb-3">
     <span for="validationDefault03" class="input-group-text">Telefono</span>
-    <input type="tel" class="form-control" name="tel2" id="validationDefault03" value="<?php echo $fila['telefono']; ?>" required>
+    <input type="tel" class="form-control" name="tel2" id="tel2" placeholder="Ingrese su Telefono" value="<?php echo $fila['telefono']; ?>"  maxlength="10" required>
   </div>
+  <script>
+    document.getElementById('tel2').addEventListener('input', function(e) {
+      var input = e.target;
+      var value = input.value;
+      // Eliminar cualquier carácter no numérico
+      value = value.replace(/\D/g, '');
+      // Aplicar la longitud mínima y máxima
+      if (value.length < 7) {
+        input.setCustomValidity('El Teléfono debe tener al menos 7 dígitos.');
+      } else if (value.length > 10) {
+        input.setCustomValidity('El Teléfono no puede tener más de 10 dígitos.');
+      } else {
+        input.setCustomValidity('');
+      }
+      input.value = value;
+    });
+  </script>
   <div class="input-group mb-3">
     <span for="validationDefault04" class="input-group-text">Contraseña</span>
-    <input type="password" class="form-control" name="password2" id="validationDefault04" value="<?php echo $fila['password']; ?>" required>
+    <input type="password" class="form-control" name="password2" placeholder="Ingrese su Contraseña" id="validationDefault04" value="<?php echo $fila['password']; ?>" required>
   </div>
   <div class="input-group mb-3">
     <span for="validationDefault05" class="input-group-text">Foto</span>

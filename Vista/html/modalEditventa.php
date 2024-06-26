@@ -42,7 +42,7 @@
         </select>
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text" for="inputGroupSelect02">Documento Cliente</span>
+        <span class="input-group-text" for="inputGroupSelect02">Cliente</span>
         <select class="form-select" name="docclie2" required>
             <option value="<?php echo $filas['clie']; ?>"><?php echo $filas['nombreclie']; ?></option>
             <?php
@@ -73,7 +73,7 @@
 
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text" for="inputGroupSelect03">Codigo de producto</span>
+        <span class="input-group-text" for="inputGroupSelect03">Producto</span>
         <select class="form-select" name="codprodu2" required>
             <option value="<?php echo $filas['produ']; ?>"><?php echo $filas['nombreprodu']; ?></option>
             <?php
@@ -106,8 +106,8 @@
         <input type="text" class="form-control" placeholder="Observación" aria-label="Observación" aria-describedby="basic-addon1" value="<?php echo $filas['observacion']; ?>" id="obs2" name="obs2" required>
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Total</span>
-        <input type="text" class="form-control" placeholder="Total" aria-label="total" aria-describedby="basic-addon1" value="<?php echo $filas['total']; ?>" id="total2" name="total2" required>
+        <span class="input-group-text" id="basic-addon1">Cantidad</span>
+        <input type="text" class="form-control" placeholder="Cantidad" aria-label="Cantidad" aria-describedby="basic-addon1" value="<?php echo $filas['total']; ?>" id="total2" name="total2" required>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

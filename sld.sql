@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2024 a las 06:39:23
+-- Tiempo de generación: 25-06-2024 a las 22:41:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -33,14 +33,6 @@ CREATE TABLE `cliente` (
   `telefonoclie` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
 
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`docclie`, `nombreclie`, `telefonoclie`) VALUES
-(1104936650, 'David', '3102818138'),
-(1105095366, 'Lorena Contreras', '3017904397');
-
 -- --------------------------------------------------------
 
 --
@@ -48,19 +40,12 @@ INSERT INTO `cliente` (`docclie`, `nombreclie`, `telefonoclie`) VALUES
 --
 
 CREATE TABLE `producto` (
-  `codprodu` int(11) NOT NULL,
+  `codprodu` bigint(20) NOT NULL,
   `nombreprodu` varchar(25) NOT NULL,
-  `precioprodu` decimal(10,6) NOT NULL,
+  `precioprodu` float NOT NULL,
   `existenciaprodu` float NOT NULL,
   `nitprodu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
-
---
--- Volcado de datos para la tabla `producto`
---
-
-INSERT INTO `producto` (`codprodu`, `nombreprodu`, `precioprodu`, `existenciaprodu`, `nitprodu`) VALUES
-(22, 'Aceite', 10.000000, 32, 900736182);
 
 -- --------------------------------------------------------
 
@@ -76,13 +61,6 @@ CREATE TABLE `proveedores` (
   `direccionPro` varchar(50) NOT NULL,
   `ciudadPro` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
-
---
--- Volcado de datos para la tabla `proveedores`
---
-
-INSERT INTO `proveedores` (`nitpro`, `nombrePro`, `contactoPro`, `telefonoPro`, `direccionPro`, `ciudadPro`) VALUES
-(900736182, 'Apple Colombia SAS', 'Steve Jobs', '800 380230', 'KR 7 # 120 - 20 PI 3', 'Bogota');
 
 -- --------------------------------------------------------
 
@@ -123,8 +101,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`Usudoc`, `usuario`, `telefono`, `password`, `foto`, `rol`) VALUES
-(1005814662, 'Laura Góngora', '3007382102', '321', 'uploads/laug.png', 2),
-(1104936650, 'Santiago Mape', '3143872538', '123', 'uploads/fotom.png', 1);
+(1005814662, 'Laura Góngora', '3007382102', '258', '', 2),
+(1104936650, 'Santiago Mape', '3143872538', '123', '', 1);
 
 -- --------------------------------------------------------
 
@@ -138,9 +116,9 @@ CREATE TABLE `venta` (
   `hora` time NOT NULL,
   `Usu` int(11) NOT NULL,
   `clie` int(11) NOT NULL,
-  `produ` int(11) NOT NULL,
+  `produ` bigint(20) NOT NULL,
   `observacion` varchar(100) NOT NULL,
-  `total` float(10,3) NOT NULL
+  `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
 
 --
@@ -196,25 +174,19 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `docclie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1105095367;
-
---
--- AUTO_INCREMENT de la tabla `producto`
---
-ALTER TABLE `producto`
-  MODIFY `codprodu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1417;
+  MODIFY `docclie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2147483648;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `cargoUsu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cargoUsu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `codventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `codventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

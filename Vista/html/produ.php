@@ -260,8 +260,25 @@
                                             <form action="index.php?accion=ingresarprodu" method="POST" id="agregarusuario">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Codigo</span>
-                                                    <input type="text" class="form-control" placeholder="Codigo del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="codprodu" name="codprodu" required>
+                                                    <input type="text" class="form-control" placeholder="Codigo del Producto" aria-label="Nombre" aria-describedby="basic-addon1" maxlength="13" id="codprodu" name="codprodu" required>
                                                 </div>
+                                                <script>
+                                            document.getElementById('codprodu').addEventListener('input', function(e) {
+                                                var input = e.target;
+                                                var value = input.value;
+                                                // Eliminar cualquier carácter no numérico
+                                                value = value.replace(/\D/g, '');
+                                                // Aplicar la longitud mínima y máxima
+                                                if (value.length < 7) {
+                                                    input.setCustomValidity('El Codigo debe tener al menos 7 dígitos.');
+                                                } else if (value.length > 13) {
+                                                    input.setCustomValidity('El Codigo no puede tener más de 10 dígitos.');
+                                                } else {
+                                                    input.setCustomValidity('');
+                                                }
+                                                input.value = value;
+                                            });
+                                        </script>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Nombre</span>
                                                     <input type="text" class="form-control" placeholder="Nombre del Producto" aria-label="Nombre" aria-describedby="basic-addon1" id="nombreprodu" name="nombreprodu" required>
@@ -270,10 +287,26 @@
                                                     <span class="input-group-text" for="inputGroupSelect01">Precio</span>
                                                     <input type="text" class="form-control" placeholder="Precio del Producto" aria-label="Precio" aria-describedby="basic-addon1" id="precioprodu" name="precioprodu" required>
                                                 </div>
+                                                <script>
+                                                    document.getElementById('precioprodu').addEventListener('input', function(e) {
+                                                        var input = e.target;
+                                                        var value = input.value;
+                                                        // Eliminar cualquier carácter no numérico
+                                                        input.value = value.replace(/\D/g, '');
+                                                    });
+                                                </script>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Existencia</span>
                                                     <input type="text" class="form-control" placeholder="Existencia" aria-label="existencia" aria-describedby="basic-addon1" id="exisprodu" name="exisprodu" required>
                                                 </div>
+                                                <script>
+                                                    document.getElementById('exisprodu').addEventListener('input', function(e) {
+                                                        var input = e.target;
+                                                        var value = input.value;
+                                                        // Eliminar cualquier carácter no numérico
+                                                        input.value = value.replace(/\D/g, '');
+                                                    });
+                                                </script>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Proveedor</span>
                                                     <select class="form-select" id="nit" name="proprodu" required>

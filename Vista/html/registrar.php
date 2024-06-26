@@ -42,7 +42,7 @@
                                             Swal.fire({
                                                 icon: "info",
                                                 title: "¡Oye! Ten en cuenta lo siguiente antes de crear tu cuenta:",
-                                                html: '1. Si al momento del registro no deseas subir una foto, no hay problema.<br> 2. Sé muy correcto con el rol asignado.',
+                                                html: '1. Ingresar el Documento correctamente sin errores<br>2. Si al momento del registro no deseas subir una foto, no hay problema.<br> 3. Sé muy correcto con el rol asignado.',
                                                 showConfirmButton: true,
                                             });
                                         </script>
@@ -95,14 +95,23 @@
                                     <form action="index.php?accion=registrar" method="post" class="row g-3" enctype="multipart/form-data">
                                         <div class="col-12">
                                             <label for="doc" class="form-label">Documento</label>
-                                            <input type="text" class="form-control" id="doc" name="Usudoc" minlength="6" maxlength="10" placeholder="Ingrese Documento" required>
+                                            <input type="text" class="form-control" id="doc" name="Usudoc" placeholder="Ingrese Documento" required>
                                         </div>
                                         <script>
                                             document.getElementById('doc').addEventListener('input', function(e) {
                                                 var input = e.target;
                                                 var value = input.value;
                                                 // Eliminar cualquier carácter no numérico
-                                                input.value = value.replace(/\D/g, '');
+                                                value = value.replace(/\D/g, '');
+                                                // Aplicar la longitud mínima y máxima
+                                                if (value.length < 7) {
+                                                    input.setCustomValidity('El Documento debe tener al menos 7 dígitos.');
+                                                } else if (value.length > 10) {
+                                                    input.setCustomValidity('El Documento no puede tener más de 10 dígitos.');
+                                                } else {
+                                                    input.setCustomValidity('');
+                                                }
+                                                input.value = value;
                                             });
                                         </script>
                                         <div class="col-12">
@@ -111,14 +120,23 @@
                                         </div>
                                         <div class="col-12">
                                             <label for="tel" class="form-label">Teléfono</label>
-                                            <input type="tel" class="form-control" name="tel" id="tel" placeholder="Ingrese Teléfono" maxlength="10" autocomplete="off" required>
+                                            <input type="tel" class="form-control" name="tel" id="tel" placeholder="Ingrese Teléfono" autocomplete="off" required>
                                         </div>
                                         <script>
                                             document.getElementById('tel').addEventListener('input', function(e) {
                                                 var input = e.target;
                                                 var value = input.value;
                                                 // Eliminar cualquier carácter no numérico
-                                                input.value = value.replace(/\D/g, '');
+                                                value = value.replace(/\D/g, '');
+                                                // Aplicar la longitud mínima y máxima
+                                                if (value.length < 7) {
+                                                    input.setCustomValidity('El Teléfono debe tener al menos 7 dígitos.');
+                                                } else if (value.length > 10) {
+                                                    input.setCustomValidity('El Teléfono no puede tener más de 10 dígitos.');
+                                                } else {
+                                                    input.setCustomValidity('');
+                                                }
+                                                input.value = value;
                                             });
                                         </script>
                                         <div class="col-12">

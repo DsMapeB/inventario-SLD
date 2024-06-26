@@ -21,6 +21,10 @@ class ControladorVenta
             /***   Error en registro    ***/
             header("Location:index.php?accion=venta&error=3");
         }
+        if ($result == 4) {
+            /***   Error en registro    ***/
+            header("Location:index.php?accion=venta&error=4");
+        }
     }
 
     public function consultarVenta(){
@@ -49,6 +53,10 @@ class ControladorVenta
         if ($result == 2) {
             /***   Usuario Repetido    ***/
             header("Location:index.php?accion=venta&error2=2");
+        }
+        if ($result == 4) {
+            /***   Error en registro    ***/
+            header("Location:index.php?accion=venta&error=4");
         }
     }
 

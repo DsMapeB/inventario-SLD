@@ -24,16 +24,20 @@ if ($result->rowCount() > 0) {
                         <th scope="row"><?php echo $cont ?></th>
                         <td><?php echo $fila->codprodu; ?></td>
                         <td><?php echo $fila->nombreprodu; ?></td>
-                        <?php $fila->precioprodu; 
-                        $fila2 = $fila->precioprodu;
-                        $formateado = number_format($fila2, 0, ',', '.');?>
+                        <?php $fila2 = $fila->precioprodu;
+                        $formateado = number_format($fila2, 0, ',', '.'); ?>
                         <td><?php echo $formateado; ?></td>
                         <td><?php echo $fila->existenciaprodu; ?></td>
                         <td><?php echo $fila->nombrePro; ?></td>
                         <td>
-                            <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProdu" onclick="editarprodu(<?php echo $fila->codprodu; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
-                            |
-                            <button class="icon-button btn btn-danger" onclick="eliminarprodu('<?php echo $fila->codprodu; ?>' , '<?php echo $fila->nombreprodu; ?>')"><i class="bi bi-trash"></i> Eliminar</button>
+                            <div class="d-flex flex-column gap-2">
+                                <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProdu" onclick="editarprodu(<?php echo $fila->codprodu; ?>)">
+                                    <i class="bi bi-pencil-square"></i> Editar
+                                </button>
+                                <button class="icon-button btn btn-danger" onclick="eliminarprodu('<?php echo $fila->codprodu; ?>' , '<?php echo $fila->nombreprodu; ?>')">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 <?php

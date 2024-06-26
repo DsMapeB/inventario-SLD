@@ -258,7 +258,7 @@
                       <form action="index.php?accion=ingresarRol" method="post">
                         <div class="input-group mb-3">
                           <span for="validationDefault01" class="input-group-text">Nombre Rol</span>
-                          <input type="text" class="form-control" id="validationDefault01" name="rol" required>
+                          <input type="text" class="form-control" placeholder="Ingrese Nombre del Rol" id="validationDefault01" name="rol" required>
                         </div>
                         <div class="modal-footer">
                           <button type="submit" class="btn btn-primary">Registrar</button>

@@ -30,9 +30,14 @@ if ($result->rowCount() > 0) {
             <td><?php echo $fila->direccionPro; ?></td>
             <td><?php echo $fila->ciudadPro; ?></td>
             <td>
-              <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editprove" onclick="editarprove(<?php echo $fila->nitpro; ?>)"><i class="bi bi-pencil-square"></i> Editar</button>
-              |
-              <button class="icon-button btn btn-danger" onclick="eliminarpro('<?php echo $fila->nitpro; ?>' , '<?php echo $fila->nombrePro; ?>')"><i class="bi bi-trash"></i> Eliminar</button>
+              <div class="d-flex flex-column gap-2">
+                <button class="icon-button btn btn-warning" data-bs-toggle="modal" data-bs-target="#editprove" onclick="editarprove(<?php echo $fila->nitpro; ?>)">
+                  <i class="bi bi-pencil-square"></i> Editar
+                </button>
+                <button class="icon-button btn btn-danger" onclick="eliminarpro('<?php echo $fila->nitpro; ?>' , '<?php echo $fila->nombrePro; ?>')">
+                  <i class="bi bi-trash"></i> Eliminar
+                </button>
+              </div>
             </td>
           </tr>
         <?php

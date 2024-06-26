@@ -63,19 +63,19 @@
                                                     title: "Oops... ¡El usuario ingresado no corresponde a ninguna cuenta!",
                                                 });
                                             </script>
-                                        <?php
+                                    <?php
                                         }
                                     }
                                     ?>
                                     <form action="index.php?accion=login" method="post" class="row g-3 needs-validation">
                                         <div class="col-12">
                                             <label for="validationDefault01" class="form-label">Usuario</label>
-                                            <input type="text" class="form-control" id="validationDefault01" name="user" >
+                                            <input type="text" class="form-control" placeholder="Ingrese su Usuario" id="validationDefault01" name="user">
                                         </div>
 
                                         <div class="col-12">
                                             <label for="validationDefault02" class="form-label">Contraseña</label>
-                                            <input type="password" class="form-control" id="validationDefault02" name="pass" >
+                                            <input type="password" class="form-control" placeholder="Ingrese su Contraseña" id="validationDefault02" name="pass">
                                         </div>
 
                                         <div class="col-12">

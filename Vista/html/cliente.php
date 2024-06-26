@@ -251,8 +251,25 @@
                                             <div class="modal-body">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Documento</span>
-                                                    <input type="text" class="form-control" placeholder="Documento del Cliente" aria-label="Documento" aria-describedby="basic-addon1" name="doccliente" id="doccliente" maxlength="10" required>
+                                                    <input type="text" class="form-control" placeholder="Documento del Cliente" name="doccliente" maxlength="10" id="doccliente" required>
                                                 </div>
+                                                <script>
+                                                    document.getElementById('doccliente').addEventListener('input', function(e) {
+                                                        var input = e.target;
+                                                        var value = input.value;
+                                                        // Eliminar cualquier carácter no numérico
+                                                        value = value.replace(/\D/g, '');
+                                                        // Aplicar la longitud mínima y máxima
+                                                        if (value.length < 7) {
+                                                            input.setCustomValidity('El Documento debe tener al menos 7 dígitos.');
+                                                        } else if (value.length > 10) {
+                                                            input.setCustomValidity('El Documento no puede tener más de 10 dígitos.');
+                                                        } else {
+                                                            input.setCustomValidity('');
+                                                        }
+                                                        input.value = value;
+                                                    });
+                                                </script>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Nombre</span>
                                                     <input type="text" class="form-control" placeholder="Nombre del Cliente" aria-label="Nombre" aria-describedby="basic-addon1" name="nombrecliente" id="nombrecliente" required>
@@ -261,6 +278,23 @@
                                                     <span class="input-group-text" for="inputGroupSelect01">Telefono</span>
                                                     <input type="text" class="form-control" placeholder="Telefono del Cliente" aria-label="Telefono" aria-describedby="basic-addon1" name="telcliente" id="telcliente" maxlength="10" required>
                                                 </div>
+                                                <script>
+                                                    document.getElementById('telcliente').addEventListener('input', function(e) {
+                                                        var input = e.target;
+                                                        var value = input.value;
+                                                        // Eliminar cualquier carácter no numérico
+                                                        value = value.replace(/\D/g, '');
+                                                        // Aplicar la longitud mínima y máxima
+                                                        if (value.length < 7) {
+                                                            input.setCustomValidity('El Teléfono debe tener al menos 7 dígitos.');
+                                                        } else if (value.length > 10) {
+                                                            input.setCustomValidity('El Teléfono no puede tener más de 10 dígitos.');
+                                                        } else {
+                                                            input.setCustomValidity('');
+                                                        }
+                                                        input.value = value;
+                                                    });
+                                                </script>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Registrar</button>

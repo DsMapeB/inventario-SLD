@@ -200,7 +200,6 @@
                                 <?php
                                 }
                                 if ($_GET["error"] == 3) {
-                                    $mensaje = "¡Error al registrar!";
                                 ?>
                                     <script>
                                         Swal.fire({
@@ -210,15 +209,20 @@
                                     </script>
                                 <?php
                                 }
+                                if ($_GET["error"] == 4) {
                                 ?>
-
-                            <?php
+                                    <script>
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Oops... ¡Tus Existencias se han Acabado!",
+                                        });
+                                    </script>
+                                <?php
+                                }
                             }
-                            ?>
-                            <?php
                             if (isset($_GET["error2"])) {
                                 if ($_GET["error2"] == 1) {
-                            ?>
+                                ?>
                                     <script>
                                         Swal.fire({
                                             position: "top-end",
@@ -244,10 +248,10 @@
                             ?>
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggventa">
+                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#aggventa">
                                 <i class="bi bi-cart-plus-fill"></i> Agregar Nueva Venta
                             </button>
-                            <a type="button" class="btn btn-outline-secondary" href="#" onclick="Descarga()">
+                            <a type="button" class="btn btn-outline-secondary mb-2" onclick="Descarga()">
                                 <i class="bi bi-download"></i> Descarga Tu Reporte
                             </a>
 
@@ -287,11 +291,11 @@
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Observación</span>
-                                                    <input type="text" class="form-control" placeholder="Observación" aria-label="Observación" aria-describedby="basic-addon1" id="obs" name="obs" required>
+                                                    <textarea type="text" class="form-control" placeholder="Observación" aria-label="Observación" aria-describedby="basic-addon1" id="obs" name="obs" required></textarea>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Total</span>
-                                                    <input type="text" class="form-control" placeholder="Total" aria-label="total" aria-describedby="basic-addon1" id="total" name="total" required>
+                                                    <span class="input-group-text" id="basic-addon1">Cantidad</span>
+                                                    <input type="Number" class="form-control" placeholder="Cantidad de Productos" aria-label="total" aria-describedby="basic-addon1" id="total" name="total" required>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-primary">Registrar</button>

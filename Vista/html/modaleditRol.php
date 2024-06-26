@@ -6,7 +6,7 @@
   </div>
   <div class="input-group mb-3">
     <span for="validationDefault02" class="input-group-text">Nombre Rol</span>
-    <input type="text" class="form-control" id="validationDefault02" name="rol2" value="<?php echo $filas['nombrerol'] ?>" required>
+    <input type="text" class="form-control" id="validationDefault02" placeholder="Ingrese Nombre del Rol" name="rol2" value="<?php echo $filas['nombrerol'] ?>" required>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
