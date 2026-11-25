@@ -21,8 +21,8 @@ RUN if [ -f composer.json ]; then \
     composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader; \
     fi
 
-RUN chown -R www-data:www-data /var/www/html
+RUN groupadd -g 1000 rendergroup && usermod -a -G rendergroup www-data
 
-RUN usermod -a -G 1000 www-data
+RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
