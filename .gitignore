@@ -1,3 +1,21 @@
-﻿ssl/
+# Archivos y configuraciones sensibles
+ssl/
+.env
+.env.*
+!.env.example
+
+# Archivos locales del servidor
 server.js
+
+# Bases de datos y respaldos
 *.sql
+*.sql.zip
+
+# Dependencias
+/node_modules/
+/vendor/
+
+# Archivos temporales
+*.log
+.DS_Store
+Thumbs.db
