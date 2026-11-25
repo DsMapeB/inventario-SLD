@@ -1,4 +1,3 @@
-
 FROM php:8.3-apache
 
 RUN apt-get update && apt-get install -y \
@@ -22,6 +21,8 @@ RUN if [ -f composer.json ]; then \
     composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader; \
     fi
 
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www/HTML
+
+RUN usermod -a -G 1000 www-data
 
 EXPOSE 80
