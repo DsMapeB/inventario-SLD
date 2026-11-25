@@ -9,7 +9,6 @@ if ($result->rowCount() > 0) {
                     <th scope="col">Documento</th>
                     <th scope="col">Usuario</th>
                     <th scope="col">Telefono</th>
-                    <th scope="col">Contraseña</th>
                     <th scope="col">Foto</th>
                     <th scope="col">Rol</th>
                     <?php if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") : ?>
@@ -28,14 +27,6 @@ if ($result->rowCount() > 0) {
                         <td><?php echo $fila->Usudoc; ?></td>
                         <td><?php echo $fila->usuario; ?></td>
                         <td><?php echo $fila->telefono; ?></td>
-                        <td><?php
-                            if (isset($_SESSION["nombrerol"]) && $_SESSION["nombrerol"] === "Administrador") {
-                                echo !empty($fila->password) ? $fila->password : 'Sin contraseña';
-                            } else {
-                                echo !empty($fila->password) ? str_repeat("*", strlen($fila->password)) : 'Sin contraseña';
-                            }
-                            ?>
-                        </td>
                         <td>
                             <?php if (!empty($fila->foto)) { ?>
                                 <img src="<?php echo $fila->foto; ?>" alt="Foto de perfil" style="max-width: 100px; max-height: 100px;">

@@ -8,19 +8,19 @@ class GestorCliente
         $nombre_cli = $cliente->obtenernombre();
         $telefono_cli = $cliente->obtenertelefono();
 
-        $sql2 = "SELECT * FROM cliente WHERE docclie=$doc_cli";
-        $conexion->buscar_query($sql2);
-        $validar = $conexion->obtener_filas();
-        if ($validar > 0) {
+        $sql2 = "SELECT docclie FROM cliente WHERE docclie = ? LIMIT 1";
+        $stmt = $conexion->buscar_query_preparado($sql2, [$doc_cli]);
+        $validar = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($validar) {
             return 2;
+        }
+
+        $sql = "INSERT INTO cliente (docclie, nombreclie, telefonoclie) VALUES (?, ?, ?)";
+        $result2 = $conexion->ejecutar_query_preparado($sql, [$doc_cli, $nombre_cli, $telefono_cli]);
+        if ($result2 > 0) {
+            return 1;
         } else {
-            $sql = "INSERT INTO cliente VALUES ('$doc_cli', '$nombre_cli', '$telefono_cli')";
-            $result2 = $conexion->ejecutar_query($sql);
-            if ($result2 > 0) {
-                return 1;
-            } else {
-                return 3;
-            }
+            return 3;
         }
     }
 
@@ -36,10 +36,9 @@ class GestorCliente
     public function editarCli($docclie)
     {
         $conexion = new Conexion();
-        $sql = "SELECT * FROM cliente WHERE docclie = $docclie";
-        $conexion->buscar_query($sql);
-        $result = $conexion->obtener_resultado();
-        return $result;
+        $sql = "SELECT docclie, nombreclie, telefonoclie FROM cliente WHERE docclie = ? LIMIT 1";
+        $stmt = $conexion->buscar_query_preparado($sql, [$docclie]);
+        return $stmt;
     }
 
     public function actualizarCli($cli)
@@ -51,8 +50,8 @@ class GestorCliente
         $nombre_cli = $cliente->obtenernombre();
         $telefono_cli = $cliente->obtenertelefono();
 
-        $sql = "UPDATE cliente SET nombreclie = '$nombre_cli' , telefonoclie = '$telefono_cli' WHERE docclie = '$doc_cli' ";
-        $result = $conexion->ejecutar_query($sql);
+        $sql = "UPDATE cliente SET nombreclie = ?, telefonoclie = ? WHERE docclie = ?";
+        $result = $conexion->ejecutar_query_preparado($sql, [$nombre_cli, $telefono_cli, $doc_cli]);
         if ($result > 0) {
             return 1;
         } else {

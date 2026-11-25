@@ -6,19 +6,129 @@ class Controlador
     require($url);
   }
 
+  /**
+   * Valida y guarda una imagen subida con un nombre único y una extensión segura.
+   * Devuelve la ruta relativa (uploads/archivo.ext) o null si no es válida.
+   */
+  private function guardarImagenSubida($archivo, $rutaDestino = 'uploads/')
+  {
+    if (!is_array($archivo) || !isset($archivo['error']) || $archivo['error'] === UPLOAD_ERR_NO_FILE) {
+      return null;
+    }
+
+    if ($archivo['error'] !== UPLOAD_ERR_OK) {
+      return null;
+    }
+
+    if (empty($archivo['tmp_name']) || !is_uploaded_file($archivo['tmp_name'])) {
+      return null;
+    }
+
+    // Se usa el tamaño real del archivo temporal, no el dato enviado por el navegador.
+    $tamanoMaximo = 5 * 1024 * 1024; // 5 MB
+    $tamanoReal = @filesize($archivo['tmp_name']);
+    if ($tamanoReal === false || $tamanoReal <= 0 || $tamanoReal > $tamanoMaximo) {
+      return null;
+    }
+
+    // Tipo MIME real del contenido, no el enviado por el navegador.
+    $mime = null;
+    if (class_exists('finfo')) {
+      $finfo = new finfo(FILEINFO_MIME_TYPE);
+      $mime = $finfo->file($archivo['tmp_name']);
+    } elseif (function_exists('mime_content_type')) {
+      $mime = mime_content_type($archivo['tmp_name']);
+    }
+
+    $permitidos = [
+      'image/jpeg' => 'jpg',
+      'image/png'  => 'png',
+      'image/webp' => 'webp',
+    ];
+
+    if (!isset($permitidos[$mime])) {
+      return null;
+    }
+
+    // Verificación adicional de que el contenido es realmente una imagen.
+    $info = @getimagesize($archivo['tmp_name']);
+    $tiposValidos = [IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_WEBP];
+    if ($info === false || !isset($info[2]) || !in_array($info[2], $tiposValidos, true)) {
+      return null;
+    }
+
+    $directorio = rtrim($rutaDestino, '/\\') . DIRECTORY_SEPARATOR;
+    if (!is_dir($directorio)) {
+      if (!@mkdir($directorio, 0755, true) && !is_dir($directorio)) {
+        return null;
+      }
+    }
+
+    if (!is_writable($directorio)) {
+      return null;
+    }
+
+    // Nombre aleatorio: no se usa el nombre original del usuario.
+    try {
+      $nombreArchivo = bin2hex(random_bytes(16)) . '.' . $permitidos[$mime];
+    } catch (Exception $e) {
+      return null;
+    }
+
+    $destino = $directorio . $nombreArchivo;
+
+    if (!@move_uploaded_file($archivo['tmp_name'], $destino)) {
+      return null;
+    }
+
+    @chmod($destino, 0644);
+
+    return 'uploads/' . $nombreArchivo;
+  }
+
+  /**
+   * Normaliza una ruta de imagen ya existente para evitar rutas externas
+   * o contenido malicioso inyectado desde el formulario.
+   */
+  private function normalizarRutaFoto($ruta)
+  {
+    if (!is_string($ruta)) {
+      return '';
+    }
+
+    $ruta = trim($ruta);
+
+    if ($ruta === '' || strpos($ruta, '..') !== false) {
+      return '';
+    }
+
+    // Permite nombres antiguos (espacios, acentos) pero sin barras ni rutas externas.
+    if (!preg_match('#^uploads/[^/\\\\]+$#u', $ruta)) {
+      return '';
+    }
+
+    if (preg_match('#[<>"\'\x00-\x1F]#', $ruta)) {
+      return '';
+    }
+
+    return $ruta;
+  }
+
   //------------------------------Login Y Registro---------------------------------
   public function login($user, $pass)
   {
     $gestor = new Gestor();
     $result = $gestor->login($user, $pass);
     if ($result != 1 && $result != 2 && $result != 3 && $result != 4 && $result != 5 && $result != 6) {
+      // Evita fijación de sesión después de autenticar correctamente.
+      session_regenerate_id(true);
+
       $_SESSION["telefono"] = $result[0];
       $_SESSION["usuario"] = $result[1];
       $_SESSION["rol"] = $result[2];
-      $_SESSION["password"] = $result[3];
-      $_SESSION["nombrerol"] = $result[4];
-      $_SESSION["Usudoc"] = $result[5];
-      $_SESSION["foto"] = $result[6];
+      $_SESSION["nombrerol"] = $result[3];
+      $_SESSION["Usudoc"] = $result[4];
+      $_SESSION["foto"] = $result[5] ?? '';
       header("Location:index.php?accion=inicio&error=1");
     }
     if ($result == 1) {
@@ -31,27 +141,30 @@ class Controlador
 
   public function logout()
   {
-    if (isset($_SESSION["usuario"])) {
-      unset($_SESSION["usuario"]);
+    // Destrucción completa de la sesión y de su cookie.
+    $_SESSION = [];
+
+    if (ini_get("session.use_cookies")) {
+      $params = session_get_cookie_params();
+      setcookie(session_name(), '', [
+        'expires' => time() - 42000,
+        'path' => $params["path"],
+        'domain' => $params["domain"],
+        'secure' => $params["secure"],
+        'httponly' => $params["httponly"],
+        'samesite' => $params["samesite"] ?? 'Lax',
+      ]);
     }
+
     session_destroy();
     header("Location:index.php");
+    exit;
   }
 
   public function registrar($doc, $usu, $tel, $pass, $foto, $rol)
   {
-    if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-      $rutaimg = 'uploads/';
-
-      $fotoname = $_FILES['foto']['name'];
-
-      move_uploaded_file($_FILES['foto']['tmp_name'], $rutaimg . $fotoname);
-
-      $foto = $rutaimg . $fotoname;
-    } else {
-      $foto = '';
-    }
-
+    $rutaFoto = $this->guardarImagenSubida($foto);
+    $foto = $rutaFoto !== null ? $rutaFoto : '';
 
     $usu = new Usu($doc, $usu, $tel, $pass, $foto, $rol);
     $gestor = new Gestor();
@@ -99,17 +212,9 @@ class Controlador
 
   public function agregarUsuario($doc, $usu, $tel, $pass, $foto, $rol)
   {
-    if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-      $rutaimg = 'uploads/';
+    $rutaFoto = $this->guardarImagenSubida($foto);
+    $foto = $rutaFoto !== null ? $rutaFoto : '';
 
-      $fotoname = $_FILES['foto']['name'];
-
-      move_uploaded_file($_FILES['foto']['tmp_name'], $rutaimg . $fotoname);
-
-      $foto = $rutaimg . $fotoname;
-    } else {
-      $foto = '';
-    }
     $usuarios = new Usu($doc, $usu, $tel, $pass, $foto, $rol);
     $gestor = new Gestor();
     $result = $gestor->agregarUsuario($usuarios);
@@ -136,17 +241,12 @@ class Controlador
   }
 
   public function actualizarUsu($doc, $usu, $tel, $pass, $foto, $rol) {
-    // Obtener el nombre del archivo de la imagen existente en la base de datos
-    $foto_existente = $_POST["foto_existente"];
+    // Ruta de la imagen existente, validada antes de reutilizarla.
+    $foto_existente = $this->normalizarRutaFoto($_POST["foto_existente"] ?? '');
 
-    // Comprobar si se cargó una nueva imagen
-    if ($foto['error'] === UPLOAD_ERR_OK) {
-        $rutaimg = 'uploads/';
-        $fotoname = $foto['name'];
-        move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
-        $foto_actualizada = $rutaimg . $fotoname;
-    } else {
-        // Si no se cargó una nueva imagen, usar la imagen existente
+    // Si se cargó una nueva imagen válida se usa; si no, se conserva la anterior.
+    $foto_actualizada = $this->guardarImagenSubida($foto);
+    if ($foto_actualizada === null) {
         $foto_actualizada = $foto_existente;
     }
 
@@ -184,17 +284,15 @@ class Controlador
 
   public function actualizarPerfil($doc, $usuario, $tel, $pass, $foto, $rol)
   {
-    // Obtener el nombre del archivo de la imagen existente en la base de datos
-    $foto_existente = $_POST["foto_existente"];
+    // El documento de la sesión es la fuente de verdad, no el campo del formulario.
+    $doc = $_SESSION['Usudoc'] ?? $doc;
 
-    // Comprobar si se cargó una nueva imagen
-    if ($foto['error'] === UPLOAD_ERR_OK) {
-      $rutaimg = 'uploads/';
-      $fotoname = $foto['name'];
-      move_uploaded_file($foto['tmp_name'], $rutaimg . $fotoname);
-      $foto_actualizada = $rutaimg . $fotoname;
-    } else {
-      // Si no se cargó una nueva imagen, usar la imagen existente
+    // Ruta de la imagen existente, validada antes de reutilizarla.
+    $foto_existente = $this->normalizarRutaFoto($_POST["foto_existente"] ?? '');
+
+    // Si se cargó una nueva imagen válida se usa; si no, se conserva la anterior.
+    $foto_actualizada = $this->guardarImagenSubida($foto);
+    if ($foto_actualizada === null) {
       $foto_actualizada = $foto_existente;
     }
 
@@ -205,9 +303,8 @@ class Controlador
       $_SESSION['Usudoc'] = $doc;
       $_SESSION['usuario'] = $usuario;
       $_SESSION['telefono'] = $tel;
-      $_SESSION['password'] = $pass;
       $_SESSION['foto'] = $foto_actualizada;
-      $_SESSION['rol'] = $rol;
+      // El rol no se modifica desde el perfil y nunca se guarda la contraseña en sesión.
       header("Location:index.php?accion=perfil&error=1");
     }
     if ($result == 2) {

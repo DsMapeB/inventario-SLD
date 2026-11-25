@@ -7,28 +7,91 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Drawing as SpreadsheetDrawing;
 class Gestor
 {
   //-------------------------------Login y Registro ------------------------------------
+
+  /**
+   * Comprueba si un valor almacenado es un hash generado por password_hash().
+   */
+  private function esHashPassword($valor)
+  {
+    if (!is_string($valor) || $valor === '') {
+      return false;
+    }
+
+    $info = password_get_info($valor);
+
+    return !empty($info['algo']);
+  }
+
   public function login($user, $pass)
   {
-    $conexion = new Conexion();
-    $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE usuario = '$user' AND password = '$pass'";
-    $conexion->buscar_query($sql);
-    $existe = $conexion->obtener_filas();
-    if ($existe > 0) {
-      $result = $conexion->obtener_resultado();
-      $filas = $result->fetch();
-      $datos = [$filas["telefono"], $filas["usuario"], $filas["rol"], $filas["password"], $filas["nombrerol"], $filas["Usudoc"], $filas["foto"]];
-      return $datos;
-    } else {
-      $sql2 = "SELECT usuario FROM usuario WHERE usuario = '$user'";
-      $conexion->buscar_query($sql2);
-      $existe2 = $conexion->obtener_filas();
+    // Una contraseña vacía nunca es válida.
+    if ($pass === null || $pass === '') {
+      return 1;
+    }
 
-      if ($existe2 > 0) {
-        return 1;
-      } else {
-        return 2;
+    $conexion = new Conexion();
+
+    // Consulta preparada: el usuario nunca se concatena en el SQL.
+    $sql = "SELECT usuario.Usudoc, usuario.usuario, usuario.telefono, usuario.password, usuario.foto, usuario.rol, rol.nombrerol
+            FROM usuario
+            JOIN rol ON usuario.rol = rol.cargoUsu
+            WHERE usuario.usuario = ?
+            LIMIT 1";
+    $stmt = $conexion->buscar_query_preparado($sql, [$user]);
+    $filas = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$filas) {
+      // El usuario no existe.
+      return 2;
+    }
+
+    $passwordAlmacenada = $filas['password'];
+    $autenticado = false;
+
+    // Una contraseña vacía o nula en la base de datos nunca debe autenticar.
+    if ($passwordAlmacenada === null || $passwordAlmacenada === '') {
+      return 1;
+    }
+
+    if ($this->esHashPassword($passwordAlmacenada)) {
+      $autenticado = password_verify($pass, $passwordAlmacenada);
+
+      // Actualiza el hash si PHP recomienda un algoritmo o coste distinto.
+      if ($autenticado && password_needs_rehash($passwordAlmacenada, PASSWORD_DEFAULT)) {
+        $nuevoHash = password_hash($pass, PASSWORD_DEFAULT);
+        $conexion->ejecutar_query_preparado(
+          "UPDATE usuario SET password = ? WHERE Usudoc = ?",
+          [$nuevoHash, $filas['Usudoc']]
+        );
+      }
+    } else {
+      // Compatibilidad con contraseñas antiguas en texto plano.
+      $autenticado = hash_equals((string) $passwordAlmacenada, (string) $pass);
+
+      if ($autenticado) {
+        // Migración progresiva y automática a password_hash().
+        $nuevoHash = password_hash($pass, PASSWORD_DEFAULT);
+        $conexion->ejecutar_query_preparado(
+          "UPDATE usuario SET password = ? WHERE Usudoc = ?",
+          [$nuevoHash, $filas['Usudoc']]
+        );
       }
     }
+
+    if (!$autenticado) {
+      // El usuario existe pero la contraseña es incorrecta.
+      return 1;
+    }
+
+    // No se devuelve la contraseña ni el hash al controlador.
+    return [
+      $filas["telefono"],
+      $filas["usuario"],
+      $filas["rol"],
+      $filas["nombrerol"],
+      $filas["Usudoc"],
+      $filas["foto"]
+    ];
   }
 
   public function registrar(usu $usu)
@@ -43,21 +106,32 @@ class Gestor
     $foto = $usuarios->obtenerfoto();
     $rol = $usuarios->obtenerrol();
 
-    $sql = "SELECT usuario FROM usuario WHERE Usudoc = '$doc' ";
-    $conexion->buscar_query($sql);
-    $result = $conexion->obtener_filas();
+    // No se permite registrar cuentas con contraseña vacía.
+    if ($password === null || $password === '') {
+      return 3;
+    }
 
-    if ($result > 0) {
+    $sql = "SELECT Usudoc FROM usuario WHERE Usudoc = ? LIMIT 1";
+    $stmt = $conexion->buscar_query_preparado($sql, [$doc]);
+    $existe = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($existe) {
       return 2;
-    } else {
-      $sql2 = "INSERT INTO usuario (Usudoc, usuario, telefono, password, foto, rol) VALUES ('$doc', '$usuario', '$tel', '$password', '$foto', '$rol')";
-      $result2 = $conexion->ejecutar_query($sql2);
+    }
 
-      if ($result2 > 0) {
-        return 1;
-      } else {
-        return 3;
-      }
+    // Nunca se almacena la contraseña en texto plano.
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql2 = "INSERT INTO usuario (Usudoc, usuario, telefono, password, foto, rol) VALUES (?, ?, ?, ?, ?, ?)";
+    $result2 = $conexion->ejecutar_query_preparado(
+      $sql2,
+      [$doc, $usuario, $tel, $passwordHash, $foto, $rol]
+    );
+
+    if ($result2 > 0) {
+      return 1;
+    } else {
+      return 3;
     }
   }
   //-----------------------Fin Login y Registro--------------------\\
@@ -101,7 +175,12 @@ class Gestor
     $conexion->buscar_query($sql1);
     $stmt_produ = $conexion->obtener_resultado(); // Obtener el objeto PDOStatement
 
-    $sql2 = "SELECT * FROM venta join usuario on venta.Usu=usuario.Usudoc join cliente on venta.clie=cliente.docclie join producto on venta.produ=producto.codprodu";
+    $sql2 = "SELECT venta.codventa, venta.fecha, venta.hora, venta.observacion, venta.total,
+                    usuario.usuario, cliente.nombreclie, producto.nombreprodu
+             FROM venta
+             JOIN usuario ON venta.Usu = usuario.Usudoc
+             JOIN cliente ON venta.clie = cliente.docclie
+             JOIN producto ON venta.produ = producto.codprodu";
     $conexion->buscar_query($sql2);
     $stmt_venta = $conexion->obtener_resultado(); // Obtener el objeto PDOStatement
 
@@ -242,7 +321,10 @@ class Gestor
   public function DescargaBDUC()
   {
     $conexion = new Conexion(); // Supongamos que esta es tu clase de conexión a la base de datos
-    $sql = "SELECT * FROM usuario JOIN rol ON usuario.rol = rol.cargoUsu";
+    // Se seleccionan solo columnas necesarias: nunca se consulta ni exporta el password.
+    $sql = "SELECT usuario.Usudoc, usuario.usuario, usuario.telefono, rol.nombrerol
+            FROM usuario
+            JOIN rol ON usuario.rol = rol.cargoUsu";
     $conexion->buscar_query($sql);
     $stmt = $conexion->obtener_resultado(); // Obtener el objeto PDOStatement
 
@@ -258,7 +340,12 @@ class Gestor
     $conexion->buscar_query($sql4);
     $stmt4 = $conexion->obtener_resultado(); // Obtener el objeto PDOStatement
 
-    $sql5 = "SELECT * FROM venta JOIN usuario ON venta.Usu = usuario.Usudoc JOIN cliente ON venta.clie = cliente.docclie JOIN producto ON venta.produ = producto.codprodu";
+    $sql5 = "SELECT venta.codventa, venta.fecha, venta.hora, venta.observacion, venta.total,
+                    usuario.usuario, cliente.nombreclie, producto.nombreprodu
+             FROM venta
+             JOIN usuario ON venta.Usu = usuario.Usudoc
+             JOIN cliente ON venta.clie = cliente.docclie
+             JOIN producto ON venta.produ = producto.codprodu";
     $conexion->buscar_query($sql5);
     $stmt5 = $conexion->obtener_resultado(); // Obtener el objeto PDOStatement
 
@@ -267,20 +354,18 @@ class Gestor
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Informe_TCPPV'); // Nombrar la hoja de cálculo
 
-    // Encabezados de las columnas para Trabajadores
+    // Encabezados de las columnas para Trabajadores (sin contraseña)
     $sheet->setCellValue('A1', 'Documento del Trabajador');
     $sheet->setCellValue('B1', 'Nombre del Trabajador');
     $sheet->setCellValue('C1', 'Telefono del Trabajador');
-    $sheet->setCellValue('D1', 'Contraseña del Trabajador');
-    $sheet->setCellValue('E1', 'Rol del Trabajador');
+    $sheet->setCellValue('D1', 'Rol del Trabajador');
 
     $fila_trabajador = 2;
     while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
       $sheet->setCellValue('A' . $fila_trabajador, $row->Usudoc);
       $sheet->setCellValue('B' . $fila_trabajador, $row->usuario);
       $sheet->setCellValue('C' . $fila_trabajador, $row->telefono);
-      $sheet->setCellValue('D' . $fila_trabajador, $row->password);
-      $sheet->setCellValue('E' . $fila_trabajador, $row->nombrerol);
+      $sheet->setCellValue('D' . $fila_trabajador, $row->nombrerol);
       $fila_trabajador++;
     }
 
@@ -298,7 +383,7 @@ class Gestor
       ],
     ];
 
-    $sheet->getStyle('A1:E1')->applyFromArray($headerStyle);
+    $sheet->getStyle('A1:D1')->applyFromArray($headerStyle);
 
     // Centramos todos los datos
     $dataStyle = [
@@ -306,11 +391,11 @@ class Gestor
     ];
 
     // Ajustar el ancho de las columnas automáticamente
-    foreach (range('A', 'E') as $column) {
+    foreach (range('A', 'D') as $column) {
       $sheet->getColumnDimension($column)->setAutoSize(true);
     }
 
-    $sheet->getStyle('A2:E' . ($fila_trabajador - 1))->applyFromArray($dataStyle);
+    $sheet->getStyle('A2:D' . ($fila_trabajador - 1))->applyFromArray($dataStyle);
 
     // Encabezados de las columnas para clientes
     $fila_En_cliente = $fila_trabajador + 1;
@@ -455,7 +540,10 @@ class Gestor
   public function consultarUsu()
   {
     $conexion = new Conexion();
-    $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu";
+    // No se consulta el password para no transportarlo a la vista.
+    $sql = "SELECT usuario.Usudoc, usuario.usuario, usuario.telefono, usuario.foto, usuario.rol, rol.nombrerol
+            FROM usuario
+            JOIN rol ON usuario.rol = rol.cargoUsu";
     $conexion->buscar_query($sql);
     $result = $conexion->obtener_resultado();
     return $result;
@@ -471,29 +559,44 @@ class Gestor
     $foto = $usuarios->obtenerfoto();
     $rol = $usuarios->obtenerrol();
 
-    $sql2 = "SELECT usuario FROM usuario WHERE Usudoc = $doc";
-    $conexion->buscar_query($sql2);
-    $validar = $conexion->obtener_filas();
-    if ($validar > 0) {
+    // No se permite crear usuarios con contraseña vacía.
+    if ($password === null || $password === '') {
+      return 3;
+    }
+
+    $sql2 = "SELECT Usudoc FROM usuario WHERE Usudoc = ? LIMIT 1";
+    $stmt = $conexion->buscar_query_preparado($sql2, [$doc]);
+    $validar = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($validar) {
       return 2;
+    }
+
+    // Toda contraseña nueva se guarda con password_hash().
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO usuario (Usudoc, usuario, telefono, password, foto, rol) VALUES (?, ?, ?, ?, ?, ?)";
+    $result = $conexion->ejecutar_query_preparado(
+      $sql,
+      [$doc, $usuario, $tel, $passwordHash, $foto, $rol]
+    );
+    if ($result > 0) {
+      return 1;
     } else {
-      $sql = "INSERT INTO usuario (Usudoc, usuario, telefono, password, foto, rol) VALUES ('$doc', '$usuario', '$tel', '$password', '$foto', '$rol')";
-      $result = $conexion->ejecutar_query($sql);
-      if ($result > 0) {
-        return 1;
-      } else {
-        return 3;
-      }
+      return 3;
     }
   }
 
   public function editarUsu($doc)
   {
     $conexion = new Conexion();
-    $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE Usudoc = '$doc'";
-    $conexion->buscar_query($sql);
-    $result = $conexion->obtener_resultado();
-    return $result;
+    // No se devuelve el password; la vista ya no lo necesita.
+    $sql = "SELECT usuario.Usudoc, usuario.usuario, usuario.telefono, usuario.foto, usuario.rol, rol.nombrerol
+            FROM usuario
+            JOIN rol ON usuario.rol = rol.cargoUsu
+            WHERE usuario.Usudoc = ?
+            LIMIT 1";
+    $stmt = $conexion->buscar_query_preparado($sql, [$doc]);
+    return $stmt;
   }
 
   public function consultarRolUsu()
@@ -515,8 +618,26 @@ class Gestor
     $foto = $usu->obtenerfoto();
     $rol = $usu->obtenerrol();
 
+    // Recupera la contraseña actual para no perderla si el campo viene vacío.
+    $stmt = $conexion->buscar_query_preparado(
+      "SELECT password FROM usuario WHERE Usudoc = ? LIMIT 1",
+      [$doc]
+    );
+    $actual = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$actual) {
+      return 2;
+    }
+
+    $passwordFinal = $actual['password'];
+
+    if ($password !== null && $password !== '') {
+      // Solo se reemplaza cuando el formulario envía una contraseña nueva.
+      $passwordFinal = password_hash($password, PASSWORD_DEFAULT);
+    }
+
     $sql = "UPDATE usuario SET usuario = ?, telefono = ?, password = ?, foto = ?, rol = ? WHERE Usudoc = ?";
-    $params = [$usuario, $telefono, $password, $foto, $rol, $doc];
+    $params = [$usuario, $telefono, $passwordFinal, $foto, $rol, $doc];
 
     $result = $conexion->ejecutar_query_preparado($sql, $params);
 
@@ -541,10 +662,13 @@ class Gestor
   public function editarP()
   {
     $conexion = new Conexion();
-    $sql = "SELECT * FROM usuario join rol on usuario.rol=rol.cargoUsu WHERE Usudoc ='" . $_SESSION['Usudoc'] . "'";
-    $conexion->buscar_query($sql);
-    $result = $conexion->obtener_resultado();
-    return $result;
+    $sql = "SELECT usuario.Usudoc, usuario.usuario, usuario.telefono, usuario.foto, usuario.rol, rol.nombrerol
+            FROM usuario
+            JOIN rol ON usuario.rol = rol.cargoUsu
+            WHERE usuario.Usudoc = ?
+            LIMIT 1";
+    $stmt = $conexion->buscar_query_preparado($sql, [$_SESSION['Usudoc']]);
+    return $stmt;
   }
 
   public function actualizarPerfil($usu)
@@ -560,9 +684,29 @@ class Gestor
     $foto = $user->obtenerfoto();
     $rol = $user->obtenerrol(); // Aunque no se use, podemos obtenerlo para mantener el código consistente
 
-    // Actualizar solo los campos editables
-    $sql = "UPDATE usuario SET usuario = '$usuario', telefono = '$tel', password = '$password', foto = '$foto' WHERE Usudoc = '$doc'";
-    $result = $conexion->ejecutar_query($sql);
+    // Recupera la contraseña actual para conservarla si el campo viene vacío.
+    $stmt = $conexion->buscar_query_preparado(
+      "SELECT password FROM usuario WHERE Usudoc = ? LIMIT 1",
+      [$doc]
+    );
+    $actual = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$actual) {
+      return 2;
+    }
+
+    $passwordFinal = $actual['password'];
+
+    if ($password !== null && $password !== '') {
+      $passwordFinal = password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    // Actualizar solo los campos editables.
+    $sql = "UPDATE usuario SET usuario = ?, telefono = ?, password = ?, foto = ? WHERE Usudoc = ?";
+    $result = $conexion->ejecutar_query_preparado(
+      $sql,
+      [$usuario, $tel, $passwordFinal, $foto, $doc]
+    );
 
     if ($result > 0) {
       return 1;
@@ -578,19 +722,19 @@ class Gestor
   {
     $conexion = new Conexion();
     $cargo = $rol1->obtenerrol();
-    $sql2 = "SELECT * FROM rol WHERE nombrerol='$cargo'";
-    $conexion->buscar_query($sql2);
-    $validar = $conexion->obtener_filas();
-    if ($validar > 0) {
+    $sql2 = "SELECT cargoUsu FROM rol WHERE nombrerol = ? LIMIT 1";
+    $stmt = $conexion->buscar_query_preparado($sql2, [$cargo]);
+    $validar = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($validar) {
       return 2;
+    }
+
+    $sql = "INSERT INTO rol (nombrerol) VALUES (?)";
+    $result = $conexion->ejecutar_query_preparado($sql, [$cargo]);
+    if ($result > 0) {
+      return 1;
     } else {
-      $sql = "INSERT INTO rol (nombrerol) VALUES ('$cargo')";
-      $result = $conexion->ejecutar_query($sql);
-      if ($result > 0) {
-        return 1;
-      } else {
-        return 3;
-      }
+      return 3;
     }
   }
 
@@ -606,10 +750,9 @@ class Gestor
   public function editarRol($nomrol)
   {
     $conexion = new Conexion();
-    $sql = "SELECT * FROM rol WHERE cargoUsu = '$nomrol'";
-    $conexion->buscar_query($sql);
-    $result = $conexion->obtener_resultado();
-    return $result;
+    $sql = "SELECT cargoUsu, nombrerol FROM rol WHERE cargoUsu = ? LIMIT 1";
+    $stmt = $conexion->buscar_query_preparado($sql, [$nomrol]);
+    return $stmt;
   }
 
   public function actualizarRol(roles $nomrol, $num)
@@ -617,8 +760,8 @@ class Gestor
     $conexion = new Conexion();
     $cargo = $nomrol->obtenerrol();
 
-    $sql = "UPDATE rol SET nombrerol = '$cargo' WHERE cargoUsu = '$num'";
-    $result = $conexion->ejecutar_query($sql);
+    $sql = "UPDATE rol SET nombrerol = ? WHERE cargoUsu = ?";
+    $result = $conexion->ejecutar_query_preparado($sql, [$cargo, $num]);
     if ($result > 0) {
       return 1;
     } else {

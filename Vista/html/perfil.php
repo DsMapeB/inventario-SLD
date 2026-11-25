@@ -247,12 +247,7 @@
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Contraseña</div>
                                         <div class="col-lg-9 col-md-8">
-                                            <?php
-                                            $cant = strlen($_SESSION['password']);
-                                            for ($i = 0; $i < $cant; $i++) {
-                                                echo "*";
-                                            }
-                                            ?>
+                                            ********
                                         </div>
                                     </div>
                                     <div class="row">

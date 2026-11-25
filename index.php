@@ -1,5 +1,16 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    ini_set('session.use_strict_mode', '1');
+    ini_set('session.use_only_cookies', '1');
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'httponly' => true,
+        'samesite' => 'Lax',
+        'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+    ]);
+    session_start();
+}
 //------------------------------------ Descarga BD ------------------------------------------------------
 require_once("vendor/autoload.php");
 //------------------------------------ Gestor conexion -----------------------------------------
@@ -38,7 +49,6 @@ if (
     && isset($_SESSION["usuario"])
     && isset($_SESSION["telefono"])
     && isset($_SESSION["rol"])
-    && isset($_SESSION["password"])
     && isset($_SESSION["nombrerol"])
     && isset($_SESSION["foto"])
 ) {
@@ -69,7 +79,7 @@ if (
                     $_REQUEST["usuario"],
                     $_REQUEST["tel"],
                     $_REQUEST["password"],
-                    $_REQUEST["foto"],
+                    $_FILES["foto"] ?? null,
                     $_REQUEST["cargo"]
                 );
                 break;
@@ -88,7 +98,7 @@ if (
                     $_REQUEST["usuario2"],
                     $_REQUEST["tel2"],
                     $_REQUEST["password2"],
-                    $_FILES["foto2"],
+                    $_FILES["foto2"] ?? null,
                     $_REQUEST["cargo2"]
                 );
                 break;
@@ -109,7 +119,7 @@ if (
                     $_POST["usuario3"],
                     $_POST["tel3"],
                     $_POST["contraseña3"],
-                    $_FILES["foto3"],
+                    $_FILES["foto3"] ?? null,
                     $_POST["rol3"]
                 );
                 break;
@@ -295,7 +305,7 @@ if (
                     $_POST["usuario"],
                     $_POST["tel"],
                     $_POST["password"],
-                    $_POST["foto"],
+                    $_FILES["foto"] ?? null,
                     $_POST["cargo"]
                 );
                 break;

@@ -48,7 +48,7 @@
   </script>
   <div class="input-group mb-3">
     <span for="validationDefault04" class="input-group-text">Contraseña</span>
-    <input type="password" class="form-control" name="password2" placeholder="Ingrese su Contraseña" id="validationDefault04" value="<?php echo $fila['password']; ?>" required>
+    <input type="password" class="form-control" name="password2" placeholder="Dejar en blanco para conservar la actual" id="validationDefault04" autocomplete="new-password">
   </div>
   <div class="input-group mb-3">
     <span for="validationDefault05" class="input-group-text">Foto</span>

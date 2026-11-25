@@ -11,20 +11,23 @@ class GestorProveedor
         $direccion_pro = $proveedor->obtenerdireccion();
         $ciudad_pro = $proveedor->obtenerciudad();
 
-        $sql2 = "SELECT * FROM proveedores WHERE nitpro=$nit_pro";
-        $conexion->buscar_query($sql2);
-        $validar = $conexion->obtener_filas();
-        if ($validar > 0) {
+        $sql2 = "SELECT nitpro FROM proveedores WHERE nitpro = ? LIMIT 1";
+        $stmt = $conexion->buscar_query_preparado($sql2, [$nit_pro]);
+        $validar = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($validar) {
             return 2;
-        } else {
+        }
 
-            $sql = "INSERT INTO proveedores VALUES ('$nit_pro', '$nombre_pro', '$contacto_pro', '$telefono_pro', '$direccion_pro', '$ciudad_pro')";
-            $result2 = $conexion->ejecutar_query($sql);
-            if ($result2 > 0) {
-                return 1;
-            } else {
-                return 3;
-            }
+        $sql = "INSERT INTO proveedores (nitpro, nombrePro, contactoPro, telefonoPro, direccionPro, ciudadPro)
+                VALUES (?, ?, ?, ?, ?, ?)";
+        $result2 = $conexion->ejecutar_query_preparado(
+            $sql,
+            [$nit_pro, $nombre_pro, $contacto_pro, $telefono_pro, $direccion_pro, $ciudad_pro]
+        );
+        if ($result2 > 0) {
+            return 1;
+        } else {
+            return 3;
         }
     }
     public function consultarPro()
@@ -39,10 +42,10 @@ class GestorProveedor
     public function editarPro($nitpro)
     {
         $conexion = new Conexion();
-        $sql = "SELECT * FROM proveedores WHERE nitpro = $nitpro";
-        $conexion->buscar_query($sql);
-        $result = $conexion->obtener_resultado();
-        return $result;
+        $sql = "SELECT nitpro, nombrePro, contactoPro, telefonoPro, direccionPro, ciudadPro
+                FROM proveedores WHERE nitpro = ? LIMIT 1";
+        $stmt = $conexion->buscar_query_preparado($sql, [$nitpro]);
+        return $stmt;
     }
 
     public function actualizarprovee($provee)
@@ -57,8 +60,12 @@ class GestorProveedor
         $direccionpro = $proveedor->obtenerdireccion();
         $ciudadpro = $proveedor->obtenerciudad();
 
-        $sql = "UPDATE proveedores SET nombrePro = '$nombrepro', contactoPro = '$contactopro', telefonoPro = '$telefonopro', direccionPro = '$direccionpro', ciudadPro = '$ciudadpro' WHERE nitpro = '$nitpro'";
-        $result = $conexion->ejecutar_query($sql);
+        $sql = "UPDATE proveedores SET nombrePro = ?, contactoPro = ?, telefonoPro = ?, direccionPro = ?, ciudadPro = ?
+                WHERE nitpro = ?";
+        $result = $conexion->ejecutar_query_preparado(
+            $sql,
+            [$nombrepro, $contactopro, $telefonopro, $direccionpro, $ciudadpro, $nitpro]
+        );
         if($result>0){
             return 1;
         }

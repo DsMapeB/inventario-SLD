@@ -1,7 +1,7 @@
 <?php
 require_once 'conexion.php';
 $conexion = new Conexion();
-$sql = "SELECT * FROM usuario";
+$sql = "SELECT Usudoc, usuario FROM usuario";
 $conexion->buscar_query($sql);
 $result = $conexion->obtener_resultado();
 ?>
